@@ -101,8 +101,8 @@ body::-webkit-scrollbar {
         <div class="relative max-w-[1800px] mx-auto px-8 h-20 flex items-center justify-between">
             <!-- Logo -->
             <div class="z-50 relative">
-                <a href="#" class="text-xl font-semibold tracking-[0.2em] uppercase text-neutral-900 flex items-center gap-2">
-                    <svg class="w-32 h-auto" viewBox="0 0 342 35" xmlns="http://www.w3.org/2000/svg" fill="currentColor"><path d="M0 .1a9.7 9.7 0 0 0 7 7h11l.5.1v27.6h6.8V7.3L26 7h11a9.8 9.8 0 0 0 7-7H0zm238.6 0h-6.8v34.8h6.8v-16h31.2v16h6.8V.1h-38zM54.4.2a16.5 16.5 0 0 0 16.6 16.4h30.5v-6.8H70.7a9.7 9.7 0 1 1 0-19.4H102V.2H54.4zm4.2 34.8h6.8V21h36.3v14H102v-21H58.6v21zM153.4.2v6.8h39.2v28h6.8v-28h39.2V.2h-85.2zM277.3.2a16.5 16.5 0 0 0 16.6 16.4h30.5v-6.8h-30.8a9.7 9.7 0 1 1 0-19.4h31.3V.2h-47.6zM281.5 35h6.8V21h36.3v14h.3v-21h-43.4v21z"></path></svg>
+                <a href="#" class="flex items-center gap-2">
+                    <img src="/assets/tesla-icon.png" alt="Tesla icon" class="w-10 h-10 object-contain" onerror="this.style.display='none'">
                 </a>
             </div>
 
@@ -110,7 +110,7 @@ body::-webkit-scrollbar {
             <div class="hidden lg:flex items-center gap-12 z-50">
                 <!-- Vehicles Dropdown -->
                 <div class="group h-20 flex items-center">
-                    <button class="text-base font-medium text-neutral-800 hover:text-black transition-colors py-2 px-4 rounded-full hover:bg-neutral-100/50">Vehicles</button>
+                    <button class="nav-link text-base font-medium transition-colors py-2 px-4 rounded-full hover:bg-neutral-100/20">Vehicles</button>
                     <!-- Mega Menu Content -->
                     <div class="mega-menu-container absolute top-0 left-0 w-full bg-white pt-24 pb-16 px-12 shadow-2xl border-b border-neutral-100 -z-10">
                         <div class="max-w-[1600px] mx-auto grid grid-cols-5 gap-8 fade-in">
@@ -168,7 +168,7 @@ body::-webkit-scrollbar {
 
                 <!-- Energy Dropdown -->
                 <div class="group h-20 flex items-center">
-                    <button class="text-base font-medium text-neutral-800 hover:text-black transition-colors py-2 px-4 rounded-full hover:bg-neutral-100/50">Energy</button>
+                    <button class="nav-link text-base font-medium transition-colors py-2 px-4 rounded-full hover:bg-neutral-100/20">Energy</button>
                     <!-- Mega Menu Content -->
                     <div class="mega-menu-container absolute top-0 left-0 w-full bg-white pt-24 pb-16 px-12 shadow-2xl border-b border-neutral-100 -z-10">
                         <div class="max-w-[1200px] mx-auto grid grid-cols-4 gap-8">
@@ -194,7 +194,7 @@ body::-webkit-scrollbar {
 
                 <!-- Charging -->
                 <div class="group h-20 flex items-center">
-                    <button class="text-base font-medium text-neutral-800 hover:text-black transition-colors py-2 px-4 rounded-full hover:bg-neutral-100/50">Charging</button>
+                    <button class="nav-link text-base font-medium transition-colors py-2 px-4 rounded-full hover:bg-neutral-100/20">Charging</button>
                      <div class="mega-menu-container absolute top-0 left-0 w-full bg-white pt-24 pb-16 px-12 shadow-2xl border-b border-neutral-100 -z-10">
                         <div class="max-w-[1000px] mx-auto grid grid-cols-3 gap-12">
                              <a href="#" class="group/item text-center block">
@@ -214,7 +214,7 @@ body::-webkit-scrollbar {
                 </div>
 
                 <div class="group h-20 flex items-center">
-                    <button class="text-base font-medium text-neutral-800 hover:text-black transition-colors py-2 px-4 rounded-full hover:bg-neutral-100/50">Discover</button>
+                    <button class="nav-link text-base font-medium transition-colors py-2 px-4 rounded-full hover:bg-neutral-100/20">Discover</button>
                     <div class="mega-menu-container absolute top-0 left-0 w-full bg-white pt-24 pb-16 px-12 shadow-2xl border-b border-neutral-100 -z-10">
                         <div class="max-w-[800px] mx-auto grid grid-cols-3 gap-12">
                              <div class="space-y-4">
@@ -242,7 +242,7 @@ body::-webkit-scrollbar {
                     </div>
                 </div>
                 
-                <a href="#" class="text-base font-medium text-neutral-800 hover:text-black transition-colors py-2 px-4 rounded-full hover:bg-neutral-100/50">Shop</a>
+                <a href="#" class="nav-link text-base font-medium transition-colors py-2 px-4 rounded-full hover:bg-neutral-100/20">Shop</a>
             </div>
 
             <!-- Mobile Menu Toggle -->
@@ -253,9 +253,9 @@ body::-webkit-scrollbar {
             <!-- Right Actions -->
             <div class="flex items-center gap-6 z-50">
                 <div class="hidden md:flex items-center gap-4">
-                    <a href="#" class="text-base font-medium text-neutral-800 hover:text-black transition-colors">Account</a>
+                    <a href="#" class="nav-link text-base font-medium transition-colors">Account</a>
                 </div>
-                <button class="relative group text-neutral-800 hover:text-black transition-colors">
+                <button class="nav-link relative group transition-colors">
                     <iconify-icon icon="solar:bag-3-linear" width="24" stroke-width="1.5"></iconify-icon>
                 </button>
             </div>
@@ -945,16 +945,32 @@ body::-webkit-scrollbar {
         // Navbar Glass Effect on Scroll
         const navbar = document.getElementById('navbar');
         const navBg = document.getElementById('nav-bg');
+        const navLinks = document.querySelectorAll('.nav-link');
+
+        const setNavColors = (isTop) => {
+            navLinks.forEach((link) => {
+                link.classList.remove('text-white', 'text-neutral-800', 'hover:text-white', 'hover:text-black');
+                if (isTop) {
+                    link.classList.add('text-white', 'hover:text-white');
+                } else {
+                    link.classList.add('text-neutral-800', 'hover:text-black');
+                }
+            });
+        };
 
         window.addEventListener('scroll', () => {
             if (window.scrollY > 50) {
                 navBg.classList.replace('bg-white/0', 'bg-white/90');
                 navBg.classList.add('backdrop-blur-xl', 'shadow-sm');
+                setNavColors(false);
             } else {
                 navBg.classList.replace('bg-white/90', 'bg-white/0');
                 navBg.classList.remove('backdrop-blur-xl', 'shadow-sm');
+                setNavColors(true);
             }
         });
+
+        setNavColors(true);
 
         // "React-like" Reveal Animations
         const observerOptions = {
