@@ -1,16 +1,47 @@
-# React + Vite
+# Tesla Futuristic Landing Page
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern, responsive Tesla-inspired landing page built with React, Tailwind CSS, and Vite.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- **Hover-based Navigation** - Interactive menu with smooth transitions
+- **Video Background Hero** - Muted looping video in hero section
+- **Scroll Animations** - Staggered left-to-right reveal effects on scroll
+- **Responsive Design** - Mobile, tablet, and desktop optimized
+- **Modern Styling** - Clean minimalist aesthetic inspired by Tesla's design language
+- **Performance Optimized** - Fast load times with optimized assets
 
-## React Compiler
+## Sections
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- **Hero** - Full-screen video background with key stats
+- **Features** - Why choose Tesla with 4 feature cards
+- **Lineup** - Vehicle showcase with interactive carousel
+- **History** - Timeline of Tesla's key milestones
+- **News** - Latest updates and announcements
+- **CTA** - Call-to-action section for conversions
+- **Footer** - Navigation links and company info
 
-## Expanding the ESLint configuration
+## Live Demo
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Visit the live site: [https://yourusername.github.io/TeslaFuturistic/](https://yourusername.github.io/TeslaFuturistic/)
+
+## Local Development
+
+```bash
+cd app
+npm install
+npx vite --port 3000
+```
+
+Then open `http://127.0.0.1:3000/` in your browser.
+
+## Technologies
+
+- React 19.2
+- Tailwind CSS 4.2
+- Vite 8.0
+- Custom CSS animations
+
+## License
+
+MIT
