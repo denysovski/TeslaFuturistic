@@ -95,13 +95,72 @@ body::-webkit-scrollbar {
 .nav-caret {
     display: inline-block;
     margin-left: 0.35rem;
-    font-size: 0.7rem;
+    font-size: 1.05rem;
     line-height: 1;
     transition: transform 0.25s ease;
+    vertical-align: middle;
 }
 
 .has-mega:hover .nav-caret {
     transform: translateY(-1px);
+}
+
+.faq-item {
+    border: 1px solid #e5e7eb;
+    border-radius: 1rem;
+    overflow: hidden;
+    background: white;
+    transition: box-shadow 0.25s ease;
+}
+
+.faq-item.active {
+    box-shadow: 0 16px 32px rgba(15, 23, 42, 0.08);
+}
+
+.faq-trigger {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    padding: 2rem;
+    cursor: pointer;
+    text-align: left;
+    border: 0;
+    background: transparent;
+    transition: background-color 0.25s ease;
+}
+
+.faq-trigger:hover {
+    background: #fafafa;
+}
+
+.faq-panel {
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition: max-height 0.45s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
+}
+
+.faq-item.active .faq-panel {
+    max-height: 280px;
+    opacity: 1;
+}
+
+.faq-answer {
+    padding: 0 2rem 2rem;
+    color: #52525b;
+    font-size: 1.05rem;
+    line-height: 1.7;
+}
+
+.faq-arrow {
+    transition: transform 0.3s ease;
+    color: #71717a;
+}
+
+.faq-item.active .faq-arrow {
+    transform: rotate(180deg);
 }
 </style></head>
 <body class="bg-white text-neutral-900 antialiased overflow-x-hidden selection:bg-neutral-900 selection:text-white">
@@ -122,7 +181,7 @@ body::-webkit-scrollbar {
             <div class="hidden lg:flex items-center gap-12 z-50">
                 <!-- Vehicles Dropdown -->
                 <div class="group has-mega h-20 flex items-center">
-                    <button class="nav-link text-base font-medium transition-colors py-2 px-4 rounded-full hover:bg-neutral-100/20">Vehicles <span class="nav-caret">^</span></button>
+                    <button class="nav-link text-base font-medium transition-colors py-2 px-4 rounded-full hover:bg-neutral-100/20">Vehicles <iconify-icon icon="solar:alt-arrow-down-linear" class="nav-caret"></iconify-icon></button>
                     <!-- Mega Menu Content -->
                     <div class="mega-menu-container absolute top-0 left-0 w-full bg-white pt-24 pb-16 px-12 shadow-2xl border-b border-neutral-100 -z-10">
                         <div class="max-w-[1600px] mx-auto grid grid-cols-5 gap-8 fade-in">
@@ -180,7 +239,7 @@ body::-webkit-scrollbar {
 
                 <!-- Energy Dropdown -->
                 <div class="group has-mega h-20 flex items-center">
-                    <button class="nav-link text-base font-medium transition-colors py-2 px-4 rounded-full hover:bg-neutral-100/20">Energy <span class="nav-caret">^</span></button>
+                    <button class="nav-link text-base font-medium transition-colors py-2 px-4 rounded-full hover:bg-neutral-100/20">Energy <iconify-icon icon="solar:alt-arrow-down-linear" class="nav-caret"></iconify-icon></button>
                     <!-- Mega Menu Content -->
                     <div class="mega-menu-container absolute top-0 left-0 w-full bg-white pt-24 pb-16 px-12 shadow-2xl border-b border-neutral-100 -z-10">
                         <div class="max-w-[1200px] mx-auto grid grid-cols-4 gap-8">
@@ -206,7 +265,7 @@ body::-webkit-scrollbar {
 
                 <!-- Charging -->
                 <div class="group has-mega h-20 flex items-center">
-                    <button class="nav-link text-base font-medium transition-colors py-2 px-4 rounded-full hover:bg-neutral-100/20">Charging <span class="nav-caret">^</span></button>
+                    <button class="nav-link text-base font-medium transition-colors py-2 px-4 rounded-full hover:bg-neutral-100/20">Charging <iconify-icon icon="solar:alt-arrow-down-linear" class="nav-caret"></iconify-icon></button>
                      <div class="mega-menu-container absolute top-0 left-0 w-full bg-white pt-24 pb-16 px-12 shadow-2xl border-b border-neutral-100 -z-10">
                         <div class="max-w-[1000px] mx-auto grid grid-cols-3 gap-12">
                              <a href="#" class="group/item text-center block">
@@ -226,7 +285,7 @@ body::-webkit-scrollbar {
                 </div>
 
                 <div class="group has-mega h-20 flex items-center">
-                    <button class="nav-link text-base font-medium transition-colors py-2 px-4 rounded-full hover:bg-neutral-100/20">Discover <span class="nav-caret">^</span></button>
+                    <button class="nav-link text-base font-medium transition-colors py-2 px-4 rounded-full hover:bg-neutral-100/20">Discover <iconify-icon icon="solar:alt-arrow-down-linear" class="nav-caret"></iconify-icon></button>
                     <div class="mega-menu-container absolute top-0 left-0 w-full bg-white pt-24 pb-16 px-12 shadow-2xl border-b border-neutral-100 -z-10">
                         <div class="max-w-[800px] mx-auto grid grid-cols-3 gap-12">
                              <div class="space-y-4">
@@ -280,6 +339,7 @@ body::-webkit-scrollbar {
             <video class="w-full h-full object-cover pointer-events-none" autoplay muted loop playsinline preload="auto" disablepictureinpicture controlslist="nodownload nofullscreen noremoteplayback">
                 <source src="/assets/tesla-commercial.mp4" type="video/mp4">
             </video>
+            <div class="absolute inset-0 bg-black/20"></div>
             <div class="absolute inset-0 bg-gradient-to-b from-white/30 via-transparent to-transparent h-40"></div>
         </div>
         
@@ -868,46 +928,120 @@ body::-webkit-scrollbar {
         </div>
     </section>
 
+    <!-- Why Tesla Confidence Section -->
+    <section class="py-32 px-8 max-w-[1600px] mx-auto border-t border-neutral-200">
+        <div class="text-center max-w-3xl mx-auto mb-16 reveal">
+            <h2 class="text-5xl md:text-6xl font-medium tracking-tight mb-6">Why Drivers Keep Choosing Tesla</h2>
+            <p class="text-xl text-neutral-500 leading-relaxed">From acceleration and software to charging and long-term ownership value, Tesla ownership creates a connected ecosystem that improves with time.</p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <article class="bg-white border border-neutral-200 rounded-3xl p-10 reveal">
+                <iconify-icon icon="solar:flash-circle-linear" class="text-4xl text-yellow-500 mb-6"></iconify-icon>
+                <h3 class="text-2xl font-semibold mb-4">Performance + Efficiency</h3>
+                <p class="text-neutral-600 leading-relaxed">Model S Plaid combines supercar-level acceleration with long-range practicality, so drivers do not choose between excitement and usability.</p>
+            </article>
+            <article class="bg-white border border-neutral-200 rounded-3xl p-10 reveal delay-100">
+                <iconify-icon icon="solar:cpu-bolt-linear" class="text-4xl text-indigo-500 mb-6"></iconify-icon>
+                <h3 class="text-2xl font-semibold mb-4">Software Advantage</h3>
+                <p class="text-neutral-600 leading-relaxed">Frequent OTA updates deliver tangible improvements in navigation, safety features, and day-to-day user experience throughout ownership.</p>
+            </article>
+            <article class="bg-white border border-neutral-200 rounded-3xl p-10 reveal delay-200">
+                <iconify-icon icon="solar:station-linear" class="text-4xl text-green-600 mb-6"></iconify-icon>
+                <h3 class="text-2xl font-semibold mb-4">Charging Confidence</h3>
+                <p class="text-neutral-600 leading-relaxed">Integrated route planning and Supercharger availability reduce range anxiety and make long-distance EV travel predictable and fast.</p>
+            </article>
+        </div>
+    </section>
+
+    <!-- Long-Term Value Section -->
+    <section class="py-32 px-8 bg-neutral-950 text-white">
+        <div class="max-w-[1600px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            <div class="reveal">
+                <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-white/20 bg-white/5 text-xs uppercase tracking-wider mb-6">
+                    <iconify-icon icon="solar:graph-up-linear"></iconify-icon>
+                    Ownership Outlook
+                </span>
+                <h2 class="text-5xl md:text-6xl font-medium tracking-tight mb-6">Built for Long-Term Satisfaction</h2>
+                <p class="text-lg text-neutral-300 leading-relaxed mb-8">Owners benefit from fewer service intervals, strong performance retention, and software updates that keep the vehicle experience modern and competitive year after year.</p>
+                <ul class="space-y-4 text-neutral-200">
+                    <li class="flex items-start gap-3"><iconify-icon icon="solar:check-circle-linear" class="text-green-400 mt-1"></iconify-icon><span>Lower routine maintenance compared to combustion performance sedans.</span></li>
+                    <li class="flex items-start gap-3"><iconify-icon icon="solar:check-circle-linear" class="text-green-400 mt-1"></iconify-icon><span>Frequent feature improvements via over-the-air updates.</span></li>
+                    <li class="flex items-start gap-3"><iconify-icon icon="solar:check-circle-linear" class="text-green-400 mt-1"></iconify-icon><span>Strong charging and software ecosystem designed around real driving behavior.</span></li>
+                </ul>
+            </div>
+            <div class="grid grid-cols-2 gap-5 reveal delay-100">
+                <div class="bg-white/5 border border-white/10 rounded-2xl p-8">
+                    <p class="text-4xl font-semibold mb-2">396 mi</p>
+                    <p class="text-sm uppercase tracking-wider text-neutral-400">EPA Range</p>
+                </div>
+                <div class="bg-white/5 border border-white/10 rounded-2xl p-8">
+                    <p class="text-4xl font-semibold mb-2">1.99 s</p>
+                    <p class="text-sm uppercase tracking-wider text-neutral-400">0-60 mph</p>
+                </div>
+                <div class="bg-white/5 border border-white/10 rounded-2xl p-8">
+                    <p class="text-4xl font-semibold mb-2">250 kW</p>
+                    <p class="text-sm uppercase tracking-wider text-neutral-400">Max Charging</p>
+                </div>
+                <div class="bg-white/5 border border-white/10 rounded-2xl p-8">
+                    <p class="text-4xl font-semibold mb-2">OTA</p>
+                    <p class="text-sm uppercase tracking-wider text-neutral-400">Continuous Updates</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- FAQ Section -->
     <section class="py-32 px-8 max-w-4xl mx-auto">
         <h2 class="text-4xl font-medium tracking-tight mb-16 text-center reveal">Frequently Asked Questions</h2>
         
         <div class="space-y-6">
-            <details class="group bg-white border border-neutral-200 rounded-2xl overflow-hidden reveal">
-                <summary class="flex justify-between items-center p-8 cursor-pointer list-none hover:bg-neutral-50 transition-colors">
-                    <span class="font-medium text-xl">What is the range of Model S Plaid?</span>
-                    <span class="transform group-open:rotate-180 transition-transform duration-300 text-neutral-400">
-                        <iconify-icon icon="solar:alt-arrow-down-linear" width="28"></iconify-icon>
-                    </span>
-                </summary>
-                <div class="px-8 pb-8 text-neutral-600 text-lg leading-relaxed">
-                    Model S Plaid has an estimated range of 396 miles (EPA est.) on a single charge. Range may vary based on driving conditions, wheel selection, and other factors.
+            <div class="faq-item active reveal">
+                <button class="faq-trigger" type="button">
+                    <span class="font-medium text-xl">What is the real-world range of Model S Plaid?</span>
+                    <iconify-icon icon="solar:alt-arrow-down-linear" width="28" class="faq-arrow"></iconify-icon>
+                </button>
+                <div class="faq-panel">
+                    <div class="faq-answer">
+                        Model S Plaid is rated up to 396 miles (EPA estimate). In daily use, range depends on speed, weather, elevation, and wheel setup. The onboard energy graph and live route planner continuously adjust predictions and suggest charging stops, helping drivers plan trips with high confidence.
+                    </div>
                 </div>
-            </details>
+            </div>
 
-            <details class="group bg-white border border-neutral-200 rounded-2xl overflow-hidden reveal delay-100">
-                <summary class="flex justify-between items-center p-8 cursor-pointer list-none hover:bg-neutral-50 transition-colors">
-                    <span class="font-medium text-xl">How fast is Supercharging?</span>
-                    <span class="transform group-open:rotate-180 transition-transform duration-300 text-neutral-400">
-                         <iconify-icon icon="solar:alt-arrow-down-linear" width="28"></iconify-icon>
-                    </span>
-                </summary>
-                <div class="px-8 pb-8 text-neutral-600 text-lg leading-relaxed">
-                    With V3 Supercharging, you can add up to 200 miles of range in just 15 minutes. The peak charging rate is 250kW.
+            <div class="faq-item reveal delay-100">
+                <button class="faq-trigger" type="button">
+                    <span class="font-medium text-xl">How does Tesla charging compare on long trips?</span>
+                    <iconify-icon icon="solar:alt-arrow-down-linear" width="28" class="faq-arrow"></iconify-icon>
+                </button>
+                <div class="faq-panel">
+                    <div class="faq-answer">
+                        With V3 Supercharging up to 250 kW, Model S can recover substantial range quickly. The navigation system preconditions the battery before arrival to optimize charge speed, and route guidance dynamically adapts based on traffic and charger availability.
+                    </div>
                 </div>
-            </details>
+            </div>
 
-            <details class="group bg-white border border-neutral-200 rounded-2xl overflow-hidden reveal delay-200">
-                <summary class="flex justify-between items-center p-8 cursor-pointer list-none hover:bg-neutral-50 transition-colors">
-                    <span class="font-medium text-xl">Does it come with Autopilot?</span>
-                    <span class="transform group-open:rotate-180 transition-transform duration-300 text-neutral-400">
-                         <iconify-icon icon="solar:alt-arrow-down-linear" width="28"></iconify-icon>
-                    </span>
-                </summary>
-                <div class="px-8 pb-8 text-neutral-600 text-lg leading-relaxed">
-                    Yes, every new Tesla comes with Basic Autopilot included. This enables your car to steer, accelerate and brake automatically within its lane. Full Self-Driving capability is available as an upgrade.
+            <div class="faq-item reveal delay-200">
+                <button class="faq-trigger" type="button">
+                    <span class="font-medium text-xl">What software and driver-assistance features are included?</span>
+                    <iconify-icon icon="solar:alt-arrow-down-linear" width="28" class="faq-arrow"></iconify-icon>
+                </button>
+                <div class="faq-panel">
+                    <div class="faq-answer">
+                        Every new Tesla includes core Autopilot capabilities for lane-centered highway driving assistance. Additional driver-assistance packages can be added, while regular over-the-air updates refine usability, safety logic, and system responsiveness over time.
+                    </div>
                 </div>
-            </details>
+            </div>
+
+            <div class="faq-item reveal delay-300">
+                <button class="faq-trigger" type="button">
+                    <span class="font-medium text-xl">Is Tesla ownership cheaper over time?</span>
+                    <iconify-icon icon="solar:alt-arrow-down-linear" width="28" class="faq-arrow"></iconify-icon>
+                </button>
+                <div class="faq-panel">
+                    <div class="faq-answer">
+                        Many owners report lower operating costs thanks to reduced routine maintenance and lower fueling cost per mile versus premium gasoline sedans. Exact savings depend on electricity pricing, annual mileage, local incentives, and financing terms.
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -1008,6 +1142,19 @@ body::-webkit-scrollbar {
         applyNavState();
 
         // "React-like" Reveal Animations
+        const faqItems = document.querySelectorAll('.faq-item');
+
+        faqItems.forEach((item) => {
+            const trigger = item.querySelector('.faq-trigger');
+            trigger.addEventListener('click', () => {
+                const isActive = item.classList.contains('active');
+                faqItems.forEach((el) => el.classList.remove('active'));
+                if (!isActive) {
+                    item.classList.add('active');
+                }
+            });
+        });
+
         const observerOptions = {
             threshold: 0.1,
             rootMargin: "0px 0px -80px 0px"
