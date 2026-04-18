@@ -119,7 +119,7 @@ body::-webkit-scrollbar {
     transition: box-shadow 0.25s ease;
 }
 
-.faq-item.active {
+.faq-item.faq-open {
     box-shadow: 0 16px 32px rgba(15, 23, 42, 0.08);
 }
 
@@ -148,7 +148,7 @@ body::-webkit-scrollbar {
     transition: max-height 0.45s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
 }
 
-.faq-item.active .faq-panel {
+.faq-item.faq-open .faq-panel {
     max-height: 280px;
     opacity: 1;
 }
@@ -165,7 +165,7 @@ body::-webkit-scrollbar {
     color: #71717a;
 }
 
-.faq-item.active .faq-arrow {
+.faq-item.faq-open .faq-arrow {
     transform: rotate(180deg);
 }
 </style></head>
@@ -1001,7 +1001,7 @@ body::-webkit-scrollbar {
         <h2 class="text-4xl font-medium tracking-tight mb-16 text-center reveal">Frequently Asked Questions</h2>
         
         <div class="space-y-6">
-            <div class="faq-item active reveal">
+            <div class="faq-item faq-open">
                 <button class="faq-trigger" type="button">
                     <span class="font-medium text-xl">What is the real-world range of Model S Plaid?</span>
                     <iconify-icon icon="solar:alt-arrow-down-linear" width="28" class="faq-arrow"></iconify-icon>
@@ -1013,7 +1013,7 @@ body::-webkit-scrollbar {
                 </div>
             </div>
 
-            <div class="faq-item reveal delay-100">
+            <div class="faq-item">
                 <button class="faq-trigger" type="button">
                     <span class="font-medium text-xl">How does Tesla charging compare on long trips?</span>
                     <iconify-icon icon="solar:alt-arrow-down-linear" width="28" class="faq-arrow"></iconify-icon>
@@ -1025,7 +1025,7 @@ body::-webkit-scrollbar {
                 </div>
             </div>
 
-            <div class="faq-item reveal delay-200">
+            <div class="faq-item">
                 <button class="faq-trigger" type="button">
                     <span class="font-medium text-xl">What software and driver-assistance features are included?</span>
                     <iconify-icon icon="solar:alt-arrow-down-linear" width="28" class="faq-arrow"></iconify-icon>
@@ -1037,7 +1037,7 @@ body::-webkit-scrollbar {
                 </div>
             </div>
 
-            <div class="faq-item reveal delay-300">
+            <div class="faq-item">
                 <button class="faq-trigger" type="button">
                     <span class="font-medium text-xl">Is Tesla ownership cheaper over time?</span>
                     <iconify-icon icon="solar:alt-arrow-down-linear" width="28" class="faq-arrow"></iconify-icon>
@@ -1152,10 +1152,10 @@ body::-webkit-scrollbar {
         faqItems.forEach((item) => {
             const trigger = item.querySelector('.faq-trigger');
             trigger.addEventListener('click', () => {
-                const isActive = item.classList.contains('active');
-                faqItems.forEach((el) => el.classList.remove('active'));
+                const isActive = item.classList.contains('faq-open');
+                faqItems.forEach((el) => el.classList.remove('faq-open'));
                 if (!isActive) {
-                    item.classList.add('active');
+                    item.classList.add('faq-open');
                 }
             });
         });
