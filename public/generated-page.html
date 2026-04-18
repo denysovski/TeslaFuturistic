@@ -1,0 +1,976 @@
+<html lang="en" class="scroll-smooth"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tesla | Model S Plaid</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600&amp;display=swap" rel="stylesheet">
+<style>
+body {
+    font-family: 'Inter', sans-serif;
+    cursor: default;
+}
+/* Hide scrollbar */
+body::-webkit-scrollbar {
+    width: 0px;
+    background: transparent;
+}
+/* Smooth Reveal Animations */
+.reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 1s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: opacity, transform;
+}
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+.delay-100 { transition-delay: 100ms; }
+.delay-200 { transition-delay: 200ms; }
+.delay-300 { transition-delay: 300ms; }
+.delay-500 { transition-delay: 500ms; }
+
+/* Text Reveal Mask */
+.mask-text {
+    overflow: hidden;
+    display: inline-block;
+    vertical-align: bottom;
+}
+.mask-text span {
+    display: block;
+    transform: translateY(100%);
+    transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.mask-text.active span {
+    transform: translateY(0);
+}
+
+/* Mega Menu Animations */
+.mega-menu-container {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.group:hover .mega-menu-container {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+/* Custom Form Inputs */
+.input-underline {
+    background: transparent;
+    border-bottom: 1px solid #e5e5e5;
+    transition: border-color 0.3s;
+}
+.input-underline:focus {
+    outline: none;
+    border-bottom-color: #171717;
+}
+
+/* Hover underline animation */
+.hover-underline {
+    position: relative;
+}
+.hover-underline::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    transform: scaleX(0);
+    height: 1px;
+    bottom: -2px;
+    left: 0;
+    background-color: currentColor;
+    transform-origin: bottom right;
+    transition: transform 0.25s ease-out;
+}
+.hover-underline:hover::after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+}
+</style></head>
+<body class="bg-white text-neutral-900 antialiased overflow-x-hidden selection:bg-neutral-900 selection:text-white">
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 w-full z-50 transition-all duration-300 group/nav" id="navbar">
+        <div class="absolute inset-0 bg-white/0 transition-all duration-500" id="nav-bg"></div>
+        
+        <div class="relative max-w-[1800px] mx-auto px-8 h-20 flex items-center justify-between">
+            <!-- Logo -->
+            <div class="z-50 relative">
+                <a href="#" class="text-xl font-semibold tracking-[0.2em] uppercase text-neutral-900 flex items-center gap-2">
+                    <svg class="w-32 h-auto" viewBox="0 0 342 35" xmlns="http://www.w3.org/2000/svg" fill="currentColor"><path d="M0 .1a9.7 9.7 0 0 0 7 7h11l.5.1v27.6h6.8V7.3L26 7h11a9.8 9.8 0 0 0 7-7H0zm238.6 0h-6.8v34.8h6.8v-16h31.2v16h6.8V.1h-38zM54.4.2a16.5 16.5 0 0 0 16.6 16.4h30.5v-6.8H70.7a9.7 9.7 0 1 1 0-19.4H102V.2H54.4zm4.2 34.8h6.8V21h36.3v14H102v-21H58.6v21zM153.4.2v6.8h39.2v28h6.8v-28h39.2V.2h-85.2zM277.3.2a16.5 16.5 0 0 0 16.6 16.4h30.5v-6.8h-30.8a9.7 9.7 0 1 1 0-19.4h31.3V.2h-47.6zM281.5 35h6.8V21h36.3v14h.3v-21h-43.4v21z"></path></svg>
+                </a>
+            </div>
+
+            <!-- Desktop Menu -->
+            <div class="hidden lg:flex items-center gap-12 z-50">
+                <!-- Vehicles Dropdown -->
+                <div class="group h-20 flex items-center">
+                    <button class="text-base font-medium text-neutral-800 hover:text-black transition-colors py-2 px-4 rounded-full hover:bg-neutral-100/50">Vehicles</button>
+                    <!-- Mega Menu Content -->
+                    <div class="mega-menu-container absolute top-0 left-0 w-full bg-white pt-24 pb-16 px-12 shadow-2xl border-b border-neutral-100 -z-10">
+                        <div class="max-w-[1600px] mx-auto grid grid-cols-5 gap-8 fade-in">
+                            <a href="#" class="group/car text-center block">
+                                <img src="https://digitalassets.tesla.com/tesla-contents/image/upload/f_auto,q_auto:best/Mega-Menu-Vehicles-Model-S.png" class="w-full h-auto mb-4 group-hover/car:scale-105 transition-transform duration-500" alt="Model S">
+                                <h4 class="text-lg font-semibold mb-1">Model S</h4>
+                                <div class="flex justify-center gap-4 text-xs text-neutral-500 underline decoration-neutral-300 underline-offset-4">
+                                    <span class="hover:text-black hover:decoration-black transition-all">Learn</span>
+                                    <span class="hover:text-black hover:decoration-black transition-all">Order</span>
+                                </div>
+                            </a>
+                            <a href="#" class="group/car text-center block">
+                                <img src="https://digitalassets.tesla.com/tesla-contents/image/upload/f_auto,q_auto:best/Mega-Menu-Vehicles-Model-3.png" class="w-full h-auto mb-4 group-hover/car:scale-105 transition-transform duration-500" alt="Model 3">
+                                <h4 class="text-lg font-semibold mb-1">Model 3</h4>
+                                <div class="flex justify-center gap-4 text-xs text-neutral-500 underline decoration-neutral-300 underline-offset-4">
+                                    <span class="hover:text-black hover:decoration-black transition-all">Learn</span>
+                                    <span class="hover:text-black hover:decoration-black transition-all">Order</span>
+                                </div>
+                            </a>
+                            <a href="#" class="group/car text-center block">
+                                <img src="https://digitalassets.tesla.com/tesla-contents/image/upload/f_auto,q_auto:best/Mega-Menu-Vehicles-Model-X.png" class="w-full h-auto mb-4 group-hover/car:scale-105 transition-transform duration-500" alt="Model X">
+                                <h4 class="text-lg font-semibold mb-1">Model X</h4>
+                                <div class="flex justify-center gap-4 text-xs text-neutral-500 underline decoration-neutral-300 underline-offset-4">
+                                    <span class="hover:text-black hover:decoration-black transition-all">Learn</span>
+                                    <span class="hover:text-black hover:decoration-black transition-all">Order</span>
+                                </div>
+                            </a>
+                            <a href="#" class="group/car text-center block">
+                                <img src="https://digitalassets.tesla.com/tesla-contents/image/upload/f_auto,q_auto:best/Mega-Menu-Vehicles-Model-Y.png" class="w-full h-auto mb-4 group-hover/car:scale-105 transition-transform duration-500" alt="Model Y">
+                                <h4 class="text-lg font-semibold mb-1">Model Y</h4>
+                                <div class="flex justify-center gap-4 text-xs text-neutral-500 underline decoration-neutral-300 underline-offset-4">
+                                    <span class="hover:text-black hover:decoration-black transition-all">Learn</span>
+                                    <span class="hover:text-black hover:decoration-black transition-all">Order</span>
+                                </div>
+                            </a>
+                            <a href="#" class="group/car text-center block">
+                                <img src="https://digitalassets.tesla.com/tesla-contents/image/upload/f_auto,q_auto:best/Mega-Menu-Vehicles-Cybertruck-1x.png" class="w-full h-auto mb-4 group-hover/car:scale-105 transition-transform duration-500" alt="Cybertruck">
+                                <h4 class="text-lg font-semibold mb-1">Cybertruck</h4>
+                                <div class="flex justify-center gap-4 text-xs text-neutral-500 underline decoration-neutral-300 underline-offset-4">
+                                    <span class="hover:text-black hover:decoration-black transition-all">Learn</span>
+                                    <span class="hover:text-black hover:decoration-black transition-all">Order</span>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="max-w-[1600px] mx-auto mt-12 pt-8 border-t border-neutral-100 flex justify-center gap-8 text-sm font-medium text-neutral-500">
+                            <a href="#" class="hover:text-black transition-colors">Inventory</a>
+                            <a href="#" class="hover:text-black transition-colors">Used Cars</a>
+                            <a href="#" class="hover:text-black transition-colors">Demo Drive</a>
+                            <a href="#" class="hover:text-black transition-colors">Trade-in</a>
+                            <a href="#" class="hover:text-black transition-colors">Compare</a>
+                            <a href="#" class="hover:text-black transition-colors">Fleet</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Energy Dropdown -->
+                <div class="group h-20 flex items-center">
+                    <button class="text-base font-medium text-neutral-800 hover:text-black transition-colors py-2 px-4 rounded-full hover:bg-neutral-100/50">Energy</button>
+                    <!-- Mega Menu Content -->
+                    <div class="mega-menu-container absolute top-0 left-0 w-full bg-white pt-24 pb-16 px-12 shadow-2xl border-b border-neutral-100 -z-10">
+                        <div class="max-w-[1200px] mx-auto grid grid-cols-4 gap-8">
+                             <a href="#" class="group/item text-center block">
+                                <img src="https://digitalassets.tesla.com/tesla-contents/image/upload/f_auto,q_auto:best/Mega-Menu-Energy-Solar-Panels.png" class="w-full h-auto mb-4 group-hover/item:scale-105 transition-transform" alt="Solar">
+                                <h4 class="text-lg font-semibold">Solar Panels</h4>
+                             </a>
+                             <a href="#" class="group/item text-center block">
+                                <img src="https://digitalassets.tesla.com/tesla-contents/image/upload/f_auto,q_auto:best/Mega-Menu-Energy-Solar-Roof.png" class="w-full h-auto mb-4 group-hover/item:scale-105 transition-transform" alt="Roof">
+                                <h4 class="text-lg font-semibold">Solar Roof</h4>
+                             </a>
+                             <a href="#" class="group/item text-center block">
+                                <img src="https://digitalassets.tesla.com/tesla-contents/image/upload/f_auto,q_auto:best/Mega-Menu-Energy-Powerwall-US.png" class="w-full h-auto mb-4 group-hover/item:scale-105 transition-transform" alt="Powerwall">
+                                <h4 class="text-lg font-semibold">Powerwall</h4>
+                             </a>
+                             <a href="#" class="group/item text-center block">
+                                <img src="https://digitalassets.tesla.com/tesla-contents/image/upload/f_auto,q_auto:best/Mega-Menu-Energy-Megapack.png" class="w-full h-auto mb-4 group-hover/item:scale-105 transition-transform" alt="Megapack">
+                                <h4 class="text-lg font-semibold">Megapack</h4>
+                             </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Charging -->
+                <div class="group h-20 flex items-center">
+                    <button class="text-base font-medium text-neutral-800 hover:text-black transition-colors py-2 px-4 rounded-full hover:bg-neutral-100/50">Charging</button>
+                     <div class="mega-menu-container absolute top-0 left-0 w-full bg-white pt-24 pb-16 px-12 shadow-2xl border-b border-neutral-100 -z-10">
+                        <div class="max-w-[1000px] mx-auto grid grid-cols-3 gap-12">
+                             <a href="#" class="group/item text-center block">
+                                <img src="https://digitalassets.tesla.com/tesla-contents/image/upload/f_auto,q_auto:best/Mega-Menu-Charging-Charging.png" class="w-full h-auto mb-4 group-hover/item:scale-105 transition-transform" alt="Charging">
+                                <h4 class="text-lg font-semibold">Charging</h4>
+                             </a>
+                             <a href="#" class="group/item text-center block">
+                                <img src="https://digitalassets.tesla.com/tesla-contents/image/upload/f_auto,q_auto:best/Mega-Menu-Charging-Home-Charging.png" class="w-full h-auto mb-4 group-hover/item:scale-105 transition-transform" alt="Home">
+                                <h4 class="text-lg font-semibold">Home Charging</h4>
+                             </a>
+                             <a href="#" class="group/item text-center block">
+                                <img src="https://digitalassets.tesla.com/tesla-contents/image/upload/f_auto,q_auto:best/Mega-Menu-Charging-Supercharging-NA.png" class="w-full h-auto mb-4 group-hover/item:scale-105 transition-transform" alt="Supercharging">
+                                <h4 class="text-lg font-semibold">Supercharging</h4>
+                             </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="group h-20 flex items-center">
+                    <button class="text-base font-medium text-neutral-800 hover:text-black transition-colors py-2 px-4 rounded-full hover:bg-neutral-100/50">Discover</button>
+                    <div class="mega-menu-container absolute top-0 left-0 w-full bg-white pt-24 pb-16 px-12 shadow-2xl border-b border-neutral-100 -z-10">
+                        <div class="max-w-[800px] mx-auto grid grid-cols-3 gap-12">
+                             <div class="space-y-4">
+                                <h4 class="text-xs font-bold text-neutral-500 uppercase tracking-widest mb-4">Resources</h4>
+                                <a href="#" class="block text-base font-medium hover:text-red-600 transition-colors">Demo Drive</a>
+                                <a href="#" class="block text-base font-medium hover:text-red-600 transition-colors">Insurance</a>
+                                <a href="#" class="block text-base font-medium hover:text-red-600 transition-colors">Video Guides</a>
+                                <a href="#" class="block text-base font-medium hover:text-red-600 transition-colors">Customer Stories</a>
+                                <a href="#" class="block text-base font-medium hover:text-red-600 transition-colors">Events</a>
+                             </div>
+                             <div class="space-y-4">
+                                <h4 class="text-xs font-bold text-neutral-500 uppercase tracking-widest mb-4">Location Services</h4>
+                                <a href="#" class="block text-base font-medium hover:text-red-600 transition-colors">Find Us</a>
+                                <a href="#" class="block text-base font-medium hover:text-red-600 transition-colors">Trip Planner</a>
+                                <a href="#" class="block text-base font-medium hover:text-red-600 transition-colors">Find a Collision Center</a>
+                                <a href="#" class="block text-base font-medium hover:text-red-600 transition-colors">Find a Certified Installer</a>
+                             </div>
+                             <div class="space-y-4">
+                                <h4 class="text-xs font-bold text-neutral-500 uppercase tracking-widest mb-4">Company</h4>
+                                <a href="#" class="block text-base font-medium hover:text-red-600 transition-colors">About</a>
+                                <a href="#" class="block text-base font-medium hover:text-red-600 transition-colors">Careers</a>
+                                <a href="#" class="block text-base font-medium hover:text-red-600 transition-colors">Investor Relations</a>
+                             </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <a href="#" class="text-base font-medium text-neutral-800 hover:text-black transition-colors py-2 px-4 rounded-full hover:bg-neutral-100/50">Shop</a>
+            </div>
+
+            <!-- Mobile Menu Toggle -->
+            <button class="lg:hidden z-50 p-2 -ml-2 text-neutral-800">
+                <iconify-icon icon="solar:hamburger-menu-linear" width="28" stroke-width="1.5"></iconify-icon>
+            </button>
+            
+            <!-- Right Actions -->
+            <div class="flex items-center gap-6 z-50">
+                <div class="hidden md:flex items-center gap-4">
+                    <a href="#" class="text-base font-medium text-neutral-800 hover:text-black transition-colors">Account</a>
+                </div>
+                <button class="relative group text-neutral-800 hover:text-black transition-colors">
+                    <iconify-icon icon="solar:bag-3-linear" width="24" stroke-width="1.5"></iconify-icon>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="relative h-screen min-h-[900px] w-full overflow-hidden flex flex-col justify-center items-center">
+        <div class="absolute inset-0 z-0">
+            <img src="https://images.unsplash.com/photo-1620802051782-726fa83aa728?q=80&amp;w=2834&amp;auto=format&amp;fit=crop" class="w-full h-full object-cover hidden md:block" alt="Model S Hero">
+            <img src="https://images.unsplash.com/photo-1617788138017-80ad40651399?q=80&amp;w=1000&amp;auto=format&amp;fit=crop" class="w-full h-full object-cover md:hidden" alt="Model S Hero Mobile">
+            <div class="absolute inset-0 bg-gradient-to-b from-white/30 via-transparent to-transparent h-40"></div>
+        </div>
+        
+        <div class="relative z-10 max-w-5xl w-full mx-auto px-6 text-center mt-[-10vh]">
+            <div class="mask-text active">
+                <h1 class="text-8xl md:text-[140px] font-semibold tracking-tighter text-neutral-900 leading-[0.85]">
+                    <span>Model S</span>
+                </h1>
+            </div>
+            <div class="mask-text active mt-4 delay-100">
+                <p class="text-5xl md:text-7xl font-medium text-neutral-600 tracking-tight">
+                    <span>Plaid</span>
+                </p>
+            </div>
+            <div class="mask-text active mt-10 delay-200">
+                <p class="text-xl md:text-2xl text-neutral-600 max-w-2xl mx-auto leading-relaxed font-light">
+                    <span>The highest performing sedan ever built. With the longest range and quickest acceleration of any electric vehicle in production.</span>
+                </p>
+            </div>
+        </div>
+        
+        <div class="absolute bottom-12 w-full max-w-[1600px] px-8">
+            <div class="flex flex-col md:flex-row justify-between items-end gap-10">
+                <div class="grid grid-cols-3 gap-12 md:gap-24 text-neutral-900 reveal active delay-200">
+                    <div class="group cursor-default">
+                        <p class="text-4xl md:text-5xl font-semibold tracking-tight group-hover:scale-105 transition-transform origin-left">396<span class="text-xl align-top ml-1">mi</span></p>
+                        <p class="text-xs font-bold tracking-widest uppercase mt-2 text-neutral-500">Range (EPA)</p>
+                    </div>
+                    <div class="group cursor-default">
+                        <p class="text-4xl md:text-5xl font-semibold tracking-tight group-hover:scale-105 transition-transform origin-left">1.99<span class="text-xl align-top ml-1">s</span></p>
+                        <p class="text-xs font-bold tracking-widest uppercase mt-2 text-neutral-500">0-60 mph*</p>
+                    </div>
+                    <div class="group cursor-default">
+                        <p class="text-4xl md:text-5xl font-semibold tracking-tight group-hover:scale-105 transition-transform origin-left">1,020<span class="text-xl align-top ml-1">hp</span></p>
+                        <p class="text-xs font-bold tracking-widest uppercase mt-2 text-neutral-500">Peak Power</p>
+                    </div>
+                </div>
+                <div class="flex flex-col sm:flex-row gap-6 w-full md:w-auto reveal active delay-300">
+                    <button class="w-full sm:w-auto px-16 py-4 bg-neutral-900 text-white text-base font-medium rounded-full hover:bg-neutral-800 transition-all hover:scale-[1.02] shadow-lg shadow-neutral-900/20">Order Now</button>
+                    <button class="w-full sm:w-auto px-16 py-4 bg-white/60 backdrop-blur-xl border border-neutral-200 text-neutral-900 text-base font-medium rounded-full hover:bg-white transition-all hover:shadow-lg">Demo Drive</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interior Cinematic Section -->
+    <section class="bg-black text-white relative py-32 overflow-hidden min-h-screen flex flex-col justify-center">
+        <div class="max-w-[1800px] mx-auto px-8 mb-16 relative z-10 w-full text-center">
+            <div class="mask-text reveal">
+                <span>
+                    <h2 class="text-5xl md:text-7xl font-medium tracking-tight mb-6">Interior of the Future</h2>
+                    <p class="text-neutral-400 text-xl max-w-3xl mx-auto leading-relaxed">Designed for charging, gaming, and relaxing. A clean, powerful, and invisible cabin environment with active noise cancellation.</p>
+                </span>
+            </div>
+        </div>
+        <div class="relative w-full h-[80vh] max-w-[1700px] mx-auto rounded-2xl overflow-hidden shadow-2xl border border-white/10 reveal delay-100 group">
+            <img src="https://digitalassets.tesla.com/tesla-contents/image/upload/h_1800,w_2880,c_fit,f_auto,q_auto:best/Model-S-Interior-Hero-Desktop-LHD" class="absolute inset-0 w-full h-full object-cover transition-transform duration-[1.5s] group-hover:scale-105" alt="Interior">
+            <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black/20"></div>
+            <div class="absolute bottom-0 left-0 w-full p-10 md:p-16">
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-12 max-w-6xl mx-auto border-t border-white/20 pt-10">
+                    <div class="reveal delay-200">
+                        <h4 class="text-3xl font-semibold mb-2">17”</h4>
+                        <p class="text-sm text-neutral-400 uppercase tracking-wider">Cinematic Display</p>
+                    </div>
+                    <div class="reveal delay-200">
+                        <h4 class="text-3xl font-semibold mb-2">2200x1300</h4>
+                        <p class="text-sm text-neutral-400 uppercase tracking-wider">Resolution</p>
+                    </div>
+                    <div class="reveal delay-200">
+                        <h4 class="text-3xl font-semibold mb-2">10 TF</h4>
+                        <p class="text-sm text-neutral-400 uppercase tracking-wider">Processing Power</p>
+                    </div>
+                    <div class="reveal delay-200">
+                        <h4 class="text-3xl font-semibold mb-2">960 W</h4>
+                        <p class="text-sm text-neutral-400 uppercase tracking-wider">22-Speaker Audio</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gaming Section (New) -->
+    <section class="py-32 px-8 bg-neutral-900 text-white">
+        <div class="max-w-[1600px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+            <div class="reveal">
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-neutral-700 bg-neutral-800/50 mb-6">
+                    <iconify-icon icon="solar:gamepad-linear" class="text-indigo-400"></iconify-icon>
+                    <span class="text-xs font-bold uppercase tracking-wider">Console Grade</span>
+                </div>
+                <h2 class="text-5xl md:text-6xl font-medium tracking-tight mb-8">Play Anywhere</h2>
+                <p class="text-xl text-neutral-400 leading-relaxed mb-10">
+                    Up to 10 teraflops of processing power enables in-car gaming on-par with today’s newest consoles. Wireless controller compatibility lets you game from any seat.
+                </p>
+                <div class="grid grid-cols-2 gap-8 mb-10">
+                    <div>
+                        <h4 class="text-2xl font-semibold text-white mb-2">Steam</h4>
+                        <p class="text-sm text-neutral-500">Access thousands of games.</p>
+                    </div>
+                    <div>
+                        <h4 class="text-2xl font-semibold text-white mb-2">Wireless</h4>
+                        <p class="text-sm text-neutral-500">Controller support included.</p>
+                    </div>
+                </div>
+                <button class="px-8 py-3 border border-white rounded-full hover:bg-white hover:text-neutral-900 transition-colors">Explore Games</button>
+            </div>
+            <div class="relative rounded-2xl overflow-hidden shadow-2xl border border-white/10 h-[600px] reveal delay-200 group">
+                 <img src="https://digitalassets.tesla.com/tesla-contents/image/upload/f_auto,q_auto:best/Model-S-Interior-Gaming-Desktop" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" alt="Gaming">
+                 <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                 <div class="absolute bottom-8 right-8">
+                     <iconify-icon icon="logos:steam" width="48"></iconify-icon>
+                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Safety Section (New) -->
+    <section class="py-32 px-8 max-w-[1600px] mx-auto">
+        <div class="flex flex-col md:flex-row gap-16 mb-20 items-end reveal">
+            <div class="md:w-1/2">
+                <h2 class="text-5xl md:text-6xl font-medium tracking-tight mb-6">High Impact Protection</h2>
+                <p class="text-xl text-neutral-500 leading-relaxed">Model S is built from the ground up as an electric vehicle, with a high-strength architecture and floor-mounted battery pack for incredible occupant protection and low rollover risk.</p>
+            </div>
+            <div class="md:w-1/2 flex gap-12">
+                 <div>
+                     <p class="text-4xl font-bold mb-1 text-neutral-900">5-Star</p>
+                     <p class="text-sm text-neutral-500 uppercase tracking-widest">Safety Rating</p>
+                 </div>
+                 <div>
+                     <p class="text-4xl font-bold mb-1 text-neutral-900">Low</p>
+                     <p class="text-sm text-neutral-500 uppercase tracking-widest">Rollover Risk</p>
+                 </div>
+            </div>
+        </div>
+        <div class="relative w-full h-[600px] bg-neutral-100 rounded-3xl overflow-hidden reveal delay-200">
+             <img src="https://digitalassets.tesla.com/tesla-contents/image/upload/h_1800,w_2880,c_fit,f_auto,q_auto:best/Model-S-Safety-Hero-Desktop-Global" class="absolute inset-0 w-full h-full object-cover mix-blend-darken" alt="Safety Chassis">
+             <div class="absolute top-12 right-12 bg-white/80 backdrop-blur-sm p-6 rounded-2xl shadow-lg max-w-xs">
+                 <div class="flex items-start gap-4">
+                     <div class="p-2 bg-blue-100 rounded-lg text-blue-600">
+                         <iconify-icon icon="solar:shield-check-linear" width="24"></iconify-icon>
+                     </div>
+                     <div>
+                         <h4 class="font-semibold mb-1">Side-Impact Protection</h4>
+                         <p class="text-xs text-neutral-500 leading-relaxed">High-strength steel pillars and energy-absorbing sills protect the battery and cabin.</p>
+                     </div>
+                 </div>
+             </div>
+        </div>
+    </section>
+
+    <!-- Bento Grid Showcase -->
+    <section class="py-32 px-8 max-w-[1600px] mx-auto">
+        <div class="mb-20 reveal">
+            <h2 class="text-5xl md:text-6xl font-medium tracking-tight mb-6">Electric Architecture</h2>
+            <p class="text-neutral-500 text-xl">Engineered for efficiency, performance, and range.</p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-6 gap-6 auto-rows-[340px] md:auto-rows-[400px]">
+            <div class="md:col-span-4 bg-neutral-100 rounded-3xl relative overflow-hidden group reveal">
+                <img src="https://images.unsplash.com/photo-1532588320078-d43770387b92?q=80&amp;w=2600&amp;auto=format&amp;fit=crop" class="absolute inset-0 w-full h-full object-cover mix-blend-multiply opacity-80 group-hover:scale-105 transition-transform duration-700" alt="Chassis">
+                <div class="absolute inset-0 p-10 flex flex-col justify-end bg-gradient-to-t from-white via-transparent to-transparent">
+                    <h3 class="text-3xl font-semibold mb-3 text-neutral-900">Tri-Motor All-Wheel Drive</h3>
+                    <p class="text-neutral-700 text-lg max-w-md">Three independent motors with carbon-sleeved rotors maintain peak power output all the way to top speed.</p>
+                </div>
+            </div>
+            <div class="md:col-span-2 bg-white border border-neutral-200 rounded-3xl p-10 flex flex-col justify-between hover:shadow-xl transition-shadow duration-300 reveal delay-100">
+                <div>
+                    <div class="flex justify-between items-start">
+                        <iconify-icon icon="solar:wind-linear" class="text-5xl text-neutral-800"></iconify-icon>
+                        <span class="text-3xl font-bold">0.208 <span class="text-lg font-normal text-neutral-500">Cd</span></span>
+                    </div>
+                    <h3 class="text-2xl font-medium mt-6">Aerodynamics</h3>
+                </div>
+                <p class="text-base text-neutral-500">The lowest drag coefficient of any car on earth.</p>
+                <div class="w-full bg-neutral-100 h-1.5 rounded-full overflow-hidden mt-6"><div class="bg-neutral-900 h-full w-[95%]"></div></div>
+            </div>
+            <div class="md:col-span-2 bg-neutral-900 text-white rounded-3xl p-10 flex flex-col justify-between hover:scale-[1.02] transition-transform duration-300 reveal delay-200">
+                 <div>
+                    <iconify-icon icon="solar:battery-charge-linear" class="text-5xl text-green-400 mb-6"></iconify-icon>
+                    <h3 class="text-2xl font-medium">Supercharging</h3>
+                </div>
+                <div>
+                     <p class="text-5xl font-bold mb-2">250 <span class="text-xl font-normal text-neutral-400">kW</span></p>
+                     <p class="text-sm text-neutral-400">Max charging rate.</p>
+                </div>
+            </div>
+            <div class="md:col-span-4 bg-white border border-neutral-200 rounded-3xl relative overflow-hidden group reveal delay-300">
+                 <div class="absolute inset-0 grid grid-cols-2">
+                     <div class="bg-neutral-50 p-10 flex flex-col justify-center">
+                         <span class="text-blue-600 text-xs font-bold uppercase tracking-wider mb-3">Autopilot</span>
+                         <h3 class="text-3xl font-semibold mb-4">Vision Processing</h3>
+                         <p class="text-neutral-500 text-base mb-8">360 degrees of visibility with powerful visual processing.</p>
+                         <div class="flex gap-8">
+                             <div class="text-center"><iconify-icon icon="solar:camera-linear" class="text-3xl mb-2"></iconify-icon><span class="block text-xs font-medium">8 Cameras</span></div>
+                             <div class="text-center"><iconify-icon icon="solar:eye-linear" class="text-3xl mb-2"></iconify-icon><span class="block text-xs font-medium">Neural Net</span></div>
+                         </div>
+                     </div>
+                     <div class="relative h-full bg-black overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1546188994-07c34f295f52?q=80&amp;w=2600&amp;auto=format&amp;fit=crop" class="absolute inset-0 w-full h-full object-cover opacity-60" alt="Vision">
+                     </div>
+                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Specs Table Section -->
+    <section class="bg-black text-white py-32 px-8">
+        <div class="max-w-[1400px] mx-auto flex flex-col md:flex-row gap-20">
+             <div class="md:w-1/2 reveal">
+                 <img src="https://digitalassets.tesla.com/tesla-contents/image/upload/f_auto,q_auto:best/Model-S-Specs-Hero-Desktop-LHD" class="w-full rounded-2xl mb-8" alt="Specs">
+                 <h2 class="text-5xl font-medium mb-4">Model S Plaid</h2>
+                 <div class="flex gap-4 mb-8">
+                     <button class="px-8 py-2 bg-white text-black rounded-full font-medium text-sm">Plaid</button>
+                     <button class="px-8 py-2 border border-white/30 rounded-full font-medium text-sm hover:border-white transition-colors">Model S</button>
+                 </div>
+             </div>
+             <div class="md:w-1/2 reveal delay-100">
+                 <h3 class="text-3xl font-medium mb-8">Specifications</h3>
+                 <div class="grid grid-cols-2 gap-y-12 gap-x-8">
+                     <div>
+                         <div class="w-8 h-0.5 bg-white mb-4"></div>
+                         <p class="text-sm text-neutral-400 mb-1">Range (EPA est.)</p>
+                         <p class="text-xl font-medium">396 mi</p>
+                     </div>
+                     <div>
+                         <div class="w-8 h-0.5 bg-white mb-4"></div>
+                         <p class="text-sm text-neutral-400 mb-1">Acceleration</p>
+                         <p class="text-xl font-medium">1.99 s 0-60 mph*</p>
+                     </div>
+                     <div>
+                         <div class="w-8 h-0.5 bg-white mb-4"></div>
+                         <p class="text-sm text-neutral-400 mb-1">Peak Power</p>
+                         <p class="text-xl font-medium">1,020 hp</p>
+                     </div>
+                     <div>
+                         <div class="w-8 h-0.5 bg-white mb-4"></div>
+                         <p class="text-sm text-neutral-400 mb-1">Wheels</p>
+                         <p class="text-xl font-medium">19" or 21"</p>
+                     </div>
+                     <div>
+                         <div class="w-8 h-0.5 bg-white mb-4"></div>
+                         <p class="text-sm text-neutral-400 mb-1">Cargo</p>
+                         <p class="text-xl font-medium">28 cu ft</p>
+                     </div>
+                     <div>
+                         <div class="w-8 h-0.5 bg-white mb-4"></div>
+                         <p class="text-sm text-neutral-400 mb-1">Weight</p>
+                         <p class="text-xl font-medium">4,766 lbs</p>
+                     </div>
+                      <div>
+                         <div class="w-8 h-0.5 bg-white mb-4"></div>
+                         <p class="text-sm text-neutral-400 mb-1">Supercharging</p>
+                         <p class="text-xl font-medium">250 kW Max</p>
+                     </div>
+                      <div>
+                         <div class="w-8 h-0.5 bg-white mb-4"></div>
+                         <p class="text-sm text-neutral-400 mb-1">Powertrain</p>
+                         <p class="text-xl font-medium">Tri-Motor</p>
+                     </div>
+                 </div>
+             </div>
+        </div>
+    </section>
+
+    <!-- NEW: Software & Intelligence Section -->
+    <section class="bg-black text-white py-32 px-8 border-t border-white/10">
+      <div class="max-w-[1600px] mx-auto">
+        <div class="mb-20 reveal">
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-neutral-800 bg-neutral-900 mb-6">
+                <div class="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse"></div>
+                <span class="text-xs font-bold uppercase tracking-wider text-neutral-400">Software Version 12.3</span>
+            </div>
+            <h2 class="text-5xl md:text-6xl font-medium tracking-tight mb-6">Better Over Time</h2>
+            <p class="text-neutral-400 text-xl max-w-2xl">Model S isn’t just a car; it’s a platform. Frequent over-the-air updates introduce new features, performance boosts, and safety improvements instantly.</p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <!-- Feature 1 -->
+            <div class="bg-neutral-900 rounded-3xl p-8 border border-white/10 reveal delay-100 group hover:border-white/30 transition-colors">
+                <iconify-icon icon="solar:smartphone-2-linear" class="text-4xl mb-6 text-white"></iconify-icon>
+                <h3 class="text-xl font-semibold mb-2">Phone Key</h3>
+                <p class="text-neutral-400 text-sm leading-relaxed mb-6">No fob required. Your phone unlocks and starts your car automatically as you approach.</p>
+                <div class="h-40 bg-black rounded-xl border border-white/5 overflow-hidden relative">
+                     <div class="absolute top-4 left-4 right-4 h-2 bg-neutral-800 rounded-full"></div>
+                     <div class="absolute top-8 left-4 w-12 h-12 rounded-full bg-blue-500/20 flex items-center justify-center">
+                        <iconify-icon icon="solar:lock-unlocked-linear" class="text-blue-400"></iconify-icon>
+                     </div>
+                </div>
+            </div>
+            <!-- Feature 2 -->
+            <div class="bg-neutral-900 rounded-3xl p-8 border border-white/10 reveal delay-200 group hover:border-white/30 transition-colors">
+                <iconify-icon icon="solar:map-point-linear" class="text-4xl mb-6 text-white"></iconify-icon>
+                <h3 class="text-xl font-semibold mb-2">Trip Planner</h3>
+                <p class="text-neutral-400 text-sm leading-relaxed mb-6">Navigate anywhere with automatic charging stops and battery pre-conditioning for faster charging.</p>
+                <div class="h-40 bg-black rounded-xl border border-white/5 overflow-hidden relative flex items-center justify-center">
+                     <div class="w-full px-6">
+                         <div class="flex justify-between items-center mb-2">
+                             <div class="w-2 h-2 rounded-full bg-white"></div>
+                             <div class="h-0.5 flex-1 bg-neutral-800 mx-2"></div>
+                             <div class="w-2 h-2 rounded-full bg-red-500"></div>
+                         </div>
+                         <div class="flex justify-between text-[10px] text-neutral-500 font-mono">
+                             <span>09:00</span>
+                             <span>12:30</span>
+                         </div>
+                     </div>
+                </div>
+            </div>
+            <!-- Feature 3 -->
+            <div class="bg-neutral-900 rounded-3xl p-8 border border-white/10 reveal delay-300 group hover:border-white/30 transition-colors">
+                 <iconify-icon icon="solar:shield-warning-linear" class="text-4xl mb-6 text-white"></iconify-icon>
+                <h3 class="text-xl font-semibold mb-2">Sentry Mode</h3>
+                <p class="text-neutral-400 text-sm leading-relaxed mb-6">Live camera access from anywhere. Your car monitors its environment when you're away.</p>
+                 <div class="h-40 bg-black rounded-xl border border-white/5 overflow-hidden relative">
+                     <div class="absolute inset-0 bg-neutral-900 flex items-center justify-center">
+                         <div class="w-8 h-8 rounded-full border-2 border-red-500 flex items-center justify-center animate-pulse">
+                             <div class="w-3 h-3 bg-red-500 rounded-full"></div>
+                         </div>
+                     </div>
+                </div>
+            </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- NEW: Ecosystem Section -->
+    <section class="py-32 px-8 max-w-[1600px] mx-auto">
+        <div class="text-center max-w-2xl mx-auto mb-20 reveal">
+             <h2 class="text-4xl md:text-5xl font-medium tracking-tight mb-6">Complete Energy Ecosystem</h2>
+             <p class="text-xl text-neutral-500">Power your car and your home with an integrated system of solar, battery storage, and charging.</p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 h-[600px]">
+            <div class="group relative rounded-3xl overflow-hidden bg-neutral-100 md:col-span-2 reveal">
+                <img src="https://digitalassets.tesla.com/tesla-contents/image/upload/f_auto,q_auto:best/Powerwall-02-Desktop.jpg" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" alt="Home">
+                <div class="absolute top-8 left-8">
+                    <h3 class="text-2xl font-semibold text-neutral-900 bg-white/80 backdrop-blur-md px-4 py-2 rounded-full inline-block">Home Energy</h3>
+                </div>
+                <div class="absolute bottom-8 left-8 right-8 flex gap-4">
+                     <div class="bg-white/90 backdrop-blur-md p-4 rounded-xl flex-1 border border-white/20">
+                         <iconify-icon icon="solar:sun-2-linear" class="text-2xl mb-2 text-yellow-600"></iconify-icon>
+                         <p class="text-xs font-bold uppercase text-neutral-500">Solar Roof</p>
+                     </div>
+                     <div class="bg-white/90 backdrop-blur-md p-4 rounded-xl flex-1 border border-white/20">
+                         <iconify-icon icon="solar:battery-charge-linear" class="text-2xl mb-2 text-green-600"></iconify-icon>
+                         <p class="text-xs font-bold uppercase text-neutral-500">Powerwall</p>
+                     </div>
+                </div>
+            </div>
+            <div class="group relative rounded-3xl overflow-hidden bg-neutral-900 text-white reveal delay-100">
+                 <div class="absolute inset-0 bg-gradient-to-b from-neutral-800 to-black"></div>
+                 <div class="absolute inset-0 flex flex-col items-center justify-center p-8 text-center">
+                     <iconify-icon icon="solar:smartphone-linear" class="text-6xl mb-6 text-neutral-400 group-hover:text-white transition-colors"></iconify-icon>
+                     <h3 class="text-2xl font-semibold mb-4">Total Control</h3>
+                     <p class="text-neutral-400 mb-8">Manage charging, temperature, and security from a single app.</p>
+                     <button class="text-sm font-medium border-b border-white pb-1 hover:text-neutral-300 hover:border-neutral-300 transition-colors">Download App</button>
+                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- NEW: Comparison Section -->
+    <section class="py-32 px-8 bg-white text-neutral-900">
+        <div class="max-w-[1200px] mx-auto">
+            <div class="text-center mb-20 reveal">
+                <h2 class="text-4xl md:text-5xl font-medium tracking-tight mb-4">Unmatched Performance</h2>
+                <p class="text-neutral-500">The quickest acceleration of any vehicle in production.</p>
+            </div>
+            <div class="overflow-x-auto reveal delay-100">
+                <table class="w-full text-left border-collapse">
+                    <thead>
+                        <tr class="border-b border-neutral-200">
+                            <th class="py-6 px-4 text-xs font-bold uppercase tracking-widest text-neutral-500">Specs</th>
+                            <th class="py-6 px-4 text-xl font-semibold w-1/3">Model S Plaid</th>
+                            <th class="py-6 px-4 text-lg font-medium text-neutral-400 w-1/3">Porsche Taycan Turbo S</th>
+                            <th class="py-6 px-4 text-lg font-medium text-neutral-400 w-1/3">Lucid Air Sapphire</th>
+                        </tr>
+                    </thead>
+                    <tbody class="text-sm md:text-base">
+                        <tr class="border-b border-neutral-100 hover:bg-neutral-50 transition-colors">
+                            <td class="py-6 px-4 font-medium text-neutral-900">0-60 mph</td>
+                            <td class="py-6 px-4 font-bold text-neutral-900">1.99 s</td>
+                            <td class="py-6 px-4 text-neutral-500">2.6 s</td>
+                            <td class="py-6 px-4 text-neutral-500">1.89 s</td>
+                        </tr>
+                        <tr class="border-b border-neutral-100 hover:bg-neutral-50 transition-colors">
+                            <td class="py-6 px-4 font-medium text-neutral-900">Quarter Mile</td>
+                            <td class="py-6 px-4 font-bold text-neutral-900">9.23 s</td>
+                            <td class="py-6 px-4 text-neutral-500">10.5 s</td>
+                            <td class="py-6 px-4 text-neutral-500">8.95 s</td>
+                        </tr>
+                        <tr class="border-b border-neutral-100 hover:bg-neutral-50 transition-colors">
+                            <td class="py-6 px-4 font-medium text-neutral-900">Peak Power</td>
+                            <td class="py-6 px-4 font-bold text-neutral-900">1,020 hp</td>
+                            <td class="py-6 px-4 text-neutral-500">750 hp</td>
+                            <td class="py-6 px-4 text-neutral-500">1,234 hp</td>
+                        </tr>
+                         <tr class="border-b border-neutral-100 hover:bg-neutral-50 transition-colors">
+                            <td class="py-6 px-4 font-medium text-neutral-900">Range (EPA)</td>
+                            <td class="py-6 px-4 font-bold text-neutral-900">396 mi</td>
+                            <td class="py-6 px-4 text-neutral-500">222 mi</td>
+                            <td class="py-6 px-4 text-neutral-500">427 mi</td>
+                        </tr>
+                         <tr class="border-b border-neutral-100 hover:bg-neutral-50 transition-colors">
+                            <td class="py-6 px-4 font-medium text-neutral-900">Price</td>
+                            <td class="py-6 px-4 font-bold text-neutral-900">$89,990</td>
+                            <td class="py-6 px-4 text-neutral-500">~$194,900</td>
+                            <td class="py-6 px-4 text-neutral-500">~$249,000</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <p class="mt-8 text-xs text-neutral-400 text-center">*Specs based on manufacturer data. Prices subject to change.</p>
+        </div>
+    </section>
+
+    <!-- NEW: Ownership Section -->
+    <section class="bg-neutral-50 py-32 px-8">
+        <div class="max-w-[1400px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+            <div class="reveal">
+                <span class="text-xs font-bold text-green-600 uppercase tracking-wider mb-2 block">Ownership</span>
+                <h2 class="text-5xl font-medium tracking-tight mb-8">Built to Last. Designed to Save.</h2>
+                <p class="text-xl text-neutral-600 mb-10 leading-relaxed">
+                    Electric vehicles have fewer moving parts than internal combustion engines, meaning no oil changes, spark plugs, or timing belts. The result is significantly lower maintenance costs and time saved.
+                </p>
+                <div class="space-y-6">
+                     <div class="flex items-center gap-4">
+                         <div class="w-12 h-12 rounded-full bg-white border border-neutral-200 flex items-center justify-center text-green-600 shadow-sm">
+                             <iconify-icon icon="solar:wallet-money-linear" class="text-2xl"></iconify-icon>
+                         </div>
+                         <div>
+                             <h4 class="font-semibold text-neutral-900">$6,000+</h4>
+                             <p class="text-sm text-neutral-500">Estimated gas savings over 6 years.</p>
+                         </div>
+                     </div>
+                     <div class="flex items-center gap-4">
+                         <div class="w-12 h-12 rounded-full bg-white border border-neutral-200 flex items-center justify-center text-blue-600 shadow-sm">
+                             <iconify-icon icon="solar:settings-linear" class="text-2xl"></iconify-icon>
+                         </div>
+                         <div>
+                             <h4 class="font-semibold text-neutral-900">Zero</h4>
+                             <p class="text-sm text-neutral-500">Annual oil changes required.</p>
+                         </div>
+                     </div>
+                </div>
+            </div>
+            <div class="bg-white p-10 rounded-3xl shadow-xl border border-neutral-100 reveal delay-200">
+                 <h3 class="text-lg font-semibold mb-8 border-b border-neutral-100 pb-4">5-Year Cost of Ownership</h3>
+                 <div class="space-y-6">
+                     <div>
+                         <div class="flex justify-between text-sm font-medium mb-2">
+                             <span>Model S Plaid</span>
+                             <span class="text-green-600">$0.58 / mile</span>
+                         </div>
+                         <div class="w-full bg-neutral-100 h-3 rounded-full overflow-hidden">
+                             <div class="bg-neutral-900 h-full w-[45%]"></div>
+                         </div>
+                     </div>
+                      <div>
+                         <div class="flex justify-between text-sm font-medium mb-2">
+                             <span class="text-neutral-500">Premium Luxury Sedan (Gas)</span>
+                             <span class="text-neutral-400">$1.12 / mile</span>
+                         </div>
+                         <div class="w-full bg-neutral-100 h-3 rounded-full overflow-hidden">
+                             <div class="bg-neutral-300 h-full w-[85%]"></div>
+                         </div>
+                     </div>
+                 </div>
+                 <p class="text-xs text-neutral-400 mt-8 leading-normal">
+                     Comparisons based on average fuel vs electricity costs, maintenance schedules, and depreciation of comparable luxury performance sedans.
+                 </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Test Drive Section -->
+    <section class="py-32 px-8 border-t border-neutral-200 bg-neutral-50" id="demo-drive">
+        <div class="max-w-[1600px] mx-auto rounded-[32px] bg-white overflow-hidden shadow-sm border border-neutral-200">
+            <div class="grid grid-cols-1 lg:grid-cols-2">
+                <div class="relative min-h-[600px] lg:min-h-full p-16 flex flex-col justify-between text-white reveal">
+                    <img src="https://digitalassets.tesla.com/tesla-contents/image/upload/f_auto,q_auto:best/Model-S-Performance-Hero-Desktop-LHD" class="absolute inset-0 w-full h-full object-cover" alt="Drive">
+                    <div class="absolute inset-0 bg-black/20"></div>
+                    <div class="relative z-10">
+                        <span class="text-xs font-bold uppercase tracking-wider mb-3 block">Experience</span>
+                        <h2 class="text-5xl font-medium tracking-tight">Demo Drive</h2>
+                    </div>
+                    <div class="relative z-10">
+                        <p class="text-lg font-medium mb-2">Model S Plaid</p>
+                        <div class="flex gap-1 text-yellow-400">
+                             <iconify-icon icon="solar:star-bold" width="20"></iconify-icon>
+                             <iconify-icon icon="solar:star-bold" width="20"></iconify-icon>
+                             <iconify-icon icon="solar:star-bold" width="20"></iconify-icon>
+                             <iconify-icon icon="solar:star-bold" width="20"></iconify-icon>
+                             <iconify-icon icon="solar:star-bold" width="20"></iconify-icon>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="p-16 lg:p-24 flex flex-col justify-center reveal delay-100">
+                    <h3 class="text-4xl font-semibold mb-12">Schedule your drive</h3>
+                    <form class="space-y-10">
+                        <div class="grid grid-cols-2 gap-10">
+                            <div class="group">
+                                <label class="block text-xs font-medium text-neutral-500 mb-3 uppercase tracking-wider">First Name</label>
+                                <input type="text" class="w-full py-3 input-underline text-xl text-neutral-900 bg-transparent font-medium placeholder:text-neutral-300" placeholder="John">
+                            </div>
+                            <div class="group">
+                                <label class="block text-xs font-medium text-neutral-500 mb-3 uppercase tracking-wider">Last Name</label>
+                                <input type="text" class="w-full py-3 input-underline text-xl text-neutral-900 bg-transparent font-medium placeholder:text-neutral-300" placeholder="Doe">
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-medium text-neutral-500 mb-3 uppercase tracking-wider">Email Address</label>
+                            <input type="email" class="w-full py-3 input-underline text-xl text-neutral-900 bg-transparent font-medium placeholder:text-neutral-300" placeholder="john@example.com">
+                        </div>
+                        <div class="grid grid-cols-2 gap-10">
+                            <div>
+                                <label class="block text-xs font-medium text-neutral-500 mb-3 uppercase tracking-wider">Phone</label>
+                                <input type="tel" class="w-full py-3 input-underline text-xl text-neutral-900 bg-transparent font-medium placeholder:text-neutral-300" placeholder="(555) 000-0000">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-medium text-neutral-500 mb-3 uppercase tracking-wider">Zip Code</label>
+                                <input type="text" class="w-full py-3 input-underline text-xl text-neutral-900 bg-transparent font-medium placeholder:text-neutral-300" placeholder="90210">
+                            </div>
+                        </div>
+                        <button type="button" class="w-full bg-neutral-900 text-white py-5 rounded-xl text-lg font-medium hover:bg-neutral-800 transition-all hover:shadow-xl mt-6">
+                            Next Step
+                        </button>
+                        <p class="text-xs text-neutral-400 text-center mt-6">By continuing, you agree to Tesla's <a href="#" class="underline hover:text-black">Privacy Policy</a>.</p>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Asymmetrical Latest News -->
+    <section class="py-32 px-8 max-w-[1600px] mx-auto">
+        <div class="flex justify-between items-end mb-16 reveal">
+            <h2 class="text-5xl font-medium tracking-tight">Latest Updates</h2>
+            <a href="#" class="flex items-center gap-2 text-base font-medium hover:text-neutral-600 transition-colors group">
+                View Archive <iconify-icon icon="solar:arrow-right-linear" class="group-hover:translate-x-1 transition-transform"></iconify-icon>
+            </a>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-4 grid-rows-2 gap-8 h-auto md:h-[700px]">
+            <!-- Hero News Item -->
+            <article class="md:col-span-2 md:row-span-2 relative rounded-3xl overflow-hidden group cursor-pointer reveal shadow-sm hover:shadow-2xl transition-all duration-500">
+                <img src="https://images.unsplash.com/photo-1593941707882-a5bba14938c7?q=80&amp;w=2672&amp;auto=format&amp;fit=crop" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" alt="News 1">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+                <div class="absolute bottom-0 left-0 p-10 text-white">
+                    <span class="inline-block px-4 py-1.5 bg-blue-600 text-[10px] font-bold uppercase tracking-widest rounded-full mb-6">Software V12</span>
+                    <h3 class="text-4xl font-semibold mb-4 leading-tight">Full Self-Driving Beta V12 Now Rolling Out</h3>
+                    <p class="text-neutral-300 text-lg line-clamp-2 max-w-lg">End-to-end neural networks replace over 300k lines of C++ code, enabling smoother, more human-like driving decisions.</p>
+                </div>
+            </article>
+
+            <!-- Secondary Item -->
+            <article class="md:col-span-1 md:row-span-1 bg-neutral-100 rounded-3xl p-8 flex flex-col justify-between group cursor-pointer hover:bg-neutral-200 transition-colors reveal delay-100">
+                <div class="flex justify-between items-start">
+                     <span class="text-xs font-bold text-neutral-500 uppercase tracking-wider">Milestone</span>
+                     <iconify-icon icon="solar:cup-star-linear" class="text-2xl text-neutral-900"></iconify-icon>
+                </div>
+                <div>
+                    <h3 class="text-2xl font-semibold mb-3 group-hover:translate-x-1 transition-transform">5 Millionth Vehicle</h3>
+                    <p class="text-sm text-neutral-500">Produced at Gigafactory Shanghai this week.</p>
+                </div>
+            </article>
+
+            <!-- Image Item -->
+            <article class="md:col-span-1 md:row-span-1 relative rounded-3xl overflow-hidden group cursor-pointer reveal delay-200">
+                <img src="https://images.unsplash.com/photo-1623079400394-18498293522f?q=80&amp;w=2680&amp;auto=format&amp;fit=crop" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="News 3">
+                <div class="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors"></div>
+                <div class="absolute bottom-0 left-0 p-8 text-white">
+                     <span class="text-xs font-bold text-green-400 uppercase tracking-wider mb-2 block">Energy</span>
+                     <h3 class="text-xl font-semibold">Megapack Expansion</h3>
+                </div>
+            </article>
+
+            <!-- Wide Bottom Item -->
+            <article class="md:col-span-2 md:row-span-1 bg-neutral-900 text-white rounded-3xl p-10 flex items-center justify-between group cursor-pointer reveal delay-300 shadow-xl">
+                <div class="pr-8">
+                    <span class="text-xs font-bold text-purple-400 uppercase tracking-wider mb-3 block">Event</span>
+                    <h3 class="text-3xl font-semibold mb-2">AI Day 2024</h3>
+                    <p class="text-base text-neutral-400">Join us for the unveiling of the next generation Optimus robot.</p>
+                </div>
+                <div class="h-20 w-20 bg-white/10 rounded-full flex items-center justify-center group-hover:bg-white/20 transition-colors backdrop-blur-md">
+                    <iconify-icon icon="solar:play-linear" class="text-3xl text-white"></iconify-icon>
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="py-32 px-8 max-w-4xl mx-auto">
+        <h2 class="text-4xl font-medium tracking-tight mb-16 text-center reveal">Frequently Asked Questions</h2>
+        
+        <div class="space-y-6">
+            <details class="group bg-white border border-neutral-200 rounded-2xl overflow-hidden reveal">
+                <summary class="flex justify-between items-center p-8 cursor-pointer list-none hover:bg-neutral-50 transition-colors">
+                    <span class="font-medium text-xl">What is the range of Model S Plaid?</span>
+                    <span class="transform group-open:rotate-180 transition-transform duration-300 text-neutral-400">
+                        <iconify-icon icon="solar:alt-arrow-down-linear" width="28"></iconify-icon>
+                    </span>
+                </summary>
+                <div class="px-8 pb-8 text-neutral-600 text-lg leading-relaxed">
+                    Model S Plaid has an estimated range of 396 miles (EPA est.) on a single charge. Range may vary based on driving conditions, wheel selection, and other factors.
+                </div>
+            </details>
+
+            <details class="group bg-white border border-neutral-200 rounded-2xl overflow-hidden reveal delay-100">
+                <summary class="flex justify-between items-center p-8 cursor-pointer list-none hover:bg-neutral-50 transition-colors">
+                    <span class="font-medium text-xl">How fast is Supercharging?</span>
+                    <span class="transform group-open:rotate-180 transition-transform duration-300 text-neutral-400">
+                         <iconify-icon icon="solar:alt-arrow-down-linear" width="28"></iconify-icon>
+                    </span>
+                </summary>
+                <div class="px-8 pb-8 text-neutral-600 text-lg leading-relaxed">
+                    With V3 Supercharging, you can add up to 200 miles of range in just 15 minutes. The peak charging rate is 250kW.
+                </div>
+            </details>
+
+            <details class="group bg-white border border-neutral-200 rounded-2xl overflow-hidden reveal delay-200">
+                <summary class="flex justify-between items-center p-8 cursor-pointer list-none hover:bg-neutral-50 transition-colors">
+                    <span class="font-medium text-xl">Does it come with Autopilot?</span>
+                    <span class="transform group-open:rotate-180 transition-transform duration-300 text-neutral-400">
+                         <iconify-icon icon="solar:alt-arrow-down-linear" width="28"></iconify-icon>
+                    </span>
+                </summary>
+                <div class="px-8 pb-8 text-neutral-600 text-lg leading-relaxed">
+                    Yes, every new Tesla comes with Basic Autopilot included. This enables your car to steer, accelerate and brake automatically within its lane. Full Self-Driving capability is available as an upgrade.
+                </div>
+            </details>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-white border-t border-neutral-200 pt-24 pb-12 px-8">
+        <div class="max-w-[1600px] mx-auto">
+            <div class="flex flex-col md:flex-row justify-between gap-16 mb-20">
+                <div class="max-w-sm">
+                    <a href="#" class="text-2xl font-bold tracking-widest text-neutral-900 mb-8 block">TESLA</a>
+                    <p class="text-sm text-neutral-500 leading-relaxed">
+                        Accelerating the world's transition to sustainable energy through electric vehicles, solar and integrated renewable energy solutions.
+                    </p>
+                </div>
+                <div class="flex flex-wrap gap-16 md:gap-32">
+                    <div>
+                        <h4 class="text-xs font-semibold uppercase tracking-wider text-neutral-900 mb-6">Model S</h4>
+                        <ul class="space-y-4 text-sm text-neutral-500">
+                            <li><a href="#" class="hover-underline text-neutral-600">Order</a></li>
+                            <li><a href="#" class="hover-underline text-neutral-600">Demo Drive</a></li>
+                            <li><a href="#" class="hover-underline text-neutral-600">Inventory</a></li>
+                            <li><a href="#" class="hover-underline text-neutral-600">Compare</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="text-xs font-semibold uppercase tracking-wider text-neutral-900 mb-6">Company</h4>
+                        <ul class="space-y-4 text-sm text-neutral-500">
+                            <li><a href="#" class="hover-underline text-neutral-600">About</a></li>
+                            <li><a href="#" class="hover-underline text-neutral-600">Careers</a></li>
+                            <li><a href="#" class="hover-underline text-neutral-600">Investors</a></li>
+                            <li><a href="#" class="hover-underline text-neutral-600">Contact</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="flex flex-col md:flex-row justify-between items-center border-t border-neutral-100 pt-10 gap-6">
+                <p class="text-xs text-neutral-400">© 2024 Tesla, Inc. All rights reserved.</p>
+                <div class="flex gap-6">
+                     <a href="#" class="text-neutral-400 hover:text-black transition-colors"><iconify-icon icon="brandico:twitter-bird" width="18"></iconify-icon></a>
+                     <a href="#" class="text-neutral-400 hover:text-black transition-colors"><iconify-icon icon="brandico:instagram" width="18"></iconify-icon></a>
+                     <a href="#" class="text-neutral-400 hover:text-black transition-colors"><iconify-icon icon="brandico:linkedin" width="18"></iconify-icon></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Navbar Glass Effect on Scroll
+        const navbar = document.getElementById('navbar');
+        const navBg = document.getElementById('nav-bg');
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navBg.classList.replace('bg-white/0', 'bg-white/90');
+                navBg.classList.add('backdrop-blur-xl', 'shadow-sm');
+            } else {
+                navBg.classList.replace('bg-white/90', 'bg-white/0');
+                navBg.classList.remove('backdrop-blur-xl', 'shadow-sm');
+            }
+        });
+
+        // "React-like" Reveal Animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: "0px 0px -80px 0px"
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    observer.unobserve(entry.target); 
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal, .mask-text').forEach(el => observer.observe(el));
+    </script>
+
+</body></html>
