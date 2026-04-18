@@ -265,24 +265,25 @@ body::-webkit-scrollbar {
     <!-- Hero Section -->
     <section class="relative h-screen min-h-[900px] w-full overflow-hidden flex flex-col justify-center items-center">
         <div class="absolute inset-0 z-0">
-            <img src="https://images.unsplash.com/photo-1620802051782-726fa83aa728?q=80&amp;w=2834&amp;auto=format&amp;fit=crop" class="w-full h-full object-cover hidden md:block" alt="Model S Hero">
-            <img src="https://images.unsplash.com/photo-1617788138017-80ad40651399?q=80&amp;w=1000&amp;auto=format&amp;fit=crop" class="w-full h-full object-cover md:hidden" alt="Model S Hero Mobile">
+            <video class="w-full h-full object-cover pointer-events-none" autoplay muted loop playsinline preload="auto" disablepictureinpicture controlslist="nodownload nofullscreen noremoteplayback">
+                <source src="/assets/tesla-commercial.mp4" type="video/mp4">
+            </video>
             <div class="absolute inset-0 bg-gradient-to-b from-white/30 via-transparent to-transparent h-40"></div>
         </div>
         
         <div class="relative z-10 max-w-5xl w-full mx-auto px-6 text-center mt-[-10vh]">
             <div class="mask-text active">
-                <h1 class="text-8xl md:text-[140px] font-semibold tracking-tighter text-neutral-900 leading-[0.85]">
+                <h1 class="text-8xl md:text-[140px] font-semibold tracking-tighter text-white leading-[0.85]">
                     <span>Model S</span>
                 </h1>
             </div>
             <div class="mask-text active mt-4 delay-100">
-                <p class="text-5xl md:text-7xl font-medium text-neutral-600 tracking-tight">
+                <p class="text-5xl md:text-7xl font-medium text-white tracking-tight">
                     <span>Plaid</span>
                 </p>
             </div>
             <div class="mask-text active mt-10 delay-200">
-                <p class="text-xl md:text-2xl text-neutral-600 max-w-2xl mx-auto leading-relaxed font-light">
+                <p class="text-xl md:text-2xl text-white max-w-2xl mx-auto leading-relaxed font-light">
                     <span>The highest performing sedan ever built. With the longest range and quickest acceleration of any electric vehicle in production.</span>
                 </p>
             </div>
@@ -290,18 +291,18 @@ body::-webkit-scrollbar {
         
         <div class="absolute bottom-12 w-full max-w-[1600px] px-8">
             <div class="flex flex-col md:flex-row justify-between items-end gap-10">
-                <div class="grid grid-cols-3 gap-12 md:gap-24 text-neutral-900 reveal active delay-200">
+                <div class="grid grid-cols-3 gap-12 md:gap-24 text-white reveal active delay-200">
                     <div class="group cursor-default">
                         <p class="text-4xl md:text-5xl font-semibold tracking-tight group-hover:scale-105 transition-transform origin-left">396<span class="text-xl align-top ml-1">mi</span></p>
-                        <p class="text-xs font-bold tracking-widest uppercase mt-2 text-neutral-500">Range (EPA)</p>
+                        <p class="text-xs font-bold tracking-widest uppercase mt-2 text-white/80">Range (EPA)</p>
                     </div>
                     <div class="group cursor-default">
                         <p class="text-4xl md:text-5xl font-semibold tracking-tight group-hover:scale-105 transition-transform origin-left">1.99<span class="text-xl align-top ml-1">s</span></p>
-                        <p class="text-xs font-bold tracking-widest uppercase mt-2 text-neutral-500">0-60 mph*</p>
+                        <p class="text-xs font-bold tracking-widest uppercase mt-2 text-white/80">0-60 mph*</p>
                     </div>
                     <div class="group cursor-default">
                         <p class="text-4xl md:text-5xl font-semibold tracking-tight group-hover:scale-105 transition-transform origin-left">1,020<span class="text-xl align-top ml-1">hp</span></p>
-                        <p class="text-xs font-bold tracking-widest uppercase mt-2 text-neutral-500">Peak Power</p>
+                        <p class="text-xs font-bold tracking-widest uppercase mt-2 text-white/80">Peak Power</p>
                     </div>
                 </div>
                 <div class="flex flex-col sm:flex-row gap-6 w-full md:w-auto reveal active delay-300">
@@ -373,7 +374,7 @@ body::-webkit-scrollbar {
                 <button class="px-8 py-3 border border-white rounded-full hover:bg-white hover:text-neutral-900 transition-colors">Explore Games</button>
             </div>
             <div class="relative rounded-2xl overflow-hidden shadow-2xl border border-white/10 h-[600px] reveal delay-200 group">
-                 <img src="https://digitalassets.tesla.com/tesla-contents/image/upload/f_auto,q_auto:best/Model-S-Interior-Gaming-Desktop" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" alt="Gaming">
+                 <img src="/assets/tesla5.jpg" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" alt="Gaming">
                  <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
                  <div class="absolute bottom-8 right-8">
                      <iconify-icon icon="logos:steam" width="48"></iconify-icon>
@@ -424,7 +425,7 @@ body::-webkit-scrollbar {
         </div>
         <div class="grid grid-cols-1 md:grid-cols-6 gap-6 auto-rows-[340px] md:auto-rows-[400px]">
             <div class="md:col-span-4 bg-neutral-100 rounded-3xl relative overflow-hidden group reveal">
-                <img src="https://images.unsplash.com/photo-1532588320078-d43770387b92?q=80&amp;w=2600&amp;auto=format&amp;fit=crop" class="absolute inset-0 w-full h-full object-cover mix-blend-multiply opacity-80 group-hover:scale-105 transition-transform duration-700" alt="Chassis">
+                <img src="/assets/tesla1.jpg" class="absolute inset-0 w-full h-full object-cover mix-blend-multiply opacity-80 group-hover:scale-105 transition-transform duration-700" alt="Chassis">
                 <div class="absolute inset-0 p-10 flex flex-col justify-end bg-gradient-to-t from-white via-transparent to-transparent">
                     <h3 class="text-3xl font-semibold mb-3 text-neutral-900">Tri-Motor All-Wheel Drive</h3>
                     <p class="text-neutral-700 text-lg max-w-md">Three independent motors with carbon-sleeved rotors maintain peak power output all the way to top speed.</p>
@@ -463,7 +464,7 @@ body::-webkit-scrollbar {
                          </div>
                      </div>
                      <div class="relative h-full bg-black overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1546188994-07c34f295f52?q=80&amp;w=2600&amp;auto=format&amp;fit=crop" class="absolute inset-0 w-full h-full object-cover opacity-60" alt="Vision">
+                        <img src="/assets/tesla6.png" class="absolute inset-0 w-full h-full object-cover opacity-60" alt="Vision">
                      </div>
                  </div>
             </div>
@@ -474,7 +475,7 @@ body::-webkit-scrollbar {
     <section class="bg-black text-white py-32 px-8">
         <div class="max-w-[1400px] mx-auto flex flex-col md:flex-row gap-20">
              <div class="md:w-1/2 reveal">
-                 <img src="https://digitalassets.tesla.com/tesla-contents/image/upload/f_auto,q_auto:best/Model-S-Specs-Hero-Desktop-LHD" class="w-full rounded-2xl mb-8" alt="Specs">
+                 <img src="/assets/tesla3.jpg" class="w-full rounded-2xl mb-8" alt="Specs">
                  <h2 class="text-5xl font-medium mb-4">Model S Plaid</h2>
                  <div class="flex gap-4 mb-8">
                      <button class="px-8 py-2 bg-white text-black rounded-full font-medium text-sm">Plaid</button>
@@ -597,7 +598,7 @@ body::-webkit-scrollbar {
         </div>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8 h-[600px]">
             <div class="group relative rounded-3xl overflow-hidden bg-neutral-100 md:col-span-2 reveal">
-                <img src="https://digitalassets.tesla.com/tesla-contents/image/upload/f_auto,q_auto:best/Powerwall-02-Desktop.jpg" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" alt="Home">
+                <img src="/assets/tesla7.webp" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" alt="Home">
                 <div class="absolute top-8 left-8">
                     <h3 class="text-2xl font-semibold text-neutral-900 bg-white/80 backdrop-blur-md px-4 py-2 rounded-full inline-block">Home Energy</h3>
                 </div>
@@ -833,7 +834,7 @@ body::-webkit-scrollbar {
 
             <!-- Image Item -->
             <article class="md:col-span-1 md:row-span-1 relative rounded-3xl overflow-hidden group cursor-pointer reveal delay-200">
-                <img src="https://images.unsplash.com/photo-1623079400394-18498293522f?q=80&amp;w=2680&amp;auto=format&amp;fit=crop" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="News 3">
+                <img src="/assets/tesla2.webp" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="News 3">
                 <div class="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors"></div>
                 <div class="absolute bottom-0 left-0 p-8 text-white">
                      <span class="text-xs font-bold text-green-400 uppercase tracking-wider mb-2 block">Energy</span>
