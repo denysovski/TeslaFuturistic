@@ -105,6 +105,22 @@ body::-webkit-scrollbar {
     transform: translateY(-1px);
 }
 
+#navbar {
+    max-height: 5rem;
+    overflow: hidden;
+    transition: max-height 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+#navbar.nav-open {
+    max-height: 38rem;
+}
+
+#navbar.nav-open #nav-bg {
+    background: rgba(255, 255, 255, 1) !important;
+    backdrop-filter: blur(16px);
+    box-shadow: 0 10px 28px rgba(15, 23, 42, 0.08);
+}
+
 .faq-item {
     border: 1px solid #e5e7eb;
     border-radius: 1rem;
@@ -1108,17 +1124,16 @@ body::-webkit-scrollbar {
 
         const applyNavState = () => {
             const shouldShowWhiteNav = window.scrollY > 50 || menuOpen;
+            navbar.classList.toggle('nav-open', menuOpen);
 
             if (shouldShowWhiteNav) {
-                if (navBg.classList.contains('bg-white/0')) {
-                    navBg.classList.replace('bg-white/0', 'bg-white/90');
-                }
+                navBg.classList.remove('bg-white/0', 'bg-white/90');
+                navBg.classList.add('bg-white');
                 navBg.classList.add('backdrop-blur-xl', 'shadow-sm');
                 setNavColors(false);
             } else {
-                if (navBg.classList.contains('bg-white/90')) {
-                    navBg.classList.replace('bg-white/90', 'bg-white/0');
-                }
+                navBg.classList.remove('bg-white', 'bg-white/90');
+                navBg.classList.add('bg-white/0');
                 navBg.classList.remove('backdrop-blur-xl', 'shadow-sm');
                 setNavColors(true);
             }
