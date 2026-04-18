@@ -91,6 +91,18 @@ body::-webkit-scrollbar {
     transform: scaleX(1);
     transform-origin: bottom left;
 }
+
+.nav-caret {
+    display: inline-block;
+    margin-left: 0.35rem;
+    font-size: 0.7rem;
+    line-height: 1;
+    transition: transform 0.25s ease;
+}
+
+.has-mega:hover .nav-caret {
+    transform: translateY(-1px);
+}
 </style></head>
 <body class="bg-white text-neutral-900 antialiased overflow-x-hidden selection:bg-neutral-900 selection:text-white">
 
@@ -109,8 +121,8 @@ body::-webkit-scrollbar {
             <!-- Desktop Menu -->
             <div class="hidden lg:flex items-center gap-12 z-50">
                 <!-- Vehicles Dropdown -->
-                <div class="group h-20 flex items-center">
-                    <button class="nav-link text-base font-medium transition-colors py-2 px-4 rounded-full hover:bg-neutral-100/20">Vehicles</button>
+                <div class="group has-mega h-20 flex items-center">
+                    <button class="nav-link text-base font-medium transition-colors py-2 px-4 rounded-full hover:bg-neutral-100/20">Vehicles <span class="nav-caret">^</span></button>
                     <!-- Mega Menu Content -->
                     <div class="mega-menu-container absolute top-0 left-0 w-full bg-white pt-24 pb-16 px-12 shadow-2xl border-b border-neutral-100 -z-10">
                         <div class="max-w-[1600px] mx-auto grid grid-cols-5 gap-8 fade-in">
@@ -167,8 +179,8 @@ body::-webkit-scrollbar {
                 </div>
 
                 <!-- Energy Dropdown -->
-                <div class="group h-20 flex items-center">
-                    <button class="nav-link text-base font-medium transition-colors py-2 px-4 rounded-full hover:bg-neutral-100/20">Energy</button>
+                <div class="group has-mega h-20 flex items-center">
+                    <button class="nav-link text-base font-medium transition-colors py-2 px-4 rounded-full hover:bg-neutral-100/20">Energy <span class="nav-caret">^</span></button>
                     <!-- Mega Menu Content -->
                     <div class="mega-menu-container absolute top-0 left-0 w-full bg-white pt-24 pb-16 px-12 shadow-2xl border-b border-neutral-100 -z-10">
                         <div class="max-w-[1200px] mx-auto grid grid-cols-4 gap-8">
@@ -193,8 +205,8 @@ body::-webkit-scrollbar {
                 </div>
 
                 <!-- Charging -->
-                <div class="group h-20 flex items-center">
-                    <button class="nav-link text-base font-medium transition-colors py-2 px-4 rounded-full hover:bg-neutral-100/20">Charging</button>
+                <div class="group has-mega h-20 flex items-center">
+                    <button class="nav-link text-base font-medium transition-colors py-2 px-4 rounded-full hover:bg-neutral-100/20">Charging <span class="nav-caret">^</span></button>
                      <div class="mega-menu-container absolute top-0 left-0 w-full bg-white pt-24 pb-16 px-12 shadow-2xl border-b border-neutral-100 -z-10">
                         <div class="max-w-[1000px] mx-auto grid grid-cols-3 gap-12">
                              <a href="#" class="group/item text-center block">
@@ -213,8 +225,8 @@ body::-webkit-scrollbar {
                     </div>
                 </div>
 
-                <div class="group h-20 flex items-center">
-                    <button class="nav-link text-base font-medium transition-colors py-2 px-4 rounded-full hover:bg-neutral-100/20">Discover</button>
+                <div class="group has-mega h-20 flex items-center">
+                    <button class="nav-link text-base font-medium transition-colors py-2 px-4 rounded-full hover:bg-neutral-100/20">Discover <span class="nav-caret">^</span></button>
                     <div class="mega-menu-container absolute top-0 left-0 w-full bg-white pt-24 pb-16 px-12 shadow-2xl border-b border-neutral-100 -z-10">
                         <div class="max-w-[800px] mx-auto grid grid-cols-3 gap-12">
                              <div class="space-y-4">
@@ -307,7 +319,7 @@ body::-webkit-scrollbar {
                 </div>
                 <div class="flex flex-col sm:flex-row gap-6 w-full md:w-auto reveal active delay-300">
                     <button class="w-full sm:w-auto px-16 py-4 bg-neutral-900 text-white text-base font-medium rounded-full hover:bg-neutral-800 transition-all hover:scale-[1.02] shadow-lg shadow-neutral-900/20">Order Now</button>
-                    <button class="w-full sm:w-auto px-16 py-4 bg-white/60 backdrop-blur-xl border border-neutral-200 text-neutral-900 text-base font-medium rounded-full hover:bg-white transition-all hover:shadow-lg">Demo Drive</button>
+                    <button class="w-full sm:w-auto px-16 py-4 bg-white backdrop-blur-xl border border-neutral-200 text-neutral-900 text-base font-medium rounded-full hover:bg-neutral-200 transition-all hover:shadow-lg">Demo Drive</button>
                 </div>
             </div>
         </div>
@@ -946,6 +958,8 @@ body::-webkit-scrollbar {
         const navbar = document.getElementById('navbar');
         const navBg = document.getElementById('nav-bg');
         const navLinks = document.querySelectorAll('.nav-link');
+        const megaTriggers = document.querySelectorAll('.has-mega');
+        let menuOpen = false;
 
         const setNavColors = (isTop) => {
             navLinks.forEach((link) => {
@@ -958,19 +972,40 @@ body::-webkit-scrollbar {
             });
         };
 
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 50) {
-                navBg.classList.replace('bg-white/0', 'bg-white/90');
+        const applyNavState = () => {
+            const shouldShowWhiteNav = window.scrollY > 50 || menuOpen;
+
+            if (shouldShowWhiteNav) {
+                if (navBg.classList.contains('bg-white/0')) {
+                    navBg.classList.replace('bg-white/0', 'bg-white/90');
+                }
                 navBg.classList.add('backdrop-blur-xl', 'shadow-sm');
                 setNavColors(false);
             } else {
-                navBg.classList.replace('bg-white/90', 'bg-white/0');
+                if (navBg.classList.contains('bg-white/90')) {
+                    navBg.classList.replace('bg-white/90', 'bg-white/0');
+                }
                 navBg.classList.remove('backdrop-blur-xl', 'shadow-sm');
                 setNavColors(true);
             }
+        };
+
+        window.addEventListener('scroll', () => {
+            applyNavState();
         });
 
-        setNavColors(true);
+        megaTriggers.forEach((trigger) => {
+            trigger.addEventListener('mouseenter', () => {
+                menuOpen = true;
+                applyNavState();
+            });
+            trigger.addEventListener('mouseleave', () => {
+                menuOpen = false;
+                applyNavState();
+            });
+        });
+
+        applyNavState();
 
         // "React-like" Reveal Animations
         const observerOptions = {
