@@ -51,8 +51,8 @@ body::-webkit-scrollbar {
 .mega-menu-container {
     opacity: 0;
     visibility: hidden;
-    transform: translateY(-12px);
-    transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1), transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), visibility 0s linear 0.35s;
+    transform: translateY(-16px);
+    transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1), transform 0.55s cubic-bezier(0.16, 1, 0.3, 1), visibility 0s linear 0.55s;
     pointer-events: none;
 }
 
@@ -62,6 +62,25 @@ body::-webkit-scrollbar {
     transform: translateY(0);
     pointer-events: auto;
     transition-delay: 0s;
+}
+
+#mega-menu-shell {
+    position: fixed;
+    top: 56px;
+    left: 0;
+    width: 100vw;
+    height: 0;
+    opacity: 0;
+    background: #ffffff;
+    border-bottom: 1px solid #f1f5f9;
+    box-shadow: 0 24px 40px rgba(15, 23, 42, 0.08);
+    transition: height 0.55s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.35s ease;
+    pointer-events: none;
+    z-index: 39;
+}
+
+#navbar.mega-shell-open #mega-menu-shell {
+    opacity: 1;
 }
 
 .nav-link {
@@ -124,16 +143,6 @@ body::-webkit-scrollbar {
     line-height: 1;
     transition: transform 0.25s ease;
     vertical-align: middle;
-}
-
-.has-mega:hover .nav-caret {
-    transform: translateY(-1px);
-}
-
-#navbar.menu-open #nav-bg {
-    background: rgba(255, 255, 255, 1) !important;
-    backdrop-filter: blur(16px);
-    box-shadow: 0 10px 28px rgba(15, 23, 42, 0.08);
 }
 
 .faq-item {
@@ -261,28 +270,51 @@ body::-webkit-scrollbar {
     -webkit-mask-image: linear-gradient(to bottom, black 0%, black 72%, rgba(0, 0, 0, 0.55) 88%, transparent 100%);
     mask-image: linear-gradient(to bottom, black 0%, black 72%, rgba(0, 0, 0, 0.55) 88%, transparent 100%);
 }
+
+.future-card.fade-bottom-strong {
+    -webkit-mask-image: linear-gradient(to bottom, black 0%, black 58%, rgba(0, 0, 0, 0.4) 78%, transparent 100%);
+    mask-image: linear-gradient(to bottom, black 0%, black 58%, rgba(0, 0, 0, 0.4) 78%, transparent 100%);
+}
+
+.feature-info-bubble {
+    width: 2.6rem;
+    height: 2.6rem;
+    border-radius: 999px;
+    background: white;
+    color: #111827;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 14px 24px rgba(15, 23, 42, 0.12);
+    transition: transform 0.3s ease;
+}
+
+.feature-card:hover .feature-info-bubble {
+    transform: scale(1.16);
+}
 </style></head>
 <body class="bg-white text-neutral-900 antialiased overflow-x-hidden selection:bg-neutral-900 selection:text-white">
 
     <!-- Navigation -->
     <nav class="fixed top-0 left-0 w-full z-50 transition-all duration-300 group/nav" id="navbar">
         <div class="absolute inset-0 bg-white" id="nav-bg"></div>
+        <div id="mega-menu-shell"></div>
         
         <div class="relative z-50 max-w-[1800px] mx-auto px-8 h-14 flex items-center justify-between">
             <!-- Logo -->
             <div class="z-50 relative">
                 <a href="#" class="flex items-center gap-2">
-                    <img src="assets/tesla-icon.png" alt="Tesla icon" class="w-10 h-10 object-contain" onerror="this.style.display='none'">
+                    <img src="assets/tesla-icon.png" alt="Tesla icon" class="w-6 h-6 object-contain" onerror="this.style.display='none'">
                 </a>
             </div>
 
             <!-- Desktop Menu -->
-            <div class="hidden lg:flex items-center gap-10 z-50">
+            <div class="hidden lg:flex items-center gap-0 z-50">
                 <!-- Vehicles Dropdown -->
                 <div class="group has-mega h-14 flex items-center" data-menu="vehicles">
-                    <button class="nav-link text-base font-medium transition-colors py-2 px-4 rounded-full hover:bg-neutral-100">Vehicles <iconify-icon icon="solar:alt-arrow-down-linear" class="nav-caret"></iconify-icon></button>
+                    <button class="nav-link text-base font-medium transition-colors py-2 px-0">Vehicles <iconify-icon icon="solar:alt-arrow-down-linear" class="nav-caret"></iconify-icon></button>
                     <!-- Mega Menu Content -->
-                    <div class="mega-menu-container fixed top-14 left-0 w-screen bg-white pt-5 pb-14 px-12 shadow-2xl border-b border-neutral-100 z-40">
+                    <div class="mega-menu-container fixed top-14 left-0 w-screen pt-5 pb-14 px-12 z-40">
                         <div class="max-w-[1600px] mx-auto grid grid-cols-5 gap-8 fade-in">
                             <a href="#" class="group/car text-center block">
                                 <img src="https://digitalassets.tesla.com/tesla-contents/image/upload/f_auto,q_auto:best/Mega-Menu-Vehicles-Model-S.png" class="w-full h-auto mb-4 group-hover/car:scale-105 transition-transform duration-500" alt="Model S">
@@ -338,9 +370,9 @@ body::-webkit-scrollbar {
 
                 <!-- Energy Dropdown -->
                 <div class="group has-mega h-14 flex items-center" data-menu="energy">
-                    <button class="nav-link text-base font-medium transition-colors py-2 px-4 rounded-full hover:bg-neutral-100">Energy <iconify-icon icon="solar:alt-arrow-down-linear" class="nav-caret"></iconify-icon></button>
+                    <button class="nav-link text-base font-medium transition-colors py-2 px-0">Energy <iconify-icon icon="solar:alt-arrow-down-linear" class="nav-caret"></iconify-icon></button>
                     <!-- Mega Menu Content -->
-                    <div class="mega-menu-container fixed top-14 left-0 w-screen bg-white pt-5 pb-14 px-12 shadow-2xl border-b border-neutral-100 z-40">
+                    <div class="mega-menu-container fixed top-14 left-0 w-screen pt-5 pb-14 px-12 z-40">
                         <div class="max-w-[1200px] mx-auto grid grid-cols-4 gap-8">
                              <a href="#" class="group/item text-center block">
                                 <img src="https://digitalassets.tesla.com/tesla-contents/image/upload/f_auto,q_auto:best/Mega-Menu-Energy-Solar-Panels.png" class="w-full h-auto mb-4 group-hover/item:scale-105 transition-transform" alt="Solar">
@@ -364,8 +396,8 @@ body::-webkit-scrollbar {
 
                 <!-- Charging -->
                 <div class="group has-mega h-14 flex items-center" data-menu="charging">
-                    <button class="nav-link text-base font-medium transition-colors py-2 px-4 rounded-full hover:bg-neutral-100">Charging <iconify-icon icon="solar:alt-arrow-down-linear" class="nav-caret"></iconify-icon></button>
-                     <div class="mega-menu-container fixed top-14 left-0 w-screen bg-white pt-5 pb-14 px-12 shadow-2xl border-b border-neutral-100 z-40">
+                    <button class="nav-link text-base font-medium transition-colors py-2 px-0">Charging <iconify-icon icon="solar:alt-arrow-down-linear" class="nav-caret"></iconify-icon></button>
+                     <div class="mega-menu-container fixed top-14 left-0 w-screen pt-5 pb-14 px-12 z-40">
                         <div class="max-w-[1000px] mx-auto grid grid-cols-3 gap-12">
                              <a href="#" class="group/item text-center block">
                                 <img src="https://digitalassets.tesla.com/tesla-contents/image/upload/f_auto,q_auto:best/Mega-Menu-Charging-Charging.png" class="w-full h-auto mb-4 group-hover/item:scale-105 transition-transform" alt="Charging">
@@ -384,8 +416,8 @@ body::-webkit-scrollbar {
                 </div>
 
                 <div class="group has-mega h-14 flex items-center" data-menu="discover">
-                    <button class="nav-link text-base font-medium transition-colors py-2 px-4 rounded-full hover:bg-neutral-100">Discover <iconify-icon icon="solar:alt-arrow-down-linear" class="nav-caret"></iconify-icon></button>
-                    <div class="mega-menu-container fixed top-14 left-0 w-screen bg-white pt-5 pb-14 px-12 shadow-2xl border-b border-neutral-100 z-40">
+                    <button class="nav-link text-base font-medium transition-colors py-2 px-0">Discover <iconify-icon icon="solar:alt-arrow-down-linear" class="nav-caret"></iconify-icon></button>
+                    <div class="mega-menu-container fixed top-14 left-0 w-screen pt-5 pb-14 px-12 z-40">
                         <div class="max-w-[800px] mx-auto grid grid-cols-3 gap-12">
                              <div class="space-y-4">
                                 <h4 class="text-xs font-bold text-neutral-500 uppercase tracking-widest mb-4">Resources</h4>
@@ -412,7 +444,7 @@ body::-webkit-scrollbar {
                     </div>
                 </div>
                 
-                <a href="#" class="nav-link text-base font-medium transition-colors py-2 px-4 rounded-full hover:bg-neutral-100">Shop</a>
+                <a href="#" class="nav-link text-base font-medium transition-colors py-2 px-0">Shop</a>
             </div>
 
             <!-- Mobile Menu Toggle -->
@@ -705,46 +737,46 @@ body::-webkit-scrollbar {
     <section class="bg-white text-neutral-900 py-32 px-8 border-t border-neutral-200">
       <div class="max-w-[1600px] mx-auto">
         <div class="mb-20 reveal">
-            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-neutral-200 bg-neutral-50 mb-6">
-                <div class="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse"></div>
-                <span class="text-xs font-bold uppercase tracking-wider text-neutral-500">Software Version 12.3</span>
-            </div>
+            <p class="text-sm font-medium uppercase tracking-widest text-neutral-500 mb-6">Updates that continuously improve performance, safety, and everyday comfort.</p>
             <h2 class="text-5xl md:text-6xl font-medium tracking-tight mb-6 text-neutral-900">Better Over Time</h2>
             <p class="text-neutral-500 text-xl max-w-2xl">Model S isn’t just a car; it’s a platform. Frequent over-the-air updates introduce new features, performance boosts, and safety improvements instantly.</p>
         </div>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
             <!-- Feature 1 -->
-            <div class="bg-neutral-50 rounded-3xl p-8 border border-neutral-200 reveal delay-100 group hover:shadow-xl transition-all duration-300">
+            <div class="feature-card bg-neutral-50 rounded-3xl p-8 border border-neutral-200 reveal delay-100 group hover:shadow-xl transition-all duration-300 relative">
                 <div class="flex items-center gap-3 mb-5 text-neutral-900">
                     <iconify-icon icon="solar:smartphone-2-linear" class="text-4xl text-neutral-900"></iconify-icon>
                     <h3 class="text-2xl font-semibold">Phone Key</h3>
                 </div>
                 <p class="text-neutral-600 text-sm leading-relaxed mb-6">No fob required. Your phone unlocks and starts your car automatically as you approach.</p>
-                <div class="h-44 rounded-2xl overflow-hidden border border-neutral-200 bg-white">
+                <div class="h-56 rounded-2xl overflow-hidden border border-neutral-200 bg-white">
                      <img src="assets/phone-key.jpg" class="w-full h-full object-cover" alt="Phone Key">
                 </div>
+                <div class="absolute right-6 bottom-6 feature-info-bubble"><iconify-icon icon="solar:arrow-right-linear" width="18"></iconify-icon></div>
             </div>
             <!-- Feature 2 -->
-            <div class="bg-neutral-50 rounded-3xl p-8 border border-neutral-200 reveal delay-200 group hover:shadow-xl transition-all duration-300">
+            <div class="feature-card bg-neutral-50 rounded-3xl p-8 border border-neutral-200 reveal delay-200 group hover:shadow-xl transition-all duration-300 relative">
                 <div class="flex items-center gap-3 mb-5 text-neutral-900">
                     <iconify-icon icon="solar:map-point-linear" class="text-4xl text-neutral-900"></iconify-icon>
                     <h3 class="text-2xl font-semibold">Trip Planner</h3>
                 </div>
                 <p class="text-neutral-600 text-sm leading-relaxed mb-6">Navigate anywhere with automatic charging stops and battery pre-conditioning for faster charging.</p>
-                <div class="h-44 rounded-2xl overflow-hidden border border-neutral-200 bg-white">
+                <div class="h-56 rounded-2xl overflow-hidden border border-neutral-200 bg-white">
                      <img src="assets/trip-planner.jpg" class="w-full h-full object-cover" alt="Trip Planner">
                 </div>
+                <div class="absolute right-6 bottom-6 feature-info-bubble"><iconify-icon icon="solar:arrow-right-linear" width="18"></iconify-icon></div>
             </div>
             <!-- Feature 3 -->
-            <div class="bg-neutral-50 rounded-3xl p-8 border border-neutral-200 reveal delay-300 group hover:shadow-xl transition-all duration-300">
+            <div class="feature-card bg-neutral-50 rounded-3xl p-8 border border-neutral-200 reveal delay-300 group hover:shadow-xl transition-all duration-300 relative">
                  <div class="flex items-center gap-3 mb-5 text-neutral-900">
                     <iconify-icon icon="solar:shield-warning-linear" class="text-4xl text-neutral-900"></iconify-icon>
                     <h3 class="text-2xl font-semibold">Sentry Mode</h3>
                  </div>
                 <p class="text-neutral-600 text-sm leading-relaxed mb-6">Live camera access from anywhere. Your car monitors its environment when you're away.</p>
-                 <div class="h-44 rounded-2xl overflow-hidden border border-neutral-200 bg-white">
+                                 <div class="h-56 rounded-2xl overflow-hidden border border-neutral-200 bg-white">
                      <img src="assets/sentry-mode.webp" class="w-full h-full object-cover" alt="Sentry Mode">
                 </div>
+                                <div class="absolute right-6 bottom-6 feature-info-bubble"><iconify-icon icon="solar:arrow-right-linear" width="18"></iconify-icon></div>
             </div>
         </div>
       </div>
@@ -1050,58 +1082,6 @@ body::-webkit-scrollbar {
         </div>
     </section>
 
-    <!-- Future Section -->
-    <section class="py-32 px-8 bg-white border-t border-neutral-200">
-        <div class="max-w-[1600px] mx-auto">
-            <div class="text-center max-w-3xl mx-auto mb-16 reveal">
-                <h2 class="text-5xl md:text-6xl font-medium tracking-tight mb-6">What's the future?</h2>
-                <p class="text-xl text-neutral-500 leading-relaxed">Let us surprise you.</p>
-            </div>
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
-                <article class="future-card rounded-3xl overflow-hidden bg-neutral-50 border border-neutral-200 shadow-sm reveal">
-                    <div class="relative h-[420px]">
-                        <img src="assets/phone-key.jpg" class="absolute inset-0 w-full h-full object-cover" alt="Future phone key">
-                        <div class="absolute inset-0 bg-gradient-to-t from-white via-white/15 to-transparent"></div>
-                        <div class="absolute bottom-0 left-0 right-0 p-6">
-                            <h3 class="text-2xl font-semibold text-neutral-900">Seamless entry</h3>
-                            <p class="text-neutral-600 mt-2">The car already feels like it knows you.</p>
-                        </div>
-                    </div>
-                </article>
-                <article class="future-card rounded-3xl overflow-hidden bg-neutral-50 border border-neutral-200 shadow-sm reveal delay-100">
-                    <div class="relative h-[420px]">
-                        <img src="assets/trip-planner.jpg" class="absolute inset-0 w-full h-full object-cover" alt="Future trip planner">
-                        <div class="absolute inset-0 bg-gradient-to-t from-white via-white/15 to-transparent"></div>
-                        <div class="absolute bottom-0 left-0 right-0 p-6">
-                            <h3 class="text-2xl font-semibold text-neutral-900">Adaptive routing</h3>
-                            <p class="text-neutral-600 mt-2">Routes that keep shifting toward better charging and less waiting.</p>
-                        </div>
-                    </div>
-                </article>
-                <article class="future-card rounded-3xl overflow-hidden bg-neutral-50 border border-neutral-200 shadow-sm reveal delay-200">
-                    <div class="relative h-[420px]">
-                        <img src="assets/sentry-mode.webp" class="absolute inset-0 w-full h-full object-cover" alt="Future sentry mode">
-                        <div class="absolute inset-0 bg-gradient-to-t from-white via-white/15 to-transparent"></div>
-                        <div class="absolute bottom-0 left-0 right-0 p-6">
-                            <h3 class="text-2xl font-semibold text-neutral-900">Awareness everywhere</h3>
-                            <p class="text-neutral-600 mt-2">A watchful system that disappears into the background until needed.</p>
-                        </div>
-                    </div>
-                </article>
-                <article class="future-card rounded-3xl overflow-hidden bg-neutral-50 border border-neutral-200 shadow-sm reveal delay-300">
-                    <div class="relative h-[420px]">
-                        <img src="assets/home-energy.jpg" class="absolute inset-0 w-full h-full object-cover" alt="Future energy">
-                        <div class="absolute inset-0 bg-gradient-to-t from-white via-white/15 to-transparent"></div>
-                        <div class="absolute bottom-0 left-0 right-0 p-6">
-                            <h3 class="text-2xl font-semibold text-neutral-900">Smarter homes</h3>
-                            <p class="text-neutral-600 mt-2">Energy that quietly coordinates the garage, roof, and grid.</p>
-                        </div>
-                    </div>
-                </article>
-            </div>
-        </div>
-    </section>
-
     <!-- Long-Term Value Section -->
     <section class="py-32 px-8 bg-neutral-950 text-white">
         <div class="max-w-[1600px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
@@ -1194,6 +1174,51 @@ body::-webkit-scrollbar {
         </div>
     </section>
 
+    <!-- Future Section -->
+    <section class="py-32 px-8 bg-white border-t border-neutral-200">
+        <div class="max-w-[1600px] mx-auto">
+            <div class="text-center max-w-3xl mx-auto mb-16 reveal">
+                <h2 class="text-5xl md:text-6xl font-medium tracking-tight mb-5">What's the future like?</h2>
+                <p class="text-lg text-neutral-500 leading-relaxed">A closer look at where mobility, intelligence, and energy are headed next.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <article class="future-card rounded-3xl overflow-hidden bg-neutral-50 border border-neutral-200 shadow-sm reveal">
+                    <div class="relative h-[420px]">
+                        <img src="assets/phone-key.jpg" class="absolute inset-0 w-full h-full object-cover" alt="Future phone key">
+                        <div class="absolute inset-0 bg-gradient-to-t from-white via-white/15 to-transparent"></div>
+                        <div class="absolute bottom-0 left-0 right-0 p-6">
+                            <h3 class="text-2xl font-semibold text-neutral-900">Seamless entry intelligence</h3>
+                            <p class="text-neutral-600 mt-2">The vehicle recognizes context and adapts your cabin and route before you even drive.</p>
+                        </div>
+                    </div>
+                </article>
+                <article class="future-card rounded-3xl overflow-hidden bg-neutral-50 border border-neutral-200 shadow-sm reveal delay-100">
+                    <div class="relative h-[420px]">
+                        <img src="assets/trip-planner.jpg" class="absolute inset-0 w-full h-full object-cover" alt="Future trip planner">
+                        <div class="absolute inset-0 bg-gradient-to-t from-white via-white/15 to-transparent"></div>
+                        <div class="absolute bottom-0 left-0 right-0 p-6">
+                            <h3 class="text-2xl font-semibold text-neutral-900">Predictive route orchestration</h3>
+                            <p class="text-neutral-600 mt-2">Charging, traffic, and battery conditions combine into one route that keeps shifting smarter in real time.</p>
+                        </div>
+                    </div>
+                </article>
+                <article class="future-card fade-bottom-strong rounded-3xl overflow-hidden bg-neutral-50 border border-neutral-200 shadow-sm reveal delay-200">
+                    <div class="relative h-[420px]">
+                        <img src="assets/sentry-mode.webp" class="absolute inset-0 w-full h-full object-cover" alt="Future sentry mode">
+                        <div class="absolute inset-0 bg-gradient-to-t from-white via-transparent to-transparent"></div>
+                    </div>
+                </article>
+                <article class="future-card fade-bottom-strong rounded-3xl overflow-hidden bg-neutral-50 border border-neutral-200 shadow-sm reveal delay-300">
+                    <div class="relative h-[420px]">
+                        <img src="assets/home-energy.jpg" class="absolute inset-0 w-full h-full object-cover" alt="Future energy">
+                        <div class="absolute inset-0 bg-gradient-to-t from-white via-transparent to-transparent"></div>
+                    </div>
+                </article>
+            </div>
+            <p class="text-center text-neutral-600 text-xl mt-12">Let us surprise you.</p>
+        </div>
+    </section>
+
     <!-- Footer -->
     <footer class="bg-white border-t border-neutral-200 pt-24 pb-12 px-8">
         <div class="max-w-[1600px] mx-auto">
@@ -1242,6 +1267,7 @@ body::-webkit-scrollbar {
         const navBg = document.getElementById('nav-bg');
         const navLinks = document.querySelectorAll('.nav-link');
         const megaTriggers = document.querySelectorAll('.has-mega');
+        const megaMenuShell = document.getElementById('mega-menu-shell');
         const specButtons = document.querySelectorAll('.spec-toggle-button');
         const specValues = document.getElementById('spec-values');
         const zipInput = document.getElementById('zip-code-input');
@@ -1276,13 +1302,29 @@ body::-webkit-scrollbar {
         };
 
         const setActiveMenu = (menuName) => {
+            let activeTrigger = null;
             megaTriggers.forEach((trigger) => {
-                trigger.classList.toggle('nav-menu-active', trigger.dataset.menu === menuName);
+                const isActive = trigger.dataset.menu === menuName;
+                trigger.classList.toggle('nav-menu-active', isActive);
+                if (isActive) {
+                    activeTrigger = trigger;
+                }
             });
+
+            if (activeTrigger && megaMenuShell) {
+                const activeMenu = activeTrigger.querySelector('.mega-menu-container');
+                const activeHeight = activeMenu ? activeMenu.scrollHeight : 0;
+                megaMenuShell.style.height = `${activeHeight}px`;
+                navbar.classList.add('mega-shell-open');
+            }
         };
 
         const closeMenus = () => {
             megaTriggers.forEach((trigger) => trigger.classList.remove('nav-menu-active'));
+            navbar.classList.remove('mega-shell-open');
+            if (megaMenuShell) {
+                megaMenuShell.style.height = '0px';
+            }
         };
 
         const renderSpecs = (specKey) => {
