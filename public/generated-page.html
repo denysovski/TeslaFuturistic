@@ -51,13 +51,38 @@ body::-webkit-scrollbar {
 .mega-menu-container {
     opacity: 0;
     visibility: hidden;
-    transform: translateY(-10px);
-    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    transform: translateY(-12px);
+    transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1), transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), visibility 0s linear 0.35s;
+    pointer-events: none;
 }
-.group:hover .mega-menu-container {
+
+.has-mega.nav-menu-active .mega-menu-container {
     opacity: 1;
     visibility: visible;
     transform: translateY(0);
+    pointer-events: auto;
+    transition-delay: 0s;
+}
+
+.nav-link {
+    transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+.nav-link:hover {
+    color: #111827;
+}
+
+.has-mega.nav-menu-active .nav-caret {
+    transform: translateY(-1px) rotate(180deg);
+}
+
+#navbar {
+    background: rgba(255, 255, 255, 0.98);
+    backdrop-filter: blur(18px);
+}
+
+#nav-bg {
+    background: rgba(255, 255, 255, 0.98);
 }
 
 /* Custom Form Inputs */
@@ -168,14 +193,82 @@ body::-webkit-scrollbar {
 .faq-item.faq-open .faq-arrow {
     transform: rotate(180deg);
 }
+
+.spec-toggle-button {
+    transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease, transform 0.25s ease;
+}
+
+.spec-toggle-button.is-active {
+    background: white;
+    color: #111827;
+    border-color: white;
+}
+
+.specs-fade {
+    transition: opacity 0.35s ease, transform 0.35s ease;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.specs-fade.is-fading {
+    opacity: 0;
+    transform: translateY(8px);
+}
+
+.zip-tooltip {
+    position: fixed;
+    z-index: 80;
+    max-width: 260px;
+    padding: 0.75rem 1rem;
+    border-radius: 999px;
+    background: rgba(17, 24, 39, 0.95);
+    color: white;
+    font-size: 0.75rem;
+    line-height: 1.4;
+    box-shadow: 0 18px 40px rgba(15, 23, 42, 0.22);
+    pointer-events: none;
+    opacity: 0;
+    transform: translateY(8px) scale(0.96);
+    transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.zip-tooltip.is-visible {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+}
+
+.energy-swap {
+    position: relative;
+}
+
+.energy-swap img {
+    transition: opacity 0.55s ease, transform 0.55s ease;
+}
+
+.energy-swap .energy-swap-alt {
+    opacity: 0;
+}
+
+.energy-swap.is-hovering .energy-swap-default {
+    opacity: 0;
+}
+
+.energy-swap.is-hovering .energy-swap-alt {
+    opacity: 1;
+}
+
+.future-card {
+    -webkit-mask-image: linear-gradient(to bottom, black 0%, black 72%, rgba(0, 0, 0, 0.55) 88%, transparent 100%);
+    mask-image: linear-gradient(to bottom, black 0%, black 72%, rgba(0, 0, 0, 0.55) 88%, transparent 100%);
+}
 </style></head>
 <body class="bg-white text-neutral-900 antialiased overflow-x-hidden selection:bg-neutral-900 selection:text-white">
 
     <!-- Navigation -->
     <nav class="fixed top-0 left-0 w-full z-50 transition-all duration-300 group/nav" id="navbar">
-        <div class="absolute inset-0 bg-white/0 transition-all duration-500" id="nav-bg"></div>
+        <div class="absolute inset-0 bg-white" id="nav-bg"></div>
         
-        <div class="relative z-50 max-w-[1800px] mx-auto px-8 h-20 flex items-center justify-between">
+        <div class="relative z-50 max-w-[1800px] mx-auto px-8 h-14 flex items-center justify-between">
             <!-- Logo -->
             <div class="z-50 relative">
                 <a href="#" class="flex items-center gap-2">
@@ -184,12 +277,12 @@ body::-webkit-scrollbar {
             </div>
 
             <!-- Desktop Menu -->
-            <div class="hidden lg:flex items-center gap-12 z-50">
+            <div class="hidden lg:flex items-center gap-10 z-50">
                 <!-- Vehicles Dropdown -->
-                <div class="group has-mega h-20 flex items-center">
-                    <button class="nav-link text-base font-medium transition-colors py-2 px-4 rounded-full hover:bg-neutral-100/20">Vehicles <iconify-icon icon="solar:alt-arrow-down-linear" class="nav-caret"></iconify-icon></button>
+                <div class="group has-mega h-14 flex items-center" data-menu="vehicles">
+                    <button class="nav-link text-base font-medium transition-colors py-2 px-4 rounded-full hover:bg-neutral-100">Vehicles <iconify-icon icon="solar:alt-arrow-down-linear" class="nav-caret"></iconify-icon></button>
                     <!-- Mega Menu Content -->
-                    <div class="mega-menu-container fixed top-20 left-0 w-screen bg-white pt-4 pb-16 px-12 shadow-2xl border-b border-neutral-100 z-40">
+                    <div class="mega-menu-container fixed top-14 left-0 w-screen bg-white pt-5 pb-14 px-12 shadow-2xl border-b border-neutral-100 z-40">
                         <div class="max-w-[1600px] mx-auto grid grid-cols-5 gap-8 fade-in">
                             <a href="#" class="group/car text-center block">
                                 <img src="https://digitalassets.tesla.com/tesla-contents/image/upload/f_auto,q_auto:best/Mega-Menu-Vehicles-Model-S.png" class="w-full h-auto mb-4 group-hover/car:scale-105 transition-transform duration-500" alt="Model S">
@@ -244,10 +337,10 @@ body::-webkit-scrollbar {
                 </div>
 
                 <!-- Energy Dropdown -->
-                <div class="group has-mega h-20 flex items-center">
-                    <button class="nav-link text-base font-medium transition-colors py-2 px-4 rounded-full hover:bg-neutral-100/20">Energy <iconify-icon icon="solar:alt-arrow-down-linear" class="nav-caret"></iconify-icon></button>
+                <div class="group has-mega h-14 flex items-center" data-menu="energy">
+                    <button class="nav-link text-base font-medium transition-colors py-2 px-4 rounded-full hover:bg-neutral-100">Energy <iconify-icon icon="solar:alt-arrow-down-linear" class="nav-caret"></iconify-icon></button>
                     <!-- Mega Menu Content -->
-                    <div class="mega-menu-container fixed top-20 left-0 w-screen bg-white pt-4 pb-16 px-12 shadow-2xl border-b border-neutral-100 z-40">
+                    <div class="mega-menu-container fixed top-14 left-0 w-screen bg-white pt-5 pb-14 px-12 shadow-2xl border-b border-neutral-100 z-40">
                         <div class="max-w-[1200px] mx-auto grid grid-cols-4 gap-8">
                              <a href="#" class="group/item text-center block">
                                 <img src="https://digitalassets.tesla.com/tesla-contents/image/upload/f_auto,q_auto:best/Mega-Menu-Energy-Solar-Panels.png" class="w-full h-auto mb-4 group-hover/item:scale-105 transition-transform" alt="Solar">
@@ -270,9 +363,9 @@ body::-webkit-scrollbar {
                 </div>
 
                 <!-- Charging -->
-                <div class="group has-mega h-20 flex items-center">
-                    <button class="nav-link text-base font-medium transition-colors py-2 px-4 rounded-full hover:bg-neutral-100/20">Charging <iconify-icon icon="solar:alt-arrow-down-linear" class="nav-caret"></iconify-icon></button>
-                     <div class="mega-menu-container fixed top-20 left-0 w-screen bg-white pt-4 pb-16 px-12 shadow-2xl border-b border-neutral-100 z-40">
+                <div class="group has-mega h-14 flex items-center" data-menu="charging">
+                    <button class="nav-link text-base font-medium transition-colors py-2 px-4 rounded-full hover:bg-neutral-100">Charging <iconify-icon icon="solar:alt-arrow-down-linear" class="nav-caret"></iconify-icon></button>
+                     <div class="mega-menu-container fixed top-14 left-0 w-screen bg-white pt-5 pb-14 px-12 shadow-2xl border-b border-neutral-100 z-40">
                         <div class="max-w-[1000px] mx-auto grid grid-cols-3 gap-12">
                              <a href="#" class="group/item text-center block">
                                 <img src="https://digitalassets.tesla.com/tesla-contents/image/upload/f_auto,q_auto:best/Mega-Menu-Charging-Charging.png" class="w-full h-auto mb-4 group-hover/item:scale-105 transition-transform" alt="Charging">
@@ -290,9 +383,9 @@ body::-webkit-scrollbar {
                     </div>
                 </div>
 
-                <div class="group has-mega h-20 flex items-center">
-                    <button class="nav-link text-base font-medium transition-colors py-2 px-4 rounded-full hover:bg-neutral-100/20">Discover <iconify-icon icon="solar:alt-arrow-down-linear" class="nav-caret"></iconify-icon></button>
-                    <div class="mega-menu-container fixed top-20 left-0 w-screen bg-white pt-4 pb-16 px-12 shadow-2xl border-b border-neutral-100 z-40">
+                <div class="group has-mega h-14 flex items-center" data-menu="discover">
+                    <button class="nav-link text-base font-medium transition-colors py-2 px-4 rounded-full hover:bg-neutral-100">Discover <iconify-icon icon="solar:alt-arrow-down-linear" class="nav-caret"></iconify-icon></button>
+                    <div class="mega-menu-container fixed top-14 left-0 w-screen bg-white pt-5 pb-14 px-12 shadow-2xl border-b border-neutral-100 z-40">
                         <div class="max-w-[800px] mx-auto grid grid-cols-3 gap-12">
                              <div class="space-y-4">
                                 <h4 class="text-xs font-bold text-neutral-500 uppercase tracking-widest mb-4">Resources</h4>
@@ -319,7 +412,7 @@ body::-webkit-scrollbar {
                     </div>
                 </div>
                 
-                <a href="#" class="nav-link text-base font-medium transition-colors py-2 px-4 rounded-full hover:bg-neutral-100/20">Shop</a>
+                <a href="#" class="nav-link text-base font-medium transition-colors py-2 px-4 rounded-full hover:bg-neutral-100">Shop</a>
             </div>
 
             <!-- Mobile Menu Toggle -->
@@ -384,7 +477,7 @@ body::-webkit-scrollbar {
                     </div>
                 </div>
                 <div class="flex flex-col sm:flex-row gap-6 w-full md:w-auto reveal active delay-300">
-                    <button class="w-full sm:w-auto px-16 py-4 bg-neutral-900 text-white text-base font-medium rounded-full hover:bg-neutral-800 transition-all hover:scale-[1.02] shadow-lg shadow-neutral-900/20">Order Now</button>
+                    <button class="w-full sm:w-auto px-16 py-4 bg-neutral-900 text-white text-base font-medium rounded-full border-2 border-white hover:bg-neutral-800 transition-all hover:scale-[1.02] shadow-lg shadow-neutral-900/20">Order Now</button>
                     <button class="w-full sm:w-auto px-16 py-4 bg-white backdrop-blur-xl border border-neutral-200 text-neutral-900 text-base font-medium rounded-full hover:bg-neutral-200 transition-all hover:shadow-lg">Demo Drive</button>
                 </div>
             </div>
@@ -402,7 +495,7 @@ body::-webkit-scrollbar {
             </div>
         </div>
         <div class="relative w-full h-[80vh] max-w-[1700px] mx-auto rounded-2xl overflow-hidden shadow-2xl border border-white/10 reveal delay-100 group">
-            <img src="https://digitalassets.tesla.com/tesla-contents/image/upload/h_1800,w_2880,c_fit,f_auto,q_auto:best/Model-S-Interior-Hero-Desktop-LHD" class="absolute inset-0 w-full h-full object-cover transition-transform duration-[1.5s] group-hover:scale-105" alt="Interior">
+            <img src="https://digitalassets.tesla.com/tesla-contents/image/upload/h_1800,w_2880,c_fit,f_auto,q_auto:best/Model-S-Interior-Hero-Desktop-LHD" class="absolute inset-0 w-full h-full object-cover" alt="Interior">
             <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black/20"></div>
             <div class="absolute bottom-0 left-0 w-full p-10 md:p-16">
                 <div class="grid grid-cols-2 md:grid-cols-4 gap-12 max-w-6xl mx-auto border-t border-white/20 pt-10">
@@ -452,7 +545,7 @@ body::-webkit-scrollbar {
                 <button class="px-8 py-3 border border-white rounded-full hover:bg-white hover:text-neutral-900 transition-colors">Explore Games</button>
             </div>
             <div class="relative rounded-2xl overflow-hidden shadow-2xl border border-white/10 h-[600px] reveal delay-200 group">
-                 <img src="assets/tesla5.jpg" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" alt="Gaming">
+                 <img src="assets/tesla5.jpg" class="absolute inset-0 w-full h-full object-cover" alt="Gaming">
                  <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
                  <div class="absolute bottom-8 right-8">
                      <iconify-icon icon="logos:steam" width="48"></iconify-icon>
@@ -556,13 +649,13 @@ body::-webkit-scrollbar {
                  <img src="assets/tesla3.jpg" class="w-full rounded-2xl mb-8" alt="Specs">
                  <h2 class="text-5xl font-medium mb-4">Model S Plaid</h2>
                  <div class="flex gap-4 mb-8">
-                     <button class="px-8 py-2 bg-white text-black rounded-full font-medium text-sm">Plaid</button>
-                     <button class="px-8 py-2 border border-white/30 rounded-full font-medium text-sm hover:border-white transition-colors">Model S</button>
+                     <button class="spec-toggle-button px-8 py-2 bg-white text-black rounded-full font-medium text-sm is-active" data-spec="plaid">Plaid</button>
+                     <button class="spec-toggle-button px-8 py-2 border border-white/30 rounded-full font-medium text-sm hover:border-white transition-colors" data-spec="model-s">Model S</button>
                  </div>
              </div>
              <div class="md:w-1/2 reveal delay-100">
                  <h3 class="text-3xl font-medium mb-8">Specifications</h3>
-                 <div class="grid grid-cols-2 gap-y-12 gap-x-8">
+                 <div class="grid grid-cols-2 gap-y-12 gap-x-8 specs-fade" id="spec-values">
                      <div>
                          <div class="w-8 h-0.5 bg-white mb-4"></div>
                          <p class="text-sm text-neutral-400 mb-1">Range (EPA est.)</p>
@@ -609,59 +702,48 @@ body::-webkit-scrollbar {
     </section>
 
     <!-- NEW: Software & Intelligence Section -->
-    <section class="bg-black text-white py-32 px-8 border-t border-white/10">
+    <section class="bg-white text-neutral-900 py-32 px-8 border-t border-neutral-200">
       <div class="max-w-[1600px] mx-auto">
         <div class="mb-20 reveal">
-            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-neutral-800 bg-neutral-900 mb-6">
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-neutral-200 bg-neutral-50 mb-6">
                 <div class="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse"></div>
-                <span class="text-xs font-bold uppercase tracking-wider text-neutral-400">Software Version 12.3</span>
+                <span class="text-xs font-bold uppercase tracking-wider text-neutral-500">Software Version 12.3</span>
             </div>
-            <h2 class="text-5xl md:text-6xl font-medium tracking-tight mb-6">Better Over Time</h2>
-            <p class="text-neutral-400 text-xl max-w-2xl">Model S isn’t just a car; it’s a platform. Frequent over-the-air updates introduce new features, performance boosts, and safety improvements instantly.</p>
+            <h2 class="text-5xl md:text-6xl font-medium tracking-tight mb-6 text-neutral-900">Better Over Time</h2>
+            <p class="text-neutral-500 text-xl max-w-2xl">Model S isn’t just a car; it’s a platform. Frequent over-the-air updates introduce new features, performance boosts, and safety improvements instantly.</p>
         </div>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
             <!-- Feature 1 -->
-            <div class="bg-neutral-900 rounded-3xl p-8 border border-white/10 reveal delay-100 group hover:border-white/30 transition-colors">
-                <iconify-icon icon="solar:smartphone-2-linear" class="text-4xl mb-6 text-white"></iconify-icon>
-                <h3 class="text-xl font-semibold mb-2">Phone Key</h3>
-                <p class="text-neutral-400 text-sm leading-relaxed mb-6">No fob required. Your phone unlocks and starts your car automatically as you approach.</p>
-                <div class="h-40 bg-black rounded-xl border border-white/5 overflow-hidden relative">
-                     <div class="absolute top-4 left-4 right-4 h-2 bg-neutral-800 rounded-full"></div>
-                     <div class="absolute top-8 left-4 w-12 h-12 rounded-full bg-blue-500/20 flex items-center justify-center">
-                        <iconify-icon icon="solar:lock-unlocked-linear" class="text-blue-400"></iconify-icon>
-                     </div>
+            <div class="bg-neutral-50 rounded-3xl p-8 border border-neutral-200 reveal delay-100 group hover:shadow-xl transition-all duration-300">
+                <div class="flex items-center gap-3 mb-5 text-neutral-900">
+                    <iconify-icon icon="solar:smartphone-2-linear" class="text-4xl text-neutral-900"></iconify-icon>
+                    <h3 class="text-2xl font-semibold">Phone Key</h3>
+                </div>
+                <p class="text-neutral-600 text-sm leading-relaxed mb-6">No fob required. Your phone unlocks and starts your car automatically as you approach.</p>
+                <div class="h-44 rounded-2xl overflow-hidden border border-neutral-200 bg-white">
+                     <img src="assets/phone-key.jpg" class="w-full h-full object-cover" alt="Phone Key">
                 </div>
             </div>
             <!-- Feature 2 -->
-            <div class="bg-neutral-900 rounded-3xl p-8 border border-white/10 reveal delay-200 group hover:border-white/30 transition-colors">
-                <iconify-icon icon="solar:map-point-linear" class="text-4xl mb-6 text-white"></iconify-icon>
-                <h3 class="text-xl font-semibold mb-2">Trip Planner</h3>
-                <p class="text-neutral-400 text-sm leading-relaxed mb-6">Navigate anywhere with automatic charging stops and battery pre-conditioning for faster charging.</p>
-                <div class="h-40 bg-black rounded-xl border border-white/5 overflow-hidden relative flex items-center justify-center">
-                     <div class="w-full px-6">
-                         <div class="flex justify-between items-center mb-2">
-                             <div class="w-2 h-2 rounded-full bg-white"></div>
-                             <div class="h-0.5 flex-1 bg-neutral-800 mx-2"></div>
-                             <div class="w-2 h-2 rounded-full bg-red-500"></div>
-                         </div>
-                         <div class="flex justify-between text-[10px] text-neutral-500 font-mono">
-                             <span>09:00</span>
-                             <span>12:30</span>
-                         </div>
-                     </div>
+            <div class="bg-neutral-50 rounded-3xl p-8 border border-neutral-200 reveal delay-200 group hover:shadow-xl transition-all duration-300">
+                <div class="flex items-center gap-3 mb-5 text-neutral-900">
+                    <iconify-icon icon="solar:map-point-linear" class="text-4xl text-neutral-900"></iconify-icon>
+                    <h3 class="text-2xl font-semibold">Trip Planner</h3>
+                </div>
+                <p class="text-neutral-600 text-sm leading-relaxed mb-6">Navigate anywhere with automatic charging stops and battery pre-conditioning for faster charging.</p>
+                <div class="h-44 rounded-2xl overflow-hidden border border-neutral-200 bg-white">
+                     <img src="assets/trip-planner.jpg" class="w-full h-full object-cover" alt="Trip Planner">
                 </div>
             </div>
             <!-- Feature 3 -->
-            <div class="bg-neutral-900 rounded-3xl p-8 border border-white/10 reveal delay-300 group hover:border-white/30 transition-colors">
-                 <iconify-icon icon="solar:shield-warning-linear" class="text-4xl mb-6 text-white"></iconify-icon>
-                <h3 class="text-xl font-semibold mb-2">Sentry Mode</h3>
-                <p class="text-neutral-400 text-sm leading-relaxed mb-6">Live camera access from anywhere. Your car monitors its environment when you're away.</p>
-                 <div class="h-40 bg-black rounded-xl border border-white/5 overflow-hidden relative">
-                     <div class="absolute inset-0 bg-neutral-900 flex items-center justify-center">
-                         <div class="w-8 h-8 rounded-full border-2 border-red-500 flex items-center justify-center animate-pulse">
-                             <div class="w-3 h-3 bg-red-500 rounded-full"></div>
-                         </div>
-                     </div>
+            <div class="bg-neutral-50 rounded-3xl p-8 border border-neutral-200 reveal delay-300 group hover:shadow-xl transition-all duration-300">
+                 <div class="flex items-center gap-3 mb-5 text-neutral-900">
+                    <iconify-icon icon="solar:shield-warning-linear" class="text-4xl text-neutral-900"></iconify-icon>
+                    <h3 class="text-2xl font-semibold">Sentry Mode</h3>
+                 </div>
+                <p class="text-neutral-600 text-sm leading-relaxed mb-6">Live camera access from anywhere. Your car monitors its environment when you're away.</p>
+                 <div class="h-44 rounded-2xl overflow-hidden border border-neutral-200 bg-white">
+                     <img src="assets/sentry-mode.webp" class="w-full h-full object-cover" alt="Sentry Mode">
                 </div>
             </div>
         </div>
@@ -675,19 +757,22 @@ body::-webkit-scrollbar {
              <p class="text-xl text-neutral-500">Power your car and your home with an integrated system of solar, battery storage, and charging.</p>
         </div>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8 h-[600px]">
-            <div class="group relative rounded-3xl overflow-hidden bg-neutral-100 md:col-span-2 reveal">
-                <img src="assets/tesla7.webp" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" alt="Home">
+            <div class="group relative rounded-3xl overflow-hidden bg-neutral-100 md:col-span-2 reveal energy-swap" id="energy-swap-card">
+                <img src="assets/tesla7.webp" class="absolute inset-0 w-full h-full object-cover energy-swap-default" alt="Home">
+                <img src="assets/home-energy.jpg" class="absolute inset-0 w-full h-full object-cover energy-swap-alt" alt="Home Energy">
                 <div class="absolute top-8 left-8">
                     <h3 class="text-2xl font-semibold text-neutral-900 bg-white/80 backdrop-blur-md px-4 py-2 rounded-full inline-block">Home Energy</h3>
                 </div>
                 <div class="absolute bottom-8 left-8 right-8 flex gap-4">
-                     <div class="bg-white/90 backdrop-blur-md p-4 rounded-xl flex-1 border border-white/20">
+                     <div class="bg-white/90 backdrop-blur-md p-4 rounded-xl w-40 border border-white/20">
                          <iconify-icon icon="solar:sun-2-linear" class="text-2xl mb-2 text-yellow-600"></iconify-icon>
                          <p class="text-xs font-bold uppercase text-neutral-500">Solar Roof</p>
+                         <p class="text-3xl font-semibold text-neutral-900 mt-1">11.5 <span class="text-sm text-neutral-500">kW</span></p>
                      </div>
-                     <div class="bg-white/90 backdrop-blur-md p-4 rounded-xl flex-1 border border-white/20">
+                     <div class="bg-white/90 backdrop-blur-md p-4 rounded-xl w-40 border border-white/20">
                          <iconify-icon icon="solar:battery-charge-linear" class="text-2xl mb-2 text-green-600"></iconify-icon>
                          <p class="text-xs font-bold uppercase text-neutral-500">Powerwall</p>
+                         <p class="text-3xl font-semibold text-neutral-900 mt-1">250 <span class="text-sm text-neutral-500">kW</span></p>
                      </div>
                 </div>
             </div>
@@ -765,7 +850,7 @@ body::-webkit-scrollbar {
                 <span class="text-xs font-bold text-green-600 uppercase tracking-wider mb-2 block">Ownership</span>
                 <h2 class="text-5xl font-medium tracking-tight mb-8">Built to Last. Designed to Save.</h2>
                 <p class="text-xl text-neutral-600 mb-10 leading-relaxed">
-                    Electric vehicles have fewer moving parts than internal combustion engines, meaning no oil changes, spark plugs, or timing belts. The result is significantly lower maintenance costs and time saved.
+                    Electric vehicles avoid the constant drain of fuel stops, oil changes, spark plugs, and exhaust-system upkeep. That means fewer recurring expenses, less time spent at service counters, and more money left for the things that actually matter.
                 </p>
                 <div class="space-y-6">
                      <div class="flex items-center gap-4">
@@ -773,8 +858,8 @@ body::-webkit-scrollbar {
                              <iconify-icon icon="solar:wallet-money-linear" class="text-2xl"></iconify-icon>
                          </div>
                          <div>
-                             <h4 class="font-semibold text-neutral-900">$6,000+</h4>
-                             <p class="text-sm text-neutral-500">Estimated gas savings over 6 years.</p>
+                             <h4 class="font-semibold text-neutral-900">No fuel bill routine</h4>
+                             <p class="text-sm text-neutral-500">Less money spent on gasoline and more left for real priorities.</p>
                          </div>
                      </div>
                      <div class="flex items-center gap-4">
@@ -782,8 +867,8 @@ body::-webkit-scrollbar {
                              <iconify-icon icon="solar:settings-linear" class="text-2xl"></iconify-icon>
                          </div>
                          <div>
-                             <h4 class="font-semibold text-neutral-900">Zero</h4>
-                             <p class="text-sm text-neutral-500">Annual oil changes required.</p>
+                             <h4 class="font-semibold text-neutral-900">Less maintenance drama</h4>
+                             <p class="text-sm text-neutral-500">No oil changes, fewer wear items, and no tailpipe dependency.</p>
                          </div>
                      </div>
                 </div>
@@ -830,13 +915,7 @@ body::-webkit-scrollbar {
                     </div>
                     <div class="relative z-10">
                         <p class="text-lg font-medium mb-2">Model S Plaid</p>
-                        <div class="flex gap-1 text-yellow-400">
-                             <iconify-icon icon="solar:star-bold" width="20"></iconify-icon>
-                             <iconify-icon icon="solar:star-bold" width="20"></iconify-icon>
-                             <iconify-icon icon="solar:star-bold" width="20"></iconify-icon>
-                             <iconify-icon icon="solar:star-bold" width="20"></iconify-icon>
-                             <iconify-icon icon="solar:star-bold" width="20"></iconify-icon>
-                        </div>
+                            <p class="text-sm text-white/80 leading-relaxed max-w-md">A luxury performance sedan with brutal acceleration, long-range confidence, and software that keeps improving after delivery.</p>
                     </div>
                 </div>
                 
@@ -867,15 +946,18 @@ body::-webkit-scrollbar {
                                 <input type="text" class="w-full py-3 input-underline text-xl text-neutral-900 bg-transparent font-medium placeholder:text-neutral-300" placeholder="90210">
                             </div>
                         </div>
-                        <button type="button" class="w-full bg-neutral-900 text-white py-5 rounded-xl text-lg font-medium hover:bg-neutral-800 transition-all hover:shadow-xl mt-6">
-                            Next Step
+                        <button type="button" class="w-full bg-neutral-900 text-white py-5 rounded-xl text-lg font-medium hover:bg-neutral-800 transition-all hover:shadow-xl mt-6 flex items-center justify-center gap-3">
+                            Next Step <iconify-icon icon="solar:arrow-right-linear" width="20"></iconify-icon>
                         </button>
                         <p class="text-xs text-neutral-400 text-center mt-6">By continuing, you agree to Tesla's <a href="#" class="underline hover:text-black">Privacy Policy</a>.</p>
                     </form>
-                </div>
-            </div>
-        </div>
-    </section>
+                            <div>
+                                <label class="block text-xs font-medium text-neutral-500 mb-3 uppercase tracking-wider">Zip Code</label>
+                                <div class="relative">
+                                    <input id="zip-code-input" type="text" class="w-full py-3 input-underline text-xl text-neutral-900 bg-transparent font-medium placeholder:text-neutral-300" placeholder="90210">
+                                    <div id="zip-tooltip" class="zip-tooltip" aria-hidden="true">We ask for your zip code to connect you with the most relevant retailer in your area.</div>
+                                </div>
+                            </div>
 
     <!-- Asymmetrical Latest News -->
     <section class="py-32 px-8 max-w-[1600px] mx-auto">
@@ -941,21 +1023,82 @@ body::-webkit-scrollbar {
             <p class="text-xl text-neutral-500 leading-relaxed">From acceleration and software to charging and long-term ownership value, Tesla ownership creates a connected ecosystem that improves with time.</p>
         </div>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <article class="bg-white border border-neutral-200 rounded-3xl p-10 reveal">
+            <article class="bg-white border border-neutral-200 rounded-3xl p-10 reveal relative overflow-hidden group shadow-sm hover:shadow-xl transition-all duration-300">
+                <div class="absolute top-6 right-6 text-neutral-400 group-hover:text-neutral-900 transition-colors">
+                    <iconify-icon icon="solar:arrow-right-linear" width="24"></iconify-icon>
+                </div>
                 <iconify-icon icon="solar:flash-circle-linear" class="text-4xl text-yellow-500 mb-6"></iconify-icon>
                 <h3 class="text-2xl font-semibold mb-4">Performance + Efficiency</h3>
                 <p class="text-neutral-600 leading-relaxed">Model S Plaid combines supercar-level acceleration with long-range practicality, so drivers do not choose between excitement and usability.</p>
             </article>
-            <article class="bg-white border border-neutral-200 rounded-3xl p-10 reveal delay-100">
+            <article class="bg-white border border-neutral-200 rounded-3xl p-10 reveal delay-100 relative overflow-hidden group shadow-sm hover:shadow-xl transition-all duration-300">
+                <div class="absolute top-6 right-6 text-neutral-400 group-hover:text-neutral-900 transition-colors">
+                    <iconify-icon icon="solar:arrow-right-linear" width="24"></iconify-icon>
+                </div>
                 <iconify-icon icon="solar:cpu-bolt-linear" class="text-4xl text-indigo-500 mb-6"></iconify-icon>
                 <h3 class="text-2xl font-semibold mb-4">Software Advantage</h3>
                 <p class="text-neutral-600 leading-relaxed">Frequent OTA updates deliver tangible improvements in navigation, safety features, and day-to-day user experience throughout ownership.</p>
             </article>
-            <article class="bg-white border border-neutral-200 rounded-3xl p-10 reveal delay-200">
+            <article class="bg-white border border-neutral-200 rounded-3xl p-10 reveal delay-200 relative overflow-hidden group shadow-sm hover:shadow-xl transition-all duration-300">
+                <div class="absolute top-6 right-6 text-neutral-400 group-hover:text-neutral-900 transition-colors">
+                    <iconify-icon icon="solar:arrow-right-linear" width="24"></iconify-icon>
+                </div>
                 <iconify-icon icon="solar:station-linear" class="text-4xl text-green-600 mb-6"></iconify-icon>
                 <h3 class="text-2xl font-semibold mb-4">Charging Confidence</h3>
                 <p class="text-neutral-600 leading-relaxed">Integrated route planning and Supercharger availability reduce range anxiety and make long-distance EV travel predictable and fast.</p>
             </article>
+        </div>
+    </section>
+
+    <!-- Future Section -->
+    <section class="py-32 px-8 bg-white border-t border-neutral-200">
+        <div class="max-w-[1600px] mx-auto">
+            <div class="text-center max-w-3xl mx-auto mb-16 reveal">
+                <h2 class="text-5xl md:text-6xl font-medium tracking-tight mb-6">What's the future?</h2>
+                <p class="text-xl text-neutral-500 leading-relaxed">Let us surprise you.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+                <article class="future-card rounded-3xl overflow-hidden bg-neutral-50 border border-neutral-200 shadow-sm reveal">
+                    <div class="relative h-[420px]">
+                        <img src="assets/phone-key.jpg" class="absolute inset-0 w-full h-full object-cover" alt="Future phone key">
+                        <div class="absolute inset-0 bg-gradient-to-t from-white via-white/15 to-transparent"></div>
+                        <div class="absolute bottom-0 left-0 right-0 p-6">
+                            <h3 class="text-2xl font-semibold text-neutral-900">Seamless entry</h3>
+                            <p class="text-neutral-600 mt-2">The car already feels like it knows you.</p>
+                        </div>
+                    </div>
+                </article>
+                <article class="future-card rounded-3xl overflow-hidden bg-neutral-50 border border-neutral-200 shadow-sm reveal delay-100">
+                    <div class="relative h-[420px]">
+                        <img src="assets/trip-planner.jpg" class="absolute inset-0 w-full h-full object-cover" alt="Future trip planner">
+                        <div class="absolute inset-0 bg-gradient-to-t from-white via-white/15 to-transparent"></div>
+                        <div class="absolute bottom-0 left-0 right-0 p-6">
+                            <h3 class="text-2xl font-semibold text-neutral-900">Adaptive routing</h3>
+                            <p class="text-neutral-600 mt-2">Routes that keep shifting toward better charging and less waiting.</p>
+                        </div>
+                    </div>
+                </article>
+                <article class="future-card rounded-3xl overflow-hidden bg-neutral-50 border border-neutral-200 shadow-sm reveal delay-200">
+                    <div class="relative h-[420px]">
+                        <img src="assets/sentry-mode.webp" class="absolute inset-0 w-full h-full object-cover" alt="Future sentry mode">
+                        <div class="absolute inset-0 bg-gradient-to-t from-white via-white/15 to-transparent"></div>
+                        <div class="absolute bottom-0 left-0 right-0 p-6">
+                            <h3 class="text-2xl font-semibold text-neutral-900">Awareness everywhere</h3>
+                            <p class="text-neutral-600 mt-2">A watchful system that disappears into the background until needed.</p>
+                        </div>
+                    </div>
+                </article>
+                <article class="future-card rounded-3xl overflow-hidden bg-neutral-50 border border-neutral-200 shadow-sm reveal delay-300">
+                    <div class="relative h-[420px]">
+                        <img src="assets/home-energy.jpg" class="absolute inset-0 w-full h-full object-cover" alt="Future energy">
+                        <div class="absolute inset-0 bg-gradient-to-t from-white via-white/15 to-transparent"></div>
+                        <div class="absolute bottom-0 left-0 right-0 p-6">
+                            <h3 class="text-2xl font-semibold text-neutral-900">Smarter homes</h3>
+                            <p class="text-neutral-600 mt-2">Energy that quietly coordinates the garage, roof, and grid.</p>
+                        </div>
+                    </div>
+                </article>
+            </div>
         </div>
     </section>
 
@@ -1099,52 +1242,114 @@ body::-webkit-scrollbar {
         const navBg = document.getElementById('nav-bg');
         const navLinks = document.querySelectorAll('.nav-link');
         const megaTriggers = document.querySelectorAll('.has-mega');
-        let menuOpen = false;
+        const specButtons = document.querySelectorAll('.spec-toggle-button');
+        const specValues = document.getElementById('spec-values');
+        const zipInput = document.getElementById('zip-code-input');
+        const zipTooltip = document.getElementById('zip-tooltip');
+        const energySwapCard = document.getElementById('energy-swap-card');
 
-        const setNavColors = (isTop) => {
+        const specSets = {
+            plaid: [
+                ['Range (EPA est.)', '396 mi'],
+                ['Acceleration', '1.99 s 0-60 mph*'],
+                ['Peak Power', '1,020 hp'],
+                ['Wheels', '19" or 21"'],
+                ['Cargo', '28 cu ft'],
+                ['Powertrain', 'Tri-Motor']
+            ],
+            'model-s': [
+                ['Range (EPA est.)', '405 mi'],
+                ['Acceleration', '3.1 s 0-60 mph*'],
+                ['Peak Power', '670 hp'],
+                ['Wheels', '19" or 21"'],
+                ['Cargo', '28 cu ft'],
+                ['Powertrain', 'Dual Motor']
+            ]
+        };
+
+        const setNavState = () => {
+            navBg.classList.add('bg-white', 'backdrop-blur-xl', 'shadow-sm');
             navLinks.forEach((link) => {
-                link.classList.remove('text-white', 'text-neutral-800', 'hover:text-white', 'hover:text-black');
-                if (isTop) {
-                    link.classList.add('text-white', 'hover:text-white');
-                } else {
-                    link.classList.add('text-neutral-800', 'hover:text-black');
-                }
+                link.classList.remove('text-white', 'text-neutral-800');
+                link.classList.add('text-neutral-900');
             });
         };
 
-        const applyNavState = () => {
-            const shouldShowWhiteNav = window.scrollY > 50 || menuOpen;
-            navbar.classList.toggle('menu-open', menuOpen);
-
-            if (shouldShowWhiteNav) {
-                navBg.classList.remove('bg-white/0', 'bg-white/90');
-                navBg.classList.add('bg-white');
-                navBg.classList.add('backdrop-blur-xl', 'shadow-sm');
-                setNavColors(false);
-            } else {
-                navBg.classList.remove('bg-white', 'bg-white/90');
-                navBg.classList.add('bg-white/0');
-                navBg.classList.remove('backdrop-blur-xl', 'shadow-sm');
-                setNavColors(true);
-            }
+        const setActiveMenu = (menuName) => {
+            megaTriggers.forEach((trigger) => {
+                trigger.classList.toggle('nav-menu-active', trigger.dataset.menu === menuName);
+            });
         };
 
-        window.addEventListener('scroll', () => {
-            applyNavState();
-        });
+        const closeMenus = () => {
+            megaTriggers.forEach((trigger) => trigger.classList.remove('nav-menu-active'));
+        };
+
+        const renderSpecs = (specKey) => {
+            if (!specValues || !specSets[specKey]) {
+                return;
+            }
+
+            specValues.classList.add('is-fading');
+            window.setTimeout(() => {
+                specValues.innerHTML = specSets[specKey].map(([label, value]) => `
+                    <div>
+                        <div class="w-8 h-0.5 bg-white mb-4"></div>
+                        <p class="text-sm text-neutral-400 mb-1">${label}</p>
+                        <p class="text-xl font-medium">${value}</p>
+                    </div>
+                `).join('');
+                specValues.classList.remove('is-fading');
+            }, 180);
+
+            specButtons.forEach((button) => {
+                const isActive = button.dataset.spec === specKey;
+                button.classList.toggle('is-active', isActive);
+                button.classList.toggle('bg-white', isActive);
+                button.classList.toggle('text-black', isActive);
+                button.classList.toggle('border-white', isActive);
+                button.classList.toggle('bg-transparent', !isActive);
+                button.classList.toggle('text-white', !isActive);
+                button.classList.toggle('border-white/30', !isActive);
+            });
+        };
+
+        setNavState();
 
         megaTriggers.forEach((trigger) => {
             trigger.addEventListener('mouseenter', () => {
-                menuOpen = true;
-                applyNavState();
-            });
-            trigger.addEventListener('mouseleave', () => {
-                menuOpen = false;
-                applyNavState();
+                setActiveMenu(trigger.dataset.menu);
             });
         });
 
-        applyNavState();
+        navbar.addEventListener('mouseleave', closeMenus);
+
+        specButtons.forEach((button) => {
+            button.addEventListener('click', () => renderSpecs(button.dataset.spec));
+        });
+
+        renderSpecs('plaid');
+
+        if (energySwapCard) {
+            energySwapCard.addEventListener('mouseenter', () => energySwapCard.classList.add('is-hovering'));
+            energySwapCard.addEventListener('mouseleave', () => energySwapCard.classList.remove('is-hovering'));
+        }
+
+        if (zipInput && zipTooltip) {
+            const moveTooltip = (event) => {
+                zipTooltip.style.left = `${event.clientX}px`;
+                zipTooltip.style.top = `${event.clientY - 52}px`;
+            };
+
+            zipInput.addEventListener('mouseenter', (event) => {
+                zipTooltip.classList.add('is-visible');
+                moveTooltip(event);
+            });
+            zipInput.addEventListener('mousemove', moveTooltip);
+            zipInput.addEventListener('mouseleave', () => zipTooltip.classList.remove('is-visible'));
+            zipInput.addEventListener('focus', () => zipTooltip.classList.add('is-visible'));
+            zipInput.addEventListener('blur', () => zipTooltip.classList.remove('is-visible'));
+        }
 
         // "React-like" Reveal Animations
         const faqItems = document.querySelectorAll('.faq-item');
