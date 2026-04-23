@@ -1,6 +1,12 @@
 <html lang="en" class="scroll-smooth"><head><meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Tesla | Model S Plaid</title>
+<meta name="description" content="Explore Tesla Model S Plaid performance, Tesla energy products, charging solutions, and long-term ownership value in a clean futuristic showcase.">
+<meta name="keywords" content="Tesla, Model S Plaid, Model 3, Model X, Model Y, Tesla Energy, Solar Panels, Solar Roof, Powerwall, Megapack, Supercharging">
+<meta name="theme-color" content="#ffffff">
+<meta property="og:title" content="Tesla Model S Plaid | Electric Performance and Energy Solutions">
+<meta property="og:description" content="A futuristic Tesla showcase covering performance, charging, energy products, and ownership value.">
+<meta property="og:type" content="website">
+<title>Tesla Model S Plaid | Electric Performance and Energy Solutions</title>
 <script src="https://cdn.tailwindcss.com"></script>
 <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -301,6 +307,24 @@ body::-webkit-scrollbar {
     background: #ffffff;
 }
 
+.menu-info-bubble {
+    width: 1.95rem;
+    height: 1.95rem;
+    border-radius: 999px;
+    background: white;
+    color: #111827;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 10px 18px rgba(15, 23, 42, 0.1);
+    transition: transform 0.2s ease;
+    flex: none;
+}
+
+a.group\/item:hover .menu-info-bubble {
+    transform: translateX(2px) scale(1.08);
+}
+
 .future-card-top {
     -webkit-mask-image: none;
     mask-image: none;
@@ -388,20 +412,32 @@ body::-webkit-scrollbar {
                     <div class="mega-menu-container fixed top-14 left-0 w-screen pt-5 pb-14 px-12 z-40">
                         <div class="max-w-[1200px] mx-auto grid grid-cols-4 gap-8">
                              <a href="#" class="group/item text-center block">
-                                <img src="https://digitalassets.tesla.com/tesla-contents/image/upload/f_auto,q_auto:best/Mega-Menu-Energy-Solar-Panels.png" class="w-full h-auto mb-4 group-hover/item:scale-105 transition-transform" alt="Solar">
-                                <h4 class="text-lg font-semibold">Solar Panels</h4>
+                                <img src="https://digitalassets.tesla.com/tesla-contents/image/upload/f_auto,q_auto:best/Mega-Menu-Energy-Solar-Panels.png" class="w-full h-auto mb-4 group-hover/item:scale-105 transition-transform" alt="Tesla Solar Panels for home electricity generation">
+                                <div class="flex items-center justify-center gap-3">
+                                    <h4 class="text-lg font-semibold">Solar Panels</h4>
+                                    <span class="menu-info-bubble"><iconify-icon icon="solar:arrow-right-linear" width="14"></iconify-icon></span>
+                                </div>
                              </a>
                              <a href="#" class="group/item text-center block">
-                                <img src="https://digitalassets.tesla.com/tesla-contents/image/upload/f_auto,q_auto:best/Mega-Menu-Energy-Solar-Roof.png" class="w-full h-auto mb-4 group-hover/item:scale-105 transition-transform" alt="Roof">
-                                <h4 class="text-lg font-semibold">Solar Roof</h4>
+                                <img src="https://digitalassets.tesla.com/tesla-contents/image/upload/f_auto,q_auto:best/Mega-Menu-Energy-Solar-Roof.png" class="w-full h-auto mb-4 group-hover/item:scale-105 transition-transform" alt="Tesla Solar Roof integrated roof tiles">
+                                <div class="flex items-center justify-center gap-3">
+                                    <h4 class="text-lg font-semibold">Solar Roof</h4>
+                                    <span class="menu-info-bubble"><iconify-icon icon="solar:arrow-right-linear" width="14"></iconify-icon></span>
+                                </div>
                              </a>
                              <a href="#" class="group/item text-center block">
-                                <img src="https://digitalassets.tesla.com/tesla-contents/image/upload/f_auto,q_auto:best/Mega-Menu-Energy-Powerwall-US.png" class="w-full h-auto mb-4 group-hover/item:scale-105 transition-transform" alt="Powerwall">
-                                <h4 class="text-lg font-semibold">Powerwall</h4>
+                                <img src="https://digitalassets.tesla.com/tesla-contents/image/upload/f_auto,q_auto:best/Mega-Menu-Energy-Powerwall-US.png" class="w-full h-auto mb-4 group-hover/item:scale-105 transition-transform" alt="Tesla Powerwall home battery storage system">
+                                <div class="flex items-center justify-center gap-3">
+                                    <h4 class="text-lg font-semibold">Powerwall</h4>
+                                    <span class="menu-info-bubble"><iconify-icon icon="solar:arrow-right-linear" width="14"></iconify-icon></span>
+                                </div>
                              </a>
                              <a href="#" class="group/item text-center block">
-                                <img src="https://digitalassets.tesla.com/tesla-contents/image/upload/f_auto,q_auto:best/Mega-Menu-Energy-Megapack.png" class="w-full h-auto mb-4 group-hover/item:scale-105 transition-transform" alt="Megapack">
-                                <h4 class="text-lg font-semibold">Megapack</h4>
+                                <img src="https://digitalassets.tesla.com/tesla-contents/image/upload/f_auto,q_auto:best/Mega-Menu-Energy-Megapack.png" class="w-full h-auto mb-4 group-hover/item:scale-105 transition-transform" alt="Tesla Megapack grid-scale battery storage">
+                                <div class="flex items-center justify-center gap-3">
+                                    <h4 class="text-lg font-semibold">Megapack</h4>
+                                    <span class="menu-info-bubble"><iconify-icon icon="solar:arrow-right-linear" width="14"></iconify-icon></span>
+                                </div>
                              </a>
                         </div>
                     </div>
@@ -413,16 +449,19 @@ body::-webkit-scrollbar {
                      <div class="mega-menu-container fixed top-14 left-0 w-screen pt-5 pb-14 px-12 z-40">
                         <div class="max-w-[1000px] mx-auto grid grid-cols-3 gap-12">
                              <a href="#" class="group/item text-center block">
-                                <img src="https://digitalassets.tesla.com/tesla-contents/image/upload/f_auto,q_auto:best/Mega-Menu-Charging-Charging.png" class="w-full h-auto mb-4 group-hover/item:scale-105 transition-transform" alt="Charging">
+                                <img src="https://digitalassets.tesla.com/tesla-contents/image/upload/f_auto,q_auto:best/Mega-Menu-Charging-Charging.png" class="w-full h-auto mb-4 group-hover/item:scale-105 transition-transform" alt="Tesla charging options overview">
                                 <h4 class="text-lg font-semibold">Charging</h4>
+                                          <p class="mt-2 text-sm text-neutral-500 leading-relaxed max-w-[14rem] mx-auto">Fast public charging for drivers planning road trips and quick top-ups between destinations.</p>
                              </a>
                              <a href="#" class="group/item text-center block">
-                                <img src="https://digitalassets.tesla.com/tesla-contents/image/upload/f_auto,q_auto:best/Mega-Menu-Charging-Home-Charging.png" class="w-full h-auto mb-4 group-hover/item:scale-105 transition-transform" alt="Home">
+                                <img src="https://digitalassets.tesla.com/tesla-contents/image/upload/f_auto,q_auto:best/Mega-Menu-Charging-Home-Charging.png" class="w-full h-auto mb-4 group-hover/item:scale-105 transition-transform" alt="Tesla home charging setup for overnight charging">
                                 <h4 class="text-lg font-semibold">Home Charging</h4>
+                                          <p class="mt-2 text-sm text-neutral-500 leading-relaxed max-w-[14rem] mx-auto">Everyday overnight charging for garages, driveways, and routine daily use.</p>
                              </a>
                              <a href="#" class="group/item text-center block">
-                                <img src="https://digitalassets.tesla.com/tesla-contents/image/upload/f_auto,q_auto:best/Mega-Menu-Charging-Supercharging-NA.png" class="w-full h-auto mb-4 group-hover/item:scale-105 transition-transform" alt="Supercharging">
+                                <img src="https://digitalassets.tesla.com/tesla-contents/image/upload/f_auto,q_auto:best/Mega-Menu-Charging-Supercharging-NA.png" class="w-full h-auto mb-4 group-hover/item:scale-105 transition-transform" alt="Tesla Supercharging network for fast road trip charging">
                                 <h4 class="text-lg font-semibold">Supercharging</h4>
+                                          <p class="mt-2 text-sm text-neutral-500 leading-relaxed max-w-[14rem] mx-auto">Ultra-fast charging stops designed to restore range quickly on longer trips.</p>
                              </a>
                         </div>
                     </div>
@@ -540,7 +579,7 @@ body::-webkit-scrollbar {
             </div>
         </div>
         <div class="relative w-full h-[80vh] max-w-[1700px] mx-auto rounded-2xl overflow-hidden shadow-2xl border border-white/10 reveal delay-100 group">
-            <img src="https://digitalassets.tesla.com/tesla-contents/image/upload/h_1800,w_2880,c_fit,f_auto,q_auto:best/Model-S-Interior-Hero-Desktop-LHD" class="absolute inset-0 w-full h-full object-cover" alt="Interior">
+            <img src="https://digitalassets.tesla.com/tesla-contents/image/upload/h_1800,w_2880,c_fit,f_auto,q_auto:best/Model-S-Interior-Hero-Desktop-LHD" class="absolute inset-0 w-full h-full object-cover" alt="Tesla Model S interior with 17-inch display and premium cabin">
             <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black/20"></div>
             <div class="absolute bottom-0 left-0 w-full p-10 md:p-16">
                 <div class="grid grid-cols-2 md:grid-cols-4 gap-12 max-w-6xl mx-auto border-t border-white/20 pt-10">
@@ -590,7 +629,7 @@ body::-webkit-scrollbar {
                 <button class="px-8 py-3 border border-white rounded-full hover:bg-white hover:text-neutral-900 transition-colors">Explore Games</button>
             </div>
             <div class="relative rounded-2xl overflow-hidden shadow-2xl border border-white/10 h-[600px] reveal delay-200 group">
-                 <img src="assets/tesla5.jpg" class="absolute inset-0 w-full h-full object-cover" alt="Gaming">
+                 <img src="assets/tesla5.jpg" class="absolute inset-0 w-full h-full object-cover" alt="Tesla in-car gaming and entertainment display">
                  <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
                  <div class="absolute bottom-8 right-8">
                      <iconify-icon icon="logos:steam" width="48"></iconify-icon>
@@ -618,7 +657,7 @@ body::-webkit-scrollbar {
             </div>
         </div>
         <div class="relative w-full h-[600px] bg-neutral-100 rounded-3xl overflow-hidden reveal delay-200">
-             <img src="https://digitalassets.tesla.com/tesla-contents/image/upload/h_1800,w_2880,c_fit,f_auto,q_auto:best/Model-S-Safety-Hero-Desktop-Global" class="absolute inset-0 w-full h-full object-cover mix-blend-darken" alt="Safety Chassis">
+             <img src="https://digitalassets.tesla.com/tesla-contents/image/upload/h_1800,w_2880,c_fit,f_auto,q_auto:best/Model-S-Safety-Hero-Desktop-Global" class="absolute inset-0 w-full h-full object-cover mix-blend-darken" alt="Tesla Model S safety chassis and occupant protection">
              <div class="absolute top-12 right-12 bg-white/80 backdrop-blur-sm p-6 rounded-2xl shadow-lg max-w-xs">
                  <div class="flex items-start gap-4">
                      <div class="p-2 bg-blue-100 rounded-lg text-blue-600">
@@ -641,7 +680,7 @@ body::-webkit-scrollbar {
         </div>
         <div class="grid grid-cols-1 md:grid-cols-6 gap-6 auto-rows-[340px] md:auto-rows-[400px]">
             <div class="md:col-span-4 bg-neutral-100 rounded-3xl relative overflow-hidden group reveal">
-                <img src="assets/tesla1.jpg" class="absolute inset-0 w-full h-full object-cover mix-blend-multiply opacity-80 group-hover:scale-105 transition-transform duration-700" alt="Chassis">
+                <img src="assets/tesla1.jpg" class="absolute inset-0 w-full h-full object-cover mix-blend-multiply opacity-80 group-hover:scale-105 transition-transform duration-700" alt="Tesla electric chassis architecture">
                 <div class="absolute inset-0 p-10 flex flex-col justify-end bg-gradient-to-t from-white via-transparent to-transparent">
                     <h3 class="text-3xl font-semibold mb-3 text-neutral-900">Tri-Motor All-Wheel Drive</h3>
                     <p class="text-neutral-700 text-lg max-w-md">Three independent motors with carbon-sleeved rotors maintain peak power output all the way to top speed.</p>
@@ -680,7 +719,7 @@ body::-webkit-scrollbar {
                          </div>
                      </div>
                      <div class="relative h-full bg-black overflow-hidden">
-                        <img src="assets/tesla6.png" class="absolute inset-0 w-full h-full object-cover opacity-60" alt="Vision">
+                        <img src="assets/tesla6.png" class="absolute inset-0 w-full h-full object-cover opacity-60" alt="Tesla vision processing and camera network illustration">
                      </div>
                  </div>
             </div>
@@ -691,10 +730,13 @@ body::-webkit-scrollbar {
     <section class="bg-black text-white py-32 px-8">
         <div class="max-w-[1400px] mx-auto flex flex-col md:flex-row gap-20">
              <div class="md:w-1/2 reveal">
-                 <img src="assets/tesla3.jpg" class="w-full rounded-2xl mb-8" alt="Specs">
-                 <h2 class="text-5xl font-medium mb-4">Model S Plaid</h2>
-                 <div class="flex gap-4 mb-8">
+                <img src="assets/tesla3.jpg" class="w-full rounded-2xl mb-8" alt="Tesla Model S Plaid performance showcase">
+                 <h2 class="text-6xl md:text-7xl font-medium mb-4">Our showcase</h2>
+                 <p class="text-neutral-300 text-lg max-w-xl mb-8">Other Tesla models with real-world specs at a glance.</p>
+                 <div class="flex flex-wrap gap-4 mb-8">
                     <button class="spec-toggle-button px-8 py-2 bg-white text-black rounded-full font-medium text-sm is-active" data-spec="model-3">Model 3</button>
+                    <button class="spec-toggle-button px-8 py-2 border border-white/30 rounded-full font-medium text-sm hover:border-white transition-colors" data-spec="model-y">Model Y</button>
+                    <button class="spec-toggle-button px-8 py-2 border border-white/30 rounded-full font-medium text-sm hover:border-white transition-colors" data-spec="model-s">Model S</button>
                     <button class="spec-toggle-button px-8 py-2 border border-white/30 rounded-full font-medium text-sm hover:border-white transition-colors" data-spec="model-x">Model X</button>
                  </div>
              </div>
@@ -763,7 +805,7 @@ body::-webkit-scrollbar {
                 </div>
                 <p class="text-neutral-600 text-sm leading-relaxed mb-6">No fob required. Your phone unlocks and starts your car automatically as you approach.</p>
                      <div class="h-60 rounded-2xl overflow-hidden border border-neutral-200 bg-white">
-                     <img src="assets/phone-key.jpg" class="w-full h-full object-cover" alt="Phone Key">
+                     <img src="assets/phone-key.jpg" class="w-full h-full object-cover" alt="Tesla Phone Key feature using smartphone access">
                 </div>
                 <div class="absolute right-6 bottom-6 feature-info-bubble"><iconify-icon icon="solar:arrow-right-linear" width="18"></iconify-icon></div>
             </div>
@@ -775,7 +817,7 @@ body::-webkit-scrollbar {
                 </div>
                 <p class="text-neutral-600 text-sm leading-relaxed mb-6">Navigate anywhere with automatic charging stops and battery pre-conditioning for faster charging.</p>
                 <div class="h-60 rounded-2xl overflow-hidden border border-neutral-200 bg-white">
-                     <img src="assets/trip-planner.jpg" class="w-full h-full object-cover" alt="Trip Planner">
+                     <img src="assets/trip-planner.jpg" class="w-full h-full object-cover" alt="Tesla Trip Planner navigation and charging route planning feature">
                 </div>
                 <div class="absolute right-6 bottom-6 feature-info-bubble"><iconify-icon icon="solar:arrow-right-linear" width="18"></iconify-icon></div>
             </div>
@@ -787,7 +829,7 @@ body::-webkit-scrollbar {
                  </div>
                 <p class="text-neutral-600 text-sm leading-relaxed mb-6">Live camera access from anywhere. Your car monitors its environment when you're away.</p>
                                  <div class="h-60 rounded-2xl overflow-hidden border border-neutral-200 bg-white">
-                     <img src="assets/sentry-mode.webp" class="w-full h-full object-cover" alt="Sentry Mode">
+                     <img src="assets/sentry-mode.webp" class="w-full h-full object-cover" alt="Tesla Sentry Mode vehicle security monitoring feature">
                 </div>
                                 <div class="absolute right-6 bottom-6 feature-info-bubble"><iconify-icon icon="solar:arrow-right-linear" width="18"></iconify-icon></div>
             </div>
@@ -803,8 +845,8 @@ body::-webkit-scrollbar {
         </div>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8 h-[600px]">
             <div class="group relative rounded-3xl overflow-hidden bg-neutral-100 md:col-span-2 reveal energy-swap" id="energy-swap-card">
-                <img src="assets/tesla7.webp" class="absolute inset-0 w-full h-full object-cover energy-swap-default" alt="Home">
-                <img src="assets/home-energy.jpg" class="absolute inset-0 w-full h-full object-cover energy-swap-alt" alt="Home Energy">
+                <img src="assets/tesla7.webp" class="absolute inset-0 w-full h-full object-cover energy-swap-default" alt="Tesla home energy ecosystem overview">
+                <img src="assets/home-energy.jpg" class="absolute inset-0 w-full h-full object-cover energy-swap-alt" alt="Tesla home energy installation and storage">
                 <div class="absolute top-8 left-8">
                     <h3 class="text-2xl font-semibold text-neutral-900 bg-white/80 backdrop-blur-md px-4 py-2 rounded-full inline-block">Home Energy</h3>
                 </div>
@@ -1016,7 +1058,7 @@ body::-webkit-scrollbar {
         <div class="grid grid-cols-1 md:grid-cols-4 grid-rows-2 gap-8 h-auto md:h-[700px]">
             <!-- Hero News Item -->
             <article class="md:col-span-2 md:row-span-2 relative rounded-3xl overflow-hidden group cursor-pointer reveal shadow-sm hover:shadow-2xl transition-all duration-500">
-                <img src="https://images.unsplash.com/photo-1593941707882-a5bba14938c7?q=80&amp;w=2672&amp;auto=format&amp;fit=crop" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" alt="News 1">
+                <img src="https://images.unsplash.com/photo-1593941707882-a5bba14938c7?q=80&amp;w=2672&amp;auto=format&amp;fit=crop" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" alt="Tesla software update and driving technology news">
                 <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
                 <div class="absolute bottom-0 left-0 p-10 text-white">
                     <span class="inline-block px-4 py-1.5 bg-blue-600 text-[10px] font-bold uppercase tracking-widest rounded-full mb-6">Software V12</span>
@@ -1039,7 +1081,7 @@ body::-webkit-scrollbar {
 
             <!-- Image Item -->
             <article class="md:col-span-1 md:row-span-1 relative rounded-3xl overflow-hidden group cursor-pointer reveal delay-200">
-                <img src="assets/tesla2.webp" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="News 3">
+                <img src="assets/tesla2.webp" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="Tesla Megapack expansion and clean energy news">
                 <div class="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors"></div>
                 <div class="absolute bottom-0 left-0 p-8 text-white">
                      <span class="text-xs font-bold text-green-400 uppercase tracking-wider mb-2 block">Energy</span>
@@ -1069,10 +1111,6 @@ body::-webkit-scrollbar {
         </div>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
             <article class="bg-white border border-neutral-200 rounded-3xl p-10 reveal relative overflow-hidden group shadow-sm hover:shadow-xl transition-all duration-300">
-                <div class="absolute top-6 right-6 text-neutral-400 group-hover:text-neutral-900 transition-colors">
-                    <iconify-icon icon="solar:arrow-right-linear" width="24"></iconify-icon>
-                </div>
-                <iconify-icon icon="solar:flash-circle-linear" class="text-4xl text-yellow-500 mb-6"></iconify-icon>
                 <h3 class="text-2xl font-semibold mb-4">Performance + Efficiency</h3>
                 <p class="text-neutral-600 leading-relaxed">Model S Plaid combines supercar-level acceleration with long-range practicality, so drivers do not choose between excitement and usability.</p>
             </article>
@@ -1099,16 +1137,13 @@ body::-webkit-scrollbar {
     <section class="py-32 px-8 bg-neutral-950 text-white">
         <div class="max-w-[1600px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <div class="reveal">
-                <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-white/20 bg-white/5 text-xs uppercase tracking-wider mb-6">
-                    <iconify-icon icon="solar:graph-up-linear"></iconify-icon>
-                    Ownership Outlook
-                </span>
-                <h2 class="text-5xl md:text-6xl font-medium tracking-tight mb-6">Built for Long-Term Satisfaction</h2>
-                <p class="text-lg text-neutral-300 leading-relaxed mb-8">Owners benefit from fewer service intervals, strong performance retention, and software updates that keep the vehicle experience modern and competitive year after year.</p>
-                <ul class="space-y-4 text-neutral-200">
-                    <li class="flex items-start gap-3"><iconify-icon icon="solar:check-circle-linear" class="text-green-400 mt-1"></iconify-icon><span>Lower routine maintenance compared to combustion performance sedans.</span></li>
-                    <li class="flex items-start gap-3"><iconify-icon icon="solar:check-circle-linear" class="text-green-400 mt-1"></iconify-icon><span>Frequent feature improvements via over-the-air updates.</span></li>
-                    <li class="flex items-start gap-3"><iconify-icon icon="solar:check-circle-linear" class="text-green-400 mt-1"></iconify-icon><span>Strong charging and software ecosystem designed around real driving behavior.</span></li>
+                <p class="text-sm uppercase tracking-wider text-neutral-400 mb-4">What do we offer?</p>
+                <h2 class="text-5xl md:text-6xl font-medium tracking-tight mb-6">Built for Long-Term Value</h2>
+                <p class="text-lg text-neutral-300 leading-relaxed mb-8">Owners get lower upkeep, useful software improvements, and a charging network that keeps the ownership experience simple over time.</p>
+                <ul class="list-disc pl-6 space-y-4 text-neutral-200">
+                    <li>Lower routine maintenance compared with combustion performance sedans.</li>
+                    <li>Frequent feature improvements through over-the-air updates.</li>
+                    <li>Strong charging and software ecosystem designed around real driving behavior.</li>
                 </ul>
             </div>
             <div class="grid grid-cols-2 gap-5 reveal delay-100">
@@ -1189,52 +1224,51 @@ body::-webkit-scrollbar {
 
     <!-- Future Section -->
     <section class="py-32 px-8 bg-white border-t border-neutral-200">
-        <div class="max-w-[1600px] mx-auto">
+        <div class="max-w-[1600px] mx-auto flex flex-col">
             <div class="text-center max-w-3xl mx-auto mb-16 reveal">
                 <h2 class="text-5xl md:text-6xl font-medium tracking-tight mb-5">What's the future like?</h2>
                 <p class="text-lg text-neutral-500 leading-relaxed">A closer look at where mobility, intelligence, and energy are headed next.</p>
             </div>
+
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div class="future-card-top rounded-3xl overflow-hidden bg-neutral-50 border border-neutral-200 shadow-sm reveal">
+                <article class="future-card-top rounded-3xl overflow-hidden bg-neutral-50 border border-neutral-200 shadow-sm reveal">
                     <div class="relative h-[420px]">
-                        <img src="assets/phone-key.jpg" class="absolute inset-0 w-full h-full object-cover" alt="Future phone key">
-                        <div class="absolute inset-0 bg-gradient-to-t from-white via-white/15 to-transparent"></div>
+                        <img src="assets/phone-key.jpg" class="absolute inset-0 w-full h-full object-cover" alt="Future Tesla phone key access">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/35 to-transparent"></div>
                         <div class="absolute bottom-0 left-0 right-0 p-6">
-                                <h3 class="text-2xl font-semibold text-neutral-900">Auto entry</h3>
-                                <p class="text-neutral-600 mt-2">The car adapts as you approach.</p>
+                            <h3 class="text-2xl font-semibold text-white">Auto entry</h3>
+                            <p class="text-white/85 mt-2">The car adapts as you approach.</p>
                         </div>
                     </div>
                 </article>
-                    <article class="future-card-top rounded-3xl overflow-hidden bg-neutral-50 border border-neutral-200 shadow-sm reveal delay-100">
+
+                <article class="future-card-top rounded-3xl overflow-hidden bg-neutral-50 border border-neutral-200 shadow-sm reveal delay-100">
                     <div class="relative h-[420px]">
-                        <img src="assets/trip-planner.jpg" class="absolute inset-0 w-full h-full object-cover" alt="Future trip planner">
-                        <div class="absolute inset-0 bg-gradient-to-t from-white via-white/15 to-transparent"></div>
+                        <img src="assets/trip-planner.jpg" class="absolute inset-0 w-full h-full object-cover" alt="Future Tesla trip planner">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/35 to-transparent"></div>
                         <div class="absolute bottom-0 left-0 right-0 p-6">
-                                <h3 class="text-2xl font-semibold text-neutral-900">Route brain</h3>
-                                <p class="text-neutral-600 mt-2">Charging and traffic stay in sync.</p>
+                            <h3 class="text-2xl font-semibold text-white">Route brain</h3>
+                            <p class="text-white/85 mt-2">Charging and traffic stay in sync.</p>
                         </div>
                     </div>
                 </article>
-                    <article class="future-card fade-bottom-strong rounded-3xl overflow-hidden bg-neutral-50 border border-neutral-200 shadow-sm reveal delay-200">
+
+                <article class="future-card fade-bottom-strong rounded-3xl overflow-hidden bg-neutral-50 border border-neutral-200 shadow-sm reveal delay-200">
                     <div class="relative h-[420px]">
-                        <img src="assets/sentry-mode.webp" class="absolute inset-0 w-full h-full object-cover" alt="Future sentry mode">
+                        <img src="assets/sentry-mode.webp" class="absolute inset-0 w-full h-full object-cover" alt="Future Tesla Sentry Mode">
                         <div class="absolute inset-0 bg-gradient-to-t from-white via-transparent to-transparent"></div>
-                            <div class="absolute bottom-0 left-0 right-0 p-6">
-                                <h3 class="text-2xl font-semibold text-neutral-900">Quiet watch</h3>
-                            </div>
                     </div>
                 </article>
+
                 <article class="future-card fade-bottom-strong rounded-3xl overflow-hidden bg-neutral-50 border border-neutral-200 shadow-sm reveal delay-300">
                     <div class="relative h-[420px]">
-                        <img src="assets/home-energy.jpg" class="absolute inset-0 w-full h-full object-cover" alt="Future energy">
+                        <img src="assets/home-energy.jpg" class="absolute inset-0 w-full h-full object-cover" alt="Future Tesla home energy">
                         <div class="absolute inset-0 bg-gradient-to-t from-white via-transparent to-transparent"></div>
-                            <div class="absolute bottom-0 left-0 right-0 p-6">
-                                <h3 class="text-2xl font-semibold text-neutral-900">Home flow</h3>
-                            </div>
                     </div>
                 </article>
             </div>
-            <p class="text-center text-neutral-600 text-xl mt-12">Let us surprise you.</p>
+
+            <p class="text-center text-neutral-600 text-xl mt-10 md:mt-12">Let us surprise you.</p>
         </div>
     </section>
 
@@ -1301,6 +1335,22 @@ body::-webkit-scrollbar {
                 ['Drive', 'All-Wheel Drive'],
                 ['Charging', '250 kW'],
                 ['Cargo', '24 cu ft']
+            ],
+            'model-y': [
+                ['Range (EPA est.)', '311 mi'],
+                ['Acceleration', '4.6 s 0-60 mph'],
+                ['Top Speed', '135 mph'],
+                ['Drive', 'Dual Motor All-Wheel Drive'],
+                ['Charging', '250 kW'],
+                ['Cargo', '76 cu ft']
+            ],
+            'model-s': [
+                ['Range (EPA est.)', '402 mi'],
+                ['Acceleration', '3.1 s 0-60 mph'],
+                ['Top Speed', '149 mph'],
+                ['Drive', 'Dual Motor All-Wheel Drive'],
+                ['Charging', '250 kW'],
+                ['Cargo', '28 cu ft']
             ],
             'model-x': [
                 ['Range (EPA est.)', '335 mi'],

@@ -4,7 +4,7 @@
   return (
     <iframe
       src={pageSrc}
-      title="Generated Page"
+      title="Tesla Model S Plaid showcase"
       style={{ border: '0', width: '100%', height: '100vh', display: 'block' }}
     />
   )
