@@ -943,7 +943,10 @@ body::-webkit-scrollbar {
                             </div>
                             <div>
                                 <label class="block text-xs font-medium text-neutral-500 mb-3 uppercase tracking-wider">Zip Code</label>
-                                <input type="text" class="w-full py-3 input-underline text-xl text-neutral-900 bg-transparent font-medium placeholder:text-neutral-300" placeholder="90210">
+                                <div class="relative">
+                                    <input id="zip-code-input" type="text" class="w-full py-3 input-underline text-xl text-neutral-900 bg-transparent font-medium placeholder:text-neutral-300" placeholder="90210">
+                                    <div id="zip-tooltip" class="zip-tooltip" aria-hidden="true">We ask for your zip code to connect you with the most relevant retailer in your area.</div>
+                                </div>
                             </div>
                         </div>
                         <button type="button" class="w-full bg-neutral-900 text-white py-5 rounded-xl text-lg font-medium hover:bg-neutral-800 transition-all hover:shadow-xl mt-6 flex items-center justify-center gap-3">
@@ -951,13 +954,10 @@ body::-webkit-scrollbar {
                         </button>
                         <p class="text-xs text-neutral-400 text-center mt-6">By continuing, you agree to Tesla's <a href="#" class="underline hover:text-black">Privacy Policy</a>.</p>
                     </form>
-                            <div>
-                                <label class="block text-xs font-medium text-neutral-500 mb-3 uppercase tracking-wider">Zip Code</label>
-                                <div class="relative">
-                                    <input id="zip-code-input" type="text" class="w-full py-3 input-underline text-xl text-neutral-900 bg-transparent font-medium placeholder:text-neutral-300" placeholder="90210">
-                                    <div id="zip-tooltip" class="zip-tooltip" aria-hidden="true">We ask for your zip code to connect you with the most relevant retailer in your area.</div>
-                                </div>
-                            </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <!-- Asymmetrical Latest News -->
     <section class="py-32 px-8 max-w-[1600px] mx-auto">
