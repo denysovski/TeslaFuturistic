@@ -6,6 +6,7 @@
 <meta property="og:title" content="Tesla Model S Plaid | Electric Performance and Energy Solutions">
 <meta property="og:description" content="A futuristic Tesla showcase covering performance, charging, energy products, and ownership value.">
 <meta property="og:type" content="website">
+<link rel="icon" type="image/png" href="assets/tesla-logo.png">
 <title>Tesla Model S Plaid | Electric Performance and Energy Solutions</title>
 <script src="https://cdn.tailwindcss.com"></script>
 <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
@@ -16,6 +17,12 @@
 body {
     font-family: 'Inter', sans-serif;
     cursor: default;
+    opacity: 0;
+    transition: opacity 0.7s ease;
+}
+
+body.page-ready {
+    opacity: 1;
 }
 /* Hide scrollbar */
 body::-webkit-scrollbar {
@@ -25,13 +32,14 @@ body::-webkit-scrollbar {
 /* Smooth Reveal Animations */
 .reveal {
     opacity: 0;
-    transform: translateY(30px);
-    transition: all 1s cubic-bezier(0.16, 1, 0.3, 1);
+    transform: translate3d(-42px, 18px, 0);
+    transition: opacity 1.25s cubic-bezier(0.16, 1, 0.3, 1), transform 1.25s cubic-bezier(0.16, 1, 0.3, 1);
+    transition-delay: 0.14s;
     will-change: opacity, transform;
 }
 .reveal.active {
     opacity: 1;
-    transform: translateY(0);
+    transform: translate3d(0, 0, 0);
 }
 .delay-100 { transition-delay: 100ms; }
 .delay-200 { transition-delay: 200ms; }
@@ -46,11 +54,13 @@ body::-webkit-scrollbar {
 }
 .mask-text span {
     display: block;
-    transform: translateY(100%);
-    transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+    transform: translate3d(-36px, 0, 0);
+    opacity: 0;
+    transition: opacity 1.35s cubic-bezier(0.16, 1, 0.3, 1), transform 1.35s cubic-bezier(0.16, 1, 0.3, 1);
 }
 .mask-text.active span {
-    transform: translateY(0);
+    transform: translate3d(0, 0, 0);
+    opacity: 1;
 }
 
 /* Mega Menu Animations */
@@ -102,8 +112,28 @@ body::-webkit-scrollbar {
 }
 
 #navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 70;
     background: rgba(255, 255, 255, 0.98);
     backdrop-filter: blur(18px);
+    height: 56px;
+    transition: height 0.35s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.35s ease, backdrop-filter 0.35s ease, box-shadow 0.35s ease;
+}
+
+#navbar .relative.z-50.max-w-[1800px] {
+    height: 56px;
+    transition: height 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.mega-menu-container .group\/car img,
+.mega-menu-container .group\/item img {
+    height: 150px;
+    width: 100%;
+    object-fit: contain;
+    object-position: center;
 }
 
 #nav-bg {
@@ -293,6 +323,7 @@ body::-webkit-scrollbar {
     justify-content: center;
     box-shadow: 0 14px 24px rgba(15, 23, 42, 0.12);
     transition: transform 0.3s ease;
+    cursor: pointer;
 }
 
 .feature-card:hover .feature-info-bubble {
@@ -329,6 +360,44 @@ a.group\/item:hover .menu-info-bubble {
     -webkit-mask-image: none;
     mask-image: none;
 }
+
+.interior-slide {
+    opacity: 0;
+    transform: scale(1.015);
+    transition: opacity 1.15s cubic-bezier(0.16, 1, 0.3, 1), transform 1.15s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: opacity, transform;
+}
+
+.interior-slide.is-active {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.interior-carousel-dot {
+    width: 0.95rem;
+    height: 0.95rem;
+    border-radius: 999px;
+    border: 2px solid rgba(255, 255, 255, 0.95);
+    background: rgba(255, 255, 255, 0.5);
+    transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.interior-carousel-dot.is-active {
+    background: #ffffff;
+    transform: scale(1.18);
+}
+
+.landing-item {
+    opacity: 0;
+    transform: translate3d(var(--start-x, -28px), var(--start-y, 20px), 0) rotate(var(--start-r, 0deg));
+    transition: opacity 0.95s cubic-bezier(0.16, 1, 0.3, 1), transform 1s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: opacity, transform;
+}
+
+.landing-item.is-in {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) rotate(0deg);
+}
 </style></head>
 <body class="bg-white text-neutral-900 antialiased overflow-x-hidden selection:bg-neutral-900 selection:text-white">
 
@@ -341,7 +410,7 @@ a.group\/item:hover .menu-info-bubble {
             <!-- Logo -->
             <div class="z-50 relative">
                 <a href="#" class="flex items-center gap-2">
-                    <img src="assets/tesla-icon.png" alt="Tesla icon" class="w-6 h-6 object-contain" onerror="this.style.display='none'">
+                    <img src="assets/Tesla.png" alt="Tesla icon" class="h-[20px] w-auto object-contain" onerror="this.style.display='none'">
                 </a>
             </div>
 
@@ -517,7 +586,7 @@ a.group\/item:hover .menu-info-bubble {
     </nav>
 
     <!-- Hero Section -->
-    <section class="relative h-screen min-h-[900px] w-full overflow-hidden flex flex-col justify-center items-center">
+    <section id="hero-landing" class="relative h-screen min-h-[900px] w-full overflow-hidden flex flex-col justify-center items-center">
         <div class="absolute inset-0 z-0">
             <video class="w-full h-full object-cover pointer-events-none" autoplay muted loop playsinline preload="auto" disablepictureinpicture controlslist="nodownload nofullscreen noremoteplayback">
                 <source src="assets/tesla-commercial.mp4" type="video/mp4">
@@ -527,17 +596,17 @@ a.group\/item:hover .menu-info-bubble {
         </div>
         
         <div class="relative z-10 max-w-5xl w-full mx-auto px-6 text-center mt-[-10vh]">
-            <div class="mask-text active">
+            <div class="mask-text active hero-landing-item">
                 <h1 class="text-8xl md:text-[140px] font-semibold tracking-tighter text-white leading-[0.85]">
                     <span>Model S</span>
                 </h1>
             </div>
-            <div class="mask-text active mt-4 delay-100">
+            <div class="mask-text active mt-4 delay-100 hero-landing-item">
                 <p class="text-5xl md:text-7xl font-medium text-white tracking-tight">
                     <span>Plaid</span>
                 </p>
             </div>
-            <div class="mask-text active mt-10 delay-200">
+            <div class="mask-text active mt-10 delay-200 hero-landing-item">
                 <p class="text-xl md:text-2xl text-white max-w-2xl mx-auto leading-relaxed font-light">
                     <span>The highest performing sedan ever built. With the longest range and quickest acceleration of any electric vehicle in production.</span>
                 </p>
@@ -547,22 +616,22 @@ a.group\/item:hover .menu-info-bubble {
         <div class="absolute bottom-12 w-full max-w-[1600px] px-8">
             <div class="flex flex-col md:flex-row justify-between items-end gap-10">
                 <div class="grid grid-cols-3 gap-12 md:gap-24 text-white reveal active delay-200">
-                    <div class="group cursor-default">
+                    <div class="group cursor-default hero-landing-item">
                         <p class="text-4xl md:text-5xl font-semibold tracking-tight group-hover:scale-105 transition-transform origin-left">396<span class="text-xl align-top ml-1">mi</span></p>
                         <p class="text-xs font-bold tracking-widest uppercase mt-2 text-white/80">Range (EPA)</p>
                     </div>
-                    <div class="group cursor-default">
+                    <div class="group cursor-default hero-landing-item">
                         <p class="text-4xl md:text-5xl font-semibold tracking-tight group-hover:scale-105 transition-transform origin-left">1.99<span class="text-xl align-top ml-1">s</span></p>
                         <p class="text-xs font-bold tracking-widest uppercase mt-2 text-white/80">0-60 mph*</p>
                     </div>
-                    <div class="group cursor-default">
+                    <div class="group cursor-default hero-landing-item">
                         <p class="text-4xl md:text-5xl font-semibold tracking-tight group-hover:scale-105 transition-transform origin-left">1,020<span class="text-xl align-top ml-1">hp</span></p>
                         <p class="text-xs font-bold tracking-widest uppercase mt-2 text-white/80">Peak Power</p>
                     </div>
                 </div>
                 <div class="flex flex-col sm:flex-row gap-6 w-full md:w-auto reveal active delay-300">
-                    <button class="w-full sm:w-auto px-16 py-4 bg-neutral-900 text-white text-base font-medium rounded-full border-2 border-white hover:bg-neutral-800 transition-all hover:scale-[1.02] shadow-lg shadow-neutral-900/20">Order Now</button>
-                    <button class="w-full sm:w-auto px-16 py-4 bg-white backdrop-blur-xl border border-neutral-200 text-neutral-900 text-base font-medium rounded-full hover:bg-neutral-200 transition-all hover:shadow-lg">Demo Drive</button>
+                    <button class="w-full sm:w-auto px-16 py-4 bg-neutral-900 text-white text-base font-medium rounded-full border-2 border-white hover:bg-neutral-800 transition-all hover:scale-[1.02] shadow-lg shadow-neutral-900/20 hero-landing-item">Order Now</button>
+                    <button class="w-full sm:w-auto px-16 py-4 bg-white backdrop-blur-xl border border-neutral-200 text-neutral-900 text-base font-medium rounded-full hover:bg-neutral-200 transition-all hover:shadow-lg hero-landing-item">Demo Drive</button>
                 </div>
             </div>
         </div>
@@ -578,26 +647,42 @@ a.group\/item:hover .menu-info-bubble {
                 </span>
             </div>
         </div>
-        <div class="relative w-full h-[80vh] max-w-[1700px] mx-auto rounded-2xl overflow-hidden shadow-2xl border border-white/10 reveal delay-100 group">
-            <img src="https://digitalassets.tesla.com/tesla-contents/image/upload/h_1800,w_2880,c_fit,f_auto,q_auto:best/Model-S-Interior-Hero-Desktop-LHD" class="absolute inset-0 w-full h-full object-cover" alt="Tesla Model S interior with 17-inch display and premium cabin">
+        <div id="interior-carousel" class="relative w-full h-[80vh] max-w-[1700px] mx-auto rounded-2xl overflow-hidden shadow-2xl border border-white/10 reveal delay-100 group">
+            <img data-interior-slide="0" src="assets/interrior1.jpg" class="interior-slide is-active absolute inset-0 w-full h-full object-cover" alt="Tesla Model S interior panoramic cockpit" onerror="this.src='https://digitalassets.tesla.com/tesla-contents/image/upload/h_1800,w_2880,c_fit,f_auto,q_auto:best/Model-S-Interior-Hero-Desktop-LHD'">
+            <img data-interior-slide="1" src="assets/tesla9.jpg" class="interior-slide absolute inset-0 w-full h-full object-cover" alt="Tesla Model S interior front seats and center console" onerror="this.src='https://digitalassets.tesla.com/tesla-contents/image/upload/h_1800,w_2880,c_fit,f_auto,q_auto:best/Model-S-Interior-Hero-Desktop-LHD'">
+            <img data-interior-slide="2" src="assets/interrior3.jpg" class="interior-slide absolute inset-0 w-full h-full object-cover" alt="Tesla Model S rear and center cabin interior details" onerror="this.src='https://digitalassets.tesla.com/tesla-contents/image/upload/h_1800,w_2880,c_fit,f_auto,q_auto:best/Model-S-Interior-Hero-Desktop-LHD'">
+
+            <div class="absolute top-6 right-6 z-20 flex items-center gap-3">
+                <button class="interior-carousel-dot is-active" type="button" data-interior-dot="0" aria-label="Show interior slide 1"></button>
+                <button class="interior-carousel-dot" type="button" data-interior-dot="1" aria-label="Show interior slide 2"></button>
+                <button class="interior-carousel-dot" type="button" data-interior-dot="2" aria-label="Show interior slide 3"></button>
+            </div>
+
             <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black/20"></div>
-            <div class="absolute bottom-0 left-0 w-full p-10 md:p-16">
+
+            <div class="absolute top-8 left-8 z-20 max-w-xl bg-black/35 backdrop-blur-sm border border-white/10 rounded-2xl px-6 py-5">
+                <p class="text-xs uppercase tracking-[0.22em] text-white/70 mb-2">Interior highlight</p>
+                <h3 id="interior-slide-title" class="text-2xl md:text-3xl font-semibold text-white">Immersive cockpit design</h3>
+                <p id="interior-slide-description" class="text-white/80 mt-2 text-sm md:text-base">A panoramic dashboard layout keeps controls minimal and focus centered on the drive.</p>
+            </div>
+
+            <div class="absolute bottom-0 left-0 w-full p-10 md:p-16 z-20">
                 <div class="grid grid-cols-2 md:grid-cols-4 gap-12 max-w-6xl mx-auto border-t border-white/20 pt-10">
                     <div class="reveal delay-200">
-                        <h4 class="text-3xl font-semibold mb-2">17”</h4>
-                        <p class="text-sm text-neutral-400 uppercase tracking-wider">Cinematic Display</p>
+                        <h4 id="interior-stat-1-value" class="text-3xl font-semibold mb-2">17”</h4>
+                        <p id="interior-stat-1-label" class="text-sm text-neutral-400 uppercase tracking-wider">Cinematic Display</p>
                     </div>
                     <div class="reveal delay-200">
-                        <h4 class="text-3xl font-semibold mb-2">2200x1300</h4>
-                        <p class="text-sm text-neutral-400 uppercase tracking-wider">Resolution</p>
+                        <h4 id="interior-stat-2-value" class="text-3xl font-semibold mb-2">2200x1300</h4>
+                        <p id="interior-stat-2-label" class="text-sm text-neutral-400 uppercase tracking-wider">Resolution</p>
                     </div>
                     <div class="reveal delay-200">
-                        <h4 class="text-3xl font-semibold mb-2">10 TF</h4>
-                        <p class="text-sm text-neutral-400 uppercase tracking-wider">Processing Power</p>
+                        <h4 id="interior-stat-3-value" class="text-3xl font-semibold mb-2">10 TF</h4>
+                        <p id="interior-stat-3-label" class="text-sm text-neutral-400 uppercase tracking-wider">Processing Power</p>
                     </div>
                     <div class="reveal delay-200">
-                        <h4 class="text-3xl font-semibold mb-2">960 W</h4>
-                        <p class="text-sm text-neutral-400 uppercase tracking-wider">22-Speaker Audio</p>
+                        <h4 id="interior-stat-4-value" class="text-3xl font-semibold mb-2">960 W</h4>
+                        <p id="interior-stat-4-label" class="text-sm text-neutral-400 uppercase tracking-wider">22-Speaker Audio</p>
                     </div>
                 </div>
             </div>
@@ -606,7 +691,7 @@ a.group\/item:hover .menu-info-bubble {
 
     <!-- Gaming Section (New) -->
     <section class="py-32 px-8 bg-neutral-900 text-white">
-        <div class="max-w-[1600px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+        <div class="max-w-[1600px] mx-auto grid grid-cols-1 lg:grid-cols-[3fr_5fr] gap-20 items-center">
             <div class="reveal">
                 <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-neutral-700 bg-neutral-800/50 mb-6">
                     <iconify-icon icon="solar:gamepad-linear" class="text-indigo-400"></iconify-icon>
@@ -629,7 +714,7 @@ a.group\/item:hover .menu-info-bubble {
                 <button class="px-8 py-3 border border-white rounded-full hover:bg-white hover:text-neutral-900 transition-colors">Explore Games</button>
             </div>
             <div class="relative rounded-2xl overflow-hidden shadow-2xl border border-white/10 h-[600px] reveal delay-200 group">
-                 <img src="assets/tesla5.jpg" class="absolute inset-0 w-full h-full object-cover" alt="Tesla in-car gaming and entertainment display">
+                 <img src="assets/tesla-gaming.jpeg" class="absolute inset-0 w-full h-full object-cover" alt="Tesla in-car gaming and entertainment display">
                  <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
                  <div class="absolute bottom-8 right-8">
                      <iconify-icon icon="logos:steam" width="48"></iconify-icon>
@@ -734,7 +819,7 @@ a.group\/item:hover .menu-info-bubble {
                  <h2 class="text-6xl md:text-7xl font-medium mb-4">Our showcase</h2>
                  <p class="text-neutral-300 text-lg max-w-xl mb-8">Other Tesla models with real-world specs at a glance.</p>
                  <div class="flex flex-wrap gap-4 mb-8">
-                    <button class="spec-toggle-button px-8 py-2 bg-white text-black rounded-full font-medium text-sm is-active" data-spec="model-3">Model 3</button>
+                    <button class="spec-toggle-button px-8 py-2 border border-white bg-white text-black rounded-full font-medium text-sm is-active" data-spec="model-3">Model 3</button>
                     <button class="spec-toggle-button px-8 py-2 border border-white/30 rounded-full font-medium text-sm hover:border-white transition-colors" data-spec="model-y">Model Y</button>
                     <button class="spec-toggle-button px-8 py-2 border border-white/30 rounded-full font-medium text-sm hover:border-white transition-colors" data-spec="model-s">Model S</button>
                     <button class="spec-toggle-button px-8 py-2 border border-white/30 rounded-full font-medium text-sm hover:border-white transition-colors" data-spec="model-x">Model X</button>
@@ -969,7 +1054,7 @@ a.group\/item:hover .menu-info-bubble {
                              <span class="text-green-600">$0.58 / mile</span>
                          </div>
                          <div class="w-full bg-neutral-100 h-3 rounded-full overflow-hidden">
-                             <div class="bg-neutral-900 h-full w-[45%]"></div>
+                             <div class="bg-green-600 h-full w-[45%]"></div>
                          </div>
                      </div>
                       <div>
@@ -1110,20 +1195,20 @@ a.group\/item:hover .menu-info-bubble {
             <p class="text-xl text-neutral-500 leading-relaxed">From acceleration and software to charging and long-term ownership value, Tesla ownership creates a connected ecosystem that improves with time.</p>
         </div>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <article class="bg-white border border-neutral-200 rounded-3xl p-10 reveal relative overflow-hidden group shadow-sm hover:shadow-xl transition-all duration-300">
+            <article class="bg-white border border-neutral-200 rounded-3xl p-10 reveal relative overflow-hidden group shadow-sm hover:shadow-xl transition-shadow duration-150">
                 <h3 class="text-2xl font-semibold mb-4">Performance + Efficiency</h3>
                 <p class="text-neutral-600 leading-relaxed">Model S Plaid combines supercar-level acceleration with long-range practicality, so drivers do not choose between excitement and usability.</p>
             </article>
-            <article class="bg-white border border-neutral-200 rounded-3xl p-10 reveal delay-100 relative overflow-hidden group shadow-sm hover:shadow-xl transition-all duration-300">
-                <div class="absolute top-6 right-6 text-neutral-400 group-hover:text-neutral-900 transition-colors">
+            <article class="bg-white border border-neutral-200 rounded-3xl p-10 reveal delay-100 relative overflow-hidden group shadow-sm hover:shadow-xl transition-shadow duration-150">
+                <div class="absolute top-6 right-6 text-neutral-400 group-hover:text-neutral-900 transition-colors duration-150">
                     <iconify-icon icon="solar:arrow-right-linear" width="24"></iconify-icon>
                 </div>
                 <iconify-icon icon="solar:cpu-bolt-linear" class="text-4xl text-indigo-500 mb-6"></iconify-icon>
                 <h3 class="text-2xl font-semibold mb-4">Software Advantage</h3>
                 <p class="text-neutral-600 leading-relaxed">Frequent OTA updates deliver tangible improvements in navigation, safety features, and day-to-day user experience throughout ownership.</p>
             </article>
-            <article class="bg-white border border-neutral-200 rounded-3xl p-10 reveal delay-200 relative overflow-hidden group shadow-sm hover:shadow-xl transition-all duration-300">
-                <div class="absolute top-6 right-6 text-neutral-400 group-hover:text-neutral-900 transition-colors">
+            <article class="bg-white border border-neutral-200 rounded-3xl p-10 reveal delay-200 relative overflow-hidden group shadow-sm hover:shadow-xl transition-shadow duration-150">
+                <div class="absolute top-6 right-6 text-neutral-400 group-hover:text-neutral-900 transition-colors duration-150">
                     <iconify-icon icon="solar:arrow-right-linear" width="24"></iconify-icon>
                 </div>
                 <iconify-icon icon="solar:station-linear" class="text-4xl text-green-600 mb-6"></iconify-icon>
@@ -1326,6 +1411,12 @@ a.group\/item:hover .menu-info-bubble {
         const zipInput = document.getElementById('zip-code-input');
         const zipTooltip = document.getElementById('zip-tooltip');
         const energySwapCard = document.getElementById('energy-swap-card');
+        const interiorCarousel = document.getElementById('interior-carousel');
+        const heroLanding = document.getElementById('hero-landing');
+
+        window.setTimeout(() => {
+            document.body.classList.add('page-ready');
+        }, 180);
 
         const specSets = {
             'model-3': [
@@ -1415,6 +1506,7 @@ a.group\/item:hover .menu-info-bubble {
 
             specButtons.forEach((button) => {
                 const isActive = button.dataset.spec === specKey;
+                button.classList.add('border');
                 button.classList.toggle('is-active', isActive);
                 button.classList.toggle('bg-white', isActive);
                 button.classList.toggle('text-black', isActive);
@@ -1426,6 +1518,26 @@ a.group\/item:hover .menu-info-bubble {
         };
 
         setNavState();
+
+        if (heroLanding) {
+            const heroItems = Array.from(heroLanding.querySelectorAll('.hero-landing-item'));
+            heroItems.forEach((item, index) => {
+                const randomX = -36 + Math.round(Math.random() * 72);
+                const randomY = 8 + Math.round(Math.random() * 22);
+                const randomR = (-2 + Math.random() * 4).toFixed(2);
+                const randomDelay = 220 + (index * 110) + Math.round(Math.random() * 220);
+
+                item.classList.add('landing-item');
+                item.style.setProperty('--start-x', `${randomX}px`);
+                item.style.setProperty('--start-y', `${randomY}px`);
+                item.style.setProperty('--start-r', `${randomR}deg`);
+                item.style.transitionDelay = `${randomDelay}ms`;
+
+                window.setTimeout(() => {
+                    item.classList.add('is-in');
+                }, randomDelay);
+            });
+        }
 
         megaTriggers.forEach((trigger) => {
             trigger.addEventListener('mouseenter', () => {
@@ -1444,6 +1556,105 @@ a.group\/item:hover .menu-info-bubble {
         if (energySwapCard) {
             energySwapCard.addEventListener('mouseenter', () => energySwapCard.classList.add('is-hovering'));
             energySwapCard.addEventListener('mouseleave', () => energySwapCard.classList.remove('is-hovering'));
+        }
+
+        if (interiorCarousel) {
+            const interiorSlides = Array.from(interiorCarousel.querySelectorAll('[data-interior-slide]'));
+            const interiorDots = Array.from(interiorCarousel.querySelectorAll('[data-interior-dot]'));
+            const interiorTitle = document.getElementById('interior-slide-title');
+            const interiorDescription = document.getElementById('interior-slide-description');
+            const statValueEls = [
+                document.getElementById('interior-stat-1-value'),
+                document.getElementById('interior-stat-2-value'),
+                document.getElementById('interior-stat-3-value'),
+                document.getElementById('interior-stat-4-value')
+            ];
+            const statLabelEls = [
+                document.getElementById('interior-stat-1-label'),
+                document.getElementById('interior-stat-2-label'),
+                document.getElementById('interior-stat-3-label'),
+                document.getElementById('interior-stat-4-label')
+            ];
+
+            const interiorSlideData = [
+                {
+                    title: 'Immersive cockpit design',
+                    description: 'A panoramic dashboard layout keeps controls minimal and focus centered on the drive.',
+                    stats: [
+                        ['17”', 'Cinematic Display'],
+                        ['2200x1300', 'Resolution'],
+                        ['10 TF', 'Processing Power'],
+                        ['960 W', '22-Speaker Audio']
+                    ]
+                },
+                {
+                    title: 'Calm ambient cabin',
+                    description: 'Material finish, low-noise architecture, and glass geometry create a quiet premium atmosphere.',
+                    stats: [
+                        ['22', 'Speakers'],
+                        ['Dual', 'Wireless Chargers'],
+                        ['HEPA', 'Air Filtration'],
+                        ['Ventilated', 'Front Seats']
+                    ]
+                },
+                {
+                    title: 'Passenger-first comfort',
+                    description: 'Rear display controls media and climate while preserving clean lines across the full cabin.',
+                    stats: [
+                        ['8"', 'Rear Touchscreen'],
+                        ['Tri-Zone', 'Climate Control'],
+                        ['Bluetooth', 'Headphone Support'],
+                        ['Flat Floor', 'Rear Legroom']
+                    ]
+                }
+            ];
+
+            let interiorIndex = 0;
+            let interiorTimerId;
+
+            const startInteriorTimer = () => {
+                window.clearInterval(interiorTimerId);
+                interiorTimerId = window.setInterval(() => {
+                    renderInteriorSlide((interiorIndex + 1) % interiorSlides.length, false);
+                }, 5000);
+            };
+
+            const renderInteriorSlide = (nextIndex, resetTimer = true) => {
+                interiorIndex = nextIndex;
+
+                interiorSlides.forEach((slide, index) => {
+                    slide.classList.toggle('is-active', index === interiorIndex);
+                });
+
+                interiorDots.forEach((dot, index) => {
+                    dot.classList.toggle('is-active', index === interiorIndex);
+                });
+
+                const content = interiorSlideData[interiorIndex];
+                if (content && interiorTitle && interiorDescription) {
+                    interiorTitle.textContent = content.title;
+                    interiorDescription.textContent = content.description;
+                    content.stats.forEach(([value, label], statIndex) => {
+                        if (statValueEls[statIndex]) {
+                            statValueEls[statIndex].textContent = value;
+                        }
+                        if (statLabelEls[statIndex]) {
+                            statLabelEls[statIndex].textContent = label;
+                        }
+                    });
+                }
+
+                if (resetTimer) {
+                    startInteriorTimer();
+                }
+            };
+
+            interiorDots.forEach((dot, index) => {
+                dot.addEventListener('click', () => renderInteriorSlide(index, true));
+            });
+
+            renderInteriorSlide(0, false);
+            startInteriorTimer();
         }
 
         if (zipInput && zipTooltip) {
