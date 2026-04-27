@@ -313,8 +313,8 @@ body::-webkit-scrollbar {
 }
 
 .feature-info-bubble {
-    width: 2.6rem;
-    height: 2.6rem;
+    width: 5.2rem;
+    height: 5.2rem;
     border-radius: 999px;
     background: white;
     color: #111827;
@@ -326,8 +326,8 @@ body::-webkit-scrollbar {
     cursor: pointer;
 }
 
-.feature-card:hover .feature-info-bubble {
-    transform: scale(1.16);
+.feature-info-bubble:hover {
+    transform: scale(1.08);
 }
 
 .feature-card {
@@ -336,6 +336,79 @@ body::-webkit-scrollbar {
 
 .feature-card:hover {
     background: #ffffff;
+}
+
+.vision-info-bubble {
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.94);
+    color: #111827;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 16px 28px rgba(15, 23, 42, 0.16);
+    transition: transform 0.25s ease, background-color 0.25s ease;
+}
+
+.vision-info-bubble:hover {
+    transform: scale(1.06);
+    background: rgba(255, 255, 255, 1);
+}
+
+.vision-info-tooltip {
+    position: absolute;
+    top: calc(100% + 0.9rem);
+    right: 0;
+    width: min(18rem, 70vw);
+    padding: 0.85rem 1rem;
+    border-radius: 1rem;
+    background: rgba(255, 255, 255, 0.98);
+    color: #111827;
+    box-shadow: 0 24px 48px rgba(15, 23, 42, 0.18);
+    font-size: 0.78rem;
+    line-height: 1.55;
+    opacity: 0;
+    transform: translateY(10px) scale(0.98);
+    pointer-events: none;
+    transition: opacity 0.22s ease, transform 0.22s ease;
+}
+
+.vision-info-wrap:hover .vision-info-tooltip,
+.vision-info-wrap:focus-within .vision-info-tooltip {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+}
+
+.vision-info-wrap:hover .vision-info-bubble,
+.vision-info-wrap:focus-within .vision-info-bubble {
+    transform: scale(1.04);
+}
+
+.spec-image-container {
+    min-height: 18rem;
+}
+
+.spec-image-container #spec-image,
+.spec-image-container .spec-image-layer {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    border-radius: 1rem;
+}
+
+.spec-image-container #spec-image {
+    opacity: 1;
+    transition: opacity 420ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.spec-image-container .spec-image-layer {
+    opacity: 0;
+    transition: opacity 420ms cubic-bezier(0.16, 1, 0.3, 1);
+    pointer-events: none;
 }
 
 .menu-info-bubble {
@@ -398,6 +471,56 @@ a.group\/item:hover .menu-info-bubble {
     opacity: 1;
     transform: translate3d(0, 0, 0) rotate(0deg);
 }
+/* Cart sidebar */
+.cart-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.36);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease;
+    z-index: 80;
+}
+.cart-overlay.is-visible{ opacity: 1; pointer-events: auto; }
+.cart-sidebar {
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100vh;
+    width: 440px;
+    max-width: 92vw;
+    background: #fff;
+    box-shadow: -24px 0 48px rgba(2,6,23,0.12);
+    transform: translateX(110%);
+    transition: transform 0.28s cubic-bezier(0.16,1,0.3,1);
+    z-index: 90;
+    display: flex;
+    flex-direction: column;
+}
+.cart-sidebar.is-open{ transform: translateX(0); }
+.cart-sidebar .cart-header{ padding: 24px; border-bottom: 1px solid #eee; display:flex; align-items:center; justify-content:space-between }
+.cart-sidebar .cart-header h3{ font-size: 1.15rem; font-weight: 600; letter-spacing: -0.02em; }
+.cart-sidebar .cart-header button{ width: 2.25rem; height: 2.25rem; border-radius: 999px; display: inline-flex; align-items: center; justify-content: center; color: #52525b; transition: background-color 0.2s ease, color 0.2s ease; }
+.cart-sidebar .cart-header button:hover{ background: #f4f4f5; color: #111827; }
+.cart-items-shell{ padding: 20px 20px 12px; }
+.cart-item{ display:flex; flex-direction:column; gap:14px; padding:16px; margin-bottom:14px; border:1px solid #ececec; border-radius:20px; background:#fff; box-shadow:0 8px 22px rgba(15,23,42,0.04) }
+.cart-item-media{ position:relative; width:100%; overflow:hidden; border-radius:16px; background:#f5f5f5 }
+.cart-item img{ width:100%; height:200px; object-fit:cover; display:block }
+.cart-item-body{ display:flex; flex-direction:column; gap:10px }
+.cart-item-title{ font-size:1rem; font-weight:600; letter-spacing:-0.02em; color:#111827 }
+.cart-item-meta{ display:flex; align-items:flex-end; justify-content:space-between; gap:12px }
+.cart-item-amount{ font-size:1.5rem; line-height:1; font-weight:700; color:#111827 }
+.cart-item-subtext{ font-size:0.78rem; color:#71717a; }
+.cart-item .remove{ position:absolute; top:12px; right:12px; width:2.5rem; height:2.5rem; border-radius:999px; background:rgba(255,255,255,0.92); box-shadow:0 10px 22px rgba(15,23,42,0.12); display:inline-flex; align-items:center; justify-content:center; cursor:pointer; color:#ef4444; transition:transform 0.2s ease, background-color 0.2s ease, color 0.2s ease }
+.cart-item .remove:hover{ transform:scale(1.06); background:#fff; color:#dc2626 }
+.cart-empty{ padding: 28px 24px; color: #71717a; text-align: center; }
+.cart-footer{ margin-top:auto; padding:22px 24px 24px; border-top:1px solid #eee; background:linear-gradient(to bottom, rgba(255,255,255,0.72), #fff) }
+.cart-total-row{ display:flex; align-items:flex-end; justify-content:space-between; gap:12px; margin-bottom:16px }
+#cart-total-label{ font-size:0.8rem; letter-spacing:0.12em; text-transform:uppercase; color:#71717a }
+#cart-total-amount{ font-size:2rem; line-height:1; font-weight:700; color:#111827 }
+#checkout-btn{ height:3.25rem; border-radius:1rem; font-weight:600 }
+#see-cart-btn{ height:3rem; border-radius:1rem }
+
 </style></head>
 <body class="bg-white text-neutral-900 antialiased overflow-x-hidden selection:bg-neutral-900 selection:text-white">
 
@@ -565,7 +688,7 @@ a.group\/item:hover .menu-info-bubble {
                     </div>
                 </div>
                 
-                <a href="#" class="nav-link text-base font-medium transition-colors py-2 px-5">Shop</a>
+                <a href="#" id="shop-toggle" class="nav-link text-base font-medium transition-colors py-2 px-5">Shop</a>
             </div>
 
             <!-- Mobile Menu Toggle -->
@@ -578,12 +701,32 @@ a.group\/item:hover .menu-info-bubble {
                 <div class="hidden md:flex items-center gap-4">
                     <a href="#" class="nav-link text-base font-medium transition-colors">Account</a>
                 </div>
-                <button class="nav-link relative group transition-colors">
+                <button id="cart-toggle" class="nav-link relative group transition-colors">
                     <iconify-icon icon="solar:bag-3-linear" width="24" stroke-width="1.5"></iconify-icon>
                 </button>
             </div>
         </div>
     </nav>
+
+    <!-- Cart Sidebar + Overlay -->
+    <div id="cart-overlay" class="cart-overlay" aria-hidden="true"></div>
+    <aside id="cart-sidebar" class="cart-sidebar" aria-hidden="true">
+        <div class="cart-header">
+            <h3 class="text-lg font-semibold">Cart</h3>
+            <button id="cart-close" aria-label="Close cart">✕</button>
+        </div>
+        <div class="cart-items-shell flex-1 overflow-auto">
+            <div id="cart-items"></div>
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total-row">
+                <strong id="cart-total-label">Total</strong>
+                <strong id="cart-total-amount">$0.00</strong>
+            </div>
+            <button id="checkout-btn" class="w-full bg-neutral-900 text-white py-3 rounded-md">Checkout</button>
+            <button id="see-cart-btn" class="w-full mt-3 border border-neutral-200 py-2 rounded-md">See Cart</button>
+        </div>
+    </aside>
 
     <!-- Hero Section -->
     <section id="hero-landing" class="relative h-screen min-h-[900px] w-full overflow-hidden flex flex-col justify-center items-center">
@@ -743,7 +886,7 @@ a.group\/item:hover .menu-info-bubble {
         </div>
         <div class="relative w-full h-[600px] bg-neutral-100 rounded-3xl overflow-hidden reveal delay-200">
              <img src="https://digitalassets.tesla.com/tesla-contents/image/upload/h_1800,w_2880,c_fit,f_auto,q_auto:best/Model-S-Safety-Hero-Desktop-Global" class="absolute inset-0 w-full h-full object-cover mix-blend-darken" alt="Tesla Model S safety chassis and occupant protection">
-             <div class="absolute top-12 right-12 bg-white/80 backdrop-blur-sm p-6 rounded-2xl shadow-lg max-w-xs">
+                <div class="absolute top-12 right-12 bg-white/80 backdrop-blur-sm p-6 rounded-2xl shadow-lg max-w-xs">
                  <div class="flex items-start gap-4">
                      <div class="p-2 bg-blue-100 rounded-lg text-blue-600">
                          <iconify-icon icon="solar:shield-check-linear" width="24"></iconify-icon>
@@ -754,6 +897,17 @@ a.group\/item:hover .menu-info-bubble {
                      </div>
                  </div>
              </div>
+                <div class="absolute left-12 bottom-12 bg-white/80 backdrop-blur-sm p-6 rounded-2xl shadow-lg max-w-xs">
+                     <div class="flex items-start gap-4">
+                         <div class="p-2 bg-green-50 rounded-lg text-green-600">
+                             <iconify-icon icon="solar:leaf-linear" width="24"></iconify-icon>
+                         </div>
+                         <div>
+                             <h4 class="font-semibold mb-1">Thermal Management Note</h4>
+                             <p class="text-xs text-neutral-500 leading-relaxed">Active cooling and heat pumps optimize battery longevity and charging efficiency.</p>
+                         </div>
+                     </div>
+                 </div>
         </div>
     </section>
 
@@ -762,6 +916,7 @@ a.group\/item:hover .menu-info-bubble {
         <div class="mb-20 reveal">
             <h2 class="text-5xl md:text-6xl font-medium tracking-tight mb-6">Electric Architecture</h2>
             <p class="text-neutral-500 text-xl">Engineered for efficiency, performance, and range.</p>
+            <p class="text-neutral-400 text-base mt-4">Optimized thermal management and lightweight materials reduce energy consumption while improving durability.</p>
         </div>
         <div class="grid grid-cols-1 md:grid-cols-6 gap-6 auto-rows-[340px] md:auto-rows-[400px]">
             <div class="md:col-span-4 bg-neutral-100 rounded-3xl relative overflow-hidden group reveal">
@@ -779,20 +934,32 @@ a.group\/item:hover .menu-info-bubble {
                     </div>
                     <h3 class="text-2xl font-medium mt-6">Aerodynamics</h3>
                 </div>
-                <p class="text-base text-neutral-500">The lowest drag coefficient of any car on earth.</p>
-                <div class="w-full bg-neutral-100 h-1.5 rounded-full overflow-hidden mt-6"><div class="bg-neutral-900 h-full w-[95%]"></div></div>
+                <p class="text-base text-neutral-500 leading-relaxed">The lowest drag coefficient of any car on earth, tuned for stable highway cruising, reduced wind noise, and efficiency that helps every mile feel effortless.</p>
+                <p class="text-sm text-neutral-400 leading-relaxed mt-3">A low nose, flush body details, and carefully managed airflow help the car stay planted while cutting resistance at speed.</p>
+                <div class="flex gap-3 mt-6">
+                    <span class="px-3 py-1 bg-neutral-100 rounded-full text-xs">0.208 Cd</span>
+                    <span class="px-3 py-1 bg-neutral-100 rounded-full text-xs">Active Air Vents</span>
+                    <span class="px-3 py-1 bg-neutral-100 rounded-full text-xs">Flush Door Handles</span>
+                </div>
             </div>
             <div class="md:col-span-2 bg-neutral-900 text-white rounded-3xl p-10 flex flex-col justify-between hover:scale-[1.02] transition-transform duration-300 reveal delay-200">
                  <div>
                     <iconify-icon icon="solar:battery-charge-linear" class="text-5xl text-green-400 mb-6"></iconify-icon>
                     <h3 class="text-2xl font-medium">Supercharging</h3>
                 </div>
-                <div>
+                 <div>
                      <p class="text-5xl font-bold mb-2">250 <span class="text-xl font-normal text-neutral-400">kW</span></p>
                      <p class="text-sm text-neutral-400">Max charging rate.</p>
-                </div>
+                     <p class="text-xs text-neutral-300 mt-3">V3 Superchargers deliver up to 250 kW, minimizing stop time and supporting high power delivery across wide temperature ranges.</p>
+                 </div>
             </div>
             <div class="md:col-span-4 bg-white border border-neutral-200 rounded-3xl relative overflow-hidden group reveal delay-300">
+                 <div class="vision-info-wrap absolute top-6 right-6 z-30">
+                     <button aria-label="Vision processing information" class="vision-info-bubble">
+                         <iconify-icon icon="solar:info-circle-linear" width="18"></iconify-icon>
+                     </button>
+                     <div class="vision-info-tooltip">Vision processing uses 8 cameras and neural nets to interpret surroundings in real time.</div>
+                 </div>
                  <div class="absolute inset-0 grid grid-cols-2">
                      <div class="bg-neutral-50 p-10 flex flex-col justify-center">
                          <span class="text-blue-600 text-xs font-bold uppercase tracking-wider mb-3">Autopilot</span>
@@ -815,7 +982,9 @@ a.group\/item:hover .menu-info-bubble {
     <section class="bg-black text-white py-32 px-8">
         <div class="max-w-[1400px] mx-auto flex flex-col md:flex-row gap-20">
              <div class="md:w-1/2 reveal">
-                <img src="assets/tesla3.jpg" class="w-full rounded-2xl mb-8" alt="Tesla Model S Plaid performance showcase">
+                <div class="spec-image-container w-full rounded-2xl mb-8 overflow-hidden relative">
+                    <img id="spec-image" src="assets/model1.jpg" class="w-full rounded-2xl object-cover block" alt="Model showcase image">
+                </div>
                  <h2 class="text-6xl md:text-7xl font-medium mb-4">Our showcase</h2>
                  <p class="text-neutral-300 text-lg max-w-xl mb-8">Other Tesla models with real-world specs at a glance.</p>
                  <div class="flex flex-wrap gap-4 mb-8">
@@ -879,7 +1048,7 @@ a.group\/item:hover .menu-info-bubble {
         <div class="mb-20 reveal">
             <p class="text-sm font-medium uppercase tracking-widest text-neutral-500 mb-6">Updates that continuously improve performance, safety, and everyday comfort.</p>
             <h2 class="text-5xl md:text-6xl font-medium tracking-tight mb-6 text-neutral-900">Better Over Time</h2>
-            <p class="text-neutral-500 text-xl max-w-2xl">Model S isn’t just a car; it’s a platform. Frequent over-the-air updates introduce new features, performance boosts, and safety improvements instantly.</p>
+            <p class="text-neutral-500 text-xl max-w-2xl">Updates keep improving everything</p>
         </div>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
             <!-- Feature 1 -->
@@ -888,7 +1057,11 @@ a.group\/item:hover .menu-info-bubble {
                     <iconify-icon icon="solar:smartphone-2-linear" class="text-4xl text-neutral-900"></iconify-icon>
                     <h3 class="text-2xl font-semibold">Phone Key</h3>
                 </div>
-                <p class="text-neutral-600 text-sm leading-relaxed mb-6">No fob required. Your phone unlocks and starts your car automatically as you approach.</p>
+                <p class="text-neutral-600 text-sm leading-relaxed mb-3">No fob required. Your phone unlocks and starts your car automatically as you approach.</p>
+                <div class="flex flex-wrap gap-2 mb-4">
+                    <span class="px-3 py-1 rounded-full bg-white border border-neutral-200 text-xs text-neutral-500">Bluetooth LE</span>
+                    <span class="px-3 py-1 rounded-full bg-white border border-neutral-200 text-xs text-neutral-500">Passive start</span>
+                </div>
                      <div class="h-60 rounded-2xl overflow-hidden border border-neutral-200 bg-white">
                      <img src="assets/phone-key.jpg" class="w-full h-full object-cover" alt="Tesla Phone Key feature using smartphone access">
                 </div>
@@ -900,7 +1073,11 @@ a.group\/item:hover .menu-info-bubble {
                     <iconify-icon icon="solar:map-point-linear" class="text-4xl text-neutral-900"></iconify-icon>
                     <h3 class="text-2xl font-semibold">Trip Planner</h3>
                 </div>
-                <p class="text-neutral-600 text-sm leading-relaxed mb-6">Navigate anywhere with automatic charging stops and battery pre-conditioning for faster charging.</p>
+                <p class="text-neutral-600 text-sm leading-relaxed mb-3">Navigate anywhere with automatic charging stops and battery pre-conditioning for faster charging.</p>
+                <div class="flex flex-wrap gap-2 mb-4">
+                    <span class="px-3 py-1 rounded-full bg-white border border-neutral-200 text-xs text-neutral-500">Route brain</span>
+                    <span class="px-3 py-1 rounded-full bg-white border border-neutral-200 text-xs text-neutral-500">Fast stops</span>
+                </div>
                 <div class="h-60 rounded-2xl overflow-hidden border border-neutral-200 bg-white">
                      <img src="assets/trip-planner.jpg" class="w-full h-full object-cover" alt="Tesla Trip Planner navigation and charging route planning feature">
                 </div>
@@ -912,7 +1089,11 @@ a.group\/item:hover .menu-info-bubble {
                     <iconify-icon icon="solar:shield-warning-linear" class="text-4xl text-neutral-900"></iconify-icon>
                     <h3 class="text-2xl font-semibold">Sentry Mode</h3>
                  </div>
-                <p class="text-neutral-600 text-sm leading-relaxed mb-6">Live camera access from anywhere. Your car monitors its environment when you're away.</p>
+                <p class="text-neutral-600 text-sm leading-relaxed mb-3">Live camera access from anywhere. Your car monitors its environment when you're away.</p>
+                <div class="flex flex-wrap gap-2 mb-4">
+                    <span class="px-3 py-1 rounded-full bg-white border border-neutral-200 text-xs text-neutral-500">Motion clips</span>
+                    <span class="px-3 py-1 rounded-full bg-white border border-neutral-200 text-xs text-neutral-500">Cloud backup</span>
+                </div>
                                  <div class="h-60 rounded-2xl overflow-hidden border border-neutral-200 bg-white">
                      <img src="assets/sentry-mode.webp" class="w-full h-full object-cover" alt="Tesla Sentry Mode vehicle security monitoring feature">
                 </div>
@@ -933,7 +1114,10 @@ a.group\/item:hover .menu-info-bubble {
                 <img src="assets/tesla7.webp" class="absolute inset-0 w-full h-full object-cover energy-swap-default" alt="Tesla home energy ecosystem overview">
                 <img src="assets/home-energy.jpg" class="absolute inset-0 w-full h-full object-cover energy-swap-alt" alt="Tesla home energy installation and storage">
                 <div class="absolute top-8 left-8">
-                    <h3 class="text-2xl font-semibold text-neutral-900 bg-white/80 backdrop-blur-md px-4 py-2 rounded-full inline-block">Home Energy</h3>
+                    <h3 class="text-xl font-semibold text-neutral-900 bg-white/80 backdrop-blur-md px-4 py-2 rounded-full inline-block">Home Energy</h3>
+                </div>
+                <div class="absolute top-8 right-8">
+                    <a href="#" class="text-white border-b border-white pb-1 hover:text-neutral-200 hover:border-neutral-200 transition-colors">How does it work?</a>
                 </div>
                 <div class="absolute bottom-8 left-8 right-8 flex gap-4">
                      <div class="bg-white/90 backdrop-blur-md p-4 rounded-xl w-40 border border-white/20">
@@ -966,6 +1150,7 @@ a.group\/item:hover .menu-info-bubble {
             <div class="text-center mb-20 reveal">
                 <h2 class="text-4xl md:text-5xl font-medium tracking-tight mb-4">Unmatched Performance</h2>
                 <p class="text-neutral-500">The quickest acceleration of any vehicle in production.</p>
+                <p class="text-neutral-400 text-sm mt-4 max-w-2xl mx-auto leading-relaxed">Built for immediate torque delivery, high-speed stability, and effortless daily usability without sacrificing range or comfort.</p>
             </div>
             <div class="overflow-x-auto reveal delay-100">
                 <table class="w-full text-left border-collapse">
@@ -1024,26 +1209,14 @@ a.group\/item:hover .menu-info-bubble {
                 <p class="text-xl text-neutral-600 mb-10 leading-relaxed">
                     Electric vehicles avoid the constant drain of fuel stops, oil changes, spark plugs, and exhaust-system upkeep. That means fewer recurring expenses, less time spent at service counters, and more money left for the things that actually matter.
                 </p>
-                <div class="space-y-6">
-                     <div class="flex items-center gap-4">
-                         <div class="w-12 h-12 rounded-full bg-white border border-neutral-200 flex items-center justify-center text-green-600 shadow-sm">
-                             <iconify-icon icon="solar:wallet-money-linear" class="text-2xl"></iconify-icon>
-                         </div>
-                         <div>
-                             <h4 class="font-semibold text-neutral-900">No fuel bill routine</h4>
-                             <p class="text-sm text-neutral-500">Less money spent on gasoline and more left for real priorities.</p>
-                         </div>
-                     </div>
-                     <div class="flex items-center gap-4">
-                         <div class="w-12 h-12 rounded-full bg-white border border-neutral-200 flex items-center justify-center text-blue-600 shadow-sm">
-                             <iconify-icon icon="solar:settings-linear" class="text-2xl"></iconify-icon>
-                         </div>
-                         <div>
-                             <h4 class="font-semibold text-neutral-900">Less maintenance drama</h4>
-                             <p class="text-sm text-neutral-500">No oil changes, fewer wear items, and no tailpipe dependency.</p>
-                         </div>
-                     </div>
+                <div class="flex flex-wrap gap-3 mb-8">
+                    <span class="px-4 py-2 rounded-full bg-white border border-neutral-200 text-sm text-neutral-700">Lower upkeep</span>
+                    <span class="px-4 py-2 rounded-full bg-white border border-neutral-200 text-sm text-neutral-700">OTA updates</span>
+                    <span class="px-4 py-2 rounded-full bg-white border border-neutral-200 text-sm text-neutral-700">Charging network</span>
                 </div>
+                <button class="inline-flex items-center gap-2 text-sm font-medium text-neutral-900 border border-neutral-200 px-4 py-2 rounded-full hover:border-neutral-400 hover:bg-neutral-100 transition-colors">
+                    Compare savings <iconify-icon icon="solar:arrow-right-linear" width="16"></iconify-icon>
+                </button>
             </div>
             <div class="bg-white p-10 rounded-3xl shadow-xl border border-neutral-100 reveal delay-200">
                  <h3 class="text-lg font-semibold mb-8 border-b border-neutral-100 pb-4">5-Year Cost of Ownership</h3>
@@ -1196,8 +1369,12 @@ a.group\/item:hover .menu-info-bubble {
         </div>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
             <article class="bg-white border border-neutral-200 rounded-3xl p-10 reveal relative overflow-hidden group shadow-sm hover:shadow-xl transition-shadow duration-150">
-                <h3 class="text-2xl font-semibold mb-4">Performance + Efficiency</h3>
-                <p class="text-neutral-600 leading-relaxed">Model S Plaid combines supercar-level acceleration with long-range practicality, so drivers do not choose between excitement and usability.</p>
+                <div class="absolute top-6 right-6 text-neutral-400 group-hover:text-neutral-900 transition-colors duration-150">
+                    <iconify-icon icon="solar:arrow-right-linear" width="24"></iconify-icon>
+                </div>
+                <iconify-icon icon="solar:bolt-linear" class="text-4xl text-red-500 mb-6"></iconify-icon>
+                <h3 class="text-2xl font-semibold mb-4">Balanced Performance</h3>
+                <p class="text-neutral-600 leading-relaxed">Model S Plaid blends lightning acceleration with daily comfort and range, so the car feels sharp without giving up easy long-distance use.</p>
             </article>
             <article class="bg-white border border-neutral-200 rounded-3xl p-10 reveal delay-100 relative overflow-hidden group shadow-sm hover:shadow-xl transition-shadow duration-150">
                 <div class="absolute top-6 right-6 text-neutral-400 group-hover:text-neutral-900 transition-colors duration-150">
@@ -1225,28 +1402,41 @@ a.group\/item:hover .menu-info-bubble {
                 <p class="text-sm uppercase tracking-wider text-neutral-400 mb-4">What do we offer?</p>
                 <h2 class="text-5xl md:text-6xl font-medium tracking-tight mb-6">Built for Long-Term Value</h2>
                 <p class="text-lg text-neutral-300 leading-relaxed mb-8">Owners get lower upkeep, useful software improvements, and a charging network that keeps the ownership experience simple over time.</p>
-                <ul class="list-disc pl-6 space-y-4 text-neutral-200">
-                    <li>Lower routine maintenance compared with combustion performance sedans.</li>
-                    <li>Frequent feature improvements through over-the-air updates.</li>
-                    <li>Strong charging and software ecosystem designed around real driving behavior.</li>
-                </ul>
+                <div class="flex flex-wrap gap-3 mb-8">
+                    <span class="px-4 py-2 rounded-full bg-white text-black text-sm font-medium border border-neutral-200">Lower upkeep</span>
+                    <span class="px-4 py-2 rounded-full bg-white text-black text-sm font-medium border border-neutral-200">OTA updates</span>
+                    <span class="px-4 py-2 rounded-full bg-white text-black text-sm font-medium border border-neutral-200">Driving ecosystem</span>
+                </div>
+                <div class="mt-6 rounded-3xl bg-white text-neutral-900 border border-neutral-200 p-6 flex items-start gap-4">
+                    <div class="w-11 h-11 rounded-full bg-neutral-900 text-white flex items-center justify-center flex-none mt-0.5">
+                        <iconify-icon icon="solar:planet-linear" width="20"></iconify-icon>
+                    </div>
+                    <div>
+                        <p class="text-sm font-semibold uppercase tracking-wider text-neutral-500 mb-2">Worldwide network</p>
+                        <p class="text-base leading-relaxed">We collaborated with 34 international companies, worldwide network.</p>
+                    </div>
+                </div>
             </div>
             <div class="grid grid-cols-2 gap-5 reveal delay-100">
-                <div class="bg-white/5 border border-white/10 rounded-2xl p-8">
-                    <p class="text-4xl font-semibold mb-2">396 mi</p>
-                    <p class="text-sm uppercase tracking-wider text-neutral-400">EPA Range</p>
+                <div class="bg-white/5 border border-white/10 rounded-2xl p-8 relative overflow-hidden text-center">
+                    <div class="absolute top-4 left-4 text-white"><iconify-icon icon="solar:wallet-money-linear" width="22"></iconify-icon></div>
+                    <p class="text-4xl font-semibold mb-2 text-center">396 mi</p>
+                    <p class="text-sm uppercase tracking-wider text-neutral-400 text-center">EPA Range</p>
                 </div>
-                <div class="bg-white/5 border border-white/10 rounded-2xl p-8">
-                    <p class="text-4xl font-semibold mb-2">1.99 s</p>
-                    <p class="text-sm uppercase tracking-wider text-neutral-400">0-60 mph</p>
+                <div class="bg-white/5 border border-white/10 rounded-2xl p-8 relative overflow-hidden text-center">
+                    <div class="absolute top-4 left-4 text-white"><iconify-icon icon="solar:bolt-linear" width="22"></iconify-icon></div>
+                    <p class="text-4xl font-semibold mb-2 text-center">1.99 s</p>
+                    <p class="text-sm uppercase tracking-wider text-neutral-400 text-center">0-60 mph</p>
                 </div>
-                <div class="bg-white/5 border border-white/10 rounded-2xl p-8">
-                    <p class="text-4xl font-semibold mb-2">250 kW</p>
-                    <p class="text-sm uppercase tracking-wider text-neutral-400">Max Charging</p>
+                <div class="bg-white/5 border border-white/10 rounded-2xl p-8 relative overflow-hidden text-center">
+                    <div class="absolute top-4 left-4 text-white"><iconify-icon icon="solar:battery-charge-linear" width="22"></iconify-icon></div>
+                    <p class="text-4xl font-semibold mb-2 text-center">250 kW</p>
+                    <p class="text-sm uppercase tracking-wider text-neutral-400 text-center">Max Charging</p>
                 </div>
-                <div class="bg-white/5 border border-white/10 rounded-2xl p-8">
-                    <p class="text-4xl font-semibold mb-2">OTA</p>
-                    <p class="text-sm uppercase tracking-wider text-neutral-400">Continuous Updates</p>
+                <div class="bg-white/5 border border-white/10 rounded-2xl p-8 relative overflow-hidden text-center">
+                    <div class="absolute top-4 left-4 text-white"><iconify-icon icon="solar:refresh-linear" width="22"></iconify-icon></div>
+                    <p class="text-4xl font-semibold mb-2 text-center">OTA</p>
+                    <p class="text-sm uppercase tracking-wider text-neutral-400 text-center">Continuous Updates</p>
                 </div>
             </div>
         </div>
@@ -1320,9 +1510,12 @@ a.group\/item:hover .menu-info-bubble {
                     <div class="relative h-[420px]">
                         <img src="assets/phone-key.jpg" class="absolute inset-0 w-full h-full object-cover" alt="Future Tesla phone key access">
                         <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/35 to-transparent"></div>
+                        <a href="#" aria-label="Open Auto entry" class="absolute top-6 right-6 z-20 w-12 h-12 rounded-full bg-white/95 text-neutral-900 flex items-center justify-center shadow-lg hover:scale-105 transition-transform">
+                            <iconify-icon icon="solar:arrow-up-right-linear" width="22"></iconify-icon>
+                        </a>
                         <div class="absolute bottom-0 left-0 right-0 p-6">
                             <h3 class="text-2xl font-semibold text-white">Auto entry</h3>
-                            <p class="text-white/85 mt-2">The car adapts as you approach.</p>
+                            <p class="text-white/85 mt-2">The car adapts as you approach, recognizes you from a distance, and settles into the driving experience before you even open the door.</p>
                         </div>
                     </div>
                 </article>
@@ -1331,9 +1524,12 @@ a.group\/item:hover .menu-info-bubble {
                     <div class="relative h-[420px]">
                         <img src="assets/trip-planner.jpg" class="absolute inset-0 w-full h-full object-cover" alt="Future Tesla trip planner">
                         <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/35 to-transparent"></div>
+                        <a href="#" aria-label="Open Route brain" class="absolute top-6 right-6 z-20 w-12 h-12 rounded-full bg-white/95 text-neutral-900 flex items-center justify-center shadow-lg hover:scale-105 transition-transform">
+                            <iconify-icon icon="solar:arrow-up-right-linear" width="22"></iconify-icon>
+                        </a>
                         <div class="absolute bottom-0 left-0 right-0 p-6">
                             <h3 class="text-2xl font-semibold text-white">Route brain</h3>
-                            <p class="text-white/85 mt-2">Charging and traffic stay in sync.</p>
+                            <p class="text-white/85 mt-2">Charging and traffic stay in sync, with route planning that keeps adjusting in real time so long trips stay calm and predictable.</p>
                         </div>
                     </div>
                 </article>
@@ -1453,6 +1649,38 @@ a.group\/item:hover .menu-info-bubble {
             ]
         };
 
+        // --- Spec image swap utility ---
+        const specImageContainer = document.querySelector('.spec-image-container');
+        const specImageMap = {
+            'model-3': 'assets/model1.jpg',
+            'model-y': 'assets/model2.jpeg',
+            'model-s': 'assets/model3.avif',
+            'model-x': 'assets/model4.jpg'
+        };
+
+        const swapSpecImage = (key) => {
+            if (!specImageContainer) return;
+            const current = specImageContainer.querySelector('#spec-image');
+            const next = document.createElement('img');
+            next.src = specImageMap[key] || specImageMap['model-3'];
+            next.className = 'spec-image-layer';
+            specImageContainer.appendChild(next);
+            requestAnimationFrame(() => {
+                if (current) {
+                    current.style.opacity = '0';
+                }
+                next.style.opacity = '1';
+            });
+            next.addEventListener('transitionend', () => {
+                if (current) {
+                    current.src = next.src;
+                    current.style.opacity = '1';
+                }
+                try { specImageContainer.removeChild(next); } catch (e) {}
+            }, { once: true });
+        };
+
+
         const setNavState = () => {
             navBg.classList.add('bg-white', 'backdrop-blur-xl', 'shadow-sm');
             navLinks.forEach((link) => {
@@ -1519,6 +1747,128 @@ a.group\/item:hover .menu-info-bubble {
 
         setNavState();
 
+        // Wire spec image swapping so buttons change the showcase image too
+        specButtons.forEach((button) => {
+            button.addEventListener('click', () => {
+                const key = button.dataset.spec;
+                renderSpecs(key);
+                swapSpecImage(key);
+            });
+        });
+
+        // Initialize the spec image to model-3's visual (model1 as requested)
+        swapSpecImage('model-3');
+
+        // --- Simple session-based cart logic ---
+        const cartOverlayEl = document.getElementById('cart-overlay');
+        const cartSidebarEl = document.getElementById('cart-sidebar');
+        const cartItemsEl = document.getElementById('cart-items');
+        const cartTotalAmountEl = document.getElementById('cart-total-amount');
+        const cartToggleEl = document.getElementById('cart-toggle');
+        const shopToggleEl = document.getElementById('shop-toggle');
+        const cartCloseEl = document.getElementById('cart-close');
+        const checkoutBtn = document.getElementById('checkout-btn');
+        const seeCartBtn = document.getElementById('see-cart-btn');
+
+        const readCart = () => JSON.parse(sessionStorage.getItem('site_cart') || 'null') || [];
+        const writeCart = (c) => sessionStorage.setItem('site_cart', JSON.stringify(c));
+
+        const formatCurrency = (value) => `$${value.toFixed(2)}`;
+
+        const confirmCartRemoval = (item) => {
+            const firstPrompt = window.confirm(`Remove ${item.title} from your cart?`);
+            if (!firstPrompt) {
+                return false;
+            }
+
+            return window.confirm('Please confirm again: do you really want to remove this item?');
+        };
+
+        const ensureSampleCart = () => {
+            const existing = readCart();
+            if (!existing || existing.length === 0) {
+                const sample = [
+                    { id: 'c1', title: 'Charging Cable', price: 29.99, qty: 1, img: 'assets/tesla9.jpg' },
+                    { id: 'c2', title: 'Tesla Mug', price: 12.50, qty: 2, img: 'assets/tesla11.jpg' },
+                    { id: 'c3', title: 'Screen Protector', price: 49.00, qty: 1, img: 'assets/interrior3.jpg' }
+                ];
+                writeCart(sample);
+            }
+        };
+
+        const renderCart = () => {
+            const items = readCart();
+            cartItemsEl.innerHTML = '';
+            let total = 0;
+
+            if (items.length === 0) {
+                cartItemsEl.innerHTML = '<div class="cart-empty">Your cart is empty.</div>';
+                if (cartTotalAmountEl) {
+                    cartTotalAmountEl.textContent = formatCurrency(0);
+                }
+                return;
+            }
+
+            items.forEach(item => {
+                total += item.price * item.qty;
+                const row = document.createElement('div');
+                row.className = 'cart-item';
+                row.innerHTML = `
+                    <div class="cart-item-media">
+                        <img src="${item.img}" alt="${item.title}">
+                        <button class="remove" data-id="${item.id}" data-title="${item.title}" aria-label="Remove ${item.title}"><iconify-icon icon="solar:trash-bin-trash-linear" width="18"></iconify-icon></button>
+                    </div>
+                    <div class="cart-item-body">
+                        <div class="cart-item-title">${item.title}</div>
+                        <div class="cart-item-meta">
+                            <div>
+                                <div class="cart-item-subtext">Quantity</div>
+                                <div class="text-base font-medium text-neutral-900">${item.qty}</div>
+                            </div>
+                            <div class="text-right">
+                                <div class="cart-item-subtext">Price</div>
+                                <div class="cart-item-amount">${formatCurrency(item.price * item.qty)}</div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                cartItemsEl.appendChild(row);
+            });
+
+            if (cartTotalAmountEl) {
+                cartTotalAmountEl.textContent = formatCurrency(total);
+            }
+
+            cartItemsEl.querySelectorAll('.remove').forEach((btn) => btn.addEventListener('click', () => {
+                const id = btn.dataset.id;
+                const title = btn.dataset.title || 'this item';
+                const item = readCart().find((entry) => entry.id === id);
+
+                if (!item) {
+                    return;
+                }
+
+                if (!confirmCartRemoval(item)) {
+                    return;
+                }
+
+                const updated = readCart().filter((entry) => entry.id !== id);
+                writeCart(updated);
+                renderCart();
+            }));
+        };
+
+        const openCart = () => { cartOverlayEl.classList.add('is-visible'); cartSidebarEl.classList.add('is-open'); cartSidebarEl.setAttribute('aria-hidden','false'); };
+        const closeCart = () => { cartOverlayEl.classList.remove('is-visible'); cartSidebarEl.classList.remove('is-open'); cartSidebarEl.setAttribute('aria-hidden','true'); };
+
+        if (cartToggleEl) cartToggleEl.addEventListener('click', () => { ensureSampleCart(); renderCart(); openCart(); });
+        if (shopToggleEl) shopToggleEl.addEventListener('click', (e) => { e.preventDefault(); ensureSampleCart(); renderCart(); openCart(); });
+        if (cartCloseEl) cartCloseEl.addEventListener('click', closeCart);
+        if (cartOverlayEl) cartOverlayEl.addEventListener('click', closeCart);
+        if (checkoutBtn) checkoutBtn.addEventListener('click', () => alert('Checkout flow is not implemented in this demo.'));
+        if (seeCartBtn) seeCartBtn.addEventListener('click', () => { openCart(); });
+
+
         if (heroLanding) {
             const heroItems = Array.from(heroLanding.querySelectorAll('.hero-landing-item'));
             heroItems.forEach((item, index) => {
@@ -1546,10 +1896,6 @@ a.group\/item:hover .menu-info-bubble {
         });
 
         navbar.addEventListener('mouseleave', closeMenus);
-
-        specButtons.forEach((button) => {
-            button.addEventListener('click', () => renderSpecs(button.dataset.spec));
-        });
 
         renderSpecs('model-3');
 

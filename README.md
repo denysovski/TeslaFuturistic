@@ -1,46 +1,44 @@
-# Tesla Futuristic Landing Page
+# Tesla Futuristic
 
-A modern, responsive Tesla-inspired landing page built with React, Tailwind CSS, and Vite.
+Tesla Futuristic is a single-page, Tesla-inspired showcase built to feel cinematic, premium, and interactive. The experience combines a React shell with a handcrafted HTML page that powers the visual sections, motion, and micro-interactions.
 
-## Features
+## What It Includes
 
-- **Hover-based Navigation** - Interactive menu with smooth transitions
-- **Video Background Hero** - Muted looping video in hero section
-- **Scroll Animations** - Staggered left-to-right reveal effects on scroll
-- **Responsive Design** - Mobile, tablet, and desktop optimized
-- **Modern Styling** - Clean minimalist aesthetic inspired by Tesla's design language
-- **Performance Optimized** - Fast load times with optimized assets
-
-## Sections
-
-- **Hero** - Full-screen video background with key stats
-- **Features** - Why choose Tesla with 4 feature cards
-- **Lineup** - Vehicle showcase with interactive carousel
-- **History** - Timeline of Tesla's key milestones
-- **News** - Latest updates and announcements
-- **CTA** - Call-to-action section for conversions
-- **Footer** - Navigation links and company info
-
-## Live Demo
-
-Visit the live site: [https://yourusername.github.io/TeslaFuturistic/](https://yourusername.github.io/TeslaFuturistic/)
-
-## Local Development
-
-```bash
-cd app
-npm install
-npx vite --port 3000
-```
-
-Then open `http://127.0.0.1:3000/` in your browser.
+- A fixed navigation bar that stays visible while scrolling
+- A polished hero and feature layout with scroll-triggered reveals
+- Interactive vehicle showcase cards with smooth image transitions
+- Ownership and performance stat panels styled for a futuristic dashboard feel
+- Bubble-style info callouts, tooltips, and hover states
+- A lightweight cart drawer and other small UI interactions
 
 ## Technologies
 
-- React 19.2
-- Tailwind CSS 4.2
-- Vite 8.0
-- Custom CSS animations
+- React 19
+- Vite 8
+- Tailwind CSS 4
+- Custom HTML, CSS, and inline JavaScript for the landing page experience
+- GitHub Pages for deployment
+
+## Visual Style
+
+The design leans into a clean Tesla-like palette with high contrast and restrained accents:
+
+- White and off-white surfaces for the main reading areas
+- Deep black and charcoal for structure and contrast
+- Soft gray borders and muted UI chrome
+- Red accent details inspired by Tesla branding
+- Subtle transparency, blur, and smooth fades for motion
+
+## Project Structure
+
+- `app/src/App.jsx` renders the generated page in an iframe
+- `app/public/generated-page.html` is the main page source
+- `app/public/assets/` stores the runtime images and logo assets
+- `app/.github/workflows/deploy.yml` publishes the site to GitHub Pages
+
+## Live Site
+
+[https://denysovski.github.io/TeslaFuturistic/](https://denysovski.github.io/TeslaFuturistic/)
 
 ## License
 
