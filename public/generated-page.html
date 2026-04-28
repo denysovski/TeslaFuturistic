@@ -436,14 +436,67 @@ a.group\/item:hover .menu-info-bubble {
 
 .interior-slide {
     opacity: 0;
-    transform: scale(1.015);
+    transform: scale(1.015) translateX(100px);
     transition: opacity 1.15s cubic-bezier(0.16, 1, 0.3, 1), transform 1.15s cubic-bezier(0.16, 1, 0.3, 1);
     will-change: opacity, transform;
 }
 
 .interior-slide.is-active {
     opacity: 1;
-    transform: scale(1);
+    transform: scale(1) translateX(0);
+}
+
+/* Stacked image gallery */
+.spec-image-container {
+    position: relative;
+}
+
+.spec-image-stack {
+    position: absolute !important;
+    inset: 0 !important;
+    left: 50% !important;
+    width: auto !important;
+    min-width: 100% !important;
+    max-width: none !important;
+    height: 100% !important;
+    object-fit: contain;
+    opacity: 0.26;
+    transform: translate3d(-58%, 18px, -160px) scale(0.88) rotateY(18deg);
+    transform-origin: center center;
+    transition: opacity 0.55s cubic-bezier(0.16, 1, 0.3, 1), transform 0.55s cubic-bezier(0.16, 1, 0.3, 1), filter 0.55s cubic-bezier(0.16, 1, 0.3, 1) !important;
+    filter: saturate(0.8) brightness(0.8);
+    will-change: z-index, opacity, transform, filter;
+}
+
+.spec-image-stack.is-active {
+    opacity: 1 !important;
+    transform: translate3d(-58%, 0, 80px) scale(1.04) rotateY(0deg) !important;
+    filter: saturate(1) brightness(1);
+    z-index: 40 !important;
+}
+
+.spec-image-stack.spec-deck-left {
+    opacity: 0.2;
+    transform: translate3d(-94%, 14px, -60px) scale(0.92) rotateY(18deg);
+    z-index: 30;
+}
+
+.spec-image-stack.spec-deck-right {
+    opacity: 0.2;
+    transform: translate3d(-24%, 14px, -60px) scale(0.92) rotateY(-18deg);
+    z-index: 30;
+}
+
+.spec-image-stack.spec-deck-far-left {
+    opacity: 0.12;
+    transform: translate3d(-120%, 28px, -180px) scale(0.84) rotateY(24deg);
+    z-index: 20;
+}
+
+.spec-image-stack.spec-deck-center {
+    opacity: 1;
+    transform: translate3d(-58%, 0, 80px) scale(1.04) rotateY(0deg);
+    z-index: 40;
 }
 
 .interior-carousel-dot {
@@ -731,14 +784,12 @@ a.group\/item:hover .menu-info-bubble {
     <!-- Hero Section -->
     <section id="hero-landing" class="relative h-screen min-h-[900px] w-full overflow-hidden flex flex-col justify-center items-center">
         <div class="absolute inset-0 z-0">
-            <video class="w-full h-full object-cover pointer-events-none" autoplay muted loop playsinline preload="auto" disablepictureinpicture controlslist="nodownload nofullscreen noremoteplayback">
-                <source src="assets/tesla-commercial.mp4" type="video/mp4">
-            </video>
-            <div class="absolute inset-0 bg-black/20"></div>
-            <div class="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-transparent h-40"></div>
+            <img src="assets/homepage.jpg" class="w-full h-full object-cover object-center pointer-events-none" alt="Tesla Model S landing page image">
+            <div class="absolute inset-0 bg-black/28"></div>
+            <div class="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/12"></div>
         </div>
         
-        <div class="relative z-10 max-w-5xl w-full mx-auto px-6 text-center mt-[-10vh]">
+        <div class="relative z-10 max-w-5xl w-full mx-auto px-6 text-center mt-[-34vh] md:mt-[-38vh] lg:mt-[-42vh]">
             <div class="mask-text active hero-landing-item">
                 <h1 class="text-8xl md:text-[140px] font-semibold tracking-tighter text-white leading-[0.85]">
                     <span>Model S</span>
@@ -749,31 +800,56 @@ a.group\/item:hover .menu-info-bubble {
                     <span>Plaid</span>
                 </p>
             </div>
-            <div class="mask-text active mt-10 delay-200 hero-landing-item">
-                <p class="text-xl md:text-2xl text-white max-w-2xl mx-auto leading-relaxed font-light">
-                    <span>The highest performing sedan ever built. With the longest range and quickest acceleration of any electric vehicle in production.</span>
-                </p>
-            </div>
+            <div class="h-2"></div>
         </div>
         
         <div class="absolute bottom-12 w-full max-w-[1600px] px-8">
             <div class="flex flex-col md:flex-row justify-between items-end gap-10">
-                <div class="grid grid-cols-3 gap-12 md:gap-24 text-white reveal active delay-200">
-                    <div class="group cursor-default hero-landing-item">
-                        <p class="text-4xl md:text-5xl font-semibold tracking-tight group-hover:scale-105 transition-transform origin-left">396<span class="text-xl align-top ml-1">mi</span></p>
-                        <p class="text-xs font-bold tracking-widest uppercase mt-2 text-white/80">Range (EPA)</p>
-                    </div>
-                    <div class="group cursor-default hero-landing-item">
-                        <p class="text-4xl md:text-5xl font-semibold tracking-tight group-hover:scale-105 transition-transform origin-left">1.99<span class="text-xl align-top ml-1">s</span></p>
-                        <p class="text-xs font-bold tracking-widest uppercase mt-2 text-white/80">0-60 mph*</p>
-                    </div>
-                    <div class="group cursor-default hero-landing-item">
-                        <p class="text-4xl md:text-5xl font-semibold tracking-tight group-hover:scale-105 transition-transform origin-left">1,020<span class="text-xl align-top ml-1">hp</span></p>
-                        <p class="text-xs font-bold tracking-widest uppercase mt-2 text-white/80">Peak Power</p>
+                <div class="max-w-4xl w-full reveal active delay-200 mx-auto">
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 md:gap-8 text-neutral-900 w-full max-w-4xl mx-auto">
+                        <div class="group cursor-default hero-landing-item bg-white rounded-full px-10 py-8 shadow-md flex flex-col items-center justify-center text-center relative spec-card" data-spec="range">
+                            <p class="text-5xl md:text-6xl font-semibold tracking-tight text-neutral-900 group-hover:scale-105 transition-transform">396<span class="text-2xl align-top ml-1 text-neutral-900">mi</span></p>
+                            <p class="text-xs font-bold tracking-widest uppercase mt-4 text-neutral-700">Range (EPA)</p>
+                            <div class="spec-tooltip absolute hidden group-hover:block bg-white rounded-2xl shadow-xl p-4 z-50 pointer-events-none" style="width: 280px; top: 50%; left: 50%; transform: translate(-50%, -50%);">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-16 h-16 rounded-full bg-gradient-to-br from-blue-400 to-blue-600 flex items-center justify-center text-white text-lg font-bold flex-none">MI</div>
+                                    <div class="text-left">
+                                        <p class="font-semibold text-sm text-neutral-900">Extended Range</p>
+                                        <p class="text-xs text-neutral-600 mt-1">EPA-rated 396 miles on a single charge for extended long-distance travel</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="group cursor-default hero-landing-item bg-white rounded-full px-10 py-8 shadow-md flex flex-col items-center justify-center text-center relative spec-card" data-spec="acceleration">
+                            <p class="text-5xl md:text-6xl font-semibold tracking-tight text-neutral-900 group-hover:scale-105 transition-transform">1.99<span class="text-2xl align-top ml-1 text-neutral-900">s</span></p>
+                            <p class="text-xs font-bold tracking-widest uppercase mt-4 text-neutral-700">0-60 mph*</p>
+                            <div class="spec-tooltip absolute hidden group-hover:block bg-white rounded-2xl shadow-xl p-4 z-50 pointer-events-none" style="width: 280px; top: 50%; left: 50%; transform: translate(-50%, -50%);">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-16 h-16 rounded-full bg-gradient-to-br from-red-400 to-red-600 flex items-center justify-center text-white text-lg font-bold flex-none">S</div>
+                                    <div class="text-left">
+                                        <p class="font-semibold text-sm text-neutral-900">Extreme Speed</p>
+                                        <p class="text-xs text-neutral-600 mt-1">Tri-motor acceleration delivers 1.99 seconds 0-60 mph—supercar performance</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="group cursor-default hero-landing-item bg-white rounded-full px-10 py-8 shadow-md flex flex-col items-center justify-center text-center relative spec-card" data-spec="power">
+                            <p class="text-5xl md:text-6xl font-semibold tracking-tight text-neutral-900 group-hover:scale-105 transition-transform">1,020<span class="text-2xl align-top ml-1 text-neutral-900">hp</span></p>
+                            <p class="text-xs font-bold tracking-widest uppercase mt-4 text-neutral-700">Peak Power</p>
+                            <div class="spec-tooltip absolute hidden group-hover:block bg-white rounded-2xl shadow-xl p-4 z-50 pointer-events-none" style="width: 280px; top: 50%; left: 50%; transform: translate(-50%, -50%);">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-16 h-16 rounded-full bg-gradient-to-br from-yellow-400 to-yellow-600 flex items-center justify-center text-white text-lg font-bold flex-none">HP</div>
+                                    <div class="text-left">
+                                        <p class="font-semibold text-sm text-neutral-900">Maximum Power</p>
+                                        <p class="text-xs text-neutral-600 mt-1">1,020 peak horsepower unleashes unlimited acceleration and dynamic control</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="flex flex-col sm:flex-row gap-6 w-full md:w-auto reveal active delay-300">
-                    <button class="w-full sm:w-auto px-16 py-4 bg-neutral-900 text-white text-base font-medium rounded-full border-2 border-white hover:bg-neutral-800 transition-all hover:scale-[1.02] shadow-lg shadow-neutral-900/20 hero-landing-item">Order Now</button>
+                    <button class="w-full sm:w-auto px-16 py-4 bg-neutral-900 text-white text-base font-medium rounded-full hover:bg-neutral-800 transition-all hover:scale-[1.02] shadow-lg shadow-neutral-900/20 hero-landing-item">Order Now</button>
                     <button class="w-full sm:w-auto px-16 py-4 bg-white backdrop-blur-xl border border-neutral-200 text-neutral-900 text-base font-medium rounded-full hover:bg-neutral-200 transition-all hover:shadow-lg hero-landing-item">Demo Drive</button>
                 </div>
             </div>
@@ -791,9 +867,9 @@ a.group\/item:hover .menu-info-bubble {
             </div>
         </div>
         <div id="interior-carousel" class="relative w-full h-[80vh] max-w-[1700px] mx-auto rounded-2xl overflow-hidden shadow-2xl border border-white/10 reveal delay-100 group">
-            <img data-interior-slide="0" src="assets/interrior1.jpg" class="interior-slide is-active absolute inset-0 w-full h-full object-cover" alt="Tesla Model S interior panoramic cockpit" onerror="this.src='https://digitalassets.tesla.com/tesla-contents/image/upload/h_1800,w_2880,c_fit,f_auto,q_auto:best/Model-S-Interior-Hero-Desktop-LHD'">
-            <img data-interior-slide="1" src="assets/tesla9.jpg" class="interior-slide absolute inset-0 w-full h-full object-cover" alt="Tesla Model S interior front seats and center console" onerror="this.src='https://digitalassets.tesla.com/tesla-contents/image/upload/h_1800,w_2880,c_fit,f_auto,q_auto:best/Model-S-Interior-Hero-Desktop-LHD'">
-            <img data-interior-slide="2" src="assets/interrior3.jpg" class="interior-slide absolute inset-0 w-full h-full object-cover" alt="Tesla Model S rear and center cabin interior details" onerror="this.src='https://digitalassets.tesla.com/tesla-contents/image/upload/h_1800,w_2880,c_fit,f_auto,q_auto:best/Model-S-Interior-Hero-Desktop-LHD'">
+            <img data-interior-slide="0" src="assets/ModelS_82.jpg" class="interior-slide is-active absolute inset-0 w-full h-full object-cover" alt="Tesla Model S interior panoramic cockpit" onerror="this.src='https://digitalassets.tesla.com/tesla-contents/image/upload/h_1800,w_2880,c_fit,f_auto,q_auto:best/Model-S-Interior-Hero-Desktop-LHD'">
+            <img data-interior-slide="1" src="assets/ModelS_92.jpg" class="interior-slide absolute inset-0 w-full h-full object-cover" alt="Tesla Model S interior front seats and center console" onerror="this.src='https://digitalassets.tesla.com/tesla-contents/image/upload/h_1800,w_2880,c_fit,f_auto,q_auto:best/Model-S-Interior-Hero-Desktop-LHD'">
+            <img data-interior-slide="2" src="assets/ModelS_94.jpg" class="interior-slide absolute inset-0 w-full h-full object-cover" alt="Tesla Model S rear and center cabin interior details" onerror="this.src='https://digitalassets.tesla.com/tesla-contents/image/upload/h_1800,w_2880,c_fit,f_auto,q_auto:best/Model-S-Interior-Hero-Desktop-LHD'">
 
             <div class="absolute top-6 right-6 z-20 flex items-center gap-3">
                 <button class="interior-carousel-dot is-active" type="button" data-interior-dot="0" aria-label="Show interior slide 1"></button>
@@ -856,8 +932,8 @@ a.group\/item:hover .menu-info-bubble {
                 </div>
                 <button class="px-8 py-3 border border-white rounded-full hover:bg-white hover:text-neutral-900 transition-colors">Explore Games</button>
             </div>
-            <div class="relative rounded-2xl overflow-hidden shadow-2xl border border-white/10 h-[600px] reveal delay-200 group">
-                 <img src="assets/tesla-gaming.jpeg" class="absolute inset-0 w-full h-full object-cover" alt="Tesla in-car gaming and entertainment display">
+              <div class="relative rounded-2xl overflow-hidden shadow-2xl border border-white/10 h-[600px] reveal delay-200 group">
+                  <img src="assets/ModelS_89.jpg" class="absolute inset-0 w-full h-full object-cover" alt="Tesla in-car gaming and entertainment display">
                  <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
                  <div class="absolute bottom-8 right-8">
                      <iconify-icon icon="logos:steam" width="48"></iconify-icon>
@@ -884,8 +960,8 @@ a.group\/item:hover .menu-info-bubble {
                  </div>
             </div>
         </div>
-        <div class="relative w-full h-[600px] bg-neutral-100 rounded-3xl overflow-hidden reveal delay-200">
-             <img src="https://digitalassets.tesla.com/tesla-contents/image/upload/h_1800,w_2880,c_fit,f_auto,q_auto:best/Model-S-Safety-Hero-Desktop-Global" class="absolute inset-0 w-full h-full object-cover mix-blend-darken" alt="Tesla Model S safety chassis and occupant protection">
+           <div class="relative w-full h-[600px] bg-neutral-100 rounded-3xl overflow-hidden reveal delay-200">
+               <img src="assets/ModelY_76.jpg" class="absolute inset-0 w-full h-full object-cover mix-blend-darken" alt="Tesla Model Y safety chassis and occupant protection">
                 <div class="absolute top-12 right-12 bg-white/80 backdrop-blur-sm p-6 rounded-2xl shadow-lg max-w-xs">
                  <div class="flex items-start gap-4">
                      <div class="p-2 bg-blue-100 rounded-lg text-blue-600">
@@ -909,6 +985,9 @@ a.group\/item:hover .menu-info-bubble {
                      </div>
                  </div>
         </div>
+        <div class="mt-16 text-center reveal delay-300">
+            <p class="text-2xl md:text-3xl font-medium text-neutral-900">We make sure you get home safe and eco friendly</p>
+        </div>
     </section>
 
     <!-- Bento Grid Showcase -->
@@ -919,8 +998,8 @@ a.group\/item:hover .menu-info-bubble {
             <p class="text-neutral-400 text-base mt-4">Optimized thermal management and lightweight materials reduce energy consumption while improving durability.</p>
         </div>
         <div class="grid grid-cols-1 md:grid-cols-6 gap-6 auto-rows-[340px] md:auto-rows-[400px]">
-            <div class="md:col-span-4 bg-neutral-100 rounded-3xl relative overflow-hidden group reveal">
-                <img src="assets/tesla1.jpg" class="absolute inset-0 w-full h-full object-cover mix-blend-multiply opacity-80 group-hover:scale-105 transition-transform duration-700" alt="Tesla electric chassis architecture">
+                <div class="md:col-span-4 bg-neutral-100 rounded-3xl relative overflow-hidden group reveal">
+                <img src="assets/Model3_72.jpg" class="absolute inset-0 w-full h-full object-cover mix-blend-multiply opacity-80 group-hover:scale-105 transition-transform duration-700" alt="Tesla electric chassis architecture">
                 <div class="absolute inset-0 p-10 flex flex-col justify-end bg-gradient-to-t from-white via-transparent to-transparent">
                     <h3 class="text-3xl font-semibold mb-3 text-neutral-900">Tri-Motor All-Wheel Drive</h3>
                     <p class="text-neutral-700 text-lg max-w-md">Three independent motors with carbon-sleeved rotors maintain peak power output all the way to top speed.</p>
@@ -953,14 +1032,14 @@ a.group\/item:hover .menu-info-bubble {
                      <p class="text-xs text-neutral-300 mt-3">V3 Superchargers deliver up to 250 kW, minimizing stop time and supporting high power delivery across wide temperature ranges.</p>
                  </div>
             </div>
-            <div class="md:col-span-4 bg-white border border-neutral-200 rounded-3xl relative overflow-hidden group reveal delay-300">
+                <div class="md:col-span-4 bg-white border border-neutral-200 rounded-3xl relative overflow-hidden group reveal delay-300">
                  <div class="vision-info-wrap absolute top-6 right-6 z-30">
                      <button aria-label="Vision processing information" class="vision-info-bubble">
                          <iconify-icon icon="solar:info-circle-linear" width="18"></iconify-icon>
                      </button>
                      <div class="vision-info-tooltip">Vision processing uses 8 cameras and neural nets to interpret surroundings in real time.</div>
                  </div>
-                 <div class="absolute inset-0 grid grid-cols-2">
+                <div class="absolute inset-0 grid grid-cols-2">
                      <div class="bg-neutral-50 p-10 flex flex-col justify-center">
                          <span class="text-blue-600 text-xs font-bold uppercase tracking-wider mb-3">Autopilot</span>
                          <h3 class="text-3xl font-semibold mb-4">Vision Processing</h3>
@@ -970,8 +1049,8 @@ a.group\/item:hover .menu-info-bubble {
                              <div class="text-center"><iconify-icon icon="solar:eye-linear" class="text-3xl mb-2"></iconify-icon><span class="block text-xs font-medium">Neural Net</span></div>
                          </div>
                      </div>
-                     <div class="relative h-full bg-black overflow-hidden">
-                        <img src="assets/tesla6.png" class="absolute inset-0 w-full h-full object-cover opacity-60" alt="Tesla vision processing and camera network illustration">
+                     <div class="relative h-full overflow-hidden bg-transparent">
+                        <img src="assets/Model3_71.jpg" class="absolute inset-0 w-full h-full object-cover opacity-100" alt="Tesla vision processing and camera network illustration">
                      </div>
                  </div>
             </div>
@@ -980,19 +1059,24 @@ a.group\/item:hover .menu-info-bubble {
 
     <!-- Specs Table Section -->
     <section class="bg-black text-white py-32 px-8">
-        <div class="max-w-[1400px] mx-auto flex flex-col md:flex-row gap-20">
+        <div class="max-w-[1400px] mx-auto flex flex-col md:flex-row gap-20 md:pl-[200px]">
              <div class="md:w-1/2 reveal">
-                <div class="spec-image-container w-full rounded-2xl mb-8 overflow-hidden relative">
-                    <img id="spec-image" src="assets/model1.jpg" class="w-full rounded-2xl object-cover block" alt="Model showcase image">
+                          <div class="spec-image-container w-full rounded-2xl mb-8 relative bg-black/10" style="height: 460px; perspective: 1400px; overflow: visible; transform: translateX(-150px); width: calc(100% + 150px);">
+                        <img data-model="model-3" src="assets/Model3_98.jpg" class="spec-image-stack spec-deck-slot spec-deck-center is-active" alt="Model 3 showcase" style="z-index: 40;">
+                        <img data-model="model-y" src="assets/ModelY_89.jpg" class="spec-image-stack spec-deck-slot spec-deck-left" alt="Model Y showcase" style="z-index: 30;">
+                        <img data-model="model-s" src="assets/ModelS_75.jpg" class="spec-image-stack spec-deck-slot spec-deck-right" alt="Model S showcase" style="z-index: 20;">
+                        <img data-model="model-x" src="assets/ModelX_97.jpg" class="spec-image-stack spec-deck-slot spec-deck-far-left" alt="Model X showcase" style="z-index: 10;">
                 </div>
-                 <h2 class="text-6xl md:text-7xl font-medium mb-4">Our showcase</h2>
-                 <p class="text-neutral-300 text-lg max-w-xl mb-8">Other Tesla models with real-world specs at a glance.</p>
-                 <div class="flex flex-wrap gap-4 mb-8">
-                    <button class="spec-toggle-button px-8 py-2 border border-white bg-white text-black rounded-full font-medium text-sm is-active" data-spec="model-3">Model 3</button>
-                    <button class="spec-toggle-button px-8 py-2 border border-white/30 rounded-full font-medium text-sm hover:border-white transition-colors" data-spec="model-y">Model Y</button>
-                    <button class="spec-toggle-button px-8 py-2 border border-white/30 rounded-full font-medium text-sm hover:border-white transition-colors" data-spec="model-s">Model S</button>
-                    <button class="spec-toggle-button px-8 py-2 border border-white/30 rounded-full font-medium text-sm hover:border-white transition-colors" data-spec="model-x">Model X</button>
-                 </div>
+                      <div class="text-left max-w-xl ml-[-150px] mt-[75px]">
+                             <h2 class="text-6xl md:text-7xl font-medium mb-4">Our showcase</h2>
+                      <p class="text-neutral-300 text-lg mb-8">Other Tesla models with real-world specs at a glance.</p>
+                      <div class="flex flex-wrap gap-4 mb-8 justify-start">
+                          <button class="spec-toggle-button px-8 py-2 border border-white bg-white text-black rounded-full font-medium text-sm is-active" data-spec="model-3">Model 3</button>
+                          <button class="spec-toggle-button px-8 py-2 border border-white/30 rounded-full font-medium text-sm hover:border-white transition-colors" data-spec="model-y">Model Y</button>
+                          <button class="spec-toggle-button px-8 py-2 border border-white/30 rounded-full font-medium text-sm hover:border-white transition-colors" data-spec="model-s">Model S</button>
+                          <button class="spec-toggle-button px-8 py-2 border border-white/30 rounded-full font-medium text-sm hover:border-white transition-colors" data-spec="model-x">Model X</button>
+                      </div>
+                      </div>
              </div>
              <div class="md:w-1/2 reveal delay-100">
                  <h3 class="text-3xl font-medium mb-8">Specifications</h3>
@@ -1059,11 +1143,11 @@ a.group\/item:hover .menu-info-bubble {
                 </div>
                 <p class="text-neutral-600 text-sm leading-relaxed mb-3">No fob required. Your phone unlocks and starts your car automatically as you approach.</p>
                 <div class="flex flex-wrap gap-2 mb-4">
-                    <span class="px-3 py-1 rounded-full bg-white border border-neutral-200 text-xs text-neutral-500">Bluetooth LE</span>
-                    <span class="px-3 py-1 rounded-full bg-white border border-neutral-200 text-xs text-neutral-500">Passive start</span>
+                    <span class="px-3 py-1 rounded-full bg-black border border-black text-xs text-white">Bluetooth LE</span>
+                    <span class="px-3 py-1 rounded-full bg-black border border-black text-xs text-white">Passive start</span>
                 </div>
-                     <div class="h-60 rounded-2xl overflow-hidden border border-neutral-200 bg-white">
-                     <img src="assets/phone-key.jpg" class="w-full h-full object-cover" alt="Tesla Phone Key feature using smartphone access">
+                    <div class="h-60 rounded-2xl overflow-hidden border border-neutral-200 bg-white">
+                             <img src="assets/Model3_93.jpg" class="w-full h-full object-cover object-center" alt="Tesla Phone Key feature using smartphone access">
                 </div>
                 <div class="absolute right-6 bottom-6 feature-info-bubble"><iconify-icon icon="solar:arrow-right-linear" width="18"></iconify-icon></div>
             </div>
@@ -1075,11 +1159,11 @@ a.group\/item:hover .menu-info-bubble {
                 </div>
                 <p class="text-neutral-600 text-sm leading-relaxed mb-3">Navigate anywhere with automatic charging stops and battery pre-conditioning for faster charging.</p>
                 <div class="flex flex-wrap gap-2 mb-4">
-                    <span class="px-3 py-1 rounded-full bg-white border border-neutral-200 text-xs text-neutral-500">Route brain</span>
-                    <span class="px-3 py-1 rounded-full bg-white border border-neutral-200 text-xs text-neutral-500">Fast stops</span>
+                    <span class="px-3 py-1 rounded-full bg-black border border-black text-xs text-white">Route brain</span>
+                    <span class="px-3 py-1 rounded-full bg-black border border-black text-xs text-white">Fast stops</span>
                 </div>
-                <div class="h-60 rounded-2xl overflow-hidden border border-neutral-200 bg-white">
-                     <img src="assets/trip-planner.jpg" class="w-full h-full object-cover" alt="Tesla Trip Planner navigation and charging route planning feature">
+                 <div class="h-60 rounded-2xl overflow-hidden border border-neutral-200 bg-white">
+                     <img src="assets/trip-planner.jpg" class="w-full h-full object-cover object-center" alt="Tesla Trip Planner navigation and charging route planning feature">
                 </div>
                 <div class="absolute right-6 bottom-6 feature-info-bubble"><iconify-icon icon="solar:arrow-right-linear" width="18"></iconify-icon></div>
             </div>
@@ -1091,11 +1175,11 @@ a.group\/item:hover .menu-info-bubble {
                  </div>
                 <p class="text-neutral-600 text-sm leading-relaxed mb-3">Live camera access from anywhere. Your car monitors its environment when you're away.</p>
                 <div class="flex flex-wrap gap-2 mb-4">
-                    <span class="px-3 py-1 rounded-full bg-white border border-neutral-200 text-xs text-neutral-500">Motion clips</span>
-                    <span class="px-3 py-1 rounded-full bg-white border border-neutral-200 text-xs text-neutral-500">Cloud backup</span>
+                    <span class="px-3 py-1 rounded-full bg-black border border-black text-xs text-white">Motion clips</span>
+                    <span class="px-3 py-1 rounded-full bg-black border border-black text-xs text-white">Cloud backup</span>
                 </div>
                                  <div class="h-60 rounded-2xl overflow-hidden border border-neutral-200 bg-white">
-                     <img src="assets/sentry-mode.webp" class="w-full h-full object-cover" alt="Tesla Sentry Mode vehicle security monitoring feature">
+                                     <img src="assets/sentry-mode.webp" class="w-full h-full object-cover object-center" alt="Tesla Sentry Mode vehicle security monitoring feature">
                 </div>
                                 <div class="absolute right-6 bottom-6 feature-info-bubble"><iconify-icon icon="solar:arrow-right-linear" width="18"></iconify-icon></div>
             </div>
@@ -1111,8 +1195,8 @@ a.group\/item:hover .menu-info-bubble {
         </div>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8 h-[600px]">
             <div class="group relative rounded-3xl overflow-hidden bg-neutral-100 md:col-span-2 reveal energy-swap" id="energy-swap-card">
-                <img src="assets/tesla7.webp" class="absolute inset-0 w-full h-full object-cover energy-swap-default" alt="Tesla home energy ecosystem overview">
-                <img src="assets/home-energy.jpg" class="absolute inset-0 w-full h-full object-cover energy-swap-alt" alt="Tesla home energy installation and storage">
+                <img src="assets/SolarPanels_81.jpg" class="absolute inset-0 w-full h-full object-cover object-center energy-swap-default" alt="Tesla home energy ecosystem overview">
+                <img src="assets/SolarPanels_82.jpg" class="absolute inset-0 w-full h-full object-cover object-center energy-swap-alt" alt="Tesla home energy installation and storage">
                 <div class="absolute top-8 left-8">
                     <h3 class="text-xl font-semibold text-neutral-900 bg-white/80 backdrop-blur-md px-4 py-2 rounded-full inline-block">Home Energy</h3>
                 </div>
@@ -1214,8 +1298,8 @@ a.group\/item:hover .menu-info-bubble {
                     <span class="px-4 py-2 rounded-full bg-white border border-neutral-200 text-sm text-neutral-700">OTA updates</span>
                     <span class="px-4 py-2 rounded-full bg-white border border-neutral-200 text-sm text-neutral-700">Charging network</span>
                 </div>
-                <button class="inline-flex items-center gap-2 text-sm font-medium text-neutral-900 border border-neutral-200 px-4 py-2 rounded-full hover:border-neutral-400 hover:bg-neutral-100 transition-colors">
-                    Compare savings <iconify-icon icon="solar:arrow-right-linear" width="16"></iconify-icon>
+                <button class="inline-flex items-center gap-2 text-sm font-medium bg-black text-white border border-black px-4 py-2 rounded-full hover:bg-neutral-900 transition-colors">
+                    Compare savings <iconify-icon icon="solar:arrow-right-linear" width="16" class="text-white"></iconify-icon>
                 </button>
             </div>
             <div class="bg-white p-10 rounded-3xl shadow-xl border border-neutral-100 reveal delay-200">
@@ -1316,7 +1400,7 @@ a.group\/item:hover .menu-info-bubble {
         <div class="grid grid-cols-1 md:grid-cols-4 grid-rows-2 gap-8 h-auto md:h-[700px]">
             <!-- Hero News Item -->
             <article class="md:col-span-2 md:row-span-2 relative rounded-3xl overflow-hidden group cursor-pointer reveal shadow-sm hover:shadow-2xl transition-all duration-500">
-                <img src="https://images.unsplash.com/photo-1593941707882-a5bba14938c7?q=80&amp;w=2672&amp;auto=format&amp;fit=crop" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" alt="Tesla software update and driving technology news">
+                <img src="assets/Group_45.jpg" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" alt="Tesla software update and driving technology news">
                 <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
                 <div class="absolute bottom-0 left-0 p-10 text-white">
                     <span class="inline-block px-4 py-1.5 bg-blue-600 text-[10px] font-bold uppercase tracking-widest rounded-full mb-6">Software V12</span>
@@ -1369,7 +1453,7 @@ a.group\/item:hover .menu-info-bubble {
         </div>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
             <article class="bg-white border border-neutral-200 rounded-3xl p-10 reveal relative overflow-hidden group shadow-sm hover:shadow-xl transition-shadow duration-150">
-                <div class="absolute top-6 right-6 text-neutral-400 group-hover:text-neutral-900 transition-colors duration-150">
+                <div class="absolute top-6 right-6 text-neutral-400 group-hover:text-neutral-900 transition-colors duration-150 cursor-pointer">
                     <iconify-icon icon="solar:arrow-right-linear" width="24"></iconify-icon>
                 </div>
                 <iconify-icon icon="solar:bolt-linear" class="text-4xl text-red-500 mb-6"></iconify-icon>
@@ -1377,7 +1461,7 @@ a.group\/item:hover .menu-info-bubble {
                 <p class="text-neutral-600 leading-relaxed">Model S Plaid blends lightning acceleration with daily comfort and range, so the car feels sharp without giving up easy long-distance use.</p>
             </article>
             <article class="bg-white border border-neutral-200 rounded-3xl p-10 reveal delay-100 relative overflow-hidden group shadow-sm hover:shadow-xl transition-shadow duration-150">
-                <div class="absolute top-6 right-6 text-neutral-400 group-hover:text-neutral-900 transition-colors duration-150">
+                <div class="absolute top-6 right-6 text-neutral-400 group-hover:text-neutral-900 transition-colors duration-150 cursor-pointer">
                     <iconify-icon icon="solar:arrow-right-linear" width="24"></iconify-icon>
                 </div>
                 <iconify-icon icon="solar:cpu-bolt-linear" class="text-4xl text-indigo-500 mb-6"></iconify-icon>
@@ -1385,7 +1469,7 @@ a.group\/item:hover .menu-info-bubble {
                 <p class="text-neutral-600 leading-relaxed">Frequent OTA updates deliver tangible improvements in navigation, safety features, and day-to-day user experience throughout ownership.</p>
             </article>
             <article class="bg-white border border-neutral-200 rounded-3xl p-10 reveal delay-200 relative overflow-hidden group shadow-sm hover:shadow-xl transition-shadow duration-150">
-                <div class="absolute top-6 right-6 text-neutral-400 group-hover:text-neutral-900 transition-colors duration-150">
+                <div class="absolute top-6 right-6 text-neutral-400 group-hover:text-neutral-900 transition-colors duration-150 cursor-pointer">
                     <iconify-icon icon="solar:arrow-right-linear" width="24"></iconify-icon>
                 </div>
                 <iconify-icon icon="solar:station-linear" class="text-4xl text-green-600 mb-6"></iconify-icon>
@@ -1396,47 +1480,69 @@ a.group\/item:hover .menu-info-bubble {
     </section>
 
     <!-- Long-Term Value Section -->
-    <section class="py-32 px-8 bg-neutral-950 text-white">
+    <section class="py-32 px-8 bg-white text-neutral-900">
         <div class="max-w-[1600px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <div class="reveal">
-                <p class="text-sm uppercase tracking-wider text-neutral-400 mb-4">What do we offer?</p>
+                <p class="text-sm uppercase tracking-wider text-neutral-500 mb-4">What do we offer?</p>
                 <h2 class="text-5xl md:text-6xl font-medium tracking-tight mb-6">Built for Long-Term Value</h2>
-                <p class="text-lg text-neutral-300 leading-relaxed mb-8">Owners get lower upkeep, useful software improvements, and a charging network that keeps the ownership experience simple over time.</p>
-                <div class="flex flex-wrap gap-3 mb-8">
-                    <span class="px-4 py-2 rounded-full bg-white text-black text-sm font-medium border border-neutral-200">Lower upkeep</span>
-                    <span class="px-4 py-2 rounded-full bg-white text-black text-sm font-medium border border-neutral-200">OTA updates</span>
-                    <span class="px-4 py-2 rounded-full bg-white text-black text-sm font-medium border border-neutral-200">Driving ecosystem</span>
-                </div>
-                <div class="mt-6 rounded-3xl bg-white text-neutral-900 border border-neutral-200 p-6 flex items-start gap-4">
-                    <div class="w-11 h-11 rounded-full bg-neutral-900 text-white flex items-center justify-center flex-none mt-0.5">
+                <p class="text-lg text-neutral-600 leading-relaxed mb-8">Owners get lower upkeep, useful software improvements, and a charging network that keeps the ownership experience simple over time.</p>
+                <div class="mt-6 rounded-3xl bg-white text-neutral-900 p-6 max-w-xl">
+                    <div class="w-11 h-11 rounded-full bg-red-600 text-white flex items-center justify-center mb-4">
                         <iconify-icon icon="solar:planet-linear" width="20"></iconify-icon>
                     </div>
-                    <div>
+                    <div class="text-left">
                         <p class="text-sm font-semibold uppercase tracking-wider text-neutral-500 mb-2">Worldwide network</p>
                         <p class="text-base leading-relaxed">We collaborated with 34 international companies, worldwide network.</p>
                     </div>
                 </div>
+                <div class="grid grid-cols-2 gap-5 mt-8 max-w-2xl">
+                    <div class="bg-transparent border border-neutral-300 opacity-40 rounded-2xl p-8 relative overflow-hidden text-center text-neutral-900">
+                        <div class="absolute top-4 left-4 text-neutral-400"><iconify-icon icon="solar:wallet-money-linear" width="22"></iconify-icon></div>
+                        <p class="text-4xl font-semibold mb-2 text-center">Aluminum</p>
+                        <p class="text-sm uppercase tracking-wider text-neutral-500 text-center">Lightweight Body</p>
+                    </div>
+                    <div class="bg-transparent border border-neutral-300 opacity-40 rounded-2xl p-8 relative overflow-hidden text-center text-neutral-900">
+                        <div class="absolute top-4 left-4 text-neutral-400"><iconify-icon icon="solar:bolt-linear" width="22"></iconify-icon></div>
+                        <p class="text-4xl font-semibold mb-2 text-center">Eco</p>
+                        <p class="text-sm uppercase tracking-wider text-neutral-500 text-center">Low Emissions</p>
+                    </div>
+                    <div class="bg-transparent border border-neutral-300 opacity-40 rounded-2xl p-8 relative overflow-hidden text-center text-neutral-900">
+                        <div class="absolute top-4 left-4 text-neutral-400"><iconify-icon icon="solar:battery-charge-linear" width="22"></iconify-icon></div>
+                        <p class="text-4xl font-semibold mb-2 text-center">OTA</p>
+                        <p class="text-sm uppercase tracking-wider text-neutral-500 text-center">Updates</p>
+                    </div>
+                    <div class="bg-transparent border border-neutral-300 opacity-40 rounded-2xl p-8 relative overflow-hidden text-center text-neutral-900">
+                        <div class="absolute top-4 left-4 text-neutral-400"><iconify-icon icon="solar:refresh-linear" width="22"></iconify-icon></div>
+                        <p class="text-4xl font-semibold mb-2 text-center">Durable</p>
+                        <p class="text-sm uppercase tracking-wider text-neutral-500 text-center">Built Long-Term</p>
+                    </div>
+                </div>
             </div>
-            <div class="grid grid-cols-2 gap-5 reveal delay-100">
-                <div class="bg-white/5 border border-white/10 rounded-2xl p-8 relative overflow-hidden text-center">
-                    <div class="absolute top-4 left-4 text-white"><iconify-icon icon="solar:wallet-money-linear" width="22"></iconify-icon></div>
-                    <p class="text-4xl font-semibold mb-2 text-center">396 mi</p>
-                    <p class="text-sm uppercase tracking-wider text-neutral-400 text-center">EPA Range</p>
-                </div>
-                <div class="bg-white/5 border border-white/10 rounded-2xl p-8 relative overflow-hidden text-center">
-                    <div class="absolute top-4 left-4 text-white"><iconify-icon icon="solar:bolt-linear" width="22"></iconify-icon></div>
-                    <p class="text-4xl font-semibold mb-2 text-center">1.99 s</p>
-                    <p class="text-sm uppercase tracking-wider text-neutral-400 text-center">0-60 mph</p>
-                </div>
-                <div class="bg-white/5 border border-white/10 rounded-2xl p-8 relative overflow-hidden text-center">
-                    <div class="absolute top-4 left-4 text-white"><iconify-icon icon="solar:battery-charge-linear" width="22"></iconify-icon></div>
-                    <p class="text-4xl font-semibold mb-2 text-center">250 kW</p>
-                    <p class="text-sm uppercase tracking-wider text-neutral-400 text-center">Max Charging</p>
-                </div>
-                <div class="bg-white/5 border border-white/10 rounded-2xl p-8 relative overflow-hidden text-center">
-                    <div class="absolute top-4 left-4 text-white"><iconify-icon icon="solar:refresh-linear" width="22"></iconify-icon></div>
-                    <p class="text-4xl font-semibold mb-2 text-center">OTA</p>
-                    <p class="text-sm uppercase tracking-wider text-neutral-400 text-center">Continuous Updates</p>
+            <div class="reveal delay-100">
+                <div class="relative h-[720px] overflow-hidden rounded-3xl">
+                    <img src="assets/Group_60.jpg" class="absolute inset-0 w-full h-full object-cover object-center" alt="Tesla long-term value image">
+                    <div class="absolute top-6 left-6 right-6 flex items-start justify-between gap-4 text-white">
+                        <div class="rounded-full bg-black/40 backdrop-blur-md border border-white/15 px-4 py-2 max-w-[220px]">
+                            <p class="text-[10px] uppercase tracking-[0.3em] text-white/60 mb-1">Model / Year</p>
+                            <p class="text-sm font-semibold leading-tight">Model S Plaid · 2026</p>
+                        </div>
+                        <div class="rounded-full bg-black/40 backdrop-blur-md border border-white/15 px-4 py-3 flex items-center gap-3 max-w-[260px]">
+                            <div class="w-10 h-10 rounded-full bg-white/15 border border-white/25 flex items-center justify-center overflow-hidden flex-none">
+                                <span class="text-sm font-semibold tracking-wide">AC</span>
+                            </div>
+                            <div class="min-w-0">
+                                <div class="flex items-center gap-2 text-sm font-medium leading-none">
+                                    <span class="truncate">Alex Carter</span>
+                                    <iconify-icon icon="solar:camera-linear" width="16" class="flex-none"></iconify-icon>
+                                </div>
+                                <p class="text-xs text-white/65 mt-1">Photo author</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="absolute bottom-6 left-6 text-white z-10">
+                        <p class="text-xs uppercase tracking-[0.35em] text-white/70 mb-2">Car name</p>
+                        <p class="text-3xl md:text-4xl font-semibold tracking-tight">Model S Plaid</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -1508,9 +1614,9 @@ a.group\/item:hover .menu-info-bubble {
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <article class="future-card-top rounded-3xl overflow-hidden bg-neutral-50 border border-neutral-200 shadow-sm reveal">
                     <div class="relative h-[420px]">
-                        <img src="assets/phone-key.jpg" class="absolute inset-0 w-full h-full object-cover" alt="Future Tesla phone key access">
+                        <img src="assets/Model3_84.jpg" class="absolute inset-0 w-full h-full object-cover" alt="Future Tesla phone key access">
                         <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/35 to-transparent"></div>
-                        <a href="#" aria-label="Open Auto entry" class="absolute top-6 right-6 z-20 w-12 h-12 rounded-full bg-white/95 text-neutral-900 flex items-center justify-center shadow-lg hover:scale-105 transition-transform">
+                        <a href="#" aria-label="Open Auto entry" class="absolute top-6 right-6 z-20 w-12 h-12 rounded-full bg-black text-white flex items-center justify-center shadow-lg hover:scale-105 transition-transform">
                             <iconify-icon icon="solar:arrow-up-right-linear" width="22"></iconify-icon>
                         </a>
                         <div class="absolute bottom-0 left-0 right-0 p-6">
@@ -1522,9 +1628,9 @@ a.group\/item:hover .menu-info-bubble {
 
                 <article class="future-card-top rounded-3xl overflow-hidden bg-neutral-50 border border-neutral-200 shadow-sm reveal delay-100">
                     <div class="relative h-[420px]">
-                        <img src="assets/trip-planner.jpg" class="absolute inset-0 w-full h-full object-cover" alt="Future Tesla trip planner">
+                        <img src="assets/Model3_90.jpg" class="absolute inset-0 w-full h-full object-cover" alt="Future Tesla trip planner">
                         <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/35 to-transparent"></div>
-                        <a href="#" aria-label="Open Route brain" class="absolute top-6 right-6 z-20 w-12 h-12 rounded-full bg-white/95 text-neutral-900 flex items-center justify-center shadow-lg hover:scale-105 transition-transform">
+                        <a href="#" aria-label="Open Route brain" class="absolute top-6 right-6 z-20 w-12 h-12 rounded-full bg-black text-white flex items-center justify-center shadow-lg hover:scale-105 transition-transform">
                             <iconify-icon icon="solar:arrow-up-right-linear" width="22"></iconify-icon>
                         </a>
                         <div class="absolute bottom-0 left-0 right-0 p-6">
@@ -1536,14 +1642,14 @@ a.group\/item:hover .menu-info-bubble {
 
                 <article class="future-card fade-bottom-strong rounded-3xl overflow-hidden bg-neutral-50 border border-neutral-200 shadow-sm reveal delay-200">
                     <div class="relative h-[420px]">
-                        <img src="assets/sentry-mode.webp" class="absolute inset-0 w-full h-full object-cover" alt="Future Tesla Sentry Mode">
+                        <img src="assets/Model3_89.jpg" class="absolute inset-0 w-full h-full object-cover" alt="Future Tesla Sentry Mode">
                         <div class="absolute inset-0 bg-gradient-to-t from-white via-transparent to-transparent"></div>
                     </div>
                 </article>
 
                 <article class="future-card fade-bottom-strong rounded-3xl overflow-hidden bg-neutral-50 border border-neutral-200 shadow-sm reveal delay-300">
                     <div class="relative h-[420px]">
-                        <img src="assets/home-energy.jpg" class="absolute inset-0 w-full h-full object-cover" alt="Future Tesla home energy">
+                        <img src="assets/Model3_83.jpg" class="absolute inset-0 w-full h-full object-cover" alt="Future Tesla home energy">
                         <div class="absolute inset-0 bg-gradient-to-t from-white via-transparent to-transparent"></div>
                     </div>
                 </article>
@@ -1649,35 +1755,24 @@ a.group\/item:hover .menu-info-bubble {
             ]
         };
 
-        // --- Spec image swap utility ---
-        const specImageContainer = document.querySelector('.spec-image-container');
-        const specImageMap = {
-            'model-3': 'assets/model1.jpg',
-            'model-y': 'assets/model2.jpeg',
-            'model-s': 'assets/model3.avif',
-            'model-x': 'assets/model4.jpg'
-        };
+        // --- Spec image swap utility with stacked card effect ---
+        const specImages = document.querySelectorAll('.spec-image-stack');
 
-        const swapSpecImage = (key) => {
-            if (!specImageContainer) return;
-            const current = specImageContainer.querySelector('#spec-image');
-            const next = document.createElement('img');
-            next.src = specImageMap[key] || specImageMap['model-3'];
-            next.className = 'spec-image-layer';
-            specImageContainer.appendChild(next);
-            requestAnimationFrame(() => {
-                if (current) {
-                    current.style.opacity = '0';
+        const renderSpecDeck = (key) => {
+            const images = Array.from(specImages);
+            const activeIndex = images.findIndex((img) => img.dataset.model === key);
+
+            images.forEach((img, index) => {
+                img.classList.remove('is-active', 'spec-deck-center', 'spec-deck-left', 'spec-deck-right', 'spec-deck-far-left');
+                const rawOffset = index - activeIndex;
+                const distance = ((rawOffset + images.length / 2) % images.length) - images.length / 2;
+                const positionClass = distance === 0 ? 'spec-deck-center' : distance === -1 ? 'spec-deck-left' : distance === 1 ? 'spec-deck-right' : 'spec-deck-far-left';
+                img.classList.add(positionClass);
+                if (distance === 0) {
+                    img.classList.add('is-active');
                 }
-                next.style.opacity = '1';
+                img.style.zIndex = distance === 0 ? '40' : distance === -1 || distance === 1 ? '30' : '20';
             });
-            next.addEventListener('transitionend', () => {
-                if (current) {
-                    current.src = next.src;
-                    current.style.opacity = '1';
-                }
-                try { specImageContainer.removeChild(next); } catch (e) {}
-            }, { once: true });
         };
 
 
@@ -1746,18 +1841,23 @@ a.group\/item:hover .menu-info-bubble {
         };
 
         setNavState();
+        
+        // Initialize first model as active
+        if (specImages.length > 0) {
+            renderSpecDeck('model-3');
+        }
 
         // Wire spec image swapping so buttons change the showcase image too
         specButtons.forEach((button) => {
             button.addEventListener('click', () => {
                 const key = button.dataset.spec;
                 renderSpecs(key);
-                swapSpecImage(key);
+                renderSpecDeck(key);
             });
         });
 
         // Initialize the spec image to model-3's visual (model1 as requested)
-        swapSpecImage('model-3');
+        renderSpecDeck('model-3');
 
         // --- Simple session-based cart logic ---
         const cartOverlayEl = document.getElementById('cart-overlay');
@@ -1999,8 +2099,20 @@ a.group\/item:hover .menu-info-bubble {
                 dot.addEventListener('click', () => renderInteriorSlide(index, true));
             });
 
-            renderInteriorSlide(0, false);
-            startInteriorTimer();
+            // Start with Calm ambient slide (index 1) by default
+            renderInteriorSlide(1, false);
+            
+            // Only start auto-carousel when the carousel section is scrolled into view
+            const carouselObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        startInteriorTimer();
+                        carouselObserver.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.2 });
+            
+            carouselObserver.observe(interiorCarousel);
         }
 
         if (zipInput && zipTooltip) {
@@ -2048,6 +2160,32 @@ a.group\/item:hover .menu-info-bubble {
         }, observerOptions);
 
         document.querySelectorAll('.reveal, .mask-text').forEach(el => observer.observe(el));
+
+        // Cursor-tracking tooltips for spec cards
+        document.querySelectorAll('.spec-card').forEach(card => {
+            const tooltip = card.querySelector('.spec-tooltip');
+            if (!tooltip) return;
+
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                
+                // Smooth transition to cursor position
+                tooltip.style.transition = 'all 0.15s ease-out';
+                tooltip.style.left = x + 'px';
+                tooltip.style.top = y + 'px';
+                tooltip.style.transform = 'translate(-50%, -50%)';
+            });
+
+            card.addEventListener('mouseenter', () => {
+                tooltip.classList.remove('hidden');
+            });
+
+            card.addEventListener('mouseleave', () => {
+                tooltip.classList.add('hidden');
+            });
+        });
     </script>
 
 </body></html>
