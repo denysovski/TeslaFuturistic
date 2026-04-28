@@ -57,6 +57,47 @@ body::-webkit-scrollbar {
     opacity: 1;
 }
 
+.hero-cta-primary,
+.hero-cta-secondary {
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+    transform: translateZ(0);
+}
+
+.hero-cta-primary::before,
+.hero-cta-secondary::before {
+    content: '';
+    position: absolute;
+    inset: -40% -20%;
+    border-radius: inherit;
+    opacity: 0;
+    transition: opacity 240ms ease, transform 360ms cubic-bezier(0.16, 1, 0.3, 1);
+    pointer-events: none;
+    z-index: -1;
+}
+
+.hero-cta-primary::before {
+    background: linear-gradient(135deg, rgba(255,255,255,0.28), rgba(255,255,255,0.05));
+    transform: translate3d(-12px, 16px, 0) scale(0.92);
+}
+
+.hero-cta-secondary::before {
+    background: radial-gradient(circle at center, rgba(17,24,39,0.08), rgba(17,24,39,0));
+    transform: scale(0.9);
+}
+
+.hero-cta-primary:hover::before,
+.hero-cta-secondary:hover::before {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1);
+}
+
+.hero-cta-primary:hover,
+.hero-cta-secondary:hover {
+    box-shadow: 0 22px 50px rgba(15, 23, 42, 0.16);
+}
+
 /* Text Reveal Mask */
 .mask-text {
     overflow: hidden;
@@ -860,8 +901,8 @@ a.group\/item:hover .menu-info-bubble {
                     </div>
                 </div>
                 <div class="flex flex-col sm:flex-row gap-6 w-full md:w-auto reveal active delay-300">
-                    <button class="w-full sm:w-auto px-16 py-4 bg-neutral-900 text-white text-base font-medium rounded-full hover:bg-neutral-800 hover:-translate-y-0.5 hover:scale-[1.03] transition-all duration-300 shadow-lg shadow-neutral-900/20 hover:shadow-2xl hover:shadow-neutral-900/25 hero-landing-item">Order Now</button>
-                    <button class="w-full sm:w-auto px-16 py-4 bg-white backdrop-blur-xl border border-neutral-200 text-neutral-900 text-base font-medium rounded-full hover:bg-neutral-50 hover:-translate-y-0.5 hover:scale-[1.03] transition-all duration-300 shadow-sm hover:shadow-xl hover:shadow-neutral-200/80 hero-landing-item">Demo Drive</button>
+                    <button class="hero-cta-primary w-full sm:w-auto px-16 py-4 bg-neutral-900 text-white text-base font-medium rounded-full hover:bg-neutral-800 hover:-translate-y-0.5 hover:scale-[1.03] transition-all duration-300 shadow-lg shadow-neutral-900/20 hover:shadow-2xl hover:shadow-neutral-900/25 hero-landing-item">Order Now</button>
+                    <button class="hero-cta-secondary w-full sm:w-auto px-16 py-4 bg-white backdrop-blur-xl border border-neutral-200 text-neutral-900 text-base font-medium rounded-full hover:bg-neutral-50 hover:-translate-y-0.5 hover:scale-[1.03] transition-all duration-300 shadow-sm hover:shadow-xl hover:shadow-neutral-200/80 hero-landing-item">Demo Drive</button>
                 </div>
             </div>
         </div>
@@ -2208,7 +2249,7 @@ a.group\/item:hover .menu-info-bubble {
                 const y = e.clientY - rect.top;
                 const offsetX = 120;
                 const offsetY = 120;
-                const verticalPull = (y - rect.height / 2) * 0.55;
+                const verticalPull = (y - rect.height / 2) * 0.95;
                 targetX = x + offsetX;
                 targetY = y - offsetY + verticalPull;
 
