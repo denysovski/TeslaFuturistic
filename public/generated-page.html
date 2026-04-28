@@ -48,7 +48,7 @@ body::-webkit-scrollbar {
 
 .spec-tooltip {
     opacity: 0;
-    transition: opacity 220ms ease-out, transform 220ms cubic-bezier(0.16, 1, 0.3, 1), left 220ms cubic-bezier(0.16, 1, 0.3, 1), top 220ms cubic-bezier(0.16, 1, 0.3, 1);
+    transition: opacity 220ms ease-out, transform 220ms cubic-bezier(0.16, 1, 0.3, 1), left 120ms linear, top 120ms linear;
     will-change: opacity, transform, left, top;
     transform-origin: left top;
 }
@@ -860,8 +860,8 @@ a.group\/item:hover .menu-info-bubble {
                     </div>
                 </div>
                 <div class="flex flex-col sm:flex-row gap-6 w-full md:w-auto reveal active delay-300">
-                    <button class="w-full sm:w-auto px-16 py-4 bg-neutral-900 text-white text-base font-medium rounded-full hover:bg-neutral-800 transition-all hover:scale-[1.02] shadow-lg shadow-neutral-900/20 hero-landing-item">Order Now</button>
-                    <button class="w-full sm:w-auto px-16 py-4 bg-white backdrop-blur-xl border border-neutral-200 text-neutral-900 text-base font-medium rounded-full hover:bg-neutral-200 transition-all hover:shadow-lg hero-landing-item">Demo Drive</button>
+                    <button class="w-full sm:w-auto px-16 py-4 bg-neutral-900 text-white text-base font-medium rounded-full hover:bg-neutral-800 hover:-translate-y-0.5 hover:scale-[1.03] transition-all duration-300 shadow-lg shadow-neutral-900/20 hover:shadow-2xl hover:shadow-neutral-900/25 hero-landing-item">Order Now</button>
+                    <button class="w-full sm:w-auto px-16 py-4 bg-white backdrop-blur-xl border border-neutral-200 text-neutral-900 text-base font-medium rounded-full hover:bg-neutral-50 hover:-translate-y-0.5 hover:scale-[1.03] transition-all duration-300 shadow-sm hover:shadow-xl hover:shadow-neutral-200/80 hero-landing-item">Demo Drive</button>
                 </div>
             </div>
         </div>
@@ -2177,8 +2177,27 @@ a.group\/item:hover .menu-info-bubble {
             const tooltip = card.querySelector('.spec-tooltip');
             if (!tooltip) return;
 
+            let animationFrame = null;
+            let targetX = 0;
+            let targetY = 0;
+            let currentX = 0;
+            let currentY = 0;
+
+            const animateTooltip = () => {
+                currentX += (targetX - currentX) * 0.18;
+                currentY += (targetY - currentY) * 0.18;
+                tooltip.style.left = currentX + 'px';
+                tooltip.style.top = currentY + 'px';
+
+                if (Math.abs(targetX - currentX) > 0.5 || Math.abs(targetY - currentY) > 0.5) {
+                    animationFrame = requestAnimationFrame(animateTooltip);
+                } else {
+                    animationFrame = null;
+                }
+            };
+
             card.addEventListener('mouseenter', () => {
-                card.style.zIndex = '70';
+                card.style.zIndex = '90';
                 tooltip.classList.add('is-visible');
                 tooltip.style.transform = 'translate(-50%, -50%) scale(1)';
             });
@@ -2189,17 +2208,26 @@ a.group\/item:hover .menu-info-bubble {
                 const y = e.clientY - rect.top;
                 const offsetX = 120;
                 const offsetY = 120;
-                const tooltipX = Math.min(rect.width - 24, x + offsetX);
-                const tooltipY = Math.max(24, y - offsetY);
+                targetX = Math.min(rect.width - 24, x + offsetX);
+                targetY = Math.max(24, y - offsetY);
 
-                tooltip.style.left = tooltipX + 'px';
-                tooltip.style.top = tooltipY + 'px';
+                if (!animationFrame) {
+                    currentX = targetX;
+                    currentY = targetY;
+                    tooltip.style.left = currentX + 'px';
+                    tooltip.style.top = currentY + 'px';
+                    animationFrame = requestAnimationFrame(animateTooltip);
+                }
             });
 
             card.addEventListener('mouseleave', () => {
                 card.style.zIndex = '';
                 tooltip.classList.remove('is-visible');
                 tooltip.style.transform = 'translate(-50%, -50%) scale(0.98)';
+                if (animationFrame) {
+                    cancelAnimationFrame(animationFrame);
+                    animationFrame = null;
+                }
             });
         });
     </script>
