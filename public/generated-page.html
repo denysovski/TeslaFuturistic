@@ -2208,8 +2208,9 @@ a.group\/item:hover .menu-info-bubble {
                 const y = e.clientY - rect.top;
                 const offsetX = 120;
                 const offsetY = 120;
-                targetX = Math.min(rect.width - 24, x + offsetX);
-                targetY = Math.max(24, y - offsetY);
+                const verticalPull = (y - rect.height / 2) * 0.55;
+                targetX = x + offsetX;
+                targetY = y - offsetY + verticalPull;
 
                 if (!animationFrame) {
                     currentX = targetX;
