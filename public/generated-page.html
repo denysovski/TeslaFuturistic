@@ -10,6 +10,8 @@
 <title>Tesla Model S Plaid | Electric Performance and Energy Solutions</title>
 <script src="https://cdn.tailwindcss.com"></script>
 <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600&amp;display=swap" rel="stylesheet">
@@ -55,6 +57,13 @@ body::-webkit-scrollbar {
 
 .spec-tooltip.is-visible {
     opacity: 1;
+}
+
+.hero-sequence-canvas {
+    display: block;
+    width: 100%;
+    height: 100%;
+    background: #050505;
 }
 
 .hero-cta-primary,
@@ -837,22 +846,15 @@ a.group\/item:hover .menu-info-bubble {
     <section id="hero-landing" class="relative h-screen min-h-[900px] w-full overflow-hidden flex flex-col justify-center items-center">
         <div class="absolute inset-0 z-0">
             <img src="assets/homepage.jpg" class="w-full h-full object-cover object-center pointer-events-none" alt="Tesla Model S landing page image">
+            <canvas id="hero-sequence" class="hero-sequence-canvas hidden pointer-events-none" aria-hidden="true"></canvas>
             <div class="absolute inset-0 bg-black/28"></div>
             <div class="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/12"></div>
         </div>
         
-        <div class="relative z-10 max-w-5xl w-full mx-auto px-6 text-center mt-[-34vh] md:mt-[-38vh] lg:mt-[-42vh]">
-            <div class="mask-text active hero-landing-item">
-                <h1 class="text-8xl md:text-[140px] font-semibold tracking-tighter text-white leading-[0.85]">
-                    <span style="color: #151623;">Model S</span>
-                </h1>
+        <div class="relative z-10 w-full px-6 flex justify-center mt-[-34vh] md:mt-[-38vh] lg:mt-[-42vh]" style="transform: translateY(-70px);">
+            <div class="hero-landing-item max-w-[520px] w-full flex justify-center">
+                <img src="assets/tesla-logo-full.png" style="height: 150px; width: auto;" class="object-contain drop-shadow-[0_18px_38px_rgba(0,0,0,0.28)]" alt="Tesla logo">
             </div>
-            <div class="mask-text active mt-4 delay-100 hero-landing-item">
-                <p class="text-5xl md:text-7xl font-medium text-white tracking-tight">
-                    <span>Plaid</span>
-                </p>
-            </div>
-            <div class="h-2"></div>
         </div>
         
         <div class="absolute bottom-12 w-full max-w-[1600px] px-8">
@@ -900,9 +902,14 @@ a.group\/item:hover .menu-info-bubble {
                         </div>
                     </div>
                 </div>
-                <div class="flex flex-col sm:flex-row gap-6 w-full md:w-auto reveal active delay-300">
+                <div class="flex flex-col items-center md:items-end gap-4 w-full md:w-auto reveal active delay-300" style="transform: translateY(-30px);">
+                    <div class="text-center md:text-right">
+                        <p class="text-sm md:text-base font-medium tracking-[0.42em] uppercase text-white/92">Model S Plaid</p>
+                    </div>
+                    <div class="flex flex-col sm:flex-row gap-6 w-full md:w-auto">
                     <button class="hero-cta-primary w-full sm:w-auto px-16 py-4 bg-neutral-900 text-white text-base font-medium rounded-full hover:bg-neutral-800 hover:-translate-y-0.5 hover:scale-[1.03] transition-all duration-300 shadow-lg shadow-neutral-900/20 hover:shadow-2xl hover:shadow-neutral-900/25 hero-landing-item">Order Now</button>
                     <button class="hero-cta-secondary w-full sm:w-auto px-16 py-4 bg-white backdrop-blur-xl border border-neutral-200 text-neutral-900 text-base font-medium rounded-full hover:bg-neutral-50 hover:-translate-y-0.5 hover:scale-[1.03] transition-all duration-300 shadow-sm hover:shadow-xl hover:shadow-neutral-200/80 hero-landing-item">Demo Drive</button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -2023,6 +2030,141 @@ a.group\/item:hover .menu-info-bubble {
 
         if (heroLanding) {
             const heroItems = Array.from(heroLanding.querySelectorAll('.hero-landing-item'));
+            const heroSequenceCanvas = document.getElementById('hero-sequence');
+            const heroSequenceContext = heroSequenceCanvas ? heroSequenceCanvas.getContext('2d') : null;
+            const heroSequenceFrameCount = 61;
+            const heroSequenceFrames = Array.from({ length: heroSequenceFrameCount }, (_, index) => {
+                const frame = new Image();
+                frame.src = `assets/landing-animation/video-tesla_${String(index + 1).padStart(3, '0')}.png`;
+                return frame;
+            });
+            const heroSequenceState = { frame: 0 };
+            let heroSequenceTargetFrame = 0;
+            let heroSequenceCurrentFrame = 0;
+            let heroSequenceLastFrame = -1;
+            let heroSequenceFrameRaf = null;
+            let heroSequenceReadyCount = 0;
+
+            if (window.gsap && window.ScrollTrigger) {
+                gsap.registerPlugin(ScrollTrigger);
+            }
+
+            const drawHeroSequenceFrame = (frameIndex) => {
+                if (!heroSequenceCanvas || !heroSequenceContext) {
+                    return;
+                }
+
+                const frame = heroSequenceFrames[frameIndex];
+                if (!frame || !frame.complete || !frame.naturalWidth) {
+                    return;
+                }
+
+                const width = heroSequenceCanvas.clientWidth || heroLanding.clientWidth;
+                const height = heroSequenceCanvas.clientHeight || heroLanding.clientHeight;
+                const dpr = window.devicePixelRatio || 1;
+
+                heroSequenceCanvas.width = Math.round(width * dpr);
+                heroSequenceCanvas.height = Math.round(height * dpr);
+                heroSequenceContext.setTransform(dpr, 0, 0, dpr, 0, 0);
+                heroSequenceContext.clearRect(0, 0, width, height);
+
+                const scale = Math.max(width / frame.naturalWidth, height / frame.naturalHeight);
+                const drawWidth = frame.naturalWidth * scale;
+                const drawHeight = frame.naturalHeight * scale;
+                const offsetX = (width - drawWidth) / 2;
+                const offsetY = (height - drawHeight) / 2;
+
+                heroSequenceContext.drawImage(frame, offsetX, offsetY, drawWidth, drawHeight);
+            };
+
+            const resizeHeroSequenceCanvas = () => {
+                if (!heroSequenceCanvas || !heroSequenceContext) {
+                    return;
+                }
+
+                const width = heroSequenceCanvas.clientWidth || heroLanding.clientWidth;
+                const height = heroSequenceCanvas.clientHeight || heroLanding.clientHeight;
+                const dpr = window.devicePixelRatio || 1;
+
+                heroSequenceCanvas.width = Math.round(width * dpr);
+                heroSequenceCanvas.height = Math.round(height * dpr);
+                heroSequenceContext.setTransform(dpr, 0, 0, dpr, 0, 0);
+                drawHeroSequenceFrame(Math.round(heroSequenceCurrentFrame));
+            };
+
+            const renderHeroSequence = () => {
+                heroSequenceFrameRaf = null;
+
+                heroSequenceCurrentFrame += (heroSequenceTargetFrame - heroSequenceCurrentFrame) * 0.12;
+                if (Math.abs(heroSequenceTargetFrame - heroSequenceCurrentFrame) < 0.01) {
+                    heroSequenceCurrentFrame = heroSequenceTargetFrame;
+                }
+
+                const frameIndex = Math.max(0, Math.min(heroSequenceFrameCount - 1, Math.round(heroSequenceCurrentFrame)));
+                if (frameIndex !== heroSequenceLastFrame) {
+                    heroSequenceLastFrame = frameIndex;
+                    drawHeroSequenceFrame(frameIndex);
+                }
+
+                if (heroSequenceCurrentFrame !== heroSequenceTargetFrame) {
+                    heroSequenceFrameRaf = window.requestAnimationFrame(renderHeroSequence);
+                }
+            };
+
+            const queueHeroSequenceRender = () => {
+                if (!heroSequenceFrameRaf) {
+                    heroSequenceFrameRaf = window.requestAnimationFrame(renderHeroSequence);
+                }
+            };
+
+            const updateHeroSequenceTarget = () => {
+                if (!window.ScrollTrigger) {
+                    heroSequenceTargetFrame = 0;
+                    return;
+                }
+
+                const trigger = ScrollTrigger.getById('hero-sequence');
+                if (!trigger) {
+                    heroSequenceTargetFrame = 0;
+                    return;
+                }
+
+                heroSequenceTargetFrame = trigger.progress * (heroSequenceFrameCount - 1);
+                queueHeroSequenceRender();
+            };
+
+            heroSequenceFrames.forEach((frame, index) => {
+                frame.addEventListener('load', () => {
+                    heroSequenceReadyCount += 1;
+                    if (index === 0) {
+                        resizeHeroSequenceCanvas();
+                    }
+                    if (heroSequenceReadyCount === heroSequenceFrameCount && window.ScrollTrigger) {
+                        ScrollTrigger.refresh();
+                    }
+                });
+            });
+
+            resizeHeroSequenceCanvas();
+            window.addEventListener('resize', resizeHeroSequenceCanvas);
+
+            if (window.gsap && window.ScrollTrigger) {
+                gsap.to(heroSequenceState, {
+                    frame: heroSequenceFrameCount - 1,
+                    ease: 'none',
+                    scrollTrigger: {
+                        id: 'hero-sequence',
+                        trigger: heroLanding,
+                        start: 'top top',
+                        end: 'bottom top',
+                        scrub: 1.2,
+                        invalidateOnRefresh: true,
+                        onUpdate: updateHeroSequenceTarget,
+                        onRefresh: updateHeroSequenceTarget,
+                    },
+                });
+            }
+
             heroItems.forEach((item, index) => {
                 const randomX = -36 + Math.round(Math.random() * 72);
                 const randomY = 8 + Math.round(Math.random() * 22);
@@ -2039,6 +2181,9 @@ a.group\/item:hover .menu-info-bubble {
                     item.classList.add('is-in');
                 }, randomDelay);
             });
+
+            updateHeroSequenceTarget();
+            queueHeroSequenceRender();
         }
 
         megaTriggers.forEach((trigger) => {
