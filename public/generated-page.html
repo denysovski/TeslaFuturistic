@@ -46,6 +46,16 @@ body::-webkit-scrollbar {
 .delay-300 { transition-delay: 300ms; }
 .delay-500 { transition-delay: 500ms; }
 
+.spec-tooltip {
+    opacity: 0;
+    transition: opacity 180ms ease-out, left 180ms ease-out, top 180ms ease-out;
+    will-change: opacity, left, top;
+}
+
+.spec-tooltip.is-visible {
+    opacity: 1;
+}
+
 /* Text Reveal Mask */
 .mask-text {
     overflow: hidden;
@@ -810,7 +820,7 @@ a.group\/item:hover .menu-info-bubble {
                         <div class="group cursor-default hero-landing-item bg-white rounded-full px-10 py-8 shadow-md flex flex-col items-center justify-center text-center relative spec-card" data-spec="range">
                             <p class="text-5xl md:text-6xl font-semibold tracking-tight text-neutral-900 group-hover:scale-105 transition-transform">396<span class="text-2xl align-top ml-1 text-neutral-900">mi</span></p>
                             <p class="text-xs font-bold tracking-widest uppercase mt-4 text-neutral-700">Range (EPA)</p>
-                            <div class="spec-tooltip absolute hidden group-hover:block bg-white rounded-2xl shadow-xl p-4 z-50 pointer-events-none" style="width: 280px; top: 50%; left: 50%; transform: translate(-50%, -50%);">
+                            <div class="spec-tooltip absolute bg-white rounded-2xl shadow-xl p-4 z-50 pointer-events-none" style="width: 280px; top: 50%; left: 50%; transform: translate(-50%, -50%);">
                                 <div class="flex items-center gap-3">
                                     <div class="w-16 h-16 rounded-full bg-gradient-to-br from-blue-400 to-blue-600 flex items-center justify-center text-white text-lg font-bold flex-none">MI</div>
                                     <div class="text-left">
@@ -823,7 +833,7 @@ a.group\/item:hover .menu-info-bubble {
                         <div class="group cursor-default hero-landing-item bg-white rounded-full px-10 py-8 shadow-md flex flex-col items-center justify-center text-center relative spec-card" data-spec="acceleration">
                             <p class="text-5xl md:text-6xl font-semibold tracking-tight text-neutral-900 group-hover:scale-105 transition-transform">1.99<span class="text-2xl align-top ml-1 text-neutral-900">s</span></p>
                             <p class="text-xs font-bold tracking-widest uppercase mt-4 text-neutral-700">0-60 mph*</p>
-                            <div class="spec-tooltip absolute hidden group-hover:block bg-white rounded-2xl shadow-xl p-4 z-50 pointer-events-none" style="width: 280px; top: 50%; left: 50%; transform: translate(-50%, -50%);">
+                            <div class="spec-tooltip absolute bg-white rounded-2xl shadow-xl p-4 z-50 pointer-events-none" style="width: 280px; top: 50%; left: 50%; transform: translate(-50%, -50%);">
                                 <div class="flex items-center gap-3">
                                     <div class="w-16 h-16 rounded-full bg-gradient-to-br from-red-400 to-red-600 flex items-center justify-center text-white text-lg font-bold flex-none">S</div>
                                     <div class="text-left">
@@ -836,7 +846,7 @@ a.group\/item:hover .menu-info-bubble {
                         <div class="group cursor-default hero-landing-item bg-white rounded-full px-10 py-8 shadow-md flex flex-col items-center justify-center text-center relative spec-card" data-spec="power">
                             <p class="text-5xl md:text-6xl font-semibold tracking-tight text-neutral-900 group-hover:scale-105 transition-transform">1,020<span class="text-2xl align-top ml-1 text-neutral-900">hp</span></p>
                             <p class="text-xs font-bold tracking-widest uppercase mt-4 text-neutral-700">Peak Power</p>
-                            <div class="spec-tooltip absolute hidden group-hover:block bg-white rounded-2xl shadow-xl p-4 z-50 pointer-events-none" style="width: 280px; top: 50%; left: 50%; transform: translate(-50%, -50%);">
+                            <div class="spec-tooltip absolute bg-white rounded-2xl shadow-xl p-4 z-50 pointer-events-none" style="width: 280px; top: 50%; left: 50%; transform: translate(-50%, -50%);">
                                 <div class="flex items-center gap-3">
                                     <div class="w-16 h-16 rounded-full bg-gradient-to-br from-yellow-400 to-yellow-600 flex items-center justify-center text-white text-lg font-bold flex-none">HP</div>
                                     <div class="text-left">
@@ -2170,20 +2180,21 @@ a.group\/item:hover .menu-info-bubble {
                 const rect = card.getBoundingClientRect();
                 const x = e.clientX - rect.left;
                 const y = e.clientY - rect.top;
-                
-                // Smooth transition to cursor position
-                tooltip.style.transition = 'all 0.15s ease-out';
-                tooltip.style.left = x + 'px';
-                tooltip.style.top = y + 'px';
-                tooltip.style.transform = 'translate(-50%, -50%)';
+                const offsetX = 120;
+                const offsetY = 120;
+                const tooltipX = Math.min(rect.width - 24, x + offsetX);
+                const tooltipY = Math.max(24, y - offsetY);
+
+                tooltip.style.left = tooltipX + 'px';
+                tooltip.style.top = tooltipY + 'px';
             });
 
             card.addEventListener('mouseenter', () => {
-                tooltip.classList.remove('hidden');
+                tooltip.classList.add('is-visible');
             });
 
             card.addEventListener('mouseleave', () => {
-                tooltip.classList.add('hidden');
+                tooltip.classList.remove('is-visible');
             });
         });
     </script>
