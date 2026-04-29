@@ -81,7 +81,7 @@ body::-webkit-scrollbar {
     inset: -40% -20%;
     border-radius: inherit;
     opacity: 0;
-    transition: opacity 240ms ease, transform 360ms cubic-bezier(0.16, 1, 0.3, 1);
+    transition: opacity 120ms ease, transform 180ms cubic-bezier(0.16, 1, 0.3, 1);
     pointer-events: none;
     z-index: -1;
 }
@@ -521,6 +521,7 @@ a.group\/item:hover .menu-info-bubble {
     max-width: none !important;
     height: 100% !important;
     object-fit: contain;
+    border-radius: 1.75rem;
     opacity: 0.26;
     transform: translate3d(-58%, 18px, -160px) scale(0.88) rotateY(18deg);
     transform-origin: center center;
@@ -560,10 +561,11 @@ a.group\/item:hover .menu-info-bubble {
     z-index: 40;
 }
 
-.interior-carousel-dot {
-    width: 0.95rem;
-    height: 0.95rem;
-    border-radius: 999px;
+.spec-image-stack.spec-deck-hidden {
+    opacity: 0;
+    transform: translate3d(-58%, 30px, -220px) scale(0.82) rotateY(0deg);
+    z-index: 5;
+    pointer-events: none;
     border: 2px solid rgba(255, 255, 255, 0.95);
     background: rgba(255, 255, 255, 0.5);
     transition: transform 0.2s ease, background-color 0.2s ease;
@@ -571,20 +573,89 @@ a.group\/item:hover .menu-info-bubble {
 
 .interior-carousel-dot.is-active {
     background: #ffffff;
-    transform: scale(1.18);
 }
 
-.landing-item {
-    opacity: 0;
-    transform: translate3d(var(--start-x, -28px), var(--start-y, 20px), 0) rotate(var(--start-r, 0deg));
-    transition: opacity 0.95s cubic-bezier(0.16, 1, 0.3, 1), transform 1s cubic-bezier(0.16, 1, 0.3, 1);
+.specs-fade {
+    transition: opacity 0.45s cubic-bezier(0.16, 1, 0.3, 1), transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+    opacity: 1;
+    transform: translateX(0);
     will-change: opacity, transform;
 }
 
-.landing-item.is-in {
-    opacity: 1;
-    transform: translate3d(0, 0, 0) rotate(0deg);
+.specs-fade.is-swap-out {
+    opacity: 0;
+    transform: translateX(68px);
 }
+
+.specs-fade.is-swap-in {
+    opacity: 0;
+    transform: translateX(-68px);
+}
+
+.drive-slot-card {
+    position: relative;
+    appearance: none;
+    -webkit-appearance: none;
+    cursor: pointer;
+    display: inline-flex;
+    width: 120px;
+    height: 96px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.1rem;
+    border-radius: 1rem;
+    border: 1px solid #d4d4d8;
+    background-color: transparent;
+    box-shadow: none;
+    padding: 0.55rem 0.65rem;
+    text-align: center;
+    color: #111827;
+    overflow: hidden;
+    touch-action: manipulation;
+    transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+}
+
+.drive-slot-card:focus-visible {
+    outline: 2px solid #d4d4d8;
+    outline-offset: 3px;
+}
+
+.drive-slot-card:hover {
+    transform: translateY(-2px);
+    border-color: #c4c4c4;
+    background-color: transparent;
+    box-shadow: none;
+}
+
+.drive-slot-card.is-active {
+    border-color: #dc2626;
+    background: #dc2626;
+    color: #ffffff;
+    box-shadow: none;
+}
+
+.drive-slot-label {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.82rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: inherit;
+    opacity: 1;
+    line-height: 1.1;
+}
+
+.drive-slot-date {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.78rem;
+    font-weight: 800;
+    line-height: 1;
+    letter-spacing: 0.16em;
+    color: inherit;
+    opacity: 1;
+}
+
 /* Cart sidebar */
 .cart-overlay {
     position: fixed;
@@ -845,7 +916,7 @@ a.group\/item:hover .menu-info-bubble {
     <!-- Hero Section -->
     <section id="hero-landing" class="relative h-screen min-h-[900px] w-full overflow-hidden flex flex-col justify-center items-center">
         <div class="absolute inset-0 z-0">
-            <img src="assets/homepage.jpg" class="w-full h-full object-cover object-center pointer-events-none" alt="Tesla Model S landing page image">
+            <img src="assets/ModelYPerformance_70.png" class="w-full h-full object-cover object-center pointer-events-none" alt="Tesla Model Y Performance landing page image">
             <canvas id="hero-sequence" class="hero-sequence-canvas hidden pointer-events-none" aria-hidden="true"></canvas>
             <div class="absolute inset-0 bg-black/28"></div>
             <div class="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/12"></div>
@@ -853,7 +924,7 @@ a.group\/item:hover .menu-info-bubble {
         
         <div class="relative z-10 w-full px-6 flex justify-center mt-[-34vh] md:mt-[-38vh] lg:mt-[-42vh]" style="transform: translateY(-70px);">
             <div class="hero-landing-item max-w-[520px] w-full flex justify-center">
-                <img src="assets/tesla-logo-full.png" style="height: 150px; width: auto;" class="object-contain drop-shadow-[0_18px_38px_rgba(0,0,0,0.28)]" alt="Tesla logo">
+                <img src="assets/tesla-logo-full.png" style="height: 90px; width: auto; filter: brightness(0) invert(1);" class="object-contain drop-shadow-[0_18px_38px_rgba(0,0,0,0.28)]" alt="Tesla logo">
             </div>
         </div>
         
@@ -861,12 +932,12 @@ a.group\/item:hover .menu-info-bubble {
             <div class="flex flex-col md:flex-row justify-between items-end gap-10">
                 <div class="max-w-4xl w-full reveal active delay-200 mx-auto">
                     <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 md:gap-8 text-neutral-900 w-full max-w-4xl mx-auto">
-                        <div class="group cursor-default hero-landing-item bg-white rounded-full px-10 py-8 shadow-md flex flex-col items-center justify-center text-center relative spec-card" data-spec="range">
-                            <p class="text-5xl md:text-6xl font-semibold tracking-tight text-neutral-900 group-hover:scale-105 transition-transform">396<span class="text-2xl align-top ml-1 text-neutral-900">mi</span></p>
-                            <p class="text-xs font-bold tracking-widest uppercase mt-4 text-neutral-700">Range (EPA)</p>
+                        <div class="group cursor-default hero-landing-item bg-white rounded-full px-7 py-5 shadow-md flex flex-col items-center justify-center text-center relative spec-card" data-spec="range">
+                            <p class="text-4xl md:text-5xl font-semibold tracking-tight text-neutral-900 group-hover:scale-105 transition-transform">396<span class="text-xl align-top ml-1 text-neutral-900">mi</span></p>
+                            <p class="text-xs font-bold tracking-widest uppercase mt-3 text-neutral-700">Range (EPA)</p>
                             <div class="spec-tooltip absolute bg-white rounded-2xl shadow-2xl p-4 z-[80] pointer-events-none" style="width: 280px; top: 50%; left: 50%; transform: translate(-50%, -50%) scale(0.98);">
                                 <div class="flex items-center gap-3">
-                                    <div class="w-16 h-16 rounded-full bg-gradient-to-br from-blue-400 to-blue-600 flex items-center justify-center text-white text-lg font-bold flex-none">MI</div>
+                                    <div class="w-[3.4rem] h-[3.4rem] rounded-full bg-gradient-to-br from-blue-400 to-blue-600 flex items-center justify-center text-white text-base font-bold flex-none">MI</div>
                                     <div class="text-left">
                                         <p class="font-semibold text-sm text-neutral-900">Extended Range</p>
                                         <p class="text-xs text-neutral-600 mt-1">EPA-rated 396 miles on a single charge for extended long-distance travel</p>
@@ -874,12 +945,12 @@ a.group\/item:hover .menu-info-bubble {
                                 </div>
                             </div>
                         </div>
-                        <div class="group cursor-default hero-landing-item bg-white rounded-full px-10 py-8 shadow-md flex flex-col items-center justify-center text-center relative spec-card" data-spec="acceleration">
-                            <p class="text-5xl md:text-6xl font-semibold tracking-tight text-neutral-900 group-hover:scale-105 transition-transform">1.99<span class="text-2xl align-top ml-1 text-neutral-900">s</span></p>
-                            <p class="text-xs font-bold tracking-widest uppercase mt-4 text-neutral-700">0-60 mph*</p>
+                        <div class="group cursor-default hero-landing-item bg-white rounded-full px-7 py-5 shadow-md flex flex-col items-center justify-center text-center relative spec-card" data-spec="acceleration">
+                            <p class="text-4xl md:text-5xl font-semibold tracking-tight text-neutral-900 group-hover:scale-105 transition-transform">1.99<span class="text-xl align-top ml-1 text-neutral-900">s</span></p>
+                            <p class="text-xs font-bold tracking-widest uppercase mt-3 text-neutral-700">0-60 mph*</p>
                             <div class="spec-tooltip absolute bg-white rounded-2xl shadow-2xl p-4 z-[80] pointer-events-none" style="width: 280px; top: 50%; left: 50%; transform: translate(-50%, -50%) scale(0.98);">
                                 <div class="flex items-center gap-3">
-                                    <div class="w-16 h-16 rounded-full bg-gradient-to-br from-red-400 to-red-600 flex items-center justify-center text-white text-lg font-bold flex-none">S</div>
+                                    <div class="w-[3.4rem] h-[3.4rem] rounded-full bg-gradient-to-br from-red-400 to-red-600 flex items-center justify-center text-white text-base font-bold flex-none">S</div>
                                     <div class="text-left">
                                         <p class="font-semibold text-sm text-neutral-900">Extreme Speed</p>
                                         <p class="text-xs text-neutral-600 mt-1">Tri-motor acceleration delivers 1.99 seconds 0-60 mph—supercar performance</p>
@@ -887,12 +958,12 @@ a.group\/item:hover .menu-info-bubble {
                                 </div>
                             </div>
                         </div>
-                        <div class="group cursor-default hero-landing-item bg-white rounded-full px-10 py-8 shadow-md flex flex-col items-center justify-center text-center relative spec-card" data-spec="power">
-                            <p class="text-5xl md:text-6xl font-semibold tracking-tight text-neutral-900 group-hover:scale-105 transition-transform">1,020<span class="text-2xl align-top ml-1 text-neutral-900">hp</span></p>
-                            <p class="text-xs font-bold tracking-widest uppercase mt-4 text-neutral-700">Peak Power</p>
+                        <div class="group cursor-default hero-landing-item bg-white rounded-full px-7 py-5 shadow-md flex flex-col items-center justify-center text-center relative spec-card" data-spec="power">
+                            <p class="text-4xl md:text-5xl font-semibold tracking-tight text-neutral-900 group-hover:scale-105 transition-transform">1,020<span class="text-xl align-top ml-1 text-neutral-900">hp</span></p>
+                            <p class="text-xs font-bold tracking-widest uppercase mt-3 text-neutral-700">Peak Power</p>
                             <div class="spec-tooltip absolute bg-white rounded-2xl shadow-2xl p-4 z-[80] pointer-events-none" style="width: 280px; top: 50%; left: 50%; transform: translate(-50%, -50%) scale(0.98);">
                                 <div class="flex items-center gap-3">
-                                    <div class="w-16 h-16 rounded-full bg-gradient-to-br from-yellow-400 to-yellow-600 flex items-center justify-center text-white text-lg font-bold flex-none">HP</div>
+                                    <div class="w-[3.4rem] h-[3.4rem] rounded-full bg-gradient-to-br from-yellow-400 to-yellow-600 flex items-center justify-center text-white text-base font-bold flex-none">HP</div>
                                     <div class="text-left">
                                         <p class="font-semibold text-sm text-neutral-900">Maximum Power</p>
                                         <p class="text-xs text-neutral-600 mt-1">1,020 peak horsepower unleashes unlimited acceleration and dynamic control</p>
@@ -902,14 +973,11 @@ a.group\/item:hover .menu-info-bubble {
                         </div>
                     </div>
                 </div>
-                <div class="flex flex-col items-center md:items-end gap-4 w-full md:w-auto reveal active delay-300" style="transform: translateY(-30px);">
-                    <div class="text-center md:text-right">
-                        <p class="text-sm md:text-base font-medium tracking-[0.42em] uppercase text-white/92">Model S Plaid</p>
+                <div class="flex flex-col items-end gap-4 w-full md:w-auto reveal active delay-300" style="transform: translateY(-30px);">
+                    <div class="flex justify-end w-full md:w-auto">
+                    <button class="hero-cta-primary w-auto px-16 py-4 bg-neutral-900 text-white text-base font-medium rounded-full hover:bg-neutral-800 hover:-translate-y-0.5 hover:scale-[1.03] transition-all duration-150 shadow-lg shadow-neutral-900/20 hover:shadow-xl hover:shadow-neutral-900/25 hero-landing-item">Order Now</button>
                     </div>
-                    <div class="flex flex-col sm:flex-row gap-6 w-full md:w-auto">
-                    <button class="hero-cta-primary w-full sm:w-auto px-16 py-4 bg-neutral-900 text-white text-base font-medium rounded-full hover:bg-neutral-800 hover:-translate-y-0.5 hover:scale-[1.03] transition-all duration-300 shadow-lg shadow-neutral-900/20 hover:shadow-2xl hover:shadow-neutral-900/25 hero-landing-item">Order Now</button>
-                    <button class="hero-cta-secondary w-full sm:w-auto px-16 py-4 bg-white backdrop-blur-xl border border-neutral-200 text-neutral-900 text-base font-medium rounded-full hover:bg-neutral-50 hover:-translate-y-0.5 hover:scale-[1.03] transition-all duration-300 shadow-sm hover:shadow-xl hover:shadow-neutral-200/80 hero-landing-item">Demo Drive</button>
-                    </div>
+                    <p class="max-w-[24rem] text-right text-white/95 text-base leading-relaxed">Unleash the performance without compromise, where luxury meets adrenaline.</p>
                 </div>
             </div>
         </div>
@@ -1122,9 +1190,9 @@ a.group\/item:hover .menu-info-bubble {
              <div class="md:w-1/2 reveal">
                           <div class="spec-image-container w-full rounded-2xl mb-8 relative bg-black/10" style="height: 460px; perspective: 1400px; overflow: visible; transform: translateX(-150px); width: calc(100% + 150px);">
                         <img data-model="model-3" src="assets/Model3_98.jpg" class="spec-image-stack spec-deck-slot spec-deck-center is-active" alt="Model 3 showcase" style="z-index: 40;">
-                        <img data-model="model-y" src="assets/ModelY_89.jpg" class="spec-image-stack spec-deck-slot spec-deck-left" alt="Model Y showcase" style="z-index: 30;">
-                        <img data-model="model-s" src="assets/ModelS_75.jpg" class="spec-image-stack spec-deck-slot spec-deck-right" alt="Model S showcase" style="z-index: 20;">
-                        <img data-model="model-x" src="assets/ModelX_97.jpg" class="spec-image-stack spec-deck-slot spec-deck-far-left" alt="Model X showcase" style="z-index: 10;">
+                        <img data-model="model-y" src="assets/ModelY_89.jpg" class="spec-image-stack spec-deck-slot spec-deck-hidden" alt="Model Y showcase" style="z-index: 10;">
+                        <img data-model="model-s" src="assets/ModelS_75.jpg" class="spec-image-stack spec-deck-slot spec-deck-hidden" alt="Model S showcase" style="z-index: 10;">
+                        <img data-model="model-x" src="assets/ModelX_97.jpg" class="spec-image-stack spec-deck-slot spec-deck-hidden" alt="Model X showcase" style="z-index: 10;">
                 </div>
                       <div class="text-left max-w-xl ml-[-150px] mt-[75px]">
                              <h2 class="text-6xl md:text-7xl font-medium mb-4">Our showcase</h2>
@@ -1410,6 +1478,23 @@ a.group\/item:hover .menu-info-bubble {
                 <div class="p-16 lg:p-24 flex flex-col justify-center reveal delay-100">
                     <h3 class="text-4xl font-semibold mb-12">Schedule your drive</h3>
                     <form class="space-y-10">
+                        <div>
+                            <label class="block text-xs font-medium text-neutral-500 mb-3 uppercase tracking-wider">Choose a drive</label>
+                            <div class="flex flex-wrap justify-start gap-4" id="drive-slot-group">
+                                <button type="button" class="drive-slot-card is-active" data-drive-slot="slot-1">
+                                    <span class="drive-slot-label">Thursday</span>
+                                    <span class="drive-slot-date">03/12</span>
+                                </button>
+                                <button type="button" class="drive-slot-card" data-drive-slot="slot-2">
+                                    <span class="drive-slot-label">Friday</span>
+                                    <span class="drive-slot-date">04/12</span>
+                                </button>
+                                <button type="button" class="drive-slot-card" data-drive-slot="slot-3">
+                                    <span class="drive-slot-label">Saturday</span>
+                                    <span class="drive-slot-date">05/12</span>
+                                </button>
+                            </div>
+                        </div>
                         <div class="grid grid-cols-2 gap-10">
                             <div class="group">
                                 <label class="block text-xs font-medium text-neutral-500 mb-3 uppercase tracking-wider">First Name</label>
@@ -1768,6 +1853,7 @@ a.group\/item:hover .menu-info-bubble {
         const megaTriggers = document.querySelectorAll('.has-mega');
         const megaMenuShell = document.getElementById('mega-menu-shell');
         const specButtons = document.querySelectorAll('.spec-toggle-button');
+        const driveSlotButtons = document.querySelectorAll('.drive-slot-card');
         const specValues = document.getElementById('spec-values');
         const zipInput = document.getElementById('zip-code-input');
         const zipTooltip = document.getElementById('zip-tooltip');
@@ -1814,6 +1900,8 @@ a.group\/item:hover .menu-info-bubble {
             ]
         };
 
+        let specSwapTimer = null;
+
         // --- Spec image swap utility with stacked card effect ---
         const specImages = document.querySelectorAll('.spec-image-stack');
 
@@ -1822,15 +1910,18 @@ a.group\/item:hover .menu-info-bubble {
             const activeIndex = images.findIndex((img) => img.dataset.model === key);
 
             images.forEach((img, index) => {
-                img.classList.remove('is-active', 'spec-deck-center', 'spec-deck-left', 'spec-deck-right', 'spec-deck-far-left');
-                const rawOffset = index - activeIndex;
-                const distance = ((rawOffset + images.length / 2) % images.length) - images.length / 2;
-                const positionClass = distance === 0 ? 'spec-deck-center' : distance === -1 ? 'spec-deck-left' : distance === 1 ? 'spec-deck-right' : 'spec-deck-far-left';
-                img.classList.add(positionClass);
-                if (distance === 0) {
+                img.classList.remove('is-active', 'spec-deck-center', 'spec-deck-left', 'spec-deck-right', 'spec-deck-hidden');
+                if (index === activeIndex) {
                     img.classList.add('is-active');
+                    img.classList.add('spec-deck-center');
+                } else if (index === activeIndex - 1) {
+                    img.classList.add('spec-deck-left');
+                } else if (index === activeIndex + 1) {
+                    img.classList.add('spec-deck-right');
+                } else {
+                    img.classList.add('spec-deck-hidden');
                 }
-                img.style.zIndex = distance === 0 ? '40' : distance === -1 || distance === 1 ? '30' : '20';
+                img.style.zIndex = index === activeIndex ? '40' : index === activeIndex - 1 || index === activeIndex + 1 ? '30' : '10';
             });
         };
 
@@ -1874,8 +1965,14 @@ a.group\/item:hover .menu-info-bubble {
                 return;
             }
 
-            specValues.classList.add('is-fading');
-            window.setTimeout(() => {
+            if (specSwapTimer) {
+                window.clearTimeout(specSwapTimer);
+            }
+
+            specValues.classList.remove('is-swap-in');
+            specValues.classList.add('is-swap-out');
+
+            specSwapTimer = window.setTimeout(() => {
                 specValues.innerHTML = specSets[specKey].map(([label, value]) => `
                     <div>
                         <div class="w-8 h-0.5 bg-white mb-4"></div>
@@ -1883,8 +1980,12 @@ a.group\/item:hover .menu-info-bubble {
                         <p class="text-xl font-medium">${value}</p>
                     </div>
                 `).join('');
-                specValues.classList.remove('is-fading');
-            }, 180);
+                specValues.classList.remove('is-swap-out');
+                specValues.classList.add('is-swap-in');
+                window.requestAnimationFrame(() => {
+                    specValues.classList.remove('is-swap-in');
+                });
+            }, 220);
 
             specButtons.forEach((button) => {
                 const isActive = button.dataset.spec === specKey;
@@ -1914,6 +2015,25 @@ a.group\/item:hover .menu-info-bubble {
                 renderSpecDeck(key);
             });
         });
+
+        const syncDriveSlotStyles = (selectedButton) => {
+            driveSlotButtons.forEach((slotButton) => {
+                const isActive = slotButton === selectedButton;
+                slotButton.classList.toggle('is-active', isActive);
+                slotButton.style.setProperty('background', isActive ? '#dc2626' : 'transparent', 'important');
+                slotButton.style.setProperty('background-color', isActive ? '#dc2626' : 'transparent', 'important');
+                slotButton.style.setProperty('border-color', isActive ? '#dc2626' : '#d4d4d8', 'important');
+                slotButton.style.setProperty('color', isActive ? '#ffffff' : '#111827', 'important');
+            });
+        };
+
+        driveSlotButtons.forEach((button) => {
+            button.addEventListener('click', () => {
+                syncDriveSlotStyles(button);
+            });
+        });
+
+        syncDriveSlotStyles(document.querySelector('.drive-slot-card.is-active'));
 
         // Initialize the spec image to model-3's visual (model1 as requested)
         renderSpecDeck('model-3');
