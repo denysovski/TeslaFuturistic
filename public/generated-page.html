@@ -26,6 +26,77 @@ body {
 body.page-ready {
     opacity: 1;
 }
+
+@keyframes navbarDrop {
+    from {
+        opacity: 0;
+        transform: translateY(-100%);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes heroImageFade {
+    from {
+        opacity: 0;
+        transform: scale(1.08) translateY(16px);
+        filter: blur(10px);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+        filter: blur(0);
+    }
+}
+
+@keyframes heroLiftIn {
+    from {
+        opacity: 0;
+        transform: translate3d(42px, 0, 0) scale(0.96);
+    }
+    70% {
+        opacity: 1;
+        transform: translate3d(-4px, 0, 0) scale(1.01);
+    }
+    to {
+        opacity: 1;
+        transform: translate3d(0, 0, 0) scale(1);
+    }
+}
+
+@keyframes heroJumpIn {
+    from {
+        opacity: 0;
+        transform: translateY(26px) scale(0.94);
+    }
+    65% {
+        opacity: 1;
+        transform: translateY(-6px) scale(1.03);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+body.page-ready #navbar {
+    animation: navbarDrop 0.9s cubic-bezier(0.16, 1, 0.3, 1) 80ms both;
+}
+
+body.page-ready .hero-image-fade {
+    animation: heroImageFade 1.25s cubic-bezier(0.16, 1, 0.3, 1) 140ms both;
+}
+
+body.page-ready .hero-jump-in {
+    animation: heroJumpIn 0.95s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+body.page-ready .hero-lift-in {
+    animation: heroLiftIn 1.05s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
 /* Hide scrollbar */
 body::-webkit-scrollbar {
     width: 0px;
@@ -42,6 +113,44 @@ body::-webkit-scrollbar {
 .reveal.active {
     opacity: 1;
     transform: translate3d(0, 0, 0);
+}
+.reveal-left {
+    opacity: 0;
+    transform: translate3d(-56px, 0, 0);
+    transition: opacity 1.02s cubic-bezier(0.16, 1, 0.3, 1), transform 1.02s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: opacity, transform;
+}
+.reveal-left.active {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+}
+.reveal-right {
+    opacity: 0;
+    transform: translate3d(56px, 0, 0);
+    transition: opacity 1.02s cubic-bezier(0.16, 1, 0.3, 1), transform 1.02s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: opacity, transform;
+}
+.reveal-right.active {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+}
+.reveal-up {
+    opacity: 0;
+    transform: translate3d(0, 32px, 0);
+    transition: opacity 0.95s cubic-bezier(0.16, 1, 0.3, 1), transform 0.95s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: opacity, transform;
+}
+.reveal-up.active {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+}
+.reveal-fade {
+    opacity: 0;
+    transition: opacity 0.9s ease-out;
+    will-change: opacity;
+}
+.reveal-fade.active {
+    opacity: 1;
 }
 .delay-100 { transition-delay: 100ms; }
 .delay-200 { transition-delay: 200ms; }
@@ -916,14 +1025,14 @@ a.group\/item:hover .menu-info-bubble {
     <!-- Hero Section -->
     <section id="hero-landing" class="relative h-screen min-h-[900px] w-full overflow-hidden flex flex-col justify-center items-center">
         <div class="absolute inset-0 z-0">
-            <img src="assets/ModelYPerformance_70.png" class="w-full h-full object-cover object-center pointer-events-none" alt="Tesla Model Y Performance landing page image">
+            <img src="assets/ModelYPerformance_70.png" class="w-full h-full object-cover object-center pointer-events-none hero-image-fade" alt="Tesla Model Y Performance landing page image">
             <canvas id="hero-sequence" class="hero-sequence-canvas hidden pointer-events-none" aria-hidden="true"></canvas>
             <div class="absolute inset-0 bg-black/28"></div>
             <div class="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/12"></div>
         </div>
         
         <div class="relative z-10 w-full px-6 flex justify-center mt-[-34vh] md:mt-[-38vh] lg:mt-[-42vh]" style="transform: translateY(-70px);">
-            <div class="hero-landing-item max-w-[520px] w-full flex justify-center">
+            <div class="hero-landing-item hero-jump-in max-w-[520px] w-full flex justify-center" style="animation-delay: 130ms;">
                 <img src="assets/tesla-logo-full.png" style="height: 90px; width: auto; filter: brightness(0) invert(1);" class="object-contain drop-shadow-[0_18px_38px_rgba(0,0,0,0.28)]" alt="Tesla logo">
             </div>
         </div>
@@ -932,7 +1041,7 @@ a.group\/item:hover .menu-info-bubble {
             <div class="flex flex-col md:flex-row justify-between items-end gap-10">
                 <div class="max-w-4xl w-full reveal active delay-200 mx-auto">
                     <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 md:gap-8 text-neutral-900 w-full max-w-4xl mx-auto">
-                        <div class="group cursor-default hero-landing-item bg-white rounded-full px-7 py-5 shadow-md flex flex-col items-center justify-center text-center relative spec-card" data-spec="range">
+                        <div class="group cursor-default hero-landing-item hero-jump-in bg-white rounded-full px-7 py-5 shadow-md flex flex-col items-center justify-center text-center relative spec-card" data-spec="range" style="animation-delay: 180ms;">
                             <p class="text-4xl md:text-5xl font-semibold tracking-tight text-neutral-900 group-hover:scale-105 transition-transform">396<span class="text-xl align-top ml-1 text-neutral-900">mi</span></p>
                             <p class="text-xs font-bold tracking-widest uppercase mt-3 text-neutral-700">Range (EPA)</p>
                             <div class="spec-tooltip absolute bg-white rounded-2xl shadow-2xl p-4 z-[80] pointer-events-none" style="width: 280px; top: 50%; left: 50%; transform: translate(-50%, -50%) scale(0.98);">
@@ -945,7 +1054,7 @@ a.group\/item:hover .menu-info-bubble {
                                 </div>
                             </div>
                         </div>
-                        <div class="group cursor-default hero-landing-item bg-white rounded-full px-7 py-5 shadow-md flex flex-col items-center justify-center text-center relative spec-card" data-spec="acceleration">
+                        <div class="group cursor-default hero-landing-item hero-jump-in bg-white rounded-full px-7 py-5 shadow-md flex flex-col items-center justify-center text-center relative spec-card" data-spec="acceleration" style="animation-delay: 280ms;">
                             <p class="text-4xl md:text-5xl font-semibold tracking-tight text-neutral-900 group-hover:scale-105 transition-transform">1.99<span class="text-xl align-top ml-1 text-neutral-900">s</span></p>
                             <p class="text-xs font-bold tracking-widest uppercase mt-3 text-neutral-700">0-60 mph*</p>
                             <div class="spec-tooltip absolute bg-white rounded-2xl shadow-2xl p-4 z-[80] pointer-events-none" style="width: 280px; top: 50%; left: 50%; transform: translate(-50%, -50%) scale(0.98);">
@@ -958,7 +1067,7 @@ a.group\/item:hover .menu-info-bubble {
                                 </div>
                             </div>
                         </div>
-                        <div class="group cursor-default hero-landing-item bg-white rounded-full px-7 py-5 shadow-md flex flex-col items-center justify-center text-center relative spec-card" data-spec="power">
+                        <div class="group cursor-default hero-landing-item hero-jump-in bg-white rounded-full px-7 py-5 shadow-md flex flex-col items-center justify-center text-center relative spec-card" data-spec="power" style="animation-delay: 380ms;">
                             <p class="text-4xl md:text-5xl font-semibold tracking-tight text-neutral-900 group-hover:scale-105 transition-transform">1,020<span class="text-xl align-top ml-1 text-neutral-900">hp</span></p>
                             <p class="text-xs font-bold tracking-widest uppercase mt-3 text-neutral-700">Peak Power</p>
                             <div class="spec-tooltip absolute bg-white rounded-2xl shadow-2xl p-4 z-[80] pointer-events-none" style="width: 280px; top: 50%; left: 50%; transform: translate(-50%, -50%) scale(0.98);">
@@ -973,9 +1082,9 @@ a.group\/item:hover .menu-info-bubble {
                         </div>
                     </div>
                 </div>
-                <div class="flex flex-col items-end gap-4 w-full md:w-auto reveal active delay-300" style="transform: translateY(-30px);">
+                <div class="flex flex-col items-end gap-4 w-full md:w-auto reveal active delay-300 hero-lift-in" style="transform: translateY(-30px); animation-delay: 260ms;">
                     <div class="flex justify-end w-full md:w-auto">
-                    <button class="hero-cta-primary w-auto px-16 py-4 bg-neutral-900 text-white text-base font-medium rounded-full hover:bg-neutral-800 hover:-translate-y-0.5 hover:scale-[1.03] transition-all duration-150 shadow-lg shadow-neutral-900/20 hover:shadow-xl hover:shadow-neutral-900/25 hero-landing-item">Order Now</button>
+                    <button class="hero-cta-primary w-auto px-16 py-4 bg-neutral-900 text-white text-base font-medium rounded-full hover:bg-neutral-800 hover:-translate-y-0.5 hover:scale-[1.03] transition-all duration-150 shadow-lg shadow-neutral-900/20 hover:shadow-xl hover:shadow-neutral-900/25 hero-landing-item hero-lift-in" style="animation-delay: 420ms;">Order Now</button>
                     </div>
                     <p class="max-w-[24rem] text-right text-white/95 text-base leading-relaxed">Unleash the performance without compromise, where luxury meets adrenaline.</p>
                 </div>
@@ -985,15 +1094,15 @@ a.group\/item:hover .menu-info-bubble {
 
     <!-- Interior Cinematic Section -->
     <section class="bg-black text-white relative py-32 overflow-hidden min-h-screen flex flex-col justify-center">
-        <div class="max-w-[1800px] mx-auto px-8 mb-16 relative z-10 w-full text-center">
-            <div class="mask-text reveal">
+        <div class="max-w-[1800px] mx-auto px-8 mb-16 relative z-10 w-full text-center reveal reveal-left">
+            <div class="mask-text reveal reveal-fade">
                 <span>
                     <h2 class="text-5xl md:text-7xl font-medium tracking-tight mb-6">Interior of the Future</h2>
                     <p class="text-neutral-400 text-xl max-w-3xl mx-auto leading-relaxed">Designed for charging, gaming, and relaxing. A clean, powerful, and invisible cabin environment with active noise cancellation.</p>
                 </span>
             </div>
         </div>
-        <div id="interior-carousel" class="relative w-full h-[80vh] max-w-[1700px] mx-auto rounded-2xl overflow-hidden shadow-2xl border border-white/10 reveal delay-100 group">
+        <div id="interior-carousel" class="relative w-full h-[80vh] max-w-[1700px] mx-auto rounded-2xl overflow-hidden shadow-2xl border border-white/10 reveal reveal-up delay-100 group">
             <img data-interior-slide="0" src="assets/ModelS_82.jpg" class="interior-slide is-active absolute inset-0 w-full h-full object-cover" alt="Tesla Model S interior panoramic cockpit" onerror="this.src='https://digitalassets.tesla.com/tesla-contents/image/upload/h_1800,w_2880,c_fit,f_auto,q_auto:best/Model-S-Interior-Hero-Desktop-LHD'">
             <img data-interior-slide="1" src="assets/ModelS_92.jpg" class="interior-slide absolute inset-0 w-full h-full object-cover" alt="Tesla Model S interior front seats and center console" onerror="this.src='https://digitalassets.tesla.com/tesla-contents/image/upload/h_1800,w_2880,c_fit,f_auto,q_auto:best/Model-S-Interior-Hero-Desktop-LHD'">
             <img data-interior-slide="2" src="assets/ModelS_94.jpg" class="interior-slide absolute inset-0 w-full h-full object-cover" alt="Tesla Model S rear and center cabin interior details" onerror="this.src='https://digitalassets.tesla.com/tesla-contents/image/upload/h_1800,w_2880,c_fit,f_auto,q_auto:best/Model-S-Interior-Hero-Desktop-LHD'">
@@ -1014,19 +1123,19 @@ a.group\/item:hover .menu-info-bubble {
 
             <div class="absolute bottom-0 left-0 w-full p-10 md:p-16 z-20">
                 <div class="grid grid-cols-2 md:grid-cols-4 gap-12 max-w-6xl mx-auto border-t border-white/20 pt-10">
-                    <div class="reveal delay-200">
+                    <div class="reveal reveal-fade delay-200">
                         <h4 id="interior-stat-1-value" class="text-3xl font-semibold mb-2">17”</h4>
                         <p id="interior-stat-1-label" class="text-sm text-neutral-400 uppercase tracking-wider">Cinematic Display</p>
                     </div>
-                    <div class="reveal delay-200">
+                    <div class="reveal reveal-fade delay-200">
                         <h4 id="interior-stat-2-value" class="text-3xl font-semibold mb-2">2200x1300</h4>
                         <p id="interior-stat-2-label" class="text-sm text-neutral-400 uppercase tracking-wider">Resolution</p>
                     </div>
-                    <div class="reveal delay-200">
+                    <div class="reveal reveal-fade delay-200">
                         <h4 id="interior-stat-3-value" class="text-3xl font-semibold mb-2">10 TF</h4>
                         <p id="interior-stat-3-label" class="text-sm text-neutral-400 uppercase tracking-wider">Processing Power</p>
                     </div>
-                    <div class="reveal delay-200">
+                    <div class="reveal reveal-fade delay-200">
                         <h4 id="interior-stat-4-value" class="text-3xl font-semibold mb-2">960 W</h4>
                         <p id="interior-stat-4-label" class="text-sm text-neutral-400 uppercase tracking-wider">22-Speaker Audio</p>
                     </div>
@@ -1038,7 +1147,7 @@ a.group\/item:hover .menu-info-bubble {
     <!-- Gaming Section (New) -->
     <section class="py-32 px-8 bg-neutral-900 text-white">
         <div class="max-w-[1600px] mx-auto grid grid-cols-1 lg:grid-cols-[3fr_5fr] gap-20 items-center">
-            <div class="reveal">
+            <div class="reveal reveal-left">
                 <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-neutral-700 bg-neutral-800/50 mb-6">
                     <iconify-icon icon="solar:gamepad-linear" class="text-indigo-400"></iconify-icon>
                     <span class="text-xs font-bold uppercase tracking-wider">Console Grade</span>
@@ -1059,7 +1168,7 @@ a.group\/item:hover .menu-info-bubble {
                 </div>
                 <button class="px-8 py-3 border border-white rounded-full hover:bg-white hover:text-neutral-900 transition-colors">Explore Games</button>
             </div>
-              <div class="relative rounded-2xl overflow-hidden shadow-2xl border border-white/10 h-[600px] reveal delay-200 group">
+              <div class="relative rounded-2xl overflow-hidden shadow-2xl border border-white/10 h-[600px] reveal reveal-right delay-200 group">
                   <img src="assets/ModelS_89.jpg" class="absolute inset-0 w-full h-full object-cover" alt="Tesla in-car gaming and entertainment display">
                  <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
                  <div class="absolute bottom-8 right-8">
@@ -1071,7 +1180,7 @@ a.group\/item:hover .menu-info-bubble {
 
     <!-- Safety Section (New) -->
     <section class="py-32 px-8 max-w-[1600px] mx-auto">
-        <div class="flex flex-col md:flex-row gap-16 mb-20 items-end reveal">
+        <div class="flex flex-col md:flex-row gap-16 mb-20 items-end reveal reveal-up">
             <div class="md:w-1/2">
                 <h2 class="text-5xl md:text-6xl font-medium tracking-tight mb-6">High Impact Protection</h2>
                 <p class="text-xl text-neutral-500 leading-relaxed">Model S is built from the ground up as an electric vehicle, with a high-strength architecture and floor-mounted battery pack for incredible occupant protection and low rollover risk.</p>
@@ -1087,7 +1196,7 @@ a.group\/item:hover .menu-info-bubble {
                  </div>
             </div>
         </div>
-           <div class="relative w-full h-[600px] bg-neutral-100 rounded-3xl overflow-hidden reveal delay-200">
+           <div class="relative w-full h-[600px] bg-neutral-100 rounded-3xl overflow-hidden reveal reveal-fade delay-200">
                <img src="assets/ModelY_76.jpg" class="absolute inset-0 w-full h-full object-cover mix-blend-darken" alt="Tesla Model Y safety chassis and occupant protection">
                 <div class="absolute top-12 right-12 bg-white/80 backdrop-blur-sm p-6 rounded-2xl shadow-lg max-w-xs">
                  <div class="flex items-start gap-4">
@@ -1119,20 +1228,20 @@ a.group\/item:hover .menu-info-bubble {
 
     <!-- Bento Grid Showcase -->
     <section class="py-32 px-8 max-w-[1600px] mx-auto">
-        <div class="mb-20 reveal">
+        <div class="mb-20 reveal reveal-up">
             <h2 class="text-5xl md:text-6xl font-medium tracking-tight mb-6">Electric Architecture</h2>
             <p class="text-neutral-500 text-xl">Engineered for efficiency, performance, and range.</p>
             <p class="text-neutral-400 text-base mt-4">Optimized thermal management and lightweight materials reduce energy consumption while improving durability.</p>
         </div>
         <div class="grid grid-cols-1 md:grid-cols-6 gap-6 auto-rows-[340px] md:auto-rows-[400px]">
-                <div class="md:col-span-4 bg-neutral-100 rounded-3xl relative overflow-hidden group reveal">
+                <div class="md:col-span-4 bg-neutral-100 rounded-3xl relative overflow-hidden group reveal reveal-left">
                 <img src="assets/Model3_72.jpg" class="absolute inset-0 w-full h-full object-cover mix-blend-multiply opacity-80 group-hover:scale-105 transition-transform duration-700" alt="Tesla electric chassis architecture">
                 <div class="absolute inset-0 p-10 flex flex-col justify-end bg-gradient-to-t from-white via-transparent to-transparent">
                     <h3 class="text-3xl font-semibold mb-3 text-neutral-900">Tri-Motor All-Wheel Drive</h3>
                     <p class="text-neutral-700 text-lg max-w-md">Three independent motors with carbon-sleeved rotors maintain peak power output all the way to top speed.</p>
                 </div>
             </div>
-            <div class="md:col-span-2 bg-white border border-neutral-200 rounded-3xl p-10 flex flex-col justify-between hover:shadow-xl transition-shadow duration-300 reveal delay-100">
+            <div class="md:col-span-2 bg-white border border-neutral-200 rounded-3xl p-10 flex flex-col justify-between hover:shadow-xl transition-shadow duration-300 reveal reveal-fade delay-100">
                 <div>
                     <div class="flex justify-between items-start">
                         <iconify-icon icon="solar:wind-linear" class="text-5xl text-neutral-800"></iconify-icon>
@@ -1148,7 +1257,7 @@ a.group\/item:hover .menu-info-bubble {
                     <span class="px-3 py-1 bg-neutral-100 rounded-full text-xs">Flush Door Handles</span>
                 </div>
             </div>
-            <div class="md:col-span-2 bg-neutral-900 text-white rounded-3xl p-10 flex flex-col justify-between hover:scale-[1.02] transition-transform duration-300 reveal delay-200">
+            <div class="md:col-span-2 bg-neutral-900 text-white rounded-3xl p-10 flex flex-col justify-between hover:scale-[1.02] transition-transform duration-300 reveal reveal-right delay-200">
                  <div>
                     <iconify-icon icon="solar:battery-charge-linear" class="text-5xl text-green-400 mb-6"></iconify-icon>
                     <h3 class="text-2xl font-medium">Supercharging</h3>
@@ -1159,7 +1268,7 @@ a.group\/item:hover .menu-info-bubble {
                      <p class="text-xs text-neutral-300 mt-3">V3 Superchargers deliver up to 250 kW, minimizing stop time and supporting high power delivery across wide temperature ranges.</p>
                  </div>
             </div>
-                <div class="md:col-span-4 bg-white border border-neutral-200 rounded-3xl relative overflow-hidden group reveal delay-300">
+                <div class="md:col-span-4 bg-white border border-neutral-200 rounded-3xl relative overflow-hidden group reveal reveal-up delay-300">
                  <div class="vision-info-wrap absolute top-6 right-6 z-30">
                      <button aria-label="Vision processing information" class="vision-info-bubble">
                          <iconify-icon icon="solar:info-circle-linear" width="18"></iconify-icon>
@@ -1187,7 +1296,7 @@ a.group\/item:hover .menu-info-bubble {
     <!-- Specs Table Section -->
     <section class="bg-black text-white py-32 px-8">
         <div class="max-w-[1400px] mx-auto flex flex-col md:flex-row gap-20 md:pl-[200px]">
-             <div class="md:w-1/2 reveal">
+             <div class="md:w-1/2 reveal reveal-left">
                           <div class="spec-image-container w-full rounded-2xl mb-8 relative bg-black/10" style="height: 460px; perspective: 1400px; overflow: visible; transform: translateX(-150px); width: calc(100% + 150px);">
                         <img data-model="model-3" src="assets/Model3_98.jpg" class="spec-image-stack spec-deck-slot spec-deck-center is-active" alt="Model 3 showcase" style="z-index: 40;">
                         <img data-model="model-y" src="assets/ModelY_89.jpg" class="spec-image-stack spec-deck-slot spec-deck-hidden" alt="Model Y showcase" style="z-index: 10;">
@@ -1205,7 +1314,7 @@ a.group\/item:hover .menu-info-bubble {
                       </div>
                       </div>
              </div>
-             <div class="md:w-1/2 reveal delay-100">
+             <div class="md:w-1/2 reveal reveal-right delay-100">
                  <h3 class="text-3xl font-medium mb-8">Specifications</h3>
                  <div class="grid grid-cols-2 gap-y-12 gap-x-8 specs-fade" id="spec-values">
                      <div>
@@ -1256,14 +1365,14 @@ a.group\/item:hover .menu-info-bubble {
     <!-- NEW: Software & Intelligence Section -->
     <section class="bg-white text-neutral-900 py-32 px-8 border-t border-neutral-200">
       <div class="max-w-[1600px] mx-auto">
-        <div class="mb-20 reveal">
+        <div class="mb-20 reveal reveal-up">
             <p class="text-sm font-medium uppercase tracking-widest text-neutral-500 mb-6">Updates that continuously improve performance, safety, and everyday comfort.</p>
             <h2 class="text-5xl md:text-6xl font-medium tracking-tight mb-6 text-neutral-900">Better Over Time</h2>
             <p class="text-neutral-500 text-xl max-w-2xl">Updates keep improving everything</p>
         </div>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
             <!-- Feature 1 -->
-            <div class="feature-card bg-neutral-50 rounded-3xl p-8 border border-neutral-200 reveal delay-100 group hover:shadow-xl transition-all duration-300 relative">
+            <div class="feature-card bg-neutral-50 rounded-3xl p-8 border border-neutral-200 reveal reveal-left delay-100 group hover:shadow-xl transition-all duration-300 relative">
                 <div class="flex items-center gap-3 mb-5 text-neutral-900">
                     <iconify-icon icon="solar:smartphone-2-linear" class="text-4xl text-neutral-900"></iconify-icon>
                     <h3 class="text-2xl font-semibold">Phone Key</h3>
@@ -1279,7 +1388,7 @@ a.group\/item:hover .menu-info-bubble {
                 <div class="absolute right-6 bottom-6 feature-info-bubble"><iconify-icon icon="solar:arrow-right-linear" width="18"></iconify-icon></div>
             </div>
             <!-- Feature 2 -->
-            <div class="feature-card bg-neutral-50 rounded-3xl p-8 border border-neutral-200 reveal delay-200 group hover:shadow-xl transition-all duration-300 relative">
+            <div class="feature-card bg-neutral-50 rounded-3xl p-8 border border-neutral-200 reveal reveal-fade delay-200 group hover:shadow-xl transition-all duration-300 relative">
                 <div class="flex items-center gap-3 mb-5 text-neutral-900">
                     <iconify-icon icon="solar:map-point-linear" class="text-4xl text-neutral-900"></iconify-icon>
                     <h3 class="text-2xl font-semibold">Trip Planner</h3>
@@ -1295,7 +1404,7 @@ a.group\/item:hover .menu-info-bubble {
                 <div class="absolute right-6 bottom-6 feature-info-bubble"><iconify-icon icon="solar:arrow-right-linear" width="18"></iconify-icon></div>
             </div>
             <!-- Feature 3 -->
-            <div class="feature-card bg-neutral-50 rounded-3xl p-8 border border-neutral-200 reveal delay-300 group hover:shadow-xl transition-all duration-300 relative">
+            <div class="feature-card bg-neutral-50 rounded-3xl p-8 border border-neutral-200 reveal reveal-right delay-300 group hover:shadow-xl transition-all duration-300 relative">
                  <div class="flex items-center gap-3 mb-5 text-neutral-900">
                     <iconify-icon icon="solar:shield-warning-linear" class="text-4xl text-neutral-900"></iconify-icon>
                     <h3 class="text-2xl font-semibold">Sentry Mode</h3>
@@ -1316,12 +1425,12 @@ a.group\/item:hover .menu-info-bubble {
 
     <!-- NEW: Ecosystem Section -->
     <section class="py-32 px-8 max-w-[1600px] mx-auto">
-        <div class="text-center max-w-2xl mx-auto mb-20 reveal">
+        <div class="text-center max-w-2xl mx-auto mb-20 reveal reveal-up">
              <h2 class="text-4xl md:text-5xl font-medium tracking-tight mb-6">Complete Energy Ecosystem</h2>
              <p class="text-xl text-neutral-500">Power your car and your home with an integrated system of solar, battery storage, and charging.</p>
         </div>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8 h-[600px]">
-            <div class="group relative rounded-3xl overflow-hidden bg-neutral-100 md:col-span-2 reveal energy-swap" id="energy-swap-card">
+            <div class="group relative rounded-3xl overflow-hidden bg-neutral-100 md:col-span-2 reveal reveal-left energy-swap" id="energy-swap-card">
                 <img src="assets/SolarPanels_81.jpg" class="absolute inset-0 w-full h-full object-cover object-center energy-swap-default" alt="Tesla home energy ecosystem overview">
                 <img src="assets/SolarPanels_82.jpg" class="absolute inset-0 w-full h-full object-cover object-center energy-swap-alt" alt="Tesla home energy installation and storage">
                 <div class="absolute top-8 left-8">
@@ -1343,7 +1452,7 @@ a.group\/item:hover .menu-info-bubble {
                      </div>
                 </div>
             </div>
-            <div class="group relative rounded-3xl overflow-hidden bg-neutral-900 text-white reveal delay-100">
+            <div class="group relative rounded-3xl overflow-hidden bg-neutral-900 text-white reveal reveal-right delay-100">
                  <div class="absolute inset-0 bg-gradient-to-b from-neutral-800 to-black"></div>
                  <div class="absolute inset-0 flex flex-col items-center justify-center p-8 text-center">
                      <iconify-icon icon="solar:smartphone-linear" class="text-6xl mb-6 text-neutral-400 group-hover:text-white transition-colors"></iconify-icon>
@@ -1358,12 +1467,12 @@ a.group\/item:hover .menu-info-bubble {
     <!-- NEW: Comparison Section -->
     <section class="py-32 px-8 bg-white text-neutral-900">
         <div class="max-w-[1200px] mx-auto">
-            <div class="text-center mb-20 reveal">
+            <div class="text-center mb-20 reveal reveal-fade">
                 <h2 class="text-4xl md:text-5xl font-medium tracking-tight mb-4">Unmatched Performance</h2>
                 <p class="text-neutral-500">The quickest acceleration of any vehicle in production.</p>
                 <p class="text-neutral-400 text-sm mt-4 max-w-2xl mx-auto leading-relaxed">Built for immediate torque delivery, high-speed stability, and effortless daily usability without sacrificing range or comfort.</p>
             </div>
-            <div class="overflow-x-auto reveal delay-100">
+            <div class="overflow-x-auto reveal reveal-up delay-100">
                 <table class="w-full text-left border-collapse">
                     <thead>
                         <tr class="border-b border-neutral-200">
@@ -1414,7 +1523,7 @@ a.group\/item:hover .menu-info-bubble {
     <!-- NEW: Ownership Section -->
     <section class="bg-neutral-50 py-32 px-8">
         <div class="max-w-[1400px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
-            <div class="reveal">
+            <div class="reveal reveal-left">
                 <span class="text-xs font-bold text-green-600 uppercase tracking-wider mb-2 block">Ownership</span>
                 <h2 class="text-5xl font-medium tracking-tight mb-8">Built to Last. Designed to Save.</h2>
                 <p class="text-xl text-neutral-600 mb-10 leading-relaxed">
@@ -1429,7 +1538,7 @@ a.group\/item:hover .menu-info-bubble {
                     Compare savings <iconify-icon icon="solar:arrow-right-linear" width="16" class="text-white"></iconify-icon>
                 </button>
             </div>
-            <div class="bg-white p-10 rounded-3xl shadow-xl border border-neutral-100 reveal delay-200">
+            <div class="bg-white p-10 rounded-3xl shadow-xl border border-neutral-100 reveal reveal-right delay-200">
                  <h3 class="text-lg font-semibold mb-8 border-b border-neutral-100 pb-4">5-Year Cost of Ownership</h3>
                  <div class="space-y-6">
                      <div>
@@ -1462,7 +1571,7 @@ a.group\/item:hover .menu-info-bubble {
     <section class="py-32 px-8 border-t border-neutral-200 bg-neutral-50" id="demo-drive">
         <div class="max-w-[1600px] mx-auto rounded-[32px] bg-white overflow-hidden shadow-sm border border-neutral-200">
             <div class="grid grid-cols-1 lg:grid-cols-2">
-                <div class="relative min-h-[600px] lg:min-h-full p-16 flex flex-col justify-between text-white reveal">
+                <div class="relative min-h-[600px] lg:min-h-full p-16 flex flex-col justify-between text-white reveal reveal-left">
                     <img src="https://digitalassets.tesla.com/tesla-contents/image/upload/f_auto,q_auto:best/Model-S-Performance-Hero-Desktop-LHD" class="absolute inset-0 w-full h-full object-cover" alt="Drive">
                     <div class="absolute inset-0 bg-black/20"></div>
                     <div class="relative z-10">
@@ -1475,7 +1584,7 @@ a.group\/item:hover .menu-info-bubble {
                     </div>
                 </div>
                 
-                <div class="p-16 lg:p-24 flex flex-col justify-center reveal delay-100">
+                <div class="p-16 lg:p-24 flex flex-col justify-center reveal reveal-right delay-100">
                     <h3 class="text-4xl font-semibold mb-12">Schedule your drive</h3>
                     <form class="space-y-10">
                         <div>
@@ -1534,7 +1643,7 @@ a.group\/item:hover .menu-info-bubble {
 
     <!-- Asymmetrical Latest News -->
     <section class="py-32 px-8 max-w-[1600px] mx-auto">
-        <div class="flex justify-between items-end mb-16 reveal">
+        <div class="flex justify-between items-end mb-16 reveal reveal-up">
             <h2 class="text-5xl font-medium tracking-tight">Latest Updates</h2>
             <a href="#" class="flex items-center gap-2 text-base font-medium hover:text-neutral-600 transition-colors group">
                 View Archive <iconify-icon icon="solar:arrow-right-linear" class="group-hover:translate-x-1 transition-transform"></iconify-icon>
@@ -1543,7 +1652,7 @@ a.group\/item:hover .menu-info-bubble {
         
         <div class="grid grid-cols-1 md:grid-cols-4 grid-rows-2 gap-8 h-auto md:h-[700px]">
             <!-- Hero News Item -->
-            <article class="md:col-span-2 md:row-span-2 relative rounded-3xl overflow-hidden group cursor-pointer reveal shadow-sm hover:shadow-2xl transition-all duration-500">
+            <article class="md:col-span-2 md:row-span-2 relative rounded-3xl overflow-hidden group cursor-pointer reveal reveal-left shadow-sm hover:shadow-2xl transition-all duration-500">
                 <img src="assets/Group_45.jpg" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" alt="Tesla software update and driving technology news">
                 <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
                 <div class="absolute bottom-0 left-0 p-10 text-white">
@@ -1554,7 +1663,7 @@ a.group\/item:hover .menu-info-bubble {
             </article>
 
             <!-- Secondary Item -->
-            <article class="md:col-span-1 md:row-span-1 bg-neutral-100 rounded-3xl p-8 flex flex-col justify-between group cursor-pointer hover:bg-neutral-200 transition-colors reveal delay-100">
+            <article class="md:col-span-1 md:row-span-1 bg-neutral-100 rounded-3xl p-8 flex flex-col justify-between group cursor-pointer hover:bg-neutral-200 transition-colors reveal reveal-fade delay-100">
                 <div class="flex justify-between items-start">
                      <span class="text-xs font-bold text-neutral-500 uppercase tracking-wider">Milestone</span>
                      <iconify-icon icon="solar:cup-star-linear" class="text-2xl text-neutral-900"></iconify-icon>
@@ -1566,7 +1675,7 @@ a.group\/item:hover .menu-info-bubble {
             </article>
 
             <!-- Image Item -->
-            <article class="md:col-span-1 md:row-span-1 relative rounded-3xl overflow-hidden group cursor-pointer reveal delay-200">
+            <article class="md:col-span-1 md:row-span-1 relative rounded-3xl overflow-hidden group cursor-pointer reveal reveal-right delay-200">
                 <img src="assets/tesla2.webp" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="Tesla Megapack expansion and clean energy news">
                 <div class="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors"></div>
                 <div class="absolute bottom-0 left-0 p-8 text-white">
@@ -1576,7 +1685,7 @@ a.group\/item:hover .menu-info-bubble {
             </article>
 
             <!-- Wide Bottom Item -->
-            <article class="md:col-span-2 md:row-span-1 bg-neutral-900 text-white rounded-3xl p-10 flex items-center justify-between group cursor-pointer reveal delay-300 shadow-xl">
+            <article class="md:col-span-2 md:row-span-1 bg-neutral-900 text-white rounded-3xl p-10 flex items-center justify-between group cursor-pointer reveal reveal-up delay-300 shadow-xl">
                 <div class="pr-8">
                     <span class="text-xs font-bold text-purple-400 uppercase tracking-wider mb-3 block">Event</span>
                     <h3 class="text-3xl font-semibold mb-2">AI Day 2024</h3>
@@ -1591,12 +1700,12 @@ a.group\/item:hover .menu-info-bubble {
 
     <!-- Why Tesla Confidence Section -->
     <section class="py-32 px-8 max-w-[1600px] mx-auto border-t border-neutral-200">
-        <div class="text-center max-w-3xl mx-auto mb-16 reveal">
+        <div class="text-center max-w-3xl mx-auto mb-16 reveal reveal-up">
             <h2 class="text-5xl md:text-6xl font-medium tracking-tight mb-6">Why Drivers Keep Choosing Tesla</h2>
             <p class="text-xl text-neutral-500 leading-relaxed">From acceleration and software to charging and long-term ownership value, Tesla ownership creates a connected ecosystem that improves with time.</p>
         </div>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <article class="bg-white border border-neutral-200 rounded-3xl p-10 reveal relative overflow-hidden group shadow-sm hover:shadow-xl transition-shadow duration-150">
+            <article class="bg-white border border-neutral-200 rounded-3xl p-10 reveal reveal-left relative overflow-hidden group shadow-sm hover:shadow-xl transition-shadow duration-150">
                 <div class="absolute top-6 right-6 text-neutral-400 group-hover:text-neutral-900 transition-colors duration-150 cursor-pointer">
                     <iconify-icon icon="solar:arrow-right-linear" width="24"></iconify-icon>
                 </div>
@@ -1604,7 +1713,7 @@ a.group\/item:hover .menu-info-bubble {
                 <h3 class="text-2xl font-semibold mb-4">Balanced Performance</h3>
                 <p class="text-neutral-600 leading-relaxed">Model S Plaid blends lightning acceleration with daily comfort and range, so the car feels sharp without giving up easy long-distance use.</p>
             </article>
-            <article class="bg-white border border-neutral-200 rounded-3xl p-10 reveal delay-100 relative overflow-hidden group shadow-sm hover:shadow-xl transition-shadow duration-150">
+            <article class="bg-white border border-neutral-200 rounded-3xl p-10 reveal reveal-fade delay-100 relative overflow-hidden group shadow-sm hover:shadow-xl transition-shadow duration-150">
                 <div class="absolute top-6 right-6 text-neutral-400 group-hover:text-neutral-900 transition-colors duration-150 cursor-pointer">
                     <iconify-icon icon="solar:arrow-right-linear" width="24"></iconify-icon>
                 </div>
@@ -1612,7 +1721,7 @@ a.group\/item:hover .menu-info-bubble {
                 <h3 class="text-2xl font-semibold mb-4">Software Advantage</h3>
                 <p class="text-neutral-600 leading-relaxed">Frequent OTA updates deliver tangible improvements in navigation, safety features, and day-to-day user experience throughout ownership.</p>
             </article>
-            <article class="bg-white border border-neutral-200 rounded-3xl p-10 reveal delay-200 relative overflow-hidden group shadow-sm hover:shadow-xl transition-shadow duration-150">
+            <article class="bg-white border border-neutral-200 rounded-3xl p-10 reveal reveal-right delay-200 relative overflow-hidden group shadow-sm hover:shadow-xl transition-shadow duration-150">
                 <div class="absolute top-6 right-6 text-neutral-400 group-hover:text-neutral-900 transition-colors duration-150 cursor-pointer">
                     <iconify-icon icon="solar:arrow-right-linear" width="24"></iconify-icon>
                 </div>
@@ -1626,7 +1735,7 @@ a.group\/item:hover .menu-info-bubble {
     <!-- Long-Term Value Section -->
     <section class="py-32 px-8 bg-white text-neutral-900">
         <div class="max-w-[1600px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-            <div class="reveal">
+            <div class="reveal reveal-left">
                 <p class="text-sm uppercase tracking-wider text-neutral-500 mb-4">What do we offer?</p>
                 <h2 class="text-5xl md:text-6xl font-medium tracking-tight mb-6">Built for Long-Term Value</h2>
                 <p class="text-lg text-neutral-600 leading-relaxed mb-8">Owners get lower upkeep, useful software improvements, and a charging network that keeps the ownership experience simple over time.</p>
@@ -1662,7 +1771,7 @@ a.group\/item:hover .menu-info-bubble {
                     </div>
                 </div>
             </div>
-            <div class="reveal delay-100">
+            <div class="reveal reveal-right delay-100">
                 <div class="relative h-[720px] overflow-hidden rounded-3xl">
                     <img src="assets/Group_60.jpg" class="absolute inset-0 w-full h-full object-cover object-center" alt="Tesla long-term value image">
                     <div class="absolute top-6 left-6 right-6 flex items-start justify-between gap-4 text-white">
@@ -1697,7 +1806,7 @@ a.group\/item:hover .menu-info-bubble {
         <h2 class="text-4xl font-medium tracking-tight mb-16 text-center reveal">Frequently Asked Questions</h2>
         
         <div class="space-y-6">
-            <div class="faq-item faq-open">
+            <div class="faq-item faq-open reveal reveal-left">
                 <button class="faq-trigger" type="button">
                     <span class="font-medium text-xl">What is the real-world range of Model S Plaid?</span>
                     <iconify-icon icon="solar:alt-arrow-down-linear" width="28" class="faq-arrow"></iconify-icon>
@@ -1709,7 +1818,7 @@ a.group\/item:hover .menu-info-bubble {
                 </div>
             </div>
 
-            <div class="faq-item">
+            <div class="faq-item reveal reveal-fade">
                 <button class="faq-trigger" type="button">
                     <span class="font-medium text-xl">How does Tesla charging compare on long trips?</span>
                     <iconify-icon icon="solar:alt-arrow-down-linear" width="28" class="faq-arrow"></iconify-icon>
@@ -1721,7 +1830,7 @@ a.group\/item:hover .menu-info-bubble {
                 </div>
             </div>
 
-            <div class="faq-item">
+            <div class="faq-item reveal reveal-right">
                 <button class="faq-trigger" type="button">
                     <span class="font-medium text-xl">What software and driver-assistance features are included?</span>
                     <iconify-icon icon="solar:alt-arrow-down-linear" width="28" class="faq-arrow"></iconify-icon>
@@ -1733,7 +1842,7 @@ a.group\/item:hover .menu-info-bubble {
                 </div>
             </div>
 
-            <div class="faq-item">
+            <div class="faq-item reveal reveal-up">
                 <button class="faq-trigger" type="button">
                     <span class="font-medium text-xl">Is Tesla ownership cheaper over time?</span>
                     <iconify-icon icon="solar:alt-arrow-down-linear" width="28" class="faq-arrow"></iconify-icon>
@@ -1750,13 +1859,13 @@ a.group\/item:hover .menu-info-bubble {
     <!-- Future Section -->
     <section class="py-32 px-8 bg-white border-t border-neutral-200">
         <div class="max-w-[1600px] mx-auto flex flex-col">
-            <div class="text-center max-w-3xl mx-auto mb-16 reveal">
+            <div class="text-center max-w-3xl mx-auto mb-16 reveal reveal-up">
                 <h2 class="text-5xl md:text-6xl font-medium tracking-tight mb-5">What's the future like?</h2>
                 <p class="text-lg text-neutral-500 leading-relaxed">A closer look at where mobility, intelligence, and energy are headed next.</p>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <article class="future-card-top rounded-3xl overflow-hidden bg-neutral-50 border border-neutral-200 shadow-sm reveal">
+                <article class="future-card-top rounded-3xl overflow-hidden bg-neutral-50 border border-neutral-200 shadow-sm reveal reveal-left">
                     <div class="relative h-[420px]">
                         <img src="assets/Model3_84.jpg" class="absolute inset-0 w-full h-full object-cover" alt="Future Tesla phone key access">
                         <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/35 to-transparent"></div>
@@ -1770,7 +1879,7 @@ a.group\/item:hover .menu-info-bubble {
                     </div>
                 </article>
 
-                <article class="future-card-top rounded-3xl overflow-hidden bg-neutral-50 border border-neutral-200 shadow-sm reveal delay-100">
+                <article class="future-card-top rounded-3xl overflow-hidden bg-neutral-50 border border-neutral-200 shadow-sm reveal reveal-right delay-100">
                     <div class="relative h-[420px]">
                         <img src="assets/Model3_90.jpg" class="absolute inset-0 w-full h-full object-cover" alt="Future Tesla trip planner">
                         <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/35 to-transparent"></div>
@@ -1784,14 +1893,14 @@ a.group\/item:hover .menu-info-bubble {
                     </div>
                 </article>
 
-                <article class="future-card fade-bottom-strong rounded-3xl overflow-hidden bg-neutral-50 border border-neutral-200 shadow-sm reveal delay-200">
+                <article class="future-card fade-bottom-strong rounded-3xl overflow-hidden bg-neutral-50 border border-neutral-200 shadow-sm reveal reveal-fade delay-200">
                     <div class="relative h-[420px]">
                         <img src="assets/Model3_89.jpg" class="absolute inset-0 w-full h-full object-cover" alt="Future Tesla Sentry Mode">
                         <div class="absolute inset-0 bg-gradient-to-t from-white via-transparent to-transparent"></div>
                     </div>
                 </article>
 
-                <article class="future-card fade-bottom-strong rounded-3xl overflow-hidden bg-neutral-50 border border-neutral-200 shadow-sm reveal delay-300">
+                <article class="future-card fade-bottom-strong rounded-3xl overflow-hidden bg-neutral-50 border border-neutral-200 shadow-sm reveal reveal-up delay-300">
                     <div class="relative h-[420px]">
                         <img src="assets/Model3_83.jpg" class="absolute inset-0 w-full h-full object-cover" alt="Future Tesla home energy">
                         <div class="absolute inset-0 bg-gradient-to-t from-white via-transparent to-transparent"></div>
@@ -1807,14 +1916,14 @@ a.group\/item:hover .menu-info-bubble {
     <footer class="bg-white border-t border-neutral-200 pt-24 pb-12 px-8">
         <div class="max-w-[1600px] mx-auto">
             <div class="flex flex-col md:flex-row justify-between gap-16 mb-20">
-                <div class="max-w-sm">
+                <div class="max-w-sm reveal reveal-left">
                     <a href="#" class="text-2xl font-bold tracking-widest text-neutral-900 mb-8 block">TESLA</a>
                     <p class="text-sm text-neutral-500 leading-relaxed">
                         Accelerating the world's transition to sustainable energy through electric vehicles, solar and integrated renewable energy solutions.
                     </p>
                 </div>
                 <div class="flex flex-wrap gap-16 md:gap-32">
-                    <div>
+                    <div class="reveal reveal-fade">
                         <h4 class="text-xs font-semibold uppercase tracking-wider text-neutral-900 mb-6">Model S</h4>
                         <ul class="space-y-4 text-sm text-neutral-500">
                             <li><a href="#" class="hover-underline text-neutral-600">Order</a></li>
@@ -1823,7 +1932,7 @@ a.group\/item:hover .menu-info-bubble {
                             <li><a href="#" class="hover-underline text-neutral-600">Compare</a></li>
                         </ul>
                     </div>
-                    <div>
+                    <div class="reveal reveal-right delay-100">
                         <h4 class="text-xs font-semibold uppercase tracking-wider text-neutral-900 mb-6">Company</h4>
                         <ul class="space-y-4 text-sm text-neutral-500">
                             <li><a href="#" class="hover-underline text-neutral-600">About</a></li>
@@ -1834,7 +1943,7 @@ a.group\/item:hover .menu-info-bubble {
                     </div>
                 </div>
             </div>
-            <div class="flex flex-col md:flex-row justify-between items-center border-t border-neutral-100 pt-10 gap-6">
+            <div class="flex flex-col md:flex-row justify-between items-center border-t border-neutral-100 pt-10 gap-6 reveal reveal-up delay-200">
                 <p class="text-xs text-neutral-400">© 2024 Tesla, Inc. All rights reserved.</p>
                 <div class="flex gap-6">
                      <a href="#" class="text-neutral-400 hover:text-black transition-colors"><iconify-icon icon="brandico:twitter-bird" width="18"></iconify-icon></a>
@@ -1860,10 +1969,28 @@ a.group\/item:hover .menu-info-bubble {
         const energySwapCard = document.getElementById('energy-swap-card');
         const interiorCarousel = document.getElementById('interior-carousel');
         const heroLanding = document.getElementById('hero-landing');
+        const newsletterForm = document.getElementById('newsletter-form');
+        const newsletterEmail = document.getElementById('newsletter-email');
+        const newsletterStatus = document.getElementById('newsletter-status');
 
         window.setTimeout(() => {
             document.body.classList.add('page-ready');
         }, 180);
+
+        if (newsletterForm && newsletterEmail && newsletterStatus) {
+            newsletterForm.addEventListener('submit', (event) => {
+                event.preventDefault();
+                const email = newsletterEmail.value.trim();
+
+                if (!email) {
+                    newsletterStatus.textContent = 'Please enter an email address.';
+                    return;
+                }
+
+                newsletterStatus.textContent = `Thanks. ${email} is in the queue.`;
+                newsletterForm.reset();
+            });
+        }
 
         const specSets = {
             'model-3': [
