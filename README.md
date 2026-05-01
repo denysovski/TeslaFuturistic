@@ -59,3 +59,7 @@ The design leans into a clean Tesla-like palette with high contrast and restrain
 ## Live Site
 
 [https://denysovski.github.io/TeslaFuturistic/](https://denysovski.github.io/TeslaFuturistic/)
+
+
+<img alt="copy1" src="https://github.com/user-attachments/assets/055aec25-707c-4f54-8456-b02c1491758a" />
+<img alt="copy2" src="https://github.com/user-attachments/assets/0a780c7e-654d-48b6-a76b-7436a003f47f" />
