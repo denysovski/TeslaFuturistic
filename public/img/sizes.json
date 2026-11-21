@@ -1,0 +1,247 @@
+{
+  "model-y-performance-hero": {
+    "widths": [
+      828,
+      1280,
+      1920,
+      2560
+    ],
+    "w": 4000,
+    "h": 2250
+  },
+  "model-s-interior-cockpit": {
+    "widths": [
+      640,
+      1280,
+      1920
+    ],
+    "w": 4000,
+    "h": 2250
+  },
+  "model-s-interior-front-seats": {
+    "widths": [
+      640,
+      1280,
+      1920
+    ],
+    "w": 4000,
+    "h": 2250
+  },
+  "model-s-interior-rear-cabin": {
+    "widths": [
+      640,
+      1280,
+      1920
+    ],
+    "w": 4000,
+    "h": 2250
+  },
+  "tesla-in-car-gaming": {
+    "widths": [
+      640,
+      1280,
+      1920
+    ],
+    "w": 4000,
+    "h": 2250
+  },
+  "model-y-safety-chassis": {
+    "widths": [
+      640,
+      1280,
+      1920
+    ],
+    "w": 4000,
+    "h": 2250
+  },
+  "tesla-electric-chassis": {
+    "widths": [
+      640,
+      1280,
+      1920
+    ],
+    "w": 4000,
+    "h": 2250
+  },
+  "tesla-vision-camera-network": {
+    "widths": [
+      640,
+      1280,
+      1920
+    ],
+    "w": 4000,
+    "h": 2250
+  },
+  "tesla-model-3": {
+    "widths": [
+      640,
+      1280,
+      1920
+    ],
+    "w": 4000,
+    "h": 2250
+  },
+  "tesla-model-y": {
+    "widths": [
+      640,
+      1280,
+      1920
+    ],
+    "w": 4000,
+    "h": 2250
+  },
+  "tesla-model-s": {
+    "widths": [
+      640,
+      1280,
+      1920
+    ],
+    "w": 4000,
+    "h": 2250
+  },
+  "tesla-model-x": {
+    "widths": [
+      640,
+      1280,
+      1920
+    ],
+    "w": 4000,
+    "h": 2250
+  },
+  "tesla-phone-key": {
+    "widths": [
+      640,
+      1280
+    ],
+    "w": 4000,
+    "h": 2250
+  },
+  "tesla-trip-planner": {
+    "widths": [
+      640,
+      970
+    ],
+    "w": 970,
+    "h": 647
+  },
+  "tesla-sentry-mode": {
+    "widths": [
+      640,
+      1280
+    ],
+    "w": 1920,
+    "h": 1080
+  },
+  "tesla-home-energy-ecosystem": {
+    "widths": [
+      640,
+      1280,
+      1920
+    ],
+    "w": 4000,
+    "h": 2995
+  },
+  "tesla-home-energy-storage": {
+    "widths": [
+      640,
+      1280,
+      1920
+    ],
+    "w": 5272,
+    "h": 3430
+  },
+  "tesla-software-update": {
+    "widths": [
+      640,
+      1280,
+      1920
+    ],
+    "w": 4000,
+    "h": 2250
+  },
+  "tesla-megapack": {
+    "widths": [
+      640,
+      1280,
+      1920
+    ],
+    "w": 2562,
+    "h": 1166
+  },
+  "tesla-long-term-value": {
+    "widths": [
+      640,
+      1280,
+      1920
+    ],
+    "w": 4000,
+    "h": 2250
+  },
+  "future-tesla-phone-key": {
+    "widths": [
+      640,
+      1280
+    ],
+    "w": 4000,
+    "h": 3000
+  },
+  "future-tesla-trip-planner": {
+    "widths": [
+      640,
+      1280
+    ],
+    "w": 4000,
+    "h": 2250
+  },
+  "future-tesla-sentry-mode": {
+    "widths": [
+      640,
+      1280
+    ],
+    "w": 4000,
+    "h": 2250
+  },
+  "future-tesla-home-energy": {
+    "widths": [
+      640,
+      1280
+    ],
+    "w": 4000,
+    "h": 2250
+  },
+  "cart-charging-cable": {
+    "widths": [
+      160
+    ],
+    "w": 1600,
+    "h": 901
+  },
+  "cart-tesla-mug": {
+    "widths": [
+      160
+    ],
+    "w": 640,
+    "h": 426
+  },
+  "cart-screen-protector": {
+    "widths": [
+      160
+    ],
+    "w": 1876,
+    "h": 1056
+  },
+  "tesla-wordmark": {
+    "widths": [
+      300
+    ],
+    "w": 3000,
+    "h": 425
+  },
+  "tesla-logo": {
+    "widths": [
+      270
+    ],
+    "w": 3000,
+    "h": 2000
+  }
+}

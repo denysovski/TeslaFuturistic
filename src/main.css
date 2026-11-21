@@ -1,0 +1,9 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* nothing may widen the page sideways (iOS ignores overflow-x: hidden on body alone) */
+html,
+body {
+  overflow-x: clip;
+}

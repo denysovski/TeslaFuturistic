@@ -1,8 +1,7 @@
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
-import tailwindcss from '@tailwindcss/vite'
+import { defineConfig } from 'vite';
 
+// GitHub Pages serves the site from /TeslaFuturistic/
 export default defineConfig(({ command }) => ({
   base: command === 'build' ? '/TeslaFuturistic/' : '/',
-  plugins: [react(), tailwindcss()],
-}))
+  build: { assetsInlineLimit: 0 },
+}));

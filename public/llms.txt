@@ -1,0 +1,10 @@
+# TeslaX
+
+> TeslaX is an unofficial, portfolio concept page for Tesla Model S Plaid by denysovski. It is not affiliated with Tesla, Inc.; prices, dates and the cart are demo data.
+
+The single page covers the Model S interior, in-car gaming, safety, the electric architecture, a model showcase (Model 3, Model Y, Model S, Model X), software updates, Tesla Energy (solar, Powerwall, Megapack), performance, ownership costs, a demo-drive form, updates, an FAQ and a look at future features.
+
+- [Concept page](https://denysovski.github.io/TeslaFuturistic/)
+- [Source code](https://github.com/denysovski/TeslaFuturistic)
+- [Author](https://github.com/denysovski)
+- [Official Tesla website](https://www.tesla.com/)
