@@ -130,7 +130,7 @@ export function nav(current = '') {
             <button type="button" class="desk-link" aria-expanded="false" aria-controls="mega-${g.id}"${current.startsWith(g.overview.href) ? ' data-current' : ''}>
               ${g.label}${icon('solar:alt-arrow-down-linear', 14, ' class="desk-caret"')}
             </button>
-            <div class="mega" id="mega-${g.id}" hidden>
+            <div class="mega" id="mega-${g.id}">
               <div class="mega-inner">${desktopPanel(g)}</div>
             </div>
           </li>`,

@@ -6,6 +6,7 @@ import './site.css';
 import './ui.css';
 import 'iconify-icon';
 import './icons.generated.js';
+import './select.js';
 
 const BASE = import.meta.env.BASE_URL;
 const reduce = () => matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -87,22 +88,19 @@ let openItem = null;
 let hoverTimer;
 function setMega(item) {
   if (openItem === item) return;
+  // switching straight from one open panel to another: swap without sliding again
+  const switching = !!(openItem && item);
+  header?.classList.toggle('mega-switch', switching);
   if (openItem) {
-    const p = $('.mega', openItem);
     $('.desk-link', openItem).setAttribute('aria-expanded', 'false');
     openItem.classList.remove('is-open');
-    const closing = p;
-    setTimeout(() => {
-      if (!closing.parentElement.classList.contains('is-open')) closing.hidden = true;
-    }, 200);
   }
   openItem = item;
   header?.classList.toggle('mega-open', !!item);
   if (item) {
-    const p = $('.mega', item);
-    p.hidden = false;
     $('.desk-link', item).setAttribute('aria-expanded', 'true');
-    requestAnimationFrame(() => item.classList.add('is-open'));
+    item.classList.add('is-open');
+    if (switching) requestAnimationFrame(() => requestAnimationFrame(() => header.classList.remove('mega-switch')));
   }
 }
 items.forEach((item) => {
@@ -110,11 +108,11 @@ items.forEach((item) => {
   btn.addEventListener('click', () => setMega(openItem === item ? null : item));
   item.addEventListener('mouseenter', () => {
     clearTimeout(hoverTimer);
-    hoverTimer = setTimeout(() => setMega(item), openItem ? 0 : 90);
+    hoverTimer = setTimeout(() => setMega(item), openItem ? 0 : 120);
   });
   item.addEventListener('mouseleave', () => {
     clearTimeout(hoverTimer);
-    hoverTimer = setTimeout(() => setMega(null), 160);
+    hoverTimer = setTimeout(() => setMega(null), 220);
   });
 });
 document.addEventListener('click', (e) => {
