@@ -23,7 +23,8 @@
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="manifest" href="site.webmanifest">
-<link rel="preload" as="image" href="img/model-y-performance-hero-1280.webp" imagesrcset="img/model-y-performance-hero-828.webp 828w, img/model-y-performance-hero-1280.webp 1280w, img/model-y-performance-hero-1920.webp 1920w, img/model-y-performance-hero-2560.webp 2560w" imagesizes="100vw" fetchpriority="high">
+<link rel="preload" as="image" media="(max-width: 767px)" href="img/model-s-plaid-hero-mobile-828.webp" imagesrcset="img/model-s-plaid-hero-mobile-640.webp 640w, img/model-s-plaid-hero-mobile-828.webp 828w, img/model-s-plaid-hero-mobile-1080.webp 1080w" imagesizes="100vw" fetchpriority="high">
+<link rel="preload" as="image" media="(min-width: 768px)" href="img/model-y-performance-hero-1280.webp" imagesrcset="img/model-y-performance-hero-828.webp 828w, img/model-y-performance-hero-1280.webp 1280w, img/model-y-performance-hero-1920.webp 1920w, img/model-y-performance-hero-2560.webp 2560w" imagesizes="100vw" fetchpriority="high">
 <script type="application/ld+json">[{"@context": "https://schema.org", "@type": "WebSite", "name": "TeslaX", "url": "https://denysovski.github.io/TeslaFuturistic/", "inLanguage": "en", "description": "Unofficial Tesla concept page by denysovski: Model S Plaid performance, interior, Tesla Energy, charging and ownership in one cinematic, futuristic showcase.", "author": {"@type": "Person", "name": "denysovski", "url": "https://github.com/denysovski"}}, {"@context": "https://schema.org", "@type": "WebPage", "name": "TeslaX · Unofficial Tesla Model S Plaid concept page", "url": "https://denysovski.github.io/TeslaFuturistic/", "description": "Unofficial Tesla concept page by denysovski: Model S Plaid performance, interior, Tesla Energy, charging and ownership in one cinematic, futuristic showcase.", "isPartOf": {"@type": "WebSite", "url": "https://denysovski.github.io/TeslaFuturistic/"}, "primaryImageOfPage": "https://denysovski.github.io/TeslaFuturistic/og-image.jpg", "about": {"@type": "Thing", "name": "Tesla Model S Plaid"}, "creator": {"@type": "Person", "name": "denysovski", "url": "https://github.com/denysovski"}}, {"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What is the real-world range of Model S Plaid?", "acceptedAnswer": {"@type": "Answer", "text": "Model S Plaid is rated up to 396 miles (EPA estimate). In daily use, range depends on speed, weather, elevation, and wheel setup. The onboard energy graph and live route planner continuously adjust predictions and suggest charging stops, helping drivers plan trips with high confidence."}}, {"@type": "Question", "name": "How does Tesla charging compare on long trips?", "acceptedAnswer": {"@type": "Answer", "text": "With V3 Supercharging up to 250 kW, Model S can recover substantial range quickly. The navigation system preconditions the battery before arrival to optimize charge speed, and route guidance dynamically adapts based on traffic and charger availability."}}, {"@type": "Question", "name": "What software and driver-assistance features are included?", "acceptedAnswer": {"@type": "Answer", "text": "Every new Tesla includes core Autopilot capabilities for lane-centered highway driving assistance. Additional driver-assistance packages can be added, while regular over-the-air updates refine usability, safety logic, and system responsiveness over time."}}, {"@type": "Question", "name": "Is Tesla ownership cheaper over time?", "acceptedAnswer": {"@type": "Answer", "text": "Many owners report lower operating costs thanks to reduced routine maintenance and lower fueling cost per mile versus premium gasoline sedans. Exact savings depend on electricity pricing, annual mileage, local incentives, and financing terms."}}]}]</script>
 <script type="module" src="/src/main.js"></script>
 <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js" defer></script>
@@ -828,6 +829,13 @@ a.group\/item:hover .menu-info-bubble {
 #checkout-btn{ height:3.25rem; border-radius:1rem; font-weight:600 }
 #see-cart-btn{ height:3rem; border-radius:1rem }
 
+
+/* phones: calmer wrapping */
+h1, h2, h3 { text-wrap: balance; }
+p { text-wrap: pretty; }
+@media (max-width: 767px) {
+    p { hyphens: auto; }
+}
 </style></head>
 <body class="bg-white text-neutral-900 antialiased overflow-x-hidden selection:bg-neutral-900 selection:text-white">
 
@@ -836,7 +844,7 @@ a.group\/item:hover .menu-info-bubble {
         <div class="absolute inset-0 bg-white" id="nav-bg"></div>
         <div id="mega-menu-shell"></div>
         
-        <div class="relative z-50 max-w-[1800px] mx-auto px-8 h-14 flex items-center justify-between">
+        <div class="relative z-50 max-w-[1800px] mx-auto px-5 md:px-8 h-14 flex items-center justify-between">
             <!-- Logo -->
             <div class="z-50 relative">
                 <a href="./" class="flex items-center gap-2" aria-label="TeslaX home">
@@ -1015,7 +1023,7 @@ a.group\/item:hover .menu-info-bubble {
         </div>
         <!-- Mobile menu: the page's sections -->
         <div id="mobile-menu" class="lg:hidden relative z-40 bg-white border-t border-neutral-200 shadow-xl" hidden>
-            <ul class="max-w-[1800px] mx-auto px-8 py-6 grid grid-cols-2 gap-x-6 gap-y-4 text-base font-medium text-neutral-800">
+            <ul class="max-w-[1800px] mx-auto px-5 md:px-8 py-6 grid grid-cols-2 gap-x-6 gap-y-4 text-base font-medium text-neutral-800">
                 <li><a href="#interior" class="block py-1">Interior</a></li>
                 <li><a href="#models" class="block py-1">Models</a></li>
                 <li><a href="#performance" class="block py-1">Performance</a></li>
@@ -1051,7 +1059,10 @@ a.group\/item:hover .menu-info-bubble {
     <!-- Hero Section -->
     <section id="hero-landing" class="relative h-screen min-h-[640px] md:min-h-[900px] w-full overflow-hidden flex flex-col justify-center items-center">
         <div class="absolute inset-0 z-0">
-            <img fetchpriority="high" decoding="async" src="img/model-y-performance-hero-1280.webp" width="2560" height="1440" srcset="img/model-y-performance-hero-828.webp 828w, img/model-y-performance-hero-1280.webp 1280w, img/model-y-performance-hero-1920.webp 1920w, img/model-y-performance-hero-2560.webp 2560w" sizes="100vw" class="w-full h-full object-cover object-center pointer-events-none hero-image-fade" alt="Tesla Model Y Performance landing page image">
+            <picture class="block w-full h-full">
+                <source media="(max-width: 767px)" srcset="img/model-s-plaid-hero-mobile-640.webp 640w, img/model-s-plaid-hero-mobile-828.webp 828w, img/model-s-plaid-hero-mobile-1080.webp 1080w" sizes="100vw" width="1080" height="1385">
+                <img fetchpriority="high" decoding="async" src="img/model-y-performance-hero-1280.webp" width="2560" height="1440" srcset="img/model-y-performance-hero-828.webp 828w, img/model-y-performance-hero-1280.webp 1280w, img/model-y-performance-hero-1920.webp 1920w, img/model-y-performance-hero-2560.webp 2560w" sizes="100vw" class="w-full h-full object-cover object-center pointer-events-none hero-image-fade" alt="Red Tesla on a mountain road: Model Y Performance on wide screens, Model S Plaid on phones">
+            </picture>
             <canvas id="hero-sequence" class="hero-sequence-canvas hidden pointer-events-none" aria-hidden="true"></canvas>
             <div class="absolute inset-0 bg-black/28"></div>
             <div class="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/12"></div>
@@ -1064,8 +1075,8 @@ a.group\/item:hover .menu-info-bubble {
             </div>
         </div>
         
-        <div class="absolute bottom-12 w-full max-w-[1600px] px-8">
-            <div class="flex flex-col md:flex-row justify-between items-end gap-10">
+        <div class="absolute bottom-6 md:bottom-12 w-full max-w-[1600px] px-4 md:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-stretch md:items-end gap-3 md:gap-10">
                 <div class="max-w-4xl w-full reveal active delay-200 mx-auto">
                     <div class="grid grid-cols-3 gap-2 sm:gap-6 md:gap-8 text-neutral-900 w-full max-w-4xl mx-auto">
                         <div class="group cursor-default hero-landing-item hero-jump-in bg-white rounded-2xl lg:rounded-full px-2 py-3 sm:px-4 sm:py-4 lg:px-7 lg:py-5 shadow-md flex flex-col items-center justify-center text-center relative spec-card" data-spec="range" style="animation-delay: 180ms;">
@@ -1109,19 +1120,19 @@ a.group\/item:hover .menu-info-bubble {
                         </div>
                     </div>
                 </div>
-                <div class="flex flex-col items-end gap-4 w-full md:w-auto reveal active delay-300 hero-lift-in" style="transform: translateY(-30px); animation-delay: 260ms;">
+                <div class="hero-cta-col md:relative md:-top-[30px] flex flex-col items-stretch md:items-end gap-4 w-full md:w-auto reveal active delay-300 hero-lift-in" style="animation-delay: 260ms;">
                     <div class="flex justify-end w-full md:w-auto">
-                    <button class="hero-cta-primary w-auto px-16 py-4 bg-neutral-900 text-white text-base font-medium rounded-full hover:bg-neutral-800 hover:-translate-y-0.5 hover:scale-[1.03] transition-all duration-150 shadow-lg shadow-neutral-900/20 hover:shadow-xl hover:shadow-neutral-900/25 hero-landing-item hero-lift-in" style="animation-delay: 420ms;">Order Now</button>
+                    <button class="hero-cta-primary w-full md:w-auto px-16 py-4 bg-neutral-900 text-white text-base font-medium rounded-full hover:bg-neutral-800 hover:-translate-y-0.5 hover:scale-[1.03] transition-all duration-150 shadow-lg shadow-neutral-900/20 hover:shadow-xl hover:shadow-neutral-900/25 hero-landing-item hero-lift-in" style="animation-delay: 420ms;">Order Now</button>
                     </div>
-                    <p class="max-w-[24rem] text-right text-white/95 text-base leading-relaxed">Unleash the performance without compromise, where luxury meets adrenaline.</p>
+                    <p class="hidden md:block max-w-[24rem] text-right text-white/95 text-base leading-relaxed">Unleash the performance without compromise, where luxury meets adrenaline.</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Interior Cinematic Section -->
-    <section id="interior" class="bg-black text-white relative py-32 overflow-hidden min-h-screen flex flex-col justify-center">
-        <div class="max-w-[1800px] mx-auto px-8 mb-16 relative z-10 w-full text-center reveal reveal-left">
+    <section id="interior" class="bg-black text-white relative py-20 md:py-32 overflow-hidden min-h-screen flex flex-col justify-center">
+        <div class="max-w-[1800px] mx-auto px-5 md:px-8 mb-10 md:mb-16 relative z-10 w-full text-left md:text-center reveal reveal-left">
             <div class="mask-text reveal reveal-fade">
                 <span>
                     <h2 class="text-5xl md:text-7xl font-medium tracking-tight mb-6">Interior of the Future</h2>
@@ -1129,7 +1140,7 @@ a.group\/item:hover .menu-info-bubble {
                 </span>
             </div>
         </div>
-        <div id="interior-carousel" class="relative w-full h-[80vh] max-w-[1700px] mx-auto rounded-2xl overflow-hidden shadow-2xl border border-white/10 reveal reveal-up delay-100 group">
+        <div id="interior-carousel" class="relative w-full h-[62vh] md:h-[80vh] max-w-[1700px] mx-auto rounded-2xl overflow-hidden shadow-2xl border border-white/10 reveal reveal-up delay-100 group">
             <img loading="lazy" decoding="async" data-interior-slide="0" src="img/model-s-interior-cockpit-1280.webp" width="1920" height="1080" srcset="img/model-s-interior-cockpit-640.webp 640w, img/model-s-interior-cockpit-1280.webp 1280w, img/model-s-interior-cockpit-1920.webp 1920w" sizes="(min-width: 1024px) 66vw, 100vw" class="interior-slide is-active absolute inset-0 w-full h-full object-cover" alt="Tesla Model S interior panoramic cockpit">
             <img loading="lazy" decoding="async" data-interior-slide="1" src="img/model-s-interior-front-seats-1280.webp" width="1920" height="1080" srcset="img/model-s-interior-front-seats-640.webp 640w, img/model-s-interior-front-seats-1280.webp 1280w, img/model-s-interior-front-seats-1920.webp 1920w" sizes="(min-width: 1024px) 66vw, 100vw" class="interior-slide absolute inset-0 w-full h-full object-cover" alt="Tesla Model S interior front seats and center console">
             <img loading="lazy" decoding="async" data-interior-slide="2" src="img/model-s-interior-rear-cabin-1280.webp" width="1920" height="1080" srcset="img/model-s-interior-rear-cabin-640.webp 640w, img/model-s-interior-rear-cabin-1280.webp 1280w, img/model-s-interior-rear-cabin-1920.webp 1920w" sizes="(min-width: 1024px) 66vw, 100vw" class="interior-slide absolute inset-0 w-full h-full object-cover" alt="Tesla Model S rear and center cabin interior details">
@@ -1172,7 +1183,7 @@ a.group\/item:hover .menu-info-bubble {
     </section>
 
     <!-- Gaming Section (New) -->
-    <section id="gaming" class="py-32 px-8 bg-neutral-900 text-white">
+    <section id="gaming" class="py-20 md:py-32 px-5 md:px-8 bg-neutral-900 text-white">
         <div class="max-w-[1600px] mx-auto grid grid-cols-1 lg:grid-cols-[3fr_5fr] gap-20 items-center">
             <div class="reveal reveal-left">
                 <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-neutral-700 bg-neutral-800/50 mb-6">
@@ -1206,7 +1217,7 @@ a.group\/item:hover .menu-info-bubble {
     </section>
 
     <!-- Safety Section (New) -->
-    <section id="safety" class="py-32 px-8 max-w-[1600px] mx-auto">
+    <section id="safety" class="py-20 md:py-32 px-5 md:px-8 max-w-[1600px] mx-auto">
         <div class="flex flex-col md:flex-row gap-16 mb-20 items-end reveal reveal-up">
             <div class="md:w-1/2">
                 <h2 class="text-5xl md:text-6xl font-medium tracking-tight mb-6">High Impact Protection</h2>
@@ -1249,12 +1260,12 @@ a.group\/item:hover .menu-info-bubble {
                  </div>
         </div>
         <div class="mt-16 text-center reveal delay-300">
-            <p class="text-2xl md:text-3xl font-medium text-neutral-900">We make sure you get home safe and eco friendly</p>
+            <p class="text-2xl md:text-3xl font-medium text-neutral-900 text-left md:text-center">We make sure you get home safe and eco friendly</p>
         </div>
     </section>
 
     <!-- Bento Grid Showcase -->
-    <section id="architecture" class="py-32 px-8 max-w-[1600px] mx-auto">
+    <section id="architecture" class="py-20 md:py-32 px-5 md:px-8 max-w-[1600px] mx-auto">
         <div class="mb-20 reveal reveal-up">
             <h2 class="text-5xl md:text-6xl font-medium tracking-tight mb-6">Electric Architecture</h2>
             <p class="text-neutral-500 text-xl">Engineered for efficiency, performance, and range.</p>
@@ -1321,7 +1332,7 @@ a.group\/item:hover .menu-info-bubble {
     </section>
 
     <!-- Specs Table Section -->
-    <section id="models" class="bg-black text-white py-32 px-8">
+    <section id="models" class="bg-black text-white py-20 md:py-32 px-5 md:px-8">
         <div class="max-w-[1400px] mx-auto flex flex-col md:flex-row gap-20 md:pl-[200px]">
              <div class="md:w-1/2 reveal reveal-left">
                           <div class="spec-image-container w-full rounded-2xl mb-8 relative bg-black/10" style="height: 460px; perspective: 1400px; overflow: visible; transform: translateX(-150px); width: calc(100% + 150px);">
@@ -1390,7 +1401,7 @@ a.group\/item:hover .menu-info-bubble {
     </section>
 
     <!-- NEW: Software & Intelligence Section -->
-    <section id="software" class="bg-white text-neutral-900 py-32 px-8 border-t border-neutral-200">
+    <section id="software" class="bg-white text-neutral-900 py-20 md:py-32 px-5 md:px-8 border-t border-neutral-200">
       <div class="max-w-[1600px] mx-auto">
         <div class="mb-20 reveal reveal-up">
             <p class="text-sm font-medium uppercase tracking-widest text-neutral-500 mb-6">Updates that continuously improve performance, safety, and everyday comfort.</p>
@@ -1451,8 +1462,8 @@ a.group\/item:hover .menu-info-bubble {
     </section>
 
     <!-- NEW: Ecosystem Section -->
-    <section id="energy" class="py-32 px-8 max-w-[1600px] mx-auto">
-        <div class="text-center max-w-2xl mx-auto mb-20 reveal reveal-up">
+    <section id="energy" class="py-20 md:py-32 px-5 md:px-8 max-w-[1600px] mx-auto">
+        <div class="text-left md:text-center max-w-2xl mx-auto mb-12 md:mb-20 reveal reveal-up">
              <h2 class="text-4xl md:text-5xl font-medium tracking-tight mb-6">Complete Energy Ecosystem</h2>
              <p class="text-xl text-neutral-500">Power your car and your home with an integrated system of solar, battery storage, and charging.</p>
         </div>
@@ -1460,13 +1471,13 @@ a.group\/item:hover .menu-info-bubble {
             <div class="group relative rounded-3xl overflow-hidden bg-neutral-100 md:col-span-2 reveal reveal-left energy-swap" id="energy-swap-card">
                 <img loading="lazy" decoding="async" src="img/tesla-home-energy-ecosystem-1280.webp" width="1920" height="1438" srcset="img/tesla-home-energy-ecosystem-640.webp 640w, img/tesla-home-energy-ecosystem-1280.webp 1280w, img/tesla-home-energy-ecosystem-1920.webp 1920w" sizes="(min-width: 1024px) 50vw, 100vw" class="absolute inset-0 w-full h-full object-cover object-center energy-swap-default" alt="Tesla home energy ecosystem overview">
                 <img loading="lazy" decoding="async" src="img/tesla-home-energy-storage-1280.webp" width="1920" height="1249" srcset="img/tesla-home-energy-storage-640.webp 640w, img/tesla-home-energy-storage-1280.webp 1280w, img/tesla-home-energy-storage-1920.webp 1920w" sizes="(min-width: 1024px) 50vw, 100vw" class="absolute inset-0 w-full h-full object-cover object-center energy-swap-alt" alt="Tesla home energy installation and storage">
-                <div class="absolute top-8 left-8">
-                    <h3 class="text-xl font-semibold text-neutral-900 bg-white/80 backdrop-blur-md px-4 py-2 rounded-full inline-block">Home Energy</h3>
+                <div class="absolute top-5 left-5 md:top-8 md:left-8">
+                    <h3 class="text-lg md:text-xl font-semibold text-neutral-900 bg-white/80 backdrop-blur-md px-4 py-2 rounded-full inline-block">Home Energy</h3>
                 </div>
-                <div class="absolute top-8 right-8">
+                <div class="absolute top-6 right-5 md:top-8 md:right-8 hidden sm:block">
                     <a href="#faq" class="text-white border-b border-white pb-1 hover:text-neutral-200 hover:border-neutral-200 transition-colors">How does it work?</a>
                 </div>
-                <div class="absolute bottom-8 left-8 right-8 flex gap-4">
+                <div class="absolute bottom-5 left-5 right-5 md:bottom-8 md:left-8 md:right-8 flex gap-3 md:gap-4">
                      <div class="bg-white/90 backdrop-blur-md p-4 rounded-xl w-40 border border-white/20">
                          <iconify-icon icon="solar:sun-2-linear" class="text-2xl mb-2 text-yellow-600"></iconify-icon>
                          <p class="text-xs font-bold uppercase text-neutral-500">Solar Roof</p>
@@ -1492,9 +1503,9 @@ a.group\/item:hover .menu-info-bubble {
     </section>
 
     <!-- NEW: Comparison Section -->
-    <section id="performance" class="py-32 px-8 bg-white text-neutral-900">
+    <section id="performance" class="py-20 md:py-32 px-5 md:px-8 bg-white text-neutral-900">
         <div class="max-w-[1200px] mx-auto">
-            <div class="text-center mb-20 reveal reveal-fade">
+            <div class="text-left md:text-center mb-12 md:mb-20 reveal reveal-fade">
                 <h2 class="text-4xl md:text-5xl font-medium tracking-tight mb-4">Unmatched Performance</h2>
                 <p class="text-neutral-500">The quickest acceleration of any vehicle in production.</p>
                 <p class="text-neutral-400 text-sm mt-4 max-w-2xl mx-auto leading-relaxed">Built for immediate torque delivery, high-speed stability, and effortless daily usability without sacrificing range or comfort.</p>
@@ -1548,7 +1559,7 @@ a.group\/item:hover .menu-info-bubble {
     </section>
 
     <!-- NEW: Ownership Section -->
-    <section id="ownership" class="bg-neutral-50 py-32 px-8">
+    <section id="ownership" class="bg-neutral-50 py-20 md:py-32 px-5 md:px-8">
         <div class="max-w-[1400px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
             <div class="reveal reveal-left">
                 <span class="text-xs font-bold text-green-600 uppercase tracking-wider mb-2 block">Ownership</span>
@@ -1595,10 +1606,10 @@ a.group\/item:hover .menu-info-bubble {
     </section>
 
     <!-- Test Drive Section -->
-    <section class="py-32 px-8 border-t border-neutral-200 bg-neutral-50" id="demo-drive">
+    <section class="py-20 md:py-32 px-5 md:px-8 border-t border-neutral-200 bg-neutral-50" id="demo-drive">
         <div class="max-w-[1600px] mx-auto rounded-[32px] bg-white overflow-hidden shadow-sm border border-neutral-200">
             <div class="grid grid-cols-1 lg:grid-cols-2">
-                <div class="relative min-h-[600px] lg:min-h-full p-16 flex flex-col justify-between text-white reveal reveal-left">
+                <div class="relative min-h-[420px] md:min-h-[600px] lg:min-h-full p-8 md:p-16 flex flex-col justify-between text-white reveal reveal-left">
                     <img loading="lazy" decoding="async" src="img/tesla-model-s-1280.webp" width="1920" height="1080" srcset="img/tesla-model-s-640.webp 640w, img/tesla-model-s-1280.webp 1280w, img/tesla-model-s-1920.webp 1920w" sizes="(min-width: 1024px) 50vw, 100vw" class="absolute inset-0 w-full h-full object-cover" alt="Tesla Model S on the road, ready for a demo drive">
                     <div class="absolute inset-0 bg-black/20"></div>
                     <div class="relative z-10">
@@ -1611,7 +1622,7 @@ a.group\/item:hover .menu-info-bubble {
                     </div>
                 </div>
                 
-                <div class="p-16 lg:p-24 flex flex-col justify-center reveal reveal-right delay-100">
+                <div class="p-6 sm:p-10 lg:p-24 flex flex-col justify-center reveal reveal-right delay-100">
                     <h3 class="text-4xl font-semibold mb-12">Schedule your drive</h3>
                     <form class="space-y-10">
                         <div>
@@ -1669,7 +1680,7 @@ a.group\/item:hover .menu-info-bubble {
     </section>
 
     <!-- Asymmetrical Latest News -->
-    <section id="updates" class="py-32 px-8 max-w-[1600px] mx-auto">
+    <section id="updates" class="py-20 md:py-32 px-5 md:px-8 max-w-[1600px] mx-auto">
         <div class="flex justify-between items-end mb-16 reveal reveal-up">
             <h2 class="text-5xl font-medium tracking-tight">Latest Updates</h2>
             <a href="#future" class="flex items-center gap-2 text-base font-medium hover:text-neutral-600 transition-colors group">
@@ -1726,8 +1737,8 @@ a.group\/item:hover .menu-info-bubble {
     </section>
 
     <!-- Why Tesla Confidence Section -->
-    <section id="why-tesla" class="py-32 px-8 max-w-[1600px] mx-auto border-t border-neutral-200">
-        <div class="text-center max-w-3xl mx-auto mb-16 reveal reveal-up">
+    <section id="why-tesla" class="py-20 md:py-32 px-5 md:px-8 max-w-[1600px] mx-auto border-t border-neutral-200">
+        <div class="text-left md:text-center max-w-3xl mx-auto mb-10 md:mb-16 reveal reveal-up">
             <h2 class="text-5xl md:text-6xl font-medium tracking-tight mb-6">Why Drivers Keep Choosing Tesla</h2>
             <p class="text-xl text-neutral-500 leading-relaxed">From acceleration and software to charging and long-term ownership value, Tesla ownership creates a connected ecosystem that improves with time.</p>
         </div>
@@ -1760,7 +1771,7 @@ a.group\/item:hover .menu-info-bubble {
     </section>
 
     <!-- Long-Term Value Section -->
-    <section id="value" class="py-32 px-8 bg-white text-neutral-900">
+    <section id="value" class="py-20 md:py-32 px-5 md:px-8 bg-white text-neutral-900">
         <div class="max-w-[1600px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <div class="reveal reveal-left">
                 <p class="text-sm uppercase tracking-wider text-neutral-500 mb-4">What do we offer?</p>
@@ -1829,7 +1840,7 @@ a.group\/item:hover .menu-info-bubble {
     </section>
 
     <!-- FAQ Section -->
-    <section id="faq" class="py-32 px-8 max-w-4xl mx-auto">
+    <section id="faq" class="py-20 md:py-32 px-5 md:px-8 max-w-4xl mx-auto">
         <h2 class="text-4xl font-medium tracking-tight mb-16 text-center reveal">Frequently Asked Questions</h2>
         
         <div class="space-y-6">
@@ -1884,9 +1895,9 @@ a.group\/item:hover .menu-info-bubble {
     </section>
 
     <!-- Future Section -->
-    <section id="future" class="py-32 px-8 bg-white border-t border-neutral-200">
+    <section id="future" class="py-20 md:py-32 px-5 md:px-8 bg-white border-t border-neutral-200">
         <div class="max-w-[1600px] mx-auto flex flex-col">
-            <div class="text-center max-w-3xl mx-auto mb-16 reveal reveal-up">
+            <div class="text-left md:text-center max-w-3xl mx-auto mb-10 md:mb-16 reveal reveal-up">
                 <h2 class="text-5xl md:text-6xl font-medium tracking-tight mb-5">What's the future like?</h2>
                 <p class="text-lg text-neutral-500 leading-relaxed">A closer look at where mobility, intelligence, and energy are headed next.</p>
             </div>

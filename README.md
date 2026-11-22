@@ -34,7 +34,7 @@ One scroll from the first frame to the long-term value: interior, gaming, safety
 | **Interaction** | Spec tooltips on the hero stats, a model switcher with live specs, mega menus, a cart drawer, an FAQ accordion and a two-step demo-drive form. |
 | **Performance** | Every image in WebP at three or four widths with `srcset`, fixed dimensions, lazy loading below the fold and a preloaded hero. About 200 MB of assets became under 7 MB. |
 | **SEO** | One `h1`, canonical URL, Open Graph and Twitter cards, JSON-LD (`WebSite`, `WebPage`, `FAQPage`), sitemap, robots, `llms.txt`, a web manifest and a real 404. |
-| **Responsive** | Tuned for phones, tablets and desktop: compact hero stats, readable cards, a working mobile menu and no sideways scrolling. |
+| **Responsive** | Tuned for phones, tablets and desktop: a portrait hero on phones, start-aligned text, compact stats, lighter spacing, a working mobile menu and no sideways scrolling. |
 
 ---
 
@@ -57,8 +57,13 @@ One scroll from the first frame to the long-term value: interior, gaming, safety
 
 ## Mobile
 
+Phones get their own hero (a portrait crop of the Model S Plaid), start-aligned text, compact stats and a working menu.
+
 | | | |
 |:---:|:---:|:---:|
+| <img src="docs/screens/m-hero.jpg" width="250" alt="Mobile hero"><br><sub>Hero</sub> | <img src="docs/screens/m-energy.jpg" width="250" alt="Mobile energy section"><br><sub>Complete Energy Ecosystem</sub> | <img src="docs/screens/m-demo-drive.jpg" width="250" alt="Mobile demo drive"><br><sub>Demo Drive</sub> |
+
+---:|:---:|:---:|
 | <img src="docs/screens/m-hero.jpg" width="230" alt="Mobile hero"><br><sub>Hero</sub> | <img src="docs/screens/m-menu.jpg" width="230" alt="Mobile menu"><br><sub>Menu</sub> | <img src="docs/screens/m-interior.jpg" width="230" alt="Mobile interior"><br><sub>Interior</sub> |
 | <img src="docs/screens/m-models.jpg" width="230" alt="Mobile models"><br><sub>Our showcase</sub> | <img src="docs/screens/m-energy.jpg" width="230" alt="Mobile energy"><br><sub>Energy</sub> | <img src="docs/screens/m-demo-drive.jpg" width="230" alt="Mobile demo drive"><br><sub>Demo Drive</sub> |
 
