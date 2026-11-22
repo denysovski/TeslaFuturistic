@@ -1,75 +1,131 @@
-# Tesla Futuristic (TeslaX)
+<div align="center">
 
-Tesla Futuristic is a single-page, Tesla-inspired concept showcase built to feel cinematic, premium, and interactive. The whole page is plain, pre-rendered HTML (no app shell), styled with Tailwind compiled at build time, with GSAP for motion.
+# TeslaX — Tesla Futuristic
 
-> **Unofficial concept.** This is a portfolio project. It is not affiliated with, endorsed or sponsored by Tesla, Inc. Tesla and its product names are trademarks of Tesla, Inc.; product photos © Tesla, Inc. Prices, dates and the cart are demo data.
+**An unofficial, cinematic concept page for the Tesla Model S Plaid.**
 
-## What It Includes
+One scroll from the first frame to the long-term value: interior, gaming, safety, the electric architecture, the line-up, Tesla Energy, performance, ownership costs and a demo-drive booking. Plain HTML, compiled Tailwind and GSAP, with no framework and no app shell.
 
-- A fixed navigation bar that stays visible while scrolling and keeps the page anchored while you move through the experience.
-- A polished hero section with strong typography, vehicle stats, and reveal effects that establish the visual tone immediately.
-- Interactive vehicle showcase cards that swap content and imagery to spotlight different models and configurations.
-- Ownership and performance panels that compare range, acceleration, charging, and utility in a dashboard-style layout.
-- Bubble-style callouts, tooltips, and hover states that add small interactive details without overwhelming the page.
-- A lightweight cart drawer and other small UI interactions that make the interface feel more like a product surface than a static marketing page.
-- A hero landing section that can switch between a static image and frame-based animation assets for more cinematic motion experiments.
-- Tesla branding assets and full-size logo artwork used throughout the hero area and supporting content blocks.
+[**Open the live site**](https://denysovski.github.io/TeslaFuturistic/) &nbsp;·&nbsp; [Models](https://denysovski.github.io/TeslaFuturistic/#models) &nbsp;·&nbsp; [Performance](https://denysovski.github.io/TeslaFuturistic/#performance) &nbsp;·&nbsp; [Demo Drive](https://denysovski.github.io/TeslaFuturistic/#demo-drive)
 
-## Key Sections
+![Vite](https://img.shields.io/badge/Vite-000000?style=flat-square&labelColor=000000&logo=vite&logoColor=white)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind%20CSS-000000?style=flat-square&labelColor=000000&logo=tailwindcss&logoColor=white)
+![GSAP](https://img.shields.io/badge/GSAP%20%2B%20ScrollTrigger-000000?style=flat-square&labelColor=000000&logo=greensock&logoColor=white)
+![WebP](https://img.shields.io/badge/images-WebP%20%C2%B7%20srcset-000000?style=flat-square&labelColor=000000)
+![No framework](https://img.shields.io/badge/framework-none-000000?style=flat-square&labelColor=000000)
 
-- The hero section introduces the Model S Plaid with a dramatic full-width visual, core specs, and a strong call to action.
-- The interior section highlights the cabin experience, showing how the design balances comfort, technology, and minimalism.
-- The performance section focuses on the stats, comparison data, and image transitions that support the car-focused storytelling.
-- The test drive section provides selectable date cards and a short form so the page feels closer to a real booking flow.
-- The FAQ section answers common ownership and charging questions while keeping the tone concise and practical.
-- The future section explores possible Tesla-inspired directions with larger visual cards and short editorial descriptions.
+<br>
 
-## Technologies
+![Landing page](docs/screens/01-hero.jpg)
 
-- Vite 8 (static build, `index.html` is the page)
-- Tailwind CSS 3, compiled at build time from the classes in `index.html`
-- GSAP 3 + ScrollTrigger, Iconify icons
-- Inter (variable), self-hosted through Fontsource
-- sharp for the image pipeline
-- GitHub Pages for deployment
+</div>
+
+> [!NOTE]
+> **Unofficial concept.** A portfolio project, not affiliated with, endorsed or sponsored by Tesla, Inc. Tesla, Model S, Model 3, Model X, Model Y, Powerwall and Megapack are trademarks of Tesla, Inc.; product photos © Tesla, Inc. Prices, dates and the cart are demo data.
+
+---
+
+## At a glance
+
+| | |
+|---|---|
+| **The page** | One long, crawlable page in fifteen sections, each with its own anchor, from the hero to *What's the future like?* |
+| **Motion** | GSAP + ScrollTrigger reveals, a 61-frame scroll sequence for the hero, sliding model cards, an auto-playing interior gallery and quiet hover states. |
+| **Interaction** | Spec tooltips on the hero stats, a model switcher with live specs, mega menus, a cart drawer, an FAQ accordion and a two-step demo-drive form. |
+| **Performance** | Every image in WebP at three or four widths with `srcset`, fixed dimensions, lazy loading below the fold and a preloaded hero. About 200 MB of assets became under 7 MB. |
+| **SEO** | One `h1`, canonical URL, Open Graph and Twitter cards, JSON-LD (`WebSite`, `WebPage`, `FAQPage`), sitemap, robots, `llms.txt`, a web manifest and a real 404. |
+| **Responsive** | Tuned for phones, tablets and desktop: compact hero stats, readable cards, a working mobile menu and no sideways scrolling. |
+
+---
+
+## The page
+
+| | |
+|---|---|
+| ![Hero](docs/screens/01-hero.jpg) **Hero.** Model Y Performance at full bleed, the Tesla mark and three hero stats (range, 0–60, peak power), each with a tooltip on hover. | ![Interior](docs/screens/02-interior.jpg) **Interior of the Future.** A cabin gallery that plays on its own, with a glass caption card for each view. |
+| ![Gaming](docs/screens/03-gaming.jpg) **Play Anywhere.** In-car gaming on the rear display, with Steam and wireless controller support. | ![Safety](docs/screens/04-safety.jpg) **High Impact Protection.** The safety story around the white Model S, with floating notes on the structure. |
+| ![Architecture](docs/screens/05-architecture.jpg) **Electric Architecture.** A bento grid: tri-motor drive, 0.208 Cd aerodynamics, Supercharging and vision processing. | ![Models](docs/screens/06-models.jpg) **Our showcase.** A deck of four models. Switch between Model 3, Y, S and X and the specification panel updates. |
+| ![Software](docs/screens/07-software.jpg) **Better Over Time.** Phone Key, Trip Planner and Sentry Mode as three product cards. | ![Energy](docs/screens/08-energy.jpg) **Complete Energy Ecosystem.** Solar roof, Powerwall and the app as one system. |
+| ![Performance](docs/screens/09-performance.jpg) **Unmatched Performance.** Model S Plaid against the Porsche Taycan Turbo S and Lucid Air Sapphire. | ![Ownership](docs/screens/10-ownership.jpg) **Built to Last.** Lower upkeep and a five-year cost-per-mile comparison. |
+| ![Demo drive](docs/screens/11-demo-drive.jpg) **Demo Drive.** Pick a day, leave your details, done. A demo form: nothing is sent or stored. | ![Updates](docs/screens/12-updates.jpg) **Latest Updates.** Software, milestones and events in an editorial grid. |
+| ![Why Tesla](docs/screens/13-why-tesla.jpg) **Why Drivers Keep Choosing Tesla.** Performance, software and charging in three short arguments. | ![FAQ](docs/screens/14-faq.jpg) **Frequently Asked Questions.** Range, long-trip charging, software and cost of ownership, also published as `FAQPage` structured data. |
+
+![The future](docs/screens/15-future.jpg)
+**What's the future like?** Four large cards on where mobility, intelligence and energy are heading next.
+
+---
+
+## Mobile
+
+| | | |
+|:---:|:---:|:---:|
+| <img src="docs/screens/m-hero.jpg" width="230" alt="Mobile hero"><br><sub>Hero</sub> | <img src="docs/screens/m-menu.jpg" width="230" alt="Mobile menu"><br><sub>Menu</sub> | <img src="docs/screens/m-interior.jpg" width="230" alt="Mobile interior"><br><sub>Interior</sub> |
+| <img src="docs/screens/m-models.jpg" width="230" alt="Mobile models"><br><sub>Our showcase</sub> | <img src="docs/screens/m-energy.jpg" width="230" alt="Mobile energy"><br><sub>Energy</sub> | <img src="docs/screens/m-demo-drive.jpg" width="230" alt="Mobile demo drive"><br><sub>Demo Drive</sub> |
+
+---
 
 ## Performance and SEO
 
-- Images are WebP at three or four widths with `srcset` and `sizes`, explicit `width` and `height`, lazy loading below the fold and a high-priority, preloaded hero. The scroll sequence uses 61 small WebP frames, with a lighter set on phones. The site went from about 200 MB of assets to under 7 MB.
-- One `h1`, section anchors, every link points somewhere real, descriptive file names and alt text.
-- Canonical URL, Open Graph and Twitter cards with a 1200×630 share image, JSON-LD (`WebSite`, `WebPage`, `FAQPage`), `robots.txt`, `sitemap.xml`, `llms.txt`, a web manifest, favicons and a real `404.html`.
-- No horizontal scrolling on phones, compact hero stats, a working mobile menu.
+### Images
 
-## Visual Style
+- **WebP at the right size.** Each photo exists at three or four widths (`640`, `1280`, `1920`, up to `2560` for the hero) with `srcset` and `sizes`, so a phone never downloads a desktop file.
+- **No layout shift.** Every image carries its `width` and `height`.
+- **Loaded when needed.** Everything below the first screen is `loading="lazy"`; the hero is preloaded with `fetchpriority="high"`.
+- **The scroll sequence.** 61 frames as small WebP files, a 1600 px set for desktop and a 960 px set for phones (they were 1.3 MB PNGs each).
+- **Descriptive names.** `model-s-interior-cockpit-1280.webp`, not `ModelS_82.jpg`.
 
-The design leans into a clean Tesla-like palette with high contrast and restrained accents:
+### Search and sharing
 
-- White and off-white surfaces for the main reading areas.
-- Deep black and charcoal for structure and contrast.
-- Soft gray borders and muted UI chrome.
-- Red accent details inspired by Tesla branding.
-- Subtle transparency, blur, and smooth fades for motion.
+- One `h1` and an anchor on every section; every link leads somewhere real.
+- Canonical URL, meta description, Open Graph and Twitter cards with a 1200 × 630 share image.
+- JSON-LD for `WebSite`, `WebPage` and the FAQ as `FAQPage`.
+- `robots.txt`, `sitemap.xml`, `llms.txt`, `site.webmanifest`, favicons and a real `404.html`.
 
-## Project Structure
+### Build
 
-- `index.html` is the page itself: markup, page styles and the page script.
-- `src/main.js` and `src/main.css` pull in Tailwind and the Inter font for the build.
-- `public/img/` holds the optimised images (`<name>-<width>.webp`) and `hero-sequence/` the scroll frames.
-- `scripts/optimize-images.mjs` rebuilds `public/img/` from originals placed in `assets-src/` (not committed; the originals are in git history).
-- `public/robots.txt`, `sitemap.xml`, `llms.txt`, `site.webmanifest`, `og-image.jpg` and `404.html` are served as they are.
-- `.github/workflows/deploy.yml` publishes the site to GitHub Pages.
+- Tailwind is compiled at build time from the classes in the page (no runtime CDN), and Inter is self-hosted (no Google Fonts request).
+- GSAP loads at the end of the body and the icon library is deferred, so nothing blocks the first paint.
 
-## Development
+---
 
-- `npm run dev` starts the local Vite server.
-- `npm run build` creates the production bundle.
-- `npm run preview` serves the built output locally.
-- `npm run images` rebuilds the optimised images from `assets-src/`.
+## Under the hood
 
-## Live Site
+- **Vite 8** static build: `index.html` *is* the page, with its markup, styles and script
+- **Tailwind CSS 3**, compiled from the page's classes, plus a small layer of custom CSS for the motion
+- **GSAP 3 + ScrollTrigger** for reveals and the scroll sequence, **Iconify** for icons
+- **Inter** (variable), self-hosted through Fontsource
+- **sharp** for the image pipeline
+- Deployed to **GitHub Pages** on every push to `master`
 
-[https://denysovski.github.io/TeslaFuturistic/](https://denysovski.github.io/TeslaFuturistic/)
+```
+index.html                    the page: markup, page styles and page script
+src/main.js · src/main.css    Tailwind and the Inter font for the build
+public/img/                   optimised images (<name>-<width>.webp)
+public/img/hero-sequence/     scroll frames, 1600 px and 960 px sets
+public/                       og-image, favicons, robots, sitemap, llms.txt, manifest, 404
+scripts/optimize-images.mjs   rebuilds public/img/ from originals in assets-src/
+docs/screens/                 screenshots for this README
+```
 
+## Visual style
 
-<img alt="copy1" src="https://github.com/user-attachments/assets/055aec25-707c-4f54-8456-b02c1491758a" />
-<img alt="copy2" src="https://github.com/user-attachments/assets/0a780c7e-654d-48b6-a76b-7436a003f47f" />
+- White and off-white surfaces for reading, deep black and charcoal for structure
+- Soft grey borders and muted interface chrome
+- Tesla red as the single accent
+- Glass cards, gentle blur and long, smooth fades
+
+## Run it locally
+
+```bash
+npm install
+npm run dev       # dev server
+npm run build     # production build into dist/
+npm run preview   # serve the build
+npm run images    # rebuild public/img/ from originals in assets-src/
+```
+
+The original, full-size photos are not committed. Put them in `assets-src/` (they are in the git history) before running `npm run images`.
+
+---
+
+<div align="center"><sub>Unofficial concept by <a href="https://github.com/denysovski">denysovski</a>. Not affiliated with Tesla, Inc.</sub></div>
