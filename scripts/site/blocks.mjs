@@ -142,3 +142,29 @@ export function ctaBand({ title, text, actions }) {
 }
 
 export { actionsHtml, specsHtml };
+
+/** Questions that open and close like an accordion. items: [question, answer] */
+let faqId = 0;
+export function faq(items) {
+  return `
+  <div class="faq" data-faq>
+    ${items
+      .map(([q, a]) => {
+        const id = `faq-${++faqId}`;
+        return `
+    <div class="faq-item">
+      <h3 class="faq-q"><button type="button" id="${id}-q" aria-expanded="false" aria-controls="${id}"><span>${q}</span><span class="faq-sign" aria-hidden="true"></span></button></h3>
+      <div class="faq-a" id="${id}" role="region" aria-labelledby="${id}-q"><div class="faq-a-inner"><p>${a}</p></div></div>
+    </div>`;
+      })
+      .join('')}
+  </div>`;
+}
+
+/** Small cards with a short label on top, in a tight grid. items: [label, title, text] */
+export function miniCards(items, { tone = '' } = {}) {
+  return `
+  <ul class="mini-grid" style="--cols:${items.length % 3 === 0 ? 3 : items.length}">
+    ${items.map(([label, title, text]) => `<li class="mini-card${tone ? ` mini-card--${tone}` : ''} reveal reveal-up"><span class="mini-label">${label}</span><h3>${title}</h3><p>${text}</p></li>`).join('')}
+  </ul>`;
+}

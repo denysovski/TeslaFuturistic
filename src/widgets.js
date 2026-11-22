@@ -272,3 +272,20 @@ if (checkout) {
     done(form, `Order ${order} placed.`, `Thank you, ${val(form, 'first')}. ${total} is the total for this demo order: nothing was charged and no parcel will arrive.`);
   });
 }
+
+/* ------------------------------------------------------------------ FAQ accordions */
+$$('[data-faq]').forEach((list) => {
+  list.addEventListener('click', (e) => {
+    const btn = e.target.closest('.faq-q button');
+    if (!btn) return;
+    btn.setAttribute('aria-expanded', String(btn.getAttribute('aria-expanded') !== 'true'));
+  });
+});
+
+// Careers: a team card filters the role list to that team.
+$$('[data-team-link]').forEach((a) =>
+  a.addEventListener('click', () => {
+    const chip = $(`[data-xfx-filter-btn="${a.dataset.teamLink}"]`);
+    chip?.click();
+  }),
+);

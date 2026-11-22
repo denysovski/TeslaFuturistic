@@ -57,8 +57,28 @@ $$('.reveal, .mask-text').forEach((el) => io.observe(el));
 
 /* ------------------------------------------------------------------ header */
 const header = $('#navbar');
-const onScroll = () => header && header.classList.toggle('is-scrolled', scrollY > 8);
-addEventListener('scroll', onScroll, { passive: true });
+// The bar slides away while reading down and returns on the first scroll up.
+// It stays put while a menu or the cart is open, and near the top of the page.
+let lastY = scrollY;
+let ticking = false;
+const onScroll = () => {
+  ticking = false;
+  if (!header) return;
+  const y = scrollY;
+  header.classList.toggle('is-scrolled', y > 8);
+  const busy = header.classList.contains('mega-open') || document.documentElement.matches('.menu-open, .cart-open');
+  if (busy || y < 120) header.classList.remove('is-hidden');
+  else if (y > lastY + 6) header.classList.add('is-hidden');
+  else if (y < lastY - 6) header.classList.remove('is-hidden');
+  if (Math.abs(y - lastY) > 6 || y < 120) lastY = y;
+};
+addEventListener('scroll', () => {
+  if (!ticking) {
+    ticking = true;
+    requestAnimationFrame(onScroll);
+  }
+}, { passive: true });
+header?.addEventListener('focusin', () => header.classList.remove('is-hidden'));
 onScroll();
 
 // Desktop mega menus: open on click, keyboard and (with intent) hover; close on Escape, outside click or leaving.
@@ -98,7 +118,7 @@ items.forEach((item) => {
   });
 });
 document.addEventListener('click', (e) => {
-  if (openItem && !e.target.closest('.desk-item')) setMega(null);
+  if (openItem && (!e.target.closest('.desk-item') || e.target.closest('.mega a'))) setMega(null);
 });
 document.addEventListener('keydown', (e) => {
   if (e.key === 'Escape' && openItem) {
@@ -125,7 +145,7 @@ function setMenu(open) {
     menu.classList.remove('is-open');
     setTimeout(() => {
       if (!menuOpen) menu.hidden = true;
-    }, reduce() ? 0 : 260);
+    }, reduce() ? 0 : 400);
   }
 }
 menuBtn?.addEventListener('click', () => setMenu(!menuOpen));

@@ -10,7 +10,7 @@ export const MODELS = [
     trims: [['All-Wheel Drive', 74990, '402 mi · 3.1 s 0–60'], ['Plaid', 89990, '396 mi · 1.99 s 0–60']],
     second: { image: 'model-s-interior-cockpit', alt: 'Model S cockpit with the yoke and the wide centre display', title: 'A cockpit built around the drive', body: ['A 17-inch landscape display, a yoke or round wheel, and controls that sit where the thumb already is.', 'Twenty-two speakers, active road-noise reduction and a glass roof make long days on the motorway feel short.'] },
     third: { image: 'model-s-interior-rear-cabin', alt: 'Model S rear cabin in white with the rear display', title: 'Room for three in the back', body: ['Heated rear seats, an 8-inch rear touchscreen for media and climate, and a flat floor that leaves real legroom.'] },
-    highlights: [['Tri-motor Plaid', 'Carbon-sleeved rotors keep full power available all the way to top speed.'], ['Cabin that stays quiet', 'Acoustic glass and active noise reduction cut wind and road noise on long trips.'], ['Gaming and media', 'Up to 10 teraflops of processing for games, streaming and the navigation at once.'], ['Over-the-air updates', 'New features and refinements arrive overnight, years after delivery.']],
+    highlights: [['1,020 hp', 'Tri-motor Plaid', 'Carbon-sleeved rotors keep full power available all the way to top speed.'], ['22', 'A cabin that stays quiet', 'Twenty-two speakers, acoustic glass and active noise reduction cut wind and road noise.'], ['10 TFLOPS', 'Gaming and media', 'Enough processing for games, streaming and the navigation at the same time.'], ['Overnight', 'Over-the-air updates', 'New features and refinements arrive while the car is parked, years after delivery.']],
   },
   {
     id: 'model-3', name: 'Model 3', kind: 'Sedan', hero: 'model-3-studio', heroAlt: 'Model 3 in white in a bright studio', pos: '50% 60%',
@@ -20,7 +20,7 @@ export const MODELS = [
     trims: [['Rear-Wheel Drive', 42490, '272 mi · 5.8 s 0–60'], ['Long Range AWD', 47990, '363 mi · 4.2 s 0–60'], ['Performance', 54990, '303 mi · 2.9 s 0–60']],
     second: { image: 'model-3-interior', alt: 'Model 3 interior in white with the centre touchscreen', title: 'A calm cabin with one screen', body: ['Everything runs through a 15.4-inch display, so the dashboard stays clean and the view stays open.', 'Ventilated front seats, ambient lighting and an 8-inch rear screen come with the current Model 3.'] },
     third: { image: 'tesla-model-3', alt: 'Model 3 in white driving through dry hills', title: 'Efficient by design', body: ['A low drag coefficient and a heat pump keep consumption low in summer and winter, which is where the range comes from.'] },
-    highlights: [['Low running costs', 'Few moving parts, no oil changes and electricity that costs less per mile than fuel.'], ['Phone as key', 'The car unlocks as you walk up and locks when you leave.'], ['Five-star safety', 'A rigid structure and a low centre of gravity keep rollover risk low.'], ['Supercharger ready', 'Up to 250 kW on the road, with the route planned around the stops.']],
+    highlights: [['$0.04', 'Low running costs', 'Roughly four cents of electricity per mile at home, and no oil changes.'], ['Phone', 'Your phone is the key', 'The car unlocks as you walk up and locks itself when you leave.'], ['5 stars', 'Built to protect', 'A rigid structure and a low centre of gravity keep rollover risk low.'], ['250 kW', 'Supercharger ready', 'Peak charging on the road, with the stops planned for you.']],
   },
   {
     id: 'model-x', name: 'Model X', kind: 'SUV', hero: 'model-x-road', heroAlt: 'Model X in white on an open road', pos: '55% 60%',
@@ -30,7 +30,7 @@ export const MODELS = [
     trims: [['All-Wheel Drive', 79990, '335 mi · 3.8 s 0–60'], ['Plaid', 94990, '314 mi · 2.5 s 0–60']],
     second: { image: 'tesla-model-x', alt: 'Model X with its falcon-wing doors open beside a mountain lake', title: 'Family space without the compromise', body: ['Falcon-wing doors open in tight parking spaces, and the third row folds flat when it is not needed.', 'Up to 5,000 lbs of towing with the hitch, and a panoramic windscreen that runs over the front seats.'] },
     third: { image: 'model-s-interior-front-seats', alt: 'White front seats and the centre console in a Tesla cabin', title: 'A cabin for long trips', body: ['Tri-zone climate, a rear display and HEPA filtration that keeps the air clean on busy roads.'] },
-    highlights: [['Seven seats', 'Choose five, six or seven seats to fit the family.'], ['Falcon-wing doors', 'Wide openings that need less side clearance than a regular door.'], ['Towing', 'Up to 5,000 lbs with trailer mode and load-aware range.'], ['Bioweapon Defense Mode', 'A medical-grade HEPA filter for the cabin air.']],
+    highlights: [['7', 'Seats when you need them', 'Choose five, six or seven seats to fit the family.'], ['12 in', 'Falcon-wing doors', 'They open in tight spaces, needing less side clearance than a regular door.'], ['5,000 lbs', 'Real towing', 'Trailer mode adjusts the range estimate to the load behind you.'], ['HEPA', 'Bioweapon Defense Mode', 'A medical-grade filter that keeps the cabin air clean.']],
   },
   {
     id: 'model-y', name: 'Model Y', kind: 'SUV', hero: 'model-y-performance-hero', heroAlt: 'Model Y Performance in red on a mountain road', pos: '55% 60%',
@@ -40,16 +40,17 @@ export const MODELS = [
     trims: [['Rear-Wheel Drive', 44990, '357 mi · 6.8 s 0–60'], ['Long Range AWD', 48990, '311 mi · 4.6 s 0–60'], ['Performance', 57490, '306 mi · 3.3 s 0–60']],
     second: { image: 'tesla-model-y', alt: 'Model Y in white parked by an outdoor gathering', title: 'Space that fits real weekends', body: ['Rear seats fold flat at the touch of a button, and the boot and front trunk take more than most mid-size SUVs.', 'A high seating position, a low floor and wide doors make child seats easy.'] },
     third: { image: 'tesla-in-car-gaming', alt: 'Rear passenger display showing a game in a Tesla', title: 'Calm for the whole family', body: ['Ventilated front seats, heated rear seats and a rear display that keeps everyone entertained on the way.'] },
-    highlights: [['76 cu ft of cargo', 'Seats down, it carries more than most cars in its class.'], ['All-weather traction', 'Dual motors react to slip in milliseconds.'], ['Low running costs', 'No oil changes, regenerative braking that saves the pads.'], ['Sentry Mode', 'Cameras watch the car while it is parked and save clips to the phone.']],
+    highlights: [['76 cu ft', 'Room for everything', 'Seats down, it carries more than most cars in its class.'], ['Dual', 'All-weather traction', 'Two motors react to slip in milliseconds, in rain and snow.'], ['$0', 'Oil changes, ever', 'Regenerative braking also saves the pads for years.'], ['24/7', 'Sentry Mode', 'Cameras watch the car while it is parked and save clips to your phone.']],
   },
   {
-    id: 'cybertruck', name: 'Cybertruck', kind: 'Pickup', hero: null,
+    id: 'cybertruck', name: 'Cybertruck', kind: 'Pickup', hero: 'cybertruck-cliff-dusk', heroAlt: 'Cybertruck on a rocky ledge at dusk', pos: '45% 60%',
     tagline: 'A stainless steel pickup built for work, weather and long trips.',
     specs: [['325', 'mi', 'Range (EPA est.)'], ['4.1', 's', '0–60 mph'], ['11,000', 'lbs', 'Towing'], ['6.5', 'ft', 'Vault bed']],
     range: 325, accel: 4.1, top: 112, seats: 5, cargo: 121, charge: 250, drive: 'Dual Motor AWD',
     trims: [['All-Wheel Drive', 79990, '325 mi · 4.1 s 0–60'], ['Cyberbeast', 99990, '301 mi · 2.6 s 0–60']],
-    second: null,
-    highlights: [['Stainless steel exoskeleton', 'An ultra-hard steel body that does not need paint and resists dents.'], ['Vault bed', 'A lockable, powered tonneau cover keeps tools dry and out of sight.'], ['Power on board', 'Outlets in the bed and cabin run tools, lights and campsites.'], ['Adaptive air suspension', 'Raise it for trails, lower it for the motorway and loading.']],
+    second: { image: 'cybertruck-bike-rack', alt: 'Cybertruck in a field with a mountain bike on the rear rack', title: 'Built for the weekend, too', body: ['The vault bed takes 2,500 lbs of payload, and a hitch-mounted rack carries bikes without touching the tailgate.', 'Adaptive air suspension raises the truck for trails and lowers it again for the drive home.'] },
+    third: { image: 'cybertruck-app', alt: 'A phone showing the Cybertruck app with camera, climate and location controls', title: 'The truck in your pocket', body: ['Check the cameras, set the climate, open the vault and share access with a friend, all from the app.'] },
+    highlights: [['30X', 'Stainless steel body', 'Ultra-hard steel that needs no paint and shrugs off dents and scratches.'], ['6.5 ft', 'Vault bed', 'A lockable, powered tonneau keeps tools dry and out of sight.'], ['11.5 kW', 'Power on board', 'Outlets in the bed and cabin run tools, lights and a campsite.'], ['17 in', 'Adaptive air suspension', 'Ground clearance for trails, lowered for the motorway and loading.']],
   },
 ];
 
@@ -122,7 +123,10 @@ function modelPage(m) {
       schema: [{ '@context': 'https://schema.org', '@type': 'Product', name: `Tesla ${m.name}`, brand: { '@type': 'Brand', name: 'Tesla' }, description: m.tagline, offers: { '@type': 'AggregateOffer', priceCurrency: 'USD', lowPrice: m.trims[0][1], highPrice: m.trims[m.trims.length - 1][1] } }],
       body: `${hero}
 ${story}
-${section(`${headRow({ eyebrow: 'Highlights', title: `Why people choose ${m.name}` })}${cards(m.highlights.map(([title, text]) => ({ title, text })), { cols: 4 })}`, { tone: m.second ? 'soft' : '' })}
+${section(`${headRow({ eyebrow: 'Highlights', title: `Why people choose ${m.name}` })}
+  <ul class="grid grid--4">
+    ${m.highlights.map(([stat, title, text]) => `<li class="stat-card reveal reveal-up"><span class="stat-card-num">${stat}</span><h3 class="h3">${title}</h3><p>${text}</p></li>`).join('')}
+  </ul>`, { tone: 'soft' })}
 ${order}
 ${section(`
   <div class="split" style="align-items:start">

@@ -111,12 +111,60 @@ ${section(`
 }
 
 export const UPDATES = [
-  { id: 'fsd-v12', tag: 'Software', date: '2026-10-14', title: 'Full Self-Driving (Supervised) V12 rolls out', text: 'End-to-end neural networks replace hand-written planning code, for smoother and more natural driving decisions.', image: 'tesla-software-update', alt: 'Two Teslas on a dark blue background' },
-  { id: 'five-millionth', tag: 'Milestone', date: '2026-09-02', title: 'The five-millionth Tesla leaves the line', text: 'A Model Y built at Gigafactory Shanghai marks five million cars produced.', image: 'tesla-model-y', alt: 'Model Y in white parked by an outdoor gathering' },
-  { id: 'megapack-expansion', tag: 'Energy', date: '2026-08-21', title: 'Megapack production expands', text: 'A second line raises output for utilities storing wind and solar for the evening peak.', image: 'tesla-megapack', alt: 'A row of white Megapack units in a field' },
-  { id: 'holiday-update', tag: 'Software', date: '2026-07-10', title: 'Summer update: new games and a quieter cabin', text: 'Three new titles for the rear screen and refined active noise reduction on Model S and X.', image: 'tesla-in-car-gaming', alt: 'A game running on the rear display' },
-  { id: 'supercharger-v4', tag: 'Charging', date: '2026-06-03', title: 'More V4 Supercharger sites open', text: 'Longer cables and faster cabinets arrive at busy motorway sites first.', image: 'future-tesla-sentry-mode', alt: 'A hand plugging a charge cable into a Tesla' },
-  { id: 'ai-day', tag: 'Event', date: '2026-05-18', title: 'AI Day: Optimus and the next platform', text: 'The next generation of the Optimus robot and progress on in-house AI hardware.', image: 'tesla-vision-camera-network', alt: 'A rear camera above the Tesla lettering' },
+  {
+    id: 'fsd-v12', tag: 'Software', date: '2026-10-14', title: 'Full Self-Driving (Supervised) V12 rolls out', image: 'tesla-software-update', alt: 'Two Teslas on a dark blue background',
+    text: 'End-to-end neural networks replace hand-written planning code, for smoother and more natural driving decisions.',
+    body: [
+      'Version 12 is the biggest change to Full Self-Driving (Supervised) since it launched. Instead of hundreds of thousands of lines of rules that decide when to brake, turn or wait, a neural network trained on video of good driving makes those decisions directly.',
+      'Owners notice it first at junctions and roundabouts: the car creeps forward, reads the gap and goes, rather than stopping and starting. Lane changes are earlier and calmer on the motorway, and the car leaves more room around cyclists.',
+      'It remains a supervised system. The driver keeps their hands ready and eyes on the road, and the cabin camera checks that they do. The update arrives over the air in waves, starting with cars that already have the latest computer.',
+    ],
+  },
+  {
+    id: 'production-record', tag: 'Milestone', date: '2026-09-02', title: 'A production record at Gigafactory Shanghai', image: 'tesla-model-y', alt: 'Model Y in white parked by an outdoor gathering',
+    text: 'The busiest week yet for Model Y and Model 3, with a car leaving the line roughly every forty seconds.',
+    body: [
+      'Gigafactory Shanghai had its busiest week so far, building Model Y and Model 3 at a pace of roughly one car every forty seconds across both lines.',
+      'Most of the gain came from the casting and paint shops, where changeovers between colours and versions now take minutes instead of an hour. The same changes are being copied to Berlin and Austin.',
+      'For buyers it shows up as shorter waits: most configurations of Model Y in Asia and Europe can now be delivered within three to five weeks of ordering.',
+    ],
+  },
+  {
+    id: 'megapack-expansion', tag: 'Energy', date: '2026-08-21', title: 'Megapack production expands', image: 'tesla-megapack', alt: 'A row of white Megapack units in a field',
+    text: 'A second line raises output for utilities storing wind and solar for the evening peak.',
+    body: [
+      'A second Megapack line has started production, roughly doubling the number of units the factory can ship each year.',
+      'Utilities use Megapack to store solar power from the middle of the day and release it in the evening, when demand peaks and the sun has set. It also steadies the grid within milliseconds when a power station trips.',
+      'Each unit arrives pre-assembled, tested and ready to connect, which is why large projects now take months rather than years from contract to first power.',
+    ],
+  },
+  {
+    id: 'summer-update', tag: 'Software', date: '2026-07-10', title: 'Summer update: new games and a quieter cabin', image: 'tesla-in-car-gaming', alt: 'A game running on the rear display',
+    text: 'Three new titles for the rear screen and refined active noise reduction on Model S and X.',
+    body: [
+      'The summer software update adds three new games for the rear display, playable with a wireless controller, and lets passengers in the back pick their own music while the front keeps navigation audio.',
+      'Model S and Model X get a refined version of active road-noise reduction, which listens through cabin microphones and cancels the low drone of coarse tarmac.',
+      'Smaller changes include a larger map on the 15-inch display, a quicker way to share a destination from a phone, and Dog Mode messages that are easier to read from outside the car.',
+    ],
+  },
+  {
+    id: 'supercharger-v4', tag: 'Charging', date: '2026-06-03', title: 'More V4 Supercharger sites open', image: 'future-tesla-sentry-mode', alt: 'A hand plugging a charge cable into a Tesla',
+    text: 'Longer cables and faster cabinets arrive at busy motorway sites first.',
+    body: [
+      'V4 Superchargers are going in at the busiest motorway sites first. The new posts have longer cables, so cars that park awkwardly or have their port on the other side can still reach.',
+      'The cabinets behind them support higher power for the cars that can take it, while sharing power more evenly when a site is full.',
+      'Sites with V4 posts are marked in the car’s navigation, and the trip planner will prefer them when the timing works.',
+    ],
+  },
+  {
+    id: 'ai-day', tag: 'Event', date: '2026-05-18', title: 'AI Day: Optimus and the next platform', image: 'tesla-vision-camera-network', alt: 'A rear camera above the Tesla lettering',
+    text: 'The next generation of the Optimus robot and progress on in-house AI hardware.',
+    body: [
+      'AI Day focused on two things: the next version of the Optimus humanoid robot and the computers used to train the driving software.',
+      'The new Optimus is lighter, has hands with more degrees of freedom, and was shown sorting battery cells on a factory line. It learns tasks from video of people doing them, the same way the driving software learns from video of driving.',
+      'On the hardware side, the team showed how training capacity has grown, and why more of the work now runs on chips designed in-house.',
+    ],
+  },
 ];
 
 function updatesArchive() {
@@ -140,11 +188,14 @@ ${section(`
   <ul class="grid grid--3 xfx-filter" data-xfx-filter>
     ${UPDATES.map(
       (u) => `
-    <li class="card card--line" data-tags="${u.tag.toLowerCase()}" id="${u.id}">
-      <div class="card-photo">${img(u.image, { alt: u.alt, sizes: '(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw' })}</div>
-      <span class="card-meta">${u.tag} · <time datetime="${u.date}">${date(u.date)}</time></span>
-      <h2 class="h3">${u.title}</h2>
-      <p>${u.text}</p>
+    <li data-tags="${u.tag.toLowerCase()}" id="${u.id}">
+      <a href="${B}updates/${u.id}/" class="card card--line card--arrow">
+        <div class="card-photo">${img(u.image, { alt: u.alt, sizes: '(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw' })}</div>
+        <span class="card-meta">${u.tag} · <time datetime="${u.date}">${date(u.date)}</time></span>
+        <h2 class="h3">${u.title}</h2>
+        <p>${u.text}</p>
+        <span class="card-arrow" aria-hidden="true">${icon('solar:arrow-right-up-linear', 20)}</span>
+      </a>
     </li>`,
     ).join('')}
   </ul>`)}`,
@@ -152,5 +203,42 @@ ${section(`
   };
 }
 
-export const energyPages = () => [energy(), charging(), savings(), updatesArchive()];
+function updateArticle(u, i) {
+  const path = `updates/${u.id}/`;
+  const crumbs = [{ label: 'Latest updates', href: 'updates/' }, { label: u.title }];
+  const date = new Date(u.date).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+  const next = [UPDATES[(i + 1) % UPDATES.length], UPDATES[(i + 2) % UPDATES.length], UPDATES[(i + 3) % UPDATES.length]];
+  return {
+    path,
+    html: page({
+      path,
+      title: u.title,
+      description: u.text,
+      crumbs,
+      schema: [{ '@context': 'https://schema.org', '@type': 'BlogPosting', headline: u.title, datePublished: u.date, articleSection: u.tag, description: u.text, author: { '@type': 'Person', name: 'denysovski' } }],
+      body: `${heroImage({ crumbs, eyebrow: `${u.tag} · ${date}`, title: u.title, lead: u.text, image: u.image, alt: u.alt })}
+${section(`
+  <article class="article">
+    ${u.body.map((p) => `<p>${p}</p>`).join('')}
+    <p class="note">Demo content for this concept site.</p>
+  </article>`)}
+${section(`${headRow({ eyebrow: 'Keep reading', title: 'More updates' })}
+  <ul class="grid grid--3">
+    ${next
+      .map(
+        (n) => `
+    <li><a href="${B}updates/${n.id}/" class="card card--line card--arrow">
+      <div class="card-photo">${img(n.image, { alt: n.alt, sizes: '(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw' })}</div>
+      <span class="card-meta">${n.tag}</span>
+      <h3 class="h3">${n.title}</h3>
+      <span class="card-arrow" aria-hidden="true">${icon('solar:arrow-right-up-linear', 20)}</span>
+    </a></li>`,
+      )
+      .join('')}
+  </ul>`, { tone: 'soft' })}`,
+    }),
+  };
+}
+
+export const energyPages = () => [energy(), charging(), savings(), updatesArchive(), ...UPDATES.map(updateArticle)];
 export { icon };

@@ -48,6 +48,9 @@ export const IMAGES = {
   'tesla3.jpg': ['tesla-roadster-studio', CONTENT],
   'tesla7.webp': ['grid-storage-wind-solar', CONTENT],
   'home-energy.jpg': ['home-solar-garage', [640, 960, 1200]],
+  'cybertruck-hero.jpg': ['cybertruck-cliff-dusk', CONTENT],
+  'cybertruck-cabin.jpg': ['cybertruck-app', CONTENT],
+  'cybertruck-accessories.jpg': ['cybertruck-bike-rack', CONTENT],
   'Tesla.png': ['tesla-wordmark', [300, 600]],
   'tesla-logo-full.png': ['tesla-logo', [270, 540, 810]],
 };

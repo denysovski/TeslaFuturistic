@@ -1,33 +1,51 @@
-import { NAV } from './nav.mjs';
-import { B, cards, ctaBand, headRow, heroImage, heroText, icon, img, kv, page, section, split } from './blocks.mjs';
+import { B, cards, ctaBand, faq, headRow, heroImage, heroText, icon, img, kv, miniCards, page, section, split } from './blocks.mjs';
 
 const OFFICIAL = {
   findus: 'https://www.tesla.com/findus',
   careers: 'https://www.tesla.com/careers',
+  linkedin: 'https://www.linkedin.com/company/tesla-motors/jobs/',
   ir: 'https://ir.tesla.com/',
   youtube: 'https://www.youtube.com/@tesla',
 };
-const discover = NAV.find((n) => n.id === 'discover');
 const trail = (label) => [{ label: 'Discover', href: 'discover/' }, { label }];
 
 function hub() {
   const path = 'discover/';
   const crumbs = [{ label: 'Discover' }];
-  const blurbs = {
-    'Demo Drive': 'Thirty minutes behind the wheel, with someone to answer questions.',
-    Insurance: 'Cover priced on how the car is driven, with an estimate in a minute.',
-    'Video Guides': 'Short films on charging, the app, Autopilot and the features people miss.',
-    'Customer Stories': 'What ownership costs and changes, in four everyday driving profiles.',
-    Events: 'Test drive days, owner meet-ups and delivery events.',
-    'Find Us': 'Stores, service centres and Superchargers near you.',
-    'Trip Planner': 'How many stops a trip needs, how long they take and what they cost.',
-    'Find a Collision Center': 'How repairs work and how to find an approved body shop.',
-    'Find a Certified Installer': 'Who installs Wall Connectors, solar and Powerwall, and how to choose.',
-    About: 'The mission, the products and the years that shaped them.',
-    Careers: 'The teams, how hiring works and where the open roles are.',
-    'Investor Relations': 'Where the reports, letters and shareholder meetings live.',
-    'Latest updates': 'Software releases, milestones and events.',
-  };
+  const card = ({ href, title, text, tone = 'photo', image, alt, size = '', tag }) => `
+    <li class="hub-card hub-card--${tone}${size ? ` hub-card--${size}` : ''} reveal reveal-up">
+      <a href="${B}${href}">
+        ${tone === 'photo' ? `<span class="hub-card-media">${img(image, { alt, sizes: size === 'wide' ? '(min-width: 1024px) 50vw, 100vw' : '(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw' })}</span>` : ''}
+        ${tag ? `<span class="hub-tag">${tag}</span>` : ''}
+        <span class="hub-card-body"><span class="hub-card-title">${title}</span><span class="hub-card-text">${text}</span></span>
+        <span class="card-arrow" aria-hidden="true">${icon('solar:arrow-right-up-linear', 20)}</span>
+      </a>
+    </li>`;
+  const groups = [
+    ['Resources', 'Before and after you buy', [
+      { href: 'discover/demo-drive/', title: 'Demo Drive', text: 'Thirty minutes behind the wheel, with someone to answer questions.', image: 'tesla-model-s', alt: 'Model S in red on a forest road', size: 'wide', tag: 'Most booked' },
+      { href: 'discover/insurance/', title: 'Insurance', text: 'Cover priced on how the car is driven, with an estimate in a minute.', tone: 'red' },
+      { href: 'discover/video-guides/', title: 'Video Guides', text: 'Short films on charging, the app and Autopilot.', image: 'tesla-in-car-gaming', alt: 'A game on the rear display' },
+      { href: 'discover/customer-stories/', title: 'Customer Stories', text: 'What ownership costs and changes, in four driving profiles.', tone: 'dark' },
+      { href: 'discover/events/', title: 'Events', text: 'Test drive days, owner meet-ups and delivery evenings.', image: 'tesla-long-term-value', alt: 'Two red Teslas on a mountain road', size: 'wide' },
+      { href: 'savings/', title: 'Compare savings', text: 'Five years of fuel against electricity, for your driving.', tone: 'red' },
+    ]],
+    ['Location services', 'Find the right place', [
+      { href: 'discover/find-us/', title: 'Find Us', text: 'Stores, service centres and Superchargers near you.', image: 'tesla-model-x', alt: 'Model X with falcon-wing doors open by a lake', size: 'wide' },
+      { href: 'discover/trip-planner/', title: 'Trip Planner', text: 'Stops, charging time and cost for any road trip.', tone: 'dark' },
+      { href: 'discover/collision-centers/', title: 'Find a Collision Center', text: 'Repairs to factory standard, with sensors checked.', tone: 'red' },
+      { href: 'discover/certified-installers/', title: 'Find a Certified Installer', text: 'Wall Connector, solar and Powerwall, fitted properly.', image: 'tesla-home-energy-storage', alt: 'Solar panels on a roof', size: 'wide' },
+      { href: 'charging/', title: 'Charging', text: 'Home charging and Supercharging, explained.', image: 'future-tesla-sentry-mode', alt: 'A hand plugging in a charge cable' },
+      { href: 'energy/', title: 'Energy', text: 'Solar, Powerwall and Megapack in one system.', tone: 'dark' },
+    ]],
+    ['Company', 'The people and the story', [
+      { href: 'discover/about/', title: 'About', text: 'From a two-seat Roadster to cars, batteries and AI.', image: 'tesla-roadster-studio', alt: 'A white Roadster in a dark studio', size: 'wide' },
+      { href: 'discover/careers/', title: 'Careers', text: 'Twenty open roles across six teams.', tone: 'red' },
+      { href: 'discover/investor-relations/', title: 'Investor Relations', text: 'Where the reports, letters and calls are published.', image: 'tesla-megapack', alt: 'A row of Megapack units' },
+      { href: 'updates/', title: 'Latest updates', text: 'Software, milestones, energy and events.', tone: 'dark', size: 'wide' },
+      { href: 'shop/', title: 'Shop', text: 'Caps, hoodies, charging gear and accessories. Buy two, save 10%.', image: 'tesla-software-update', alt: 'Two Teslas on a dark blue background', size: 'wide' },
+    ]],
+  ];
   return {
     path,
     html: page({
@@ -35,13 +53,10 @@ function hub() {
       title: 'Discover: resources, locations and company',
       description: 'Everything beyond the cars: demo drives, insurance, video guides, events, location finders, trip planning and company information.',
       crumbs,
-      body: `${heroText({ crumbs, eyebrow: 'Discover', title: 'Everything around the car', lead: 'Help before you buy, while you own it and when you want to know more about the company.' })}
-${discover.groups
+      body: `${heroImage({ crumbs, eyebrow: 'Discover', title: 'Everything around the car', lead: 'Help before you buy, while you own it and when you want to know more about the company.', image: 'tesla-software-update', alt: 'Two Teslas on a dark blue background', pos: '50% 50%', actions: [{ label: 'Book a demo drive', href: 'discover/demo-drive/', style: 'btn-light' }] })}
+${groups
   .map(
-    (g, i) => section(`${headRow({ eyebrow: g.title, title: ['Before and after you buy', 'Find the right place', 'The company'][i] })}${cards(
-      g.links.map((l) => ({ title: l.label, text: blurbs[l.label], href: l.href, linkLabel: `Open ${l.label}` })),
-      { cols: g.links.length === 4 ? 4 : 3, tone: 'line' },
-    )}`, { tone: i === 1 ? 'soft' : '' }),
+    ([eyebrow, title, items], i) => section(`${headRow({ eyebrow, title })}<ul class="hub-grid">${items.map(card).join('')}</ul>`, { tone: i === 1 ? 'soft' : '' }),
   )
   .join('')}`,
     }),
@@ -156,7 +171,7 @@ ${section(`
         <span class="card-meta" style="margin-top:8px">${cat}</span>
         <h2 class="h3">${t}</h2>
         <p>${d}</p>
-        <span class="card-link">Watch on YouTube ${icon('solar:arrow-right-linear', 16)}</span>
+        <span class="card-link">${icon('logos:youtube-icon', 20)} Watch on YouTube ${icon('solar:arrow-right-linear', 16)}</span>
       </a>
     </li>`,
       )
@@ -277,13 +292,13 @@ function tripPlanner() {
       title: 'Trip planner: stops, charging time and cost',
       description: 'Estimate a road trip in a Tesla: how many Supercharger stops, how long they take and what the energy costs.',
       crumbs,
-      body: `${heroImage({ crumbs, eyebrow: 'Trip Planner', title: 'How long is the trip, really?', lead: 'Set the distance and the car. The estimate counts the Supercharger stops, the minutes spent at them and the energy cost.', image: 'tesla-trip-planner', alt: 'The centre screen showing a route with charging stops', pos: '50% 50%', actions: [{ label: 'Plan a trip', href: 'discover/trip-planner/#plan', style: 'btn-light' }] })}
+      body: `${heroImage({ crumbs, eyebrow: 'Trip Planner', title: 'How long is the trip, really?', lead: 'Set the distance and the car. The estimate counts the Supercharger stops, the minutes spent at them and the energy cost.', image: 'tesla-long-term-value', alt: 'Two red Teslas on a mountain road', pos: '50% 55%', actions: [{ label: 'Plan a trip', href: 'discover/trip-planner/#plan', style: 'btn-light' }] })}
 ${section(`
   <div class="calc" data-trip>
     <form class="panel form" novalidate>
-      <div class="field"><label for="tp-dist">Trip distance</label><input id="tp-dist" name="dist" type="range" min="50" max="1500" step="10" value="520"><output class="range-out" data-out="dist">520 mi</output></div>
+      <div class="field"><label for="tp-dist">Trip distance</label><input id="tp-dist" name="dist" type="range" min="50" max="1500" step="1" value="520"><output class="range-out" data-out="dist">520 mi</output></div>
       <fieldset class="field"><legend class="label">Car</legend><div class="choice-group" style="margin-top:8px">${[['Model 3', 363], ['Model Y', 311], ['Model S', 402], ['Model X', 335], ['Cybertruck', 325]].map(([m, r], i) => `<label class="choice"><input type="radio" name="range" value="${r}"${i === 0 ? ' checked' : ''}><span>${m}</span></label>`).join('')}</div></fieldset>
-      <div class="field"><label for="tp-start">Charge at departure</label><input id="tp-start" name="start" type="range" min="50" max="100" step="5" value="90"><output class="range-out" data-out="start">90%</output></div>
+      <div class="field"><label for="tp-start">Charge at departure</label><input id="tp-start" name="start" type="range" min="20" max="100" step="1" value="90"><output class="range-out" data-out="start">90%</output></div>
       <fieldset class="field"><legend class="label">Conditions</legend><div class="choice-group" style="margin-top:8px">${[['Mild', 1], ['Cold', 0.8], ['Motorway at 80 mph', 0.85]].map(([m, f], i) => `<label class="choice"><input type="radio" name="cond" value="${f}"${i === 0 ? ' checked' : ''}><span>${m}</span></label>`).join('')}</div></fieldset>
     </form>
     <div class="panel" aria-live="polite">
@@ -296,7 +311,132 @@ ${section(`
       </dl>
       <p class="note">Assumes charging from 10% to 80% at each stop (about 25 minutes) and $0.45 per kWh. The car’s own planner uses live traffic, elevation and weather.</p>
     </div>
-  </div>`, { id: 'plan', tone: 'soft' })}`,
+  </div>`, { id: 'plan', tone: 'soft' })}
+${section(`
+  <div class="split">
+    <div>
+      <span class="eyebrow">In the car</span>
+      <h2 class="h2">The navigation does this for you</h2>
+      <div class="prose" style="margin-top:20px">
+        <p>Type a destination and the car adds the charging stops, shows how long each one takes and warms the battery on the way so it charges at full speed.</p>
+        <p>It also watches how busy each Supercharger is and changes the plan if a better stop opens up.</p>
+      </div>
+    </div>
+    <figure class="screen-frame">${img('tesla-trip-planner', { alt: 'The centre screen showing a route with charging stops', sizes: '(min-width: 900px) 560px, 100vw' })}</figure>
+  </div>`)}`,
+    }),
+  };
+}
+
+function collision() {
+  const path = 'discover/collision-centers/';
+  const crumbs = trail('Find a Collision Center');
+  return {
+    path,
+    html: page({
+      path,
+      title: 'Find a Collision Center: repairs to factory standard',
+      description: 'How collision repairs work: approved body shops, genuine parts, sensor calibration and claims in the app, with answers to the questions people ask after an accident.',
+      crumbs,
+      body: `${heroImage({ crumbs, eyebrow: 'Find a Collision Center', title: 'Repairs done to factory standard', lead: 'Approved body shops use the right tools, parts and procedures, so the structure, the cameras and the sensors work exactly as they did before.', image: 'tesla-vision-camera-network', alt: 'A Tesla camera above the rear lettering', pos: '50% 45%', actions: [{ label: 'Find an approved body shop', href: OFFICIAL.findus, ext: true, style: 'btn-light' }] })}
+${section(`${headRow({ eyebrow: 'Why it matters', title: 'What an approved shop does differently', lead: 'A Tesla is mostly aluminium and high-strength steel, wrapped around cameras that steer and brake. A repair has to respect all three.' })}
+${miniCards([
+  ['Certified', 'Approved body shops', 'Trained and audited for aluminium and high-strength steel repairs.'],
+  ['Genuine', 'Original parts only', 'Parts that fit first time and keep the crash structure as designed.'],
+  ['Calibrated', 'Cameras and sensors checked', 'Every camera is recalibrated before the car is handed back.'],
+  ['In the app', 'Claims start on your phone', 'Photos, a short description and the claim is open in minutes.'],
+  ['Tracked', 'Follow the repair', 'Status updates in the app, from parts ordered to ready for collection.'],
+  ['Mobile', 'Small damage at home', 'Scratches and light dents can often be fixed by a mobile technician.'],
+])}`, { tone: 'soft' })}
+${section(`
+  <div class="split" style="align-items:start">
+    <div>
+      ${headRow({ eyebrow: 'After an accident', title: 'Questions people ask first', lead: 'Open a question to see the answer.' }).replace('class="head-row"', 'class="head-row" style="margin-bottom:24px"')}
+      <dl class="stat-mini">
+        <div><dt>Report a claim</dt><dd>Minutes</dd></div>
+        <div><dt>Typical repair</dt><dd>1–3 weeks</dd></div>
+        <div><dt>Sensor check</dt><dd>Every repair</dd></div>
+      </dl>
+    </div>
+    ${faq([
+      ['What should I do first after an accident?', 'Make sure everyone is safe and call emergency services if anyone is hurt. Turn on the hazard lights, take photos of the damage and the scene, and swap details with the other driver.'],
+      ['How do I report the damage?', 'Open the Tesla app, choose Roadside or Service, then Collision. Add photos and a short description; the claim and the repair request start together.'],
+      ['Can I choose my own body shop?', 'Yes. Pick an approved shop near you from the official map, or let your insurer suggest one. An approved shop keeps the repair to factory standard.'],
+      ['How long does a repair take?', 'Small repairs take a few days. Structural work usually takes one to three weeks, depending on parts and how busy the shop is.'],
+      ['Will Autopilot and the cameras still work afterwards?', 'Yes. Approved shops recalibrate the cameras and check the sensors before the car leaves, and the car runs its own check on the first drive.'],
+      ['Can I drive the car if it was only lightly damaged?', 'If no warning lights are on and the lights, mirrors and doors work, it is usually safe to drive to the shop. If in doubt, book roadside assistance in the app.'],
+    ])}
+  </div>`)}
+${section(ctaBand({ title: 'Search the official map', text: 'Approved body shops, opening hours and directions are kept on tesla.com.', actions: [{ label: 'Find an approved body shop', href: OFFICIAL.findus, ext: true, style: 'btn-light' }] }))}`,
+    }),
+  };
+}
+
+function installers() {
+  const path = 'discover/certified-installers/';
+  const crumbs = trail('Find a Certified Installer');
+  const products = [
+    ['Wall Connector', 'Home charging on a dedicated circuit, with Wi-Fi updates and power sharing for two cars.', 'home-solar-garage', 'A Tesla charging in the garage of a house with solar', [['Typical time', 'Half a day'], ['Includes', 'Circuit, mounting, setup in the app']]],
+    ['Solar Panels', 'Roof survey, panel layout, permits and connection to the grid, handled by one installer.', 'tesla-home-energy-storage', 'Black solar panels on a shingle roof', [['Typical time', '1–2 days on the roof'], ['Includes', 'Design, permits, inspection']]],
+    ['Powerwall', 'Battery placement, backup wiring and the settings that decide when it charges and when it powers the home.', 'tesla-home-energy-ecosystem', 'Aerial view of a house with solar and a Tesla in the driveway', [['Typical time', 'One day'], ['Includes', 'Backup gateway, app setup']]],
+  ];
+  return {
+    path,
+    html: page({
+      path,
+      title: 'Find a Certified Installer for Wall Connector, solar and Powerwall',
+      description: 'What certified installers fit, what each job involves, how long it takes, what to prepare and how to choose the right installer.',
+      crumbs,
+      body: `${heroImage({ crumbs, eyebrow: 'Find a Certified Installer', title: 'The right electrician for the job', lead: 'Certified installers fit Wall Connectors, solar and Powerwall to the standard Tesla uses, and deal with the paperwork for you.', image: 'tesla-home-energy-storage', alt: 'Black solar panels on a shingle roof', actions: [{ label: 'Find a certified installer', href: OFFICIAL.findus, ext: true, style: 'btn-light' }] })}
+${section(`${headRow({ eyebrow: 'What they install', title: 'Three jobs, done properly' })}
+  <ul class="grid grid--3">
+    ${products
+      .map(
+        ([title, text, image, alt, facts]) => `
+    <li class="install-card reveal reveal-up">
+      <div class="card-photo">${img(image, { alt, sizes: '(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw' })}</div>
+      <h3 class="h3">${title}</h3>
+      <p>${text}</p>
+      ${kv(facts)}
+    </li>`,
+      )
+      .join('')}
+  </ul>`)}
+${section(`${headRow({ eyebrow: 'What to expect', title: 'From first call to switched on', lead: 'A solar and Powerwall project, start to finish. A Wall Connector skips straight to install day.' })}
+${miniCards([
+  ['First week', 'Site survey', 'An installer checks the roof, the electrical panel and where the cables can run.'],
+  ['Week two', 'Design and quote', 'A panel layout, the battery position and a fixed price, before anything is ordered.'],
+  ['Weeks two to six', 'Permits', 'The installer applies to the city and the utility; you sign, they chase.'],
+  ['Install day', 'Fitting', 'Panels, battery and gateway go in, usually in one or two days.'],
+  ['After', 'Inspection and switch-on', 'A final inspection, permission to operate, and the system appears in the app.'],
+], { tone: 'dark' })}`, { tone: 'soft' })}
+${section(`
+  <div class="split">
+    <div>
+      <span class="eyebrow">Before the visit</span>
+      <h2 class="h2">Five things to have ready</h2>
+      <ul class="checklist">
+        <li>A photo of your electrical panel with the door open</li>
+        <li>Your last twelve months of electricity bills</li>
+        <li>Where the car usually parks, and how far that is from the panel</li>
+        <li>The age of the roof, if you are adding solar</li>
+        <li>Any rules from a homeowners’ association</li>
+      </ul>
+    </div>
+    <div class="split-media">${img('home-solar-garage', { alt: 'A modern house with solar on the roof and a Tesla in the garage', sizes: '(min-width: 900px) 50vw, 100vw' })}</div>
+  </div>`)}
+${section(`
+  <div class="split" style="align-items:start">
+    <div>${headRow({ eyebrow: 'Choosing an installer', title: 'Questions worth asking' }).replace('class="head-row"', 'class="head-row" style="margin-bottom:0"')}</div>
+    ${faq([
+      ['How do I know an installer is certified?', 'Certified installers are listed on Tesla’s official map and are trained on the current products. Ask to see the certification if you found them elsewhere.'],
+      ['Do I need a site visit before a quote?', 'For solar and Powerwall, yes. For a Wall Connector, photos of the panel and the parking spot are often enough for a first quote.'],
+      ['What should a quote include?', 'Equipment, labour, permits, any panel upgrade, trenching or long cable runs, and the app setup. A good quote lists each one.'],
+      ['How long does a Wall Connector installation take?', 'Usually half a day, longer if the electrical panel needs an upgrade or the cable has to run a long way.'],
+      ['Will I need a new electrical panel?', 'Not always. The installer checks the panel’s capacity at the survey; power sharing can avoid an upgrade when two cars charge.'],
+    ])}
+  </div>`, { tone: 'soft' })}
+${section(ctaBand({ title: 'Find an installer near you', text: 'Certified installers, with their areas and contact details, are listed on Tesla’s official map.', actions: [{ label: 'Find a certified installer', href: OFFICIAL.findus, ext: true, style: 'btn-light' }] }))}`,
     }),
   };
 }
@@ -304,28 +444,43 @@ ${section(`
 function about() {
   const path = 'discover/about/';
   const crumbs = trail('About');
-  const years = [
-    ['2003', 'The company is founded', 'A small team sets out to prove electric cars can be better than petrol ones.'],
-    ['2008', 'Roadster', 'The first car: a two-seat electric sports car with a lithium-ion battery.'],
-    ['2012', 'Model S', 'A full-size sedan with long range, over-the-air updates and a large touchscreen.'],
-    ['2015', 'Model X and Powerwall', 'An SUV with falcon-wing doors, and the first home battery.'],
-    ['2017', 'Model 3', 'A smaller, more affordable sedan built in much larger numbers.'],
-    ['2019', 'Megapack', 'Battery storage for utilities, delivered ready to connect.'],
-    ['2020', 'Model Y', 'A compact SUV on the Model 3 platform, soon the best-selling car in several countries.'],
-    ['2023', 'Cybertruck', 'Deliveries of the stainless steel pickup begin.'],
+  // Deliveries per year, from Tesla's quarterly production and delivery reports (rounded).
+  const deliveries = [['2018', 245], ['2019', 368], ['2020', 500], ['2021', 936], ['2022', 1314], ['2023', 1809], ['2024', 1789], ['2025', 1636]];
+  const max = Math.max(...deliveries.map((d) => d[1]));
+  const chapters = [
+    ['2003 – 2008', 'A bet that electric could be better', ['Tesla Motors was founded in 2003 by two engineers, Martin Eberhard and Marc Tarpenning, on an idea most of the industry dismissed: that a car running on lithium-ion batteries could be faster and more desirable than a petrol one, not merely cleaner.', 'The first proof was the Roadster, delivered from 2008. A two-seat sports car on a Lotus chassis, it went around 245 miles on a charge, further than any electric car before it, and it made the point the company still repeats: build the car people want first.'], 'tesla-roadster-studio', 'A white Roadster in a dark studio'],
+    ['2010 – 2013', 'Going public, building a car company', ['In 2010 Tesla bought the former NUMMI plant in Fremont, California, and went public at $17 a share, the first American carmaker to list since Ford. The money paid for the Model S.', 'Model S arrived in 2012 with long range, a large touchscreen and software that improved over the air. It was named Motor Trend Car of the Year for 2013, and suddenly an electric car was the one to beat.'], 'model-s-interior-cockpit', 'Model S cockpit with the yoke and centre display'],
+    ['2014 – 2018', 'Batteries at scale, and the hard part', ['To make cars cheaper, Tesla needed batteries at a scale nobody had attempted. The first Gigafactory, in Nevada, was announced in 2014. Powerwall followed in 2015, Model X the same year, and the SolarCity acquisition in 2016 brought solar into the company.', 'Model 3 was unveiled in 2016 to hundreds of thousands of reservations. Building it was far harder: the ramp in 2017 and 2018 pushed the company close to the edge before production finally stabilised.'], 'tesla-home-energy-storage', 'Solar panels on a shingle roof'],
+    ['2019 – 2021', 'From start-up to giant', ['Gigafactory Shanghai began building cars in 2019, less than a year after construction started. A run of profitable quarters followed, and in December 2020 Tesla joined the S&P 500.', 'In October 2021 its market value passed one trillion dollars, more than most of the world’s carmakers combined, and the company moved its headquarters to Austin, Texas.'], 'tesla-model-3', 'Model 3 in white driving through dry hills'],
+    ['2022 – 2023', 'The peak of the car business', ['New factories opened near Berlin and in Austin in 2022. In 2023 Model Y became the best-selling vehicle of any kind in the world, and Tesla delivered about 1.81 million cars, its highest year so far.', 'Cybertruck went into production at the end of 2023, and other carmakers began adopting Tesla’s charging connector in North America.'], 'tesla-model-y', 'Model Y in white parked by an outdoor gathering'],
+    ['2024 – 2026', 'Competition, energy and AI', ['Cheaper electric cars from China and an ageing line-up meant deliveries fell in 2024 and again in 2025, to about 1.64 million. The energy business went the other way: 46.7 GWh of storage was deployed in 2025, a record, and energy revenue grew by more than a quarter to $12.8 billion.', 'The company now describes itself as moving from hardware towards AI: supervised self-driving, a robotaxi service and the Optimus robot, alongside a new Megapack factory near Houston.'], 'tesla-megapack', 'A row of Megapack units in a field'],
   ];
   return {
     path,
     html: page({
       path,
-      title: 'About: the mission and the years that shaped it',
-      description: 'Tesla’s mission to accelerate the world’s transition to sustainable energy, and the products that marked each step from 2003 to today.',
+      title: 'About: how Tesla was built',
+      description: 'The Tesla story from a two-seat Roadster in 2008 to cars, batteries and AI: the IPO, Model S, the Model 3 ramp, the trillion-dollar year and where the business stands now.',
       crumbs,
-      body: `${heroImage({ crumbs, eyebrow: 'About', title: 'Accelerating the move to sustainable energy', lead: 'Cars, batteries and solar that work as one system, built to be better than what they replace, not only cleaner.', image: 'tesla-roadster-studio', alt: 'A white Roadster in a dark studio', pos: '50% 55%' })}
-${section(`${split({ eyebrow: 'Mission', title: 'Make it, store it, use it', body: ['The idea has stayed the same since the first Roadster: make the electric option the one people would choose anyway.', 'Today that means cars, home and grid batteries, solar, and the software and charging network that tie them together.'], image: 'grid-storage-wind-solar', alt: 'Battery storage units beside solar panels and wind turbines' })}`)}
-${section(`${headRow({ eyebrow: 'History', title: 'The years that changed the line-up' })}
-  <ol class="timeline">${years.map(([y, t, d]) => `<li class="reveal reveal-up"><span class="tl-year">${y}</span><div><h3>${t}</h3><p>${d}</p></div></li>`).join('')}</ol>`, { tone: 'soft' })}
-${section(ctaBand({ title: 'Work on what comes next', text: 'Engineering, manufacturing, energy, service and AI.', actions: [{ label: 'Careers', href: 'discover/careers/', style: 'btn-light' }] }))}`,
+      body: `${heroImage({ crumbs, eyebrow: 'About', title: 'Twenty years of proving the doubters wrong, mostly', lead: 'How a small company that set out to make one electric sports car became a carmaker, a battery maker and an AI company, and what the numbers say today.', image: 'tesla-roadster-studio', alt: 'A white Roadster in a dark studio', pos: '50% 55%' })}
+${section(`
+  <dl class="stat-band">
+    <div><dt>Cars delivered in 2025</dt><dd>1.64M</dd></div>
+    <div><dt>Energy storage deployed in 2025</dt><dd>46.7 GWh</dd></div>
+    <div><dt>Revenue in 2025</dt><dd>$94.8B</dd></div>
+    <div><dt>Share price at the 2010 IPO</dt><dd>$17</dd></div>
+  </dl>`, { tone: 'dark' })}
+${section(chapters.map(([years, title, body, image, alt], i) => `<div class="chapter${i ? '' : ' chapter--first'}">${split({ eyebrow: years, title, body, image, alt, flip: i % 2 === 1 })}</div>`).join(''))}
+${section(`
+  ${headRow({ eyebrow: 'The market', title: 'Deliveries, year by year', lead: 'Growth of roughly forty percent a year until 2023, then two years of decline as competition caught up. Thousands of cars, from Tesla’s own reports.' })}
+  <figure class="bars-chart reveal reveal-up">
+    <ol aria-hidden="true">
+      ${deliveries.map(([y, v]) => `<li style="--h:${(v / max).toFixed(3)}"><span class="bc-val">${v >= 1000 ? (v / 1000).toFixed(2).replace(/0$/, '') + 'M' : v + 'k'}</span><span class="bc-bar"></span><span class="bc-year">${y}</span></li>`).join('')}
+    </ol>
+    <table class="sr-only"><caption>Tesla vehicle deliveries by year, in thousands</caption><tbody>${deliveries.map(([y, v]) => `<tr><th scope="row">${y}</th><td>${v}</td></tr>`).join('')}</tbody></table>
+    <figcaption class="note">Rounded to the nearest thousand.</figcaption>
+  </figure>`, { tone: 'soft' })}
+${section(ctaBand({ title: 'Work on what comes next', text: 'Twenty open roles across engineering, manufacturing, energy, AI, service and sales.', actions: [{ label: 'See careers', href: 'discover/careers/', style: 'btn-light' }] }))}`,
     }),
   };
 }
@@ -333,32 +488,65 @@ ${section(ctaBand({ title: 'Work on what comes next', text: 'Engineering, manufa
 function careers() {
   const path = 'discover/careers/';
   const crumbs = trail('Careers');
+  const teams = [
+    ['engineering', 'Vehicle engineering', 'Chassis, battery, drive units and the body, from first sketch to production.', 'tesla-electric-chassis', 'Close-up of a Tesla rear light'],
+    ['manufacturing', 'Manufacturing', 'The lines, robots and people at the Gigafactories.', 'tesla-model-y', 'Model Y in white'],
+    ['energy', 'Energy', 'Solar, Powerwall and Megapack, from design to installation.', 'tesla-megapack', 'Megapack units in a field'],
+    ['ai', 'AI and software', 'Autopilot, the in-car software and the systems behind them.', 'tesla-vision-camera-network', 'A Tesla camera'],
+    ['service', 'Service', 'Technicians in service centres and mobile vans.', 'model-s-interior-front-seats', 'Tesla front seats'],
+    ['sales', 'Sales and delivery', 'Advisers who help people choose, drive and collect their car.', 'model-3-studio', 'Model 3 in a studio'],
+  ];
+  const jobs = [
+    ['Battery Cell Engineer', 'engineering', 'Palo Alto, CA'], ['Body Structures Engineer', 'engineering', 'Fremont, CA'], ['Thermal Systems Engineer', 'engineering', 'Austin, TX'], ['Vehicle Dynamics Engineer', 'engineering', 'Berlin, Germany'],
+    ['Production Supervisor', 'manufacturing', 'Austin, TX'], ['Robotics Technician', 'manufacturing', 'Fremont, CA'], ['Quality Engineer, Paint', 'manufacturing', 'Berlin, Germany'], ['Supplier Industrialization Engineer', 'manufacturing', 'Shanghai, China'],
+    ['Megapack Commissioning Engineer', 'energy', 'Lathrop, CA'], ['Solar Installer', 'energy', 'Phoenix, AZ'], ['Powerwall Field Technician', 'energy', 'Sydney, Australia'],
+    ['Machine Learning Engineer, Vision', 'ai', 'Palo Alto, CA'], ['Software Engineer, Infotainment', 'ai', 'Palo Alto, CA'], ['Embedded Firmware Engineer', 'ai', 'Austin, TX'], ['Data Engineer, Fleet Learning', 'ai', 'Palo Alto, CA'],
+    ['Service Technician', 'service', 'Chicago, IL'], ['Mobile Service Technician', 'service', 'Denver, CO'], ['Collision Repair Estimator', 'service', 'Toronto, Canada'],
+    ['Sales Advisor', 'sales', 'New York, NY'], ['Delivery Experience Specialist', 'sales', 'London, UK'],
+  ];
+  const teamName = Object.fromEntries(teams.map(([id, name]) => [id, name]));
   return {
     path,
     html: page({
       path,
-      title: 'Careers: the teams and how hiring works',
-      description: 'The teams behind the cars and energy products, what each one does, and how the hiring process works. Open roles are listed on tesla.com.',
+      title: 'Careers: teams and open roles',
+      description: 'The six teams behind the cars and energy products, and twenty open roles from battery engineering to sales. Apply on tesla.com or LinkedIn.',
       crumbs,
-      body: `${heroImage({ crumbs, eyebrow: 'Careers', title: 'Hard problems, small teams', lead: 'Engineers, technicians, designers and advisers who like to see their work on the road and on the grid.', image: 'tesla-electric-chassis', alt: 'Close-up of a Tesla rear light', pos: '50% 50%', actions: [{ label: 'See open roles on tesla.com', href: OFFICIAL.careers, ext: true, style: 'btn-light' }] })}
-${section(`${headRow({ eyebrow: 'Teams', title: 'Where people work', lead: 'Roles open across every team. The current list, with locations, is kept on tesla.com.' })}${cards([
-        { title: 'Vehicle engineering', text: 'Chassis, battery, drive units and the body, from first sketch to production.' },
-        { title: 'Manufacturing', text: 'The lines, robots and people at the Gigafactories.' },
-        { title: 'Energy', text: 'Solar, Powerwall and Megapack, from design to installation.' },
-        { title: 'AI and software', text: 'Autopilot, the in-car software and the systems behind them.' },
-        { title: 'Service', text: 'Technicians in service centres and mobile vans.' },
-        { title: 'Sales and delivery', text: 'Advisers who help people choose, drive and collect their car.' },
-      ])}`, { tone: 'soft' })}
+      body: `${heroImage({ crumbs, eyebrow: 'Careers', title: 'Hard problems, small teams', lead: 'Engineers, technicians, designers and advisers who like to see their work on the road and on the grid.', image: 'tesla-electric-chassis', alt: 'Close-up of a Tesla rear light', pos: '50% 50%', actions: [{ label: 'See open roles', href: 'discover/careers/#roles', style: 'btn-light' }] })}
+${section(`${headRow({ eyebrow: 'Teams', title: 'Six teams, one product', lead: 'Pick a team to see its open roles below.' })}
+  <ul class="team-grid">
+    ${teams
+      .map(
+        ([id, name, text, image, alt]) => `
+    <li class="reveal reveal-up"><a class="team-card" href="#roles" data-team-link="${id}">
+      <span class="team-card-media">${img(image, { alt, sizes: '(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw' })}</span>
+      <span class="team-card-body"><span class="team-card-title">${name}</span><span class="team-card-text">${text}</span><span class="team-card-count">${jobs.filter((j) => j[1] === id).length} open roles</span></span>
+    </a></li>`,
+      )
+      .join('')}
+  </ul>`, { tone: 'soft' })}
 ${section(`
-  <div class="split" style="align-items:start">
-    <div>${headRow({ eyebrow: 'Hiring', title: 'How the process works' }).replace('class="head-row"', 'class="head-row" style="margin-bottom:0"')}</div>
-    <ol class="rows">${[
-      ['Apply online', 'A CV and a short note on the hardest problem you have solved.'],
-      ['A first conversation', 'Thirty minutes with someone from the team, not a script.'],
-      ['Show the work', 'A practical exercise or a walkthrough of something you built.'],
-      ['Meet the team', 'A few conversations with the people you would work with.'],
-    ].map(([t, d]) => `<li class="row" style="grid-template-columns:1fr"><h3 class="h3" style="font-size:18px">${t}</h3><p>${d}</p></li>`).join('')}</ol>
-  </div>`)}`,
+  ${headRow({ eyebrow: 'Open roles', title: `${jobs.length} roles open now`, lead: 'Sample listings for this concept. Live openings, with full descriptions, are on tesla.com and LinkedIn.' })}
+  <div class="chips" role="group" aria-label="Filter roles by team">
+    <button class="chip" type="button" data-xfx-filter-btn="*" aria-pressed="true">All <small>${jobs.length}</small></button>
+    ${teams.map(([id, name]) => `<button class="chip" type="button" data-xfx-filter-btn="${id}" aria-pressed="false">${name} <small>${jobs.filter((j) => j[1] === id).length}</small></button>`).join('')}
+  </div>
+  <ul class="jobs xfx-filter" data-xfx-filter>
+    ${jobs
+      .map(
+        ([title, team, place]) => `
+    <li class="job" data-tags="${team}">
+      <div><h3 class="job-title">${title}</h3><p class="job-meta"><span>${teamName[team]}</span><span>${place}</span><span>Full time</span></p></div>
+      <a class="btn btn-ghost job-apply" href="${OFFICIAL.linkedin}" rel="noopener">Apply <span class="sr-only">for ${title}</span> ${icon('solar:arrow-right-up-linear', 16)}</a>
+    </li>`,
+      )
+      .join('')}
+  </ul>
+  <a class="linkedin-card reveal reveal-up" href="${OFFICIAL.linkedin}" rel="noopener">
+    <span class="linkedin-card-icon">${icon('brandico:linkedin', 28)}</span>
+    <span><span class="linkedin-card-title">Hundreds more roles on LinkedIn</span><span class="linkedin-card-text">Follow Tesla on LinkedIn for every new opening, team news and hiring events.</span></span>
+    <span class="card-arrow" aria-hidden="true">${icon('solar:arrow-right-up-linear', 20)}</span>
+  </a>`, { id: 'roles' })}`,
     }),
   };
 }
@@ -400,18 +588,8 @@ export const discoverPages = () => [
     steps: { title: 'Find the right place in three steps', items: [['Choose what you need', 'A store, service, a Supercharger or a destination charger.'], ['Search a city or postcode', 'The map shows what is nearby, with opening hours.'], ['Get directions', 'Send the route to the car from your phone.']] },
   }),
   tripPlanner(),
-  finder({
-    id: 'collision-centers', label: 'Find a Collision Center', title: 'Repairs done to factory standard', lead: 'Tesla-approved body shops use the right tools, parts and procedures, so the structure and the sensors work as they did before.',
-    image: null, cta: 'Find an approved body shop',
-    types: [['Approved body shops', 'Trained and equipped for aluminium and high-strength steel repairs.'], ['Genuine parts', 'Parts that fit and keep cameras and sensors calibrated.'], ['Claims in the app', 'Report the damage with photos and follow the repair.']],
-    steps: { title: 'After an accident', items: [['Make sure everyone is safe', 'Call emergency services if anyone is hurt.'], ['Report it in the app', 'Photos and a short description start the claim.'], ['Choose a body shop', 'Pick an approved shop near you, or let your insurer suggest one.'], ['Collect the car', 'Sensors and cameras are checked before you drive away.']] },
-  }),
-  finder({
-    id: 'certified-installers', label: 'Find a Certified Installer', title: 'The right electrician for the job', lead: 'Certified installers fit Wall Connectors, solar and Powerwall to the same standard Tesla uses, with the paperwork done for you.',
-    image: 'tesla-home-energy-storage', alt: 'Black solar panels on a shingle roof', cta: 'Find a certified installer',
-    types: [['Wall Connector', 'Home charging installed on a dedicated circuit, usually in one visit.'], ['Solar Panels', 'Roof survey, design, permits and connection to the grid.'], ['Powerwall', 'Battery placement, backup wiring and app setup.']],
-    steps: { title: 'Choosing an installer', items: [['Check the certification', 'Certified installers are trained on the current products.'], ['Ask for a site visit', 'A short visit catches panel capacity and cable runs early.'], ['Compare quotes', 'Look at what is included: permits, trenching, the app setup.'], ['Book the installation', 'Most Wall Connectors take half a day.']] },
-  }),
+  collision(),
+  installers(),
   about(),
   careers(),
   ir(),
