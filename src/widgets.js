@@ -9,7 +9,24 @@ const val = (form, name) => {
   if (el.type === 'checkbox') return el.checked;
   return el.value;
 };
-const out = (root, key, text) => $$(`[data-out="${key}"]`, root).forEach((o) => (o.textContent = text));
+// The big result in a panel always stays on one line: if it is wider than its panel, the font
+// shrinks just enough to fit (never below 22 px).
+const fitBig = (el) => {
+  el.style.fontSize = '';
+  const max = parseFloat(getComputedStyle(el).fontSize);
+  if (el.scrollWidth > el.clientWidth + 1) el.style.fontSize = `${Math.max(22, Math.floor((max * el.clientWidth) / el.scrollWidth) - 1)}px`;
+};
+const out = (root, key, text) =>
+  $$(`[data-out="${key}"]`, root).forEach((o) => {
+    o.textContent = text;
+    if (o.classList.contains('result-big')) fitBig(o);
+  });
+let fitTimer;
+addEventListener('resize', () => {
+  clearTimeout(fitTimer);
+  fitTimer = setTimeout(() => $$('.result-big').forEach(fitBig), 100);
+});
+document.fonts?.ready.then(() => $$('.result-big').forEach(fitBig));
 const bindLive = (form, fn) => {
   form.addEventListener('input', fn);
   form.addEventListener('change', fn);

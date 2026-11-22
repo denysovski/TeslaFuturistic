@@ -124,22 +124,30 @@ html.menu-open, html.cart-open { overflow: hidden; }
   .menu-btn { display: none; }
 }
 
-.mega {
-  position: fixed; top: var(--bar); left: 0; right: 0; z-index: 1;
-  background: #fff; border-bottom: 1px solid var(--line); box-shadow: 0 30px 60px -30px rgba(0,0,0,.18);
-  /* Pulled down from under the bar: the clip opens from the top edge, the contents follow a beat
-     later. Closing slides it back up, about 25 % faster (MO-15). */
-  clip-path: inset(0 0 100% 0); visibility: hidden;
-  transition: clip-path 380ms var(--ease-io), visibility 0s linear 380ms;
+.mega-shell { display: none; }
+@media (min-width: 1024px) {
+  /* One white sheet behind every panel. It is pulled down from under the bar (clip reveal) and
+     changes height when you move between panels, so the menu never closes in between. */
+  .mega-shell {
+    display: block; position: fixed; top: var(--bar); left: 0; right: 0; z-index: 1; height: var(--mega-h, 0px);
+    background: #fff; border-bottom: 1px solid var(--line); box-shadow: 0 30px 60px -30px rgba(0,0,0,.18);
+    clip-path: inset(0 0 100% 0); visibility: hidden;
+    transition: clip-path 380ms var(--ease-io), visibility 0s linear 380ms, height 0s linear 380ms;
+  }
+  .site-header.mega-open .mega-shell { clip-path: inset(0 0 -60px 0); visibility: visible; transition: clip-path 560ms var(--ease), height 460ms var(--ease), visibility 0s; }
+  .site-header.mega-fresh .mega-shell { transition: clip-path 560ms var(--ease), visibility 0s; }
 }
-.desk-item.is-open .mega { clip-path: inset(0 0 -60px 0); visibility: visible; transition: clip-path 560ms var(--ease), visibility 0s; }
+.mega { position: fixed; top: var(--bar); left: 0; right: 0; z-index: 2; visibility: hidden; pointer-events: none; }
+.desk-item.is-open .mega { visibility: visible; pointer-events: auto; }
+.desk-item.is-leaving .mega { visibility: visible; }
+/* Opening from closed: the contents drop in a beat after the sheet. */
 .mega-inner { opacity: 0; transform: translateY(-12px); transition: opacity 180ms var(--ease), transform 240ms var(--ease); }
 .desk-item.is-open .mega-inner { opacity: 1; transform: none; transition: opacity 400ms var(--ease) 140ms, transform 520ms var(--ease) 140ms; }
-/* Moving between Vehicles, Energy and so on while a panel is open: no second slide, only the
-   contents cross-fade. */
-.site-header.mega-switch .mega { transition: none; }
-.site-header.mega-switch .desk-item.is-open .mega-inner { transition-delay: 60ms; }
-.mega-inner { max-width: 1280px; margin: 0 auto; padding: 32px 48px 40px; }
+/* Moving sideways between panels: the old one fades out towards where you came from, the new one
+   fades in from the side you are heading to. */
+.site-header.mega-sliding .desk-item.is-open .mega-inner { transition: opacity 420ms var(--ease) 80ms, transform 560ms var(--ease) 40ms; }
+.desk-item.is-entering .mega-inner { opacity: 0; transform: translateX(var(--dx)); transition: none !important; }
+.desk-item.is-leaving .mega-inner { opacity: 0; transform: translateX(var(--dx)); transition: opacity 240ms var(--ease), transform 340ms var(--ease); }
 .mega-grid { display: grid; gap: 24px; }
 .mega-grid--5 { grid-template-columns: repeat(5, minmax(0, 1fr)); }
 .mega-grid--4 { grid-template-columns: repeat(4, minmax(0, 1fr)); max-width: 1080px; margin: 0 auto; }
@@ -344,6 +352,8 @@ html.menu-open, html.cart-open { overflow: hidden; }
 @media (min-width: 1024px) { .grid--3 { grid-template-columns: repeat(3, minmax(0, 1fr)); } .grid--4 { grid-template-columns: repeat(4, minmax(0, 1fr)); } .grid { gap: 20px; } }
 .card { display: flex; flex-direction: column; gap: 12px; padding: 28px; border-radius: var(--radius); background: var(--soft); }
 .card--line { background: #fff; border: 1px solid var(--line); }
+/* On a grey section a grey card would disappear: give it white and a border instead. */
+.section--soft .card:not(.card--dark):not(.card--line) { background: #fff; border: 1px solid var(--line); }
 .card--dark { background: #18181b; color: #fff; }
 .card p { font-size: 15px; line-height: 1.6; color: var(--muted); }
 .card--dark p { color: #a1a1aa; }
@@ -423,7 +433,8 @@ a.card:hover .card-photo img { transform: scale(1.03); }
 /* calculators */
 .calc { display: grid; gap: 24px; }
 @media (min-width: 1024px) { .calc { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 40px; align-items: start; } }
-.result-big { font-size: clamp(44px, 6vw, 72px); line-height: 1; font-weight: 600; letter-spacing: -0.04em; font-variant-numeric: tabular-nums; }
+.result-big { font-size: clamp(40px, 5.4vw, 68px); line-height: 1.05; font-weight: 600; letter-spacing: -0.04em; font-variant-numeric: tabular-nums; white-space: nowrap; overflow: hidden; }
+.panel { min-width: 0; }
 .bars { display: grid; gap: 16px; margin-top: 24px; }
 .bar-row { display: grid; gap: 6px; }
 .bar-row-top { display: flex; justify-content: space-between; gap: 12px; font-size: 14px; }
@@ -674,3 +685,15 @@ a.card--arrow:hover .card-arrow { background: var(--red); transform: translate(2
 .xsel-opt[aria-selected='true'] .xsel-check { background: var(--ink); }
 .xsel-opt[aria-selected='true'] .xsel-check::after { content: ''; position: absolute; left: 7px; top: 4px; width: 5px; height: 9px; border: solid #fff; border-width: 0 1.8px 1.8px 0; transform: rotate(45deg); }
 .xsel-opt[aria-disabled='true'] { opacity: .4; cursor: default; }
+
+/* Job and event cards */
+.jobs { border-top: 0; display: grid; gap: 12px; }
+@media (min-width: 900px) { .jobs { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.job { padding: 20px 20px 20px 24px; border: 1px solid var(--line); border-radius: 18px; background: #fff; transition: border-color 250ms var(--ease), opacity 450ms var(--ease), transform 600ms var(--ease); }
+.job:hover { border-color: #a1a1aa; }
+.rows--cards { border-top: 0; gap: 12px; }
+.rows--cards .row { padding: 24px; border: 1px solid var(--line); border-radius: 18px; background: #fff; }
+
+/* Breathing room between a paragraph and a list of values that follows it. */
+.prose + .kv, .split .prose ~ .kv { margin-top: 32px; }
+.kv + .actions { margin-top: 36px; }

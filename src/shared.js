@@ -86,22 +86,48 @@ onScroll();
 const items = $$('.desk-item');
 let openItem = null;
 let hoverTimer;
+const shell = $('.mega-shell');
+let slideTimer;
 function setMega(item) {
   if (openItem === item) return;
-  // switching straight from one open panel to another: swap without sliding again
-  const switching = !!(openItem && item);
-  header?.classList.toggle('mega-switch', switching);
-  if (openItem) {
-    $('.desk-link', openItem).setAttribute('aria-expanded', 'false');
-    openItem.classList.remove('is-open');
-  }
+  const prev = openItem;
   openItem = item;
-  header?.classList.toggle('mega-open', !!item);
-  if (item) {
-    $('.desk-link', item).setAttribute('aria-expanded', 'true');
-    item.classList.add('is-open');
-    if (switching) requestAnimationFrame(() => requestAnimationFrame(() => header.classList.remove('mega-switch')));
+  if (prev) {
+    $('.desk-link', prev).setAttribute('aria-expanded', 'false');
+    prev.classList.remove('is-open');
   }
+  if (!item) {
+    header?.classList.remove('mega-open', 'mega-sliding');
+    return;
+  }
+  $('.desk-link', item).setAttribute('aria-expanded', 'true');
+  const h = $('.mega-inner', item).offsetHeight;
+  if (!prev) {
+    // opening from closed: size the sheet first, then pull it down
+    header.classList.add('mega-fresh');
+    shell?.style.setProperty('--mega-h', `${h}px`);
+    void shell?.offsetHeight;
+    header.classList.add('mega-open');
+    item.classList.add('is-open');
+    requestAnimationFrame(() => header.classList.remove('mega-fresh'));
+    return;
+  }
+  // moving sideways: the sheet stays, its height follows the new panel
+  const dir = items.indexOf(item) > items.indexOf(prev) ? 1 : -1;
+  header.classList.add('mega-sliding');
+  prev.style.setProperty('--dx', `${-dir * 56}px`);
+  prev.classList.add('is-leaving');
+  clearTimeout(prev.leaveTimer);
+  prev.leaveTimer = setTimeout(() => prev.classList.remove('is-leaving'), 360);
+  item.classList.remove('is-leaving');
+  item.style.setProperty('--dx', `${dir * 56}px`);
+  item.classList.add('is-entering');
+  void item.offsetHeight;
+  item.classList.add('is-open');
+  item.classList.remove('is-entering');
+  shell?.style.setProperty('--mega-h', `${h}px`);
+  clearTimeout(slideTimer);
+  slideTimer = setTimeout(() => header.classList.remove('mega-sliding'), 700);
 }
 items.forEach((item) => {
   const btn = $('.desk-link', item);

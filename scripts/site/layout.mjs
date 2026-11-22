@@ -150,6 +150,7 @@ export function nav(current = '') {
         </button>
       </div>
     </div>
+    <div class="mega-shell" aria-hidden="true"></div>
     <div class="mega-backdrop" aria-hidden="true"></div>
   </header>
 

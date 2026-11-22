@@ -90,8 +90,8 @@ const renderSpecs = (specKey) => {
 
     specSwapTimer = window.setTimeout(() => {
         specValues.innerHTML = specSets[specKey].map(([label, value]) => `
-            <div>
-                <div class="w-8 h-0.5 bg-white mb-4"></div>
+            <div class="spec-cell">
+                <div class="w-8 h-0.5 bg-red-600 mb-4"></div>
                 <p class="text-sm text-neutral-400 mb-1">${label}</p>
                 <p class="text-xl font-medium">${value}</p>
             </div>

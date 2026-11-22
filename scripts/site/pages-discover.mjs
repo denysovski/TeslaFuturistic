@@ -244,7 +244,7 @@ ${section(`
     <button class="chip" type="button" data-xfx-filter-btn="*" aria-pressed="true">All</button>
     ${Object.entries(names).map(([k, v]) => `<button class="chip" type="button" data-xfx-filter-btn="${k}" aria-pressed="false">${v}</button>`).join('')}
   </div>
-  <ul class="rows xfx-filter" data-xfx-filter>
+  <ul class="rows rows--cards xfx-filter" data-xfx-filter>
     ${list
       .map(
         ([type, t, d, place, text]) => `
@@ -275,7 +275,7 @@ ${section(`${headRow({ eyebrow: 'What you will find', title: 'Places, and what e
 ${section(`
   <div class="split" style="align-items:start">
     <div>${headRow({ eyebrow: 'How it works', title: steps.title }).replace('class="head-row"', 'class="head-row" style="margin-bottom:0"')}</div>
-    <ol class="rows">${steps.items.map(([t, d]) => `<li class="row" style="grid-template-columns:1fr"><h3 class="h3" style="font-size:18px">${t}</h3><p>${d}</p></li>`).join('')}</ol>
+    ${miniCards(steps.items.map(([t, d], i) => [['First', 'Then', 'Finally', 'Last'][i] || 'Then', t, d]), { tone: 'dark' }).replace('style="--cols:3"', 'style="--cols:1"')}
   </div>`)}
 ${section(ctaBand({ title: 'Search the official map', text: 'Opening hours, directions and live Supercharger availability are kept on tesla.com.', actions: [{ label: cta, href: OFFICIAL.findus, ext: true, style: 'btn-light' }] }))}`,
     }),

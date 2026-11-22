@@ -22,3 +22,8 @@
   .deck-arrow--prev { left: 10px; }
   .deck-arrow--next { right: 10px; }
 }
+
+/* Dark cards for the showcase specifications and the gaming points. */
+.spec-cell { padding: 20px 20px 22px; border-radius: 18px; background: #141416; border: 1px solid rgba(255, 255, 255, 0.1); }
+/* the specifications sit above the deck, so a peeking card never shows through */
+@media (min-width: 768px) { .spec-column { position: relative; z-index: 60; background: #000; padding-left: 32px; box-shadow: -40px 0 40px #000; } }
