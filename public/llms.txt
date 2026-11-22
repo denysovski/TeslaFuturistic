@@ -1,10 +1,30 @@
 # TeslaX
 
-> TeslaX is an unofficial, portfolio concept page for Tesla Model S Plaid by denysovski. It is not affiliated with Tesla, Inc.; prices, dates and the cart are demo data.
+> TeslaX is an unofficial portfolio concept of a Tesla website by denysovski. It is not affiliated with Tesla, Inc.; prices, dates, stock and the store are demo data, and no form sends anything.
 
-The single page covers the Model S interior, in-car gaming, safety, the electric architecture, a model showcase (Model 3, Model Y, Model S, Model X), software updates, Tesla Energy (solar, Powerwall, Megapack), performance, ownership costs, a demo-drive form, updates, an FAQ and a look at future features.
+The homepage is a long scroll about the Model S Plaid: interior, gaming, safety, electric architecture, a model showcase, software, Tesla Energy, performance, ownership costs, a demo-drive form, updates, an FAQ and future features. Sub-pages cover every link in the navigation.
 
-- [Concept page](https://denysovski.github.io/TeslaFuturistic/)
+## Vehicles
+- [All vehicles](https://denysovski.github.io/TeslaFuturistic/vehicles/)
+- [Model S](https://denysovski.github.io/TeslaFuturistic/vehicles/model-s/), [Model 3](https://denysovski.github.io/TeslaFuturistic/vehicles/model-3/), [Model X](https://denysovski.github.io/TeslaFuturistic/vehicles/model-x/), [Model Y](https://denysovski.github.io/TeslaFuturistic/vehicles/model-y/), [Cybertruck](https://denysovski.github.io/TeslaFuturistic/vehicles/cybertruck/)
+- [Inventory, new and used](https://denysovski.github.io/TeslaFuturistic/vehicles/inventory/), [Compare](https://denysovski.github.io/TeslaFuturistic/vehicles/compare/), [Trade-in](https://denysovski.github.io/TeslaFuturistic/vehicles/trade-in/), [Fleet](https://denysovski.github.io/TeslaFuturistic/vehicles/fleet/)
+
+## Energy and charging
+- [Energy: Solar Panels, Solar Roof, Powerwall, Megapack](https://denysovski.github.io/TeslaFuturistic/energy/)
+- [Charging: home charging and Supercharging](https://denysovski.github.io/TeslaFuturistic/charging/)
+- [Compare savings calculator](https://denysovski.github.io/TeslaFuturistic/savings/)
+
+## Discover
+- [Discover hub](https://denysovski.github.io/TeslaFuturistic/discover/)
+- [Demo Drive](https://denysovski.github.io/TeslaFuturistic/discover/demo-drive/), [Insurance](https://denysovski.github.io/TeslaFuturistic/discover/insurance/), [Video Guides](https://denysovski.github.io/TeslaFuturistic/discover/video-guides/), [Customer Stories](https://denysovski.github.io/TeslaFuturistic/discover/customer-stories/), [Events](https://denysovski.github.io/TeslaFuturistic/discover/events/)
+- [Find Us](https://denysovski.github.io/TeslaFuturistic/discover/find-us/), [Trip Planner](https://denysovski.github.io/TeslaFuturistic/discover/trip-planner/), [Find a Collision Center](https://denysovski.github.io/TeslaFuturistic/discover/collision-centers/), [Find a Certified Installer](https://denysovski.github.io/TeslaFuturistic/discover/certified-installers/)
+- [About](https://denysovski.github.io/TeslaFuturistic/discover/about/), [Careers](https://denysovski.github.io/TeslaFuturistic/discover/careers/), [Investor Relations](https://denysovski.github.io/TeslaFuturistic/discover/investor-relations/), [Latest updates](https://denysovski.github.io/TeslaFuturistic/updates/)
+
+## Shop
+- [Shop: apparel, lifestyle, charging and accessories](https://denysovski.github.io/TeslaFuturistic/shop/)
+
+## Links
+- [Concept homepage](https://denysovski.github.io/TeslaFuturistic/)
 - [Source code](https://github.com/denysovski/TeslaFuturistic)
 - [Author](https://github.com/denysovski)
 - [Official Tesla website](https://www.tesla.com/)

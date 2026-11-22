@@ -1,0 +1,24 @@
+/* Homepage-only styles. */
+
+/* Model showcase. Desktop: the fanned 3D deck. Phones: one card that crossfades, with arrows. */
+.deck-arrow { display: none; }
+@media (min-width: 768px) {
+  .spec-deck { height: 460px; perspective: 1400px; overflow: visible; transform: translateX(-150px); width: calc(100% + 150px); }
+}
+@media (max-width: 767px) {
+  .spec-deck { aspect-ratio: 16 / 10; min-height: 0; height: auto; overflow: hidden; border-radius: 20px; background: #111; }
+  .spec-deck .spec-image-stack {
+    left: 0 !important; min-width: 0 !important; width: 100% !important; object-fit: cover; border-radius: 20px;
+    filter: none !important; opacity: 0 !important; transform: translate3d(6%, 0, 0) !important;
+    transition: opacity 0.5s cubic-bezier(0.22, 1, 0.36, 1), transform 0.6s cubic-bezier(0.22, 1, 0.36, 1) !important;
+  }
+  .spec-deck .spec-image-stack.spec-deck-left { transform: translate3d(-6%, 0, 0) !important; }
+  .spec-deck .spec-image-stack.is-active { opacity: 1 !important; transform: none !important; }
+  .deck-arrow {
+    position: absolute; top: 50%; z-index: 50; display: grid; place-items: center; width: 44px; height: 44px; margin-top: -22px;
+    border-radius: 999px; border: 0; background: rgba(255, 255, 255, 0.9); color: #0b0b0c; box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+  }
+  .deck-arrow:active { transform: scale(0.95); }
+  .deck-arrow--prev { left: 10px; }
+  .deck-arrow--next { right: 10px; }
+}

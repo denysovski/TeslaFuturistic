@@ -2,16 +2,16 @@
 
 # TeslaX — Tesla Futuristic
 
-**An unofficial, cinematic concept page for the Tesla Model S Plaid.**
+**An unofficial, cinematic concept site for Tesla: the line-up, energy, charging, ownership and a small store.**
 
-One scroll from the first frame to the long-term value: interior, gaming, safety, the electric architecture, the line-up, Tesla Energy, performance, ownership costs and a demo-drive booking. Plain HTML, compiled Tailwind and GSAP, with no framework and no app shell.
+A long-scroll homepage for the Model S Plaid, plus 28 sub-pages for every link in the navigation: each model, inventory, compare, trade-in and fleet; Energy and Charging; thirteen Discover pages; a savings calculator; an updates archive; and a shop with a real cart and checkout. Plain HTML, compiled Tailwind and GSAP, with no framework.
 
-[**Open the live site**](https://denysovski.github.io/TeslaFuturistic/) &nbsp;·&nbsp; [Models](https://denysovski.github.io/TeslaFuturistic/#models) &nbsp;·&nbsp; [Performance](https://denysovski.github.io/TeslaFuturistic/#performance) &nbsp;·&nbsp; [Demo Drive](https://denysovski.github.io/TeslaFuturistic/#demo-drive)
+[**Open the live site**](https://denysovski.github.io/TeslaFuturistic/) &nbsp;·&nbsp; [Vehicles](https://denysovski.github.io/TeslaFuturistic/vehicles/) &nbsp;·&nbsp; [Energy](https://denysovski.github.io/TeslaFuturistic/energy/) &nbsp;·&nbsp; [Shop](https://denysovski.github.io/TeslaFuturistic/shop/) &nbsp;·&nbsp; [Compare savings](https://denysovski.github.io/TeslaFuturistic/savings/)
 
 ![Vite](https://img.shields.io/badge/Vite-000000?style=flat-square&labelColor=000000&logo=vite&logoColor=white)
 ![Tailwind CSS](https://img.shields.io/badge/Tailwind%20CSS-000000?style=flat-square&labelColor=000000&logo=tailwindcss&logoColor=white)
 ![GSAP](https://img.shields.io/badge/GSAP%20%2B%20ScrollTrigger-000000?style=flat-square&labelColor=000000&logo=greensock&logoColor=white)
-![WebP](https://img.shields.io/badge/images-WebP%20%C2%B7%20srcset-000000?style=flat-square&labelColor=000000)
+![Pages](https://img.shields.io/badge/pages-29-000000?style=flat-square&labelColor=000000)
 ![No framework](https://img.shields.io/badge/framework-none-000000?style=flat-square&labelColor=000000)
 
 <br>
@@ -21,7 +21,7 @@ One scroll from the first frame to the long-term value: interior, gaming, safety
 </div>
 
 > [!NOTE]
-> **Unofficial concept.** A portfolio project, not affiliated with, endorsed or sponsored by Tesla, Inc. Tesla, Model S, Model 3, Model X, Model Y, Powerwall and Megapack are trademarks of Tesla, Inc.; product photos © Tesla, Inc. Prices, dates and the cart are demo data.
+> **Unofficial concept.** A portfolio project, not affiliated with, endorsed or sponsored by Tesla, Inc. Tesla, Model S, Model 3, Model X, Model Y, Cybertruck, Powerwall and Megapack are trademarks of Tesla, Inc.; product photos © Tesla, Inc. Prices, dates, stock and the store are demo data, and no form sends anything.
 
 ---
 
@@ -29,101 +29,82 @@ One scroll from the first frame to the long-term value: interior, gaming, safety
 
 | | |
 |---|---|
-| **The page** | One long, crawlable page in fifteen sections, each with its own anchor, from the hero to *What's the future like?* |
-| **Motion** | GSAP + ScrollTrigger reveals, a 61-frame scroll sequence for the hero, sliding model cards, an auto-playing interior gallery and quiet hover states. |
-| **Interaction** | Spec tooltips on the hero stats, a model switcher with live specs, mega menus, a cart drawer, an FAQ accordion and a two-step demo-drive form. |
-| **Performance** | Every image in WebP at three or four widths with `srcset`, fixed dimensions, lazy loading below the fold and a preloaded hero. About 200 MB of assets became under 7 MB. |
-| **SEO** | One `h1`, canonical URL, Open Graph and Twitter cards, JSON-LD (`WebSite`, `WebPage`, `FAQPage`), sitemap, robots, `llms.txt`, a web manifest and a real 404. |
-| **Responsive** | Tuned for phones, tablets and desktop: a portrait hero on phones, start-aligned text, compact stats, lighter spacing, a working mobile menu and no sideways scrolling. |
+| **Pages** | 29 static pages. The homepage, and a page for every navigation link: five models, line-up, inventory (new and used), compare, trade-in, fleet, Energy (Solar Panels, Solar Roof, Powerwall, Megapack), Charging (charging, home, Supercharging), thirteen Discover pages, Compare savings, the updates archive and the shop. |
+| **Navigation** | One header on every page. Desktop mega menus open on click, keyboard or hover and close with Escape. On phones and tablets the menu button sits next to the cart and opens a sheet with an accordion for each section, so every sub-page is reachable; focus stays inside it while it is open. |
+| **Shop** | Sixteen products drawn as line icons rather than photos, filtered by category. Buy two items and save 10 %, three or more and save 15 %, free shipping from $100. A cart drawer with quantities, undo and a progress bar to the next saving, and a checkout with an order summary. |
+| **Tools** | An order configurator with monthly payments on every model page, plus estimators for trade-in value, savings against petrol, insurance and road-trip charging stops. |
+| **Images** | WebP from 640 to 3200 px with `srcset`. A small script tells the browser how wide each photo is really drawn when it is cropped with `object-fit: cover`, so phones get sharp files instead of stretched ones. The phone hero is an art-directed portrait crop. |
+| **Quality** | No sideways scrolling at 320, 390, 768 or 1440 px on any page, no axe violations (WCAG 2.1 AA and best practice) at 390 and 1440 px, and a clean scan of the [XSLOP](https://github.com/denysovski/xslop) design rules. |
 
 ---
 
-## The page
+## The homepage
 
 | | |
-|---|---|
-| ![Hero](docs/screens/01-hero.jpg) **Hero.** Model Y Performance at full bleed, the Tesla mark and three hero stats (range, 0–60, peak power), each with a tooltip on hover. | ![Interior](docs/screens/02-interior.jpg) **Interior of the Future.** A cabin gallery that plays on its own, with a glass caption card for each view. |
-| ![Gaming](docs/screens/03-gaming.jpg) **Play Anywhere.** In-car gaming on the rear display, with Steam and wireless controller support. | ![Safety](docs/screens/04-safety.jpg) **High Impact Protection.** The safety story around the white Model S, with floating notes on the structure. |
-| ![Architecture](docs/screens/05-architecture.jpg) **Electric Architecture.** A bento grid: tri-motor drive, 0.208 Cd aerodynamics, Supercharging and vision processing. | ![Models](docs/screens/06-models.jpg) **Our showcase.** A deck of four models. Switch between Model 3, Y, S and X and the specification panel updates. |
-| ![Software](docs/screens/07-software.jpg) **Better Over Time.** Phone Key, Trip Planner and Sentry Mode as three product cards. | ![Energy](docs/screens/08-energy.jpg) **Complete Energy Ecosystem.** Solar roof, Powerwall and the app as one system. |
-| ![Performance](docs/screens/09-performance.jpg) **Unmatched Performance.** Model S Plaid against the Porsche Taycan Turbo S and Lucid Air Sapphire. | ![Ownership](docs/screens/10-ownership.jpg) **Built to Last.** Lower upkeep and a five-year cost-per-mile comparison. |
-| ![Demo drive](docs/screens/11-demo-drive.jpg) **Demo Drive.** Pick a day, leave your details, done. A demo form: nothing is sent or stored. | ![Updates](docs/screens/12-updates.jpg) **Latest Updates.** Software, milestones and events in an editorial grid. |
-| ![Why Tesla](docs/screens/13-why-tesla.jpg) **Why Drivers Keep Choosing Tesla.** Performance, software and charging in three short arguments. | ![FAQ](docs/screens/14-faq.jpg) **Frequently Asked Questions.** Range, long-trip charging, software and cost of ownership, also published as `FAQPage` structured data. |
+|:---:|:---:|
+| ![Interior](docs/screens/02-interior.jpg) **Interior of the Future.** A cabin gallery that plays on its own; on phones the photo keeps its shape and the caption and stats sit below it. | ![Safety](docs/screens/04-safety.jpg) **High Impact Protection.** The two notes sit in the top corners of the photo at every size. |
+| ![Architecture](docs/screens/05-architecture.jpg) **Electric Architecture.** A bento grid; on phones each card grows with its text. | ![Models](docs/screens/06-models.jpg) **Our showcase.** A fanned deck on desktop; on phones one card with arrows and swipe. |
+| ![Energy](docs/screens/08-energy.jpg) **Complete Energy Ecosystem.** Solar roof, Powerwall and the app as one system. | ![Updates](docs/screens/12-updates.jpg) **Latest Updates.** Every card opens its story in the archive. |
 
-![The future](docs/screens/15-future.jpg)
-**What's the future like?** Four large cards on where mobility, intelligence and energy are heading next.
+## The sub-pages
+
+| | |
+|:---:|:---:|
+| ![Vehicles](docs/screens/17-vehicles.jpg) **Vehicles.** The line-up with range, acceleration and price for each model. | ![Model page](docs/screens/18-model-page.jpg) **A model page.** Hero with specs, the cabin, highlights, a configurator and the numbers. |
+| ![Energy page](docs/screens/19-energy.jpg) **Energy.** Solar Panels, Solar Roof, Powerwall and Megapack on one page, each with its own anchor. | ![Discover](docs/screens/21-discover.jpg) **Discover.** Resources, location services and the company, thirteen pages in all. |
+| ![Shop](docs/screens/20-shop.jpg) **Shop.** Products as icons, multi-buy savings and category filters. | ![Cart](docs/screens/23-cart.jpg) **Cart.** Quantities, the saving applied and the total before checkout. |
+
+![Compare savings](docs/screens/22-savings.jpg)
+**Compare savings.** Mileage, fuel price, economy and electricity rate against five years of running costs.
 
 ---
 
-## Mobile
-
-Phones get their own hero (a portrait crop of the Model S Plaid), start-aligned text, compact stats and a working menu.
+## On a phone
 
 | | | |
 |:---:|:---:|:---:|
-| <img src="docs/screens/m-hero.jpg" width="250" alt="Mobile hero"><br><sub>Hero</sub> | <img src="docs/screens/m-energy.jpg" width="250" alt="Mobile energy section"><br><sub>Complete Energy Ecosystem</sub> | <img src="docs/screens/m-demo-drive.jpg" width="250" alt="Mobile demo drive"><br><sub>Demo Drive</sub> |
-
----:|:---:|:---:|
-| <img src="docs/screens/m-hero.jpg" width="230" alt="Mobile hero"><br><sub>Hero</sub> | <img src="docs/screens/m-menu.jpg" width="230" alt="Mobile menu"><br><sub>Menu</sub> | <img src="docs/screens/m-interior.jpg" width="230" alt="Mobile interior"><br><sub>Interior</sub> |
-| <img src="docs/screens/m-models.jpg" width="230" alt="Mobile models"><br><sub>Our showcase</sub> | <img src="docs/screens/m-energy.jpg" width="230" alt="Mobile energy"><br><sub>Energy</sub> | <img src="docs/screens/m-demo-drive.jpg" width="230" alt="Mobile demo drive"><br><sub>Demo Drive</sub> |
+| <img src="docs/screens/m-hero.jpg" width="230" alt="Homepage hero on a phone"><br><sub>Hero</sub> | <img src="docs/screens/m-menu.jpg" width="230" alt="Phone menu with the Vehicles section open"><br><sub>Menu</sub> | <img src="docs/screens/m-models.jpg" width="230" alt="Model showcase with arrows on a phone"><br><sub>Our showcase</sub> |
+| <img src="docs/screens/m-energy.jpg" width="230" alt="Energy section on a phone"><br><sub>Energy</sub> | <img src="docs/screens/m-shop.jpg" width="230" alt="Shop on a phone"><br><sub>Shop</sub> | <img src="docs/screens/m-interior.jpg" width="230" alt="Interior gallery on a phone"><br><sub>Interior</sub> |
 
 ---
 
-## Performance and SEO
+## Performance, SEO and accessibility
 
-### Images
-
-- **WebP at the right size.** Each photo exists at three or four widths (`640`, `1280`, `1920`, up to `2560` for the hero) with `srcset` and `sizes`, so a phone never downloads a desktop file.
-- **No layout shift.** Every image carries its `width` and `height`.
-- **Loaded when needed.** Everything below the first screen is `loading="lazy"`; the hero is preloaded with `fetchpriority="high"`.
-- **The scroll sequence.** 61 frames as small WebP files, a 1600 px set for desktop and a 960 px set for phones (they were 1.3 MB PNGs each).
-- **Descriptive names.** `model-s-interior-cockpit-1280.webp`, not `ModelS_82.jpg`.
-
-### Search and sharing
-
-- One `h1` and an anchor on every section; every link leads somewhere real.
-- Canonical URL, meta description, Open Graph and Twitter cards with a 1200 × 630 share image.
-- JSON-LD for `WebSite`, `WebPage` and the FAQ as `FAQPage`.
-- `robots.txt`, `sitemap.xml`, `llms.txt`, `site.webmanifest`, favicons and a real `404.html`.
-
-### Build
-
-- Tailwind is compiled at build time from the classes in the page (no runtime CDN), and Inter is self-hosted (no Google Fonts request).
-- GSAP loads at the end of the body and the icon library is deferred, so nothing blocks the first paint.
+- **Images.** Each photo exists at up to six widths with fixed dimensions, lazy loading below the fold and a preloaded hero per breakpoint. 61 scroll frames as small WebP files, a desktop and a phone set.
+- **No runtime CDNs.** Tailwind is compiled, Inter is self-hosted, GSAP is bundled, and only the icons the site uses are bundled with it, so icons never wait for an API.
+- **Search.** A unique title, description and canonical URL on every page, Open Graph and Twitter cards, breadcrumbs as `BreadcrumbList`, models as `Product`, the shop as an `ItemList`, the FAQ as `FAQPage`, and a sitemap with all 29 URLs.
+- **Accessibility.** A skip link, one `h1` per page with no skipped heading levels, labelled form fields with errors next to the field, focus moved to the first problem, keyboard-operable menus and filters, and `prefers-reduced-motion` respected.
+- **Motion.** Reveals rise and fade once; filters fade out, swap and rise back in; menus and the cart slide on a single easing curve.
 
 ---
 
 ## Under the hood
 
-- **Vite 8** static build: `index.html` *is* the page, with its markup, styles and script
-- **Tailwind CSS 3**, compiled from the page's classes, plus a small layer of custom CSS for the motion
-- **GSAP 3 + ScrollTrigger** for reveals and the scroll sequence, **Iconify** for icons
-- **Inter** (variable), self-hosted through Fontsource
+- **Vite 8** multi-page build; every page is an `index.html` in its own folder
+- **Tailwind CSS 3** and a small hand-written layer for the shared components
+- **GSAP 3 + ScrollTrigger** on the homepage, **Iconify** icons bundled offline
 - **sharp** for the image pipeline
 - Deployed to **GitHub Pages** on every push to `master`
 
 ```
-index.html                    the page: markup, page styles and page script
-src/main.js · src/main.css    Tailwind and the Inter font for the build
-public/img/                   optimised images (<name>-<width>.webp)
-public/img/hero-sequence/     scroll frames, 1600 px and 960 px sets
-public/                       og-image, favicons, robots, sitemap, llms.txt, manifest, 404
+index.html                    the homepage
+scripts/site/                 templates: navigation, layout, building blocks and every sub-page
+scripts/build-pages.mjs       writes the sub-pages and the sitemap (output is git-ignored)
+scripts/build-icons.mjs       bundles only the icons the pages use
 scripts/optimize-images.mjs   rebuilds public/img/ from originals in assets-src/
-docs/screens/                 screenshots for this README
+src/shared.js · ui.css        header, phone menu, cart, reveals and sharp images on every page
+src/home.js · home.css        the homepage: scroll sequence, gallery, showcase
+src/widgets.js                filters, calculators, forms and the shop checkout
+public/                       images, og-image, favicons, robots, llms.txt, manifest, 404
 ```
 
-## Visual style
-
-- White and off-white surfaces for reading, deep black and charcoal for structure
-- Soft grey borders and muted interface chrome
-- Tesla red as the single accent
-- Glass cards, gentle blur and long, smooth fades
+Edit a sub-page in `scripts/site/`, not in the generated HTML: `npm run dev` and `npm run build` regenerate them.
 
 ## Run it locally
 
 ```bash
 npm install
-npm run dev       # dev server
+npm run dev       # writes the pages, then starts the dev server
 npm run build     # production build into dist/
 npm run preview   # serve the build
 npm run images    # rebuild public/img/ from originals in assets-src/

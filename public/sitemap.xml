@@ -1,7 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>https://denysovski.github.io/TeslaFuturistic/</loc>
-    <lastmod>2026-11-21</lastmod>
-  </url>
+  <url><loc>https://denysovski.github.io/TeslaFuturistic/</loc><lastmod>2026-11-22</lastmod><priority>1.0</priority></url>
+  <url><loc>https://denysovski.github.io/TeslaFuturistic/vehicles/</loc><lastmod>2026-11-22</lastmod><priority>0.8</priority></url>
+  <url><loc>https://denysovski.github.io/TeslaFuturistic/vehicles/model-s/</loc><lastmod>2026-11-22</lastmod><priority>0.6</priority></url>
+  <url><loc>https://denysovski.github.io/TeslaFuturistic/vehicles/model-3/</loc><lastmod>2026-11-22</lastmod><priority>0.6</priority></url>
+  <url><loc>https://denysovski.github.io/TeslaFuturistic/vehicles/model-x/</loc><lastmod>2026-11-22</lastmod><priority>0.6</priority></url>
+  <url><loc>https://denysovski.github.io/TeslaFuturistic/vehicles/model-y/</loc><lastmod>2026-11-22</lastmod><priority>0.6</priority></url>
+  <url><loc>https://denysovski.github.io/TeslaFuturistic/vehicles/cybertruck/</loc><lastmod>2026-11-22</lastmod><priority>0.6</priority></url>
+  <url><loc>https://denysovski.github.io/TeslaFuturistic/vehicles/compare/</loc><lastmod>2026-11-22</lastmod><priority>0.6</priority></url>
+  <url><loc>https://denysovski.github.io/TeslaFuturistic/vehicles/inventory/</loc><lastmod>2026-11-22</lastmod><priority>0.6</priority></url>
+  <url><loc>https://denysovski.github.io/TeslaFuturistic/vehicles/trade-in/</loc><lastmod>2026-11-22</lastmod><priority>0.6</priority></url>
+  <url><loc>https://denysovski.github.io/TeslaFuturistic/vehicles/fleet/</loc><lastmod>2026-11-22</lastmod><priority>0.6</priority></url>
+  <url><loc>https://denysovski.github.io/TeslaFuturistic/energy/</loc><lastmod>2026-11-22</lastmod><priority>0.8</priority></url>
+  <url><loc>https://denysovski.github.io/TeslaFuturistic/charging/</loc><lastmod>2026-11-22</lastmod><priority>0.8</priority></url>
+  <url><loc>https://denysovski.github.io/TeslaFuturistic/savings/</loc><lastmod>2026-11-22</lastmod><priority>0.8</priority></url>
+  <url><loc>https://denysovski.github.io/TeslaFuturistic/updates/</loc><lastmod>2026-11-22</lastmod><priority>0.8</priority></url>
+  <url><loc>https://denysovski.github.io/TeslaFuturistic/discover/</loc><lastmod>2026-11-22</lastmod><priority>0.8</priority></url>
+  <url><loc>https://denysovski.github.io/TeslaFuturistic/discover/demo-drive/</loc><lastmod>2026-11-22</lastmod><priority>0.6</priority></url>
+  <url><loc>https://denysovski.github.io/TeslaFuturistic/discover/insurance/</loc><lastmod>2026-11-22</lastmod><priority>0.6</priority></url>
+  <url><loc>https://denysovski.github.io/TeslaFuturistic/discover/video-guides/</loc><lastmod>2026-11-22</lastmod><priority>0.6</priority></url>
+  <url><loc>https://denysovski.github.io/TeslaFuturistic/discover/customer-stories/</loc><lastmod>2026-11-22</lastmod><priority>0.6</priority></url>
+  <url><loc>https://denysovski.github.io/TeslaFuturistic/discover/events/</loc><lastmod>2026-11-22</lastmod><priority>0.6</priority></url>
+  <url><loc>https://denysovski.github.io/TeslaFuturistic/discover/find-us/</loc><lastmod>2026-11-22</lastmod><priority>0.6</priority></url>
+  <url><loc>https://denysovski.github.io/TeslaFuturistic/discover/trip-planner/</loc><lastmod>2026-11-22</lastmod><priority>0.6</priority></url>
+  <url><loc>https://denysovski.github.io/TeslaFuturistic/discover/collision-centers/</loc><lastmod>2026-11-22</lastmod><priority>0.6</priority></url>
+  <url><loc>https://denysovski.github.io/TeslaFuturistic/discover/certified-installers/</loc><lastmod>2026-11-22</lastmod><priority>0.6</priority></url>
+  <url><loc>https://denysovski.github.io/TeslaFuturistic/discover/about/</loc><lastmod>2026-11-22</lastmod><priority>0.6</priority></url>
+  <url><loc>https://denysovski.github.io/TeslaFuturistic/discover/careers/</loc><lastmod>2026-11-22</lastmod><priority>0.6</priority></url>
+  <url><loc>https://denysovski.github.io/TeslaFuturistic/discover/investor-relations/</loc><lastmod>2026-11-22</lastmod><priority>0.6</priority></url>
+  <url><loc>https://denysovski.github.io/TeslaFuturistic/shop/</loc><lastmod>2026-11-22</lastmod><priority>0.8</priority></url>
 </urlset>
