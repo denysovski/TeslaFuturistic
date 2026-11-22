@@ -97,9 +97,18 @@ function setMega(item) {
     prev.classList.remove('is-open');
   }
   if (!item) {
+    // keep the old panel painted while its contents fade out and the sheet rolls up
+    if (prev) {
+      prev.classList.add('is-closing');
+      clearTimeout(prev.closeTimer);
+      prev.closeTimer = setTimeout(() => prev.classList.remove('is-closing'), 340);
+    }
     header?.classList.remove('mega-open', 'mega-sliding');
     return;
   }
+  clearTimeout(item.closeTimer);
+  item.classList.remove('is-closing');
+  items.forEach((i) => i !== item && i.classList.remove('is-closing'));
   $('.desk-link', item).setAttribute('aria-expanded', 'true');
   const h = $('.mega-inner', item).offsetHeight;
   if (!prev) {
@@ -128,6 +137,13 @@ function setMega(item) {
   shell?.style.setProperty('--mega-h', `${h}px`);
   clearTimeout(slideTimer);
   slideTimer = setTimeout(() => header.classList.remove('mega-sliding'), 700);
+}
+// If a panel grows after opening (fonts, images), the sheet follows so nothing is ever cut off.
+if ('ResizeObserver' in window) {
+  const ro = new ResizeObserver(() => {
+    if (openItem) shell?.style.setProperty('--mega-h', `${$('.mega-inner', openItem).offsetHeight}px`);
+  });
+  items.forEach((i) => ro.observe($('.mega-inner', i)));
 }
 items.forEach((item) => {
   const btn = $('.desk-link', item);

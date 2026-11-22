@@ -132,14 +132,16 @@ html.menu-open, html.cart-open { overflow: hidden; }
     display: block; position: fixed; top: var(--bar); left: 0; right: 0; z-index: 1; height: var(--mega-h, 0px);
     background: #fff; border-bottom: 1px solid var(--line); box-shadow: 0 30px 60px -30px rgba(0,0,0,.18);
     clip-path: inset(0 0 100% 0); visibility: hidden;
-    transition: clip-path 380ms var(--ease-io), visibility 0s linear 380ms, height 0s linear 380ms;
+    transition: clip-path 440ms var(--ease-io) 120ms, visibility 0s linear 560ms, height 0s linear 560ms;
   }
   .site-header.mega-open .mega-shell { clip-path: inset(0 0 -60px 0); visibility: visible; transition: clip-path 560ms var(--ease), height 460ms var(--ease), visibility 0s; }
   .site-header.mega-fresh .mega-shell { transition: clip-path 560ms var(--ease), visibility 0s; }
 }
 .mega { position: fixed; top: var(--bar); left: 0; right: 0; z-index: 2; visibility: hidden; pointer-events: none; }
 .desk-item.is-open .mega { visibility: visible; pointer-events: auto; }
-.desk-item.is-leaving .mega { visibility: visible; }
+.desk-item.is-leaving .mega, .desk-item.is-closing .mega { visibility: visible; }
+/* Breathing room inside every panel; the sheet is sized from this box, so nothing gets cut. */
+.mega-inner { box-sizing: border-box; max-width: 1360px; margin: 0 auto; padding: 32px clamp(32px, 5vw, 88px) 36px; }
 /* Opening from closed: the contents drop in a beat after the sheet. */
 .mega-inner { opacity: 0; transform: translateY(-12px); transition: opacity 180ms var(--ease), transform 240ms var(--ease); }
 .desk-item.is-open .mega-inner { opacity: 1; transform: none; transition: opacity 400ms var(--ease) 140ms, transform 520ms var(--ease) 140ms; }
@@ -148,12 +150,14 @@ html.menu-open, html.cart-open { overflow: hidden; }
 .site-header.mega-sliding .desk-item.is-open .mega-inner { transition: opacity 420ms var(--ease) 80ms, transform 560ms var(--ease) 40ms; }
 .desk-item.is-entering .mega-inner { opacity: 0; transform: translateX(var(--dx)); transition: none !important; }
 .desk-item.is-leaving .mega-inner { opacity: 0; transform: translateX(var(--dx)); transition: opacity 240ms var(--ease), transform 340ms var(--ease); }
+/* Closing: the contents fade and lift away first, then the sheet rolls back up under the bar. */
+.desk-item.is-closing .mega-inner { opacity: 0; transform: translateY(-10px); transition: opacity 220ms var(--ease-io), transform 300ms var(--ease-io); }
 .mega-grid { display: grid; gap: 24px; }
-.mega-grid--5 { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+.mega-grid--5 { grid-template-columns: repeat(5, minmax(0, 1fr)); max-width: 1180px; margin: 0 auto; }
 .mega-grid--4 { grid-template-columns: repeat(4, minmax(0, 1fr)); max-width: 1080px; margin: 0 auto; }
 .mega-grid--3 { grid-template-columns: repeat(3, minmax(0, 1fr)); max-width: 860px; margin: 0 auto; }
 .mega-tile { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 4px; padding: 8px 8px 16px; border-radius: var(--radius); }
-.mega-tile-img { width: 100%; height: auto; aspect-ratio: 5 / 3; object-fit: contain; margin-bottom: 8px; transition: transform 600ms var(--ease); }
+.mega-tile-img { width: 100%; max-width: 230px; height: auto; aspect-ratio: 5 / 3; object-fit: contain; margin-bottom: 8px; transition: transform 600ms var(--ease); }
 /* Hover only enlarges the picture; no background behind the tile. */
 .mega-tile:hover .mega-tile-img, .mega-tile:focus-visible .mega-tile-img { transform: scale(1.09); }
 .mega-tile-name { font-size: 17px; font-weight: 600; }
